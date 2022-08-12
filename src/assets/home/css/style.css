@@ -9442,8 +9442,9 @@ a.text-gray-dark:hover {
 
 @font-face {
     font-family: 'FontAwesome';
-    src: url("../fonts/fontawesome-webfont.eot?v=4.7.0");
-    src: url("../fonts/fontawesome-webfont.eot?#iefix&v=4.7.0") format("embedded-opentype"), url("../fonts/fontawesome-webfont.woff2?v=4.7.0") format("woff2"), url("../fonts/fontawesome-webfont.woff?v=4.7.0") format("woff"), url("../fonts/fontawesome-webfont.ttf?v=4.7.0") format("truetype"), url("../fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular") format("svg");
+    /* "../fonts/fontawesome-webfont.eot?v=4.7.0" */
+    src: url(src/assets/home/Fonts/fontawesome-webfont.woff2);
+    src: url(src/assets/home/Fonts/fontawesome-webfont.woff2) format("embedded-opentype"), url(src/assets/home/Fonts/fontawesome-webfont.woff2) format("woff2"), url(src/assets/home/Fonts/fontawesome-webfont.woff2) format("woff"), url(src/assets/home/Fonts/fontawesome-webfont.woff2) format("truetype"), url(src/assets/home/Fonts/fontawesome-webfont.woff2) format("svg");
     font-weight: normal;
     font-style: normal
 }
@@ -12478,8 +12479,8 @@ a.text-gray-dark:hover {
 
 @font-face {
     font-family: 'themify';
-    src: url("../fonts/themify.eot?-fvbane");
-    src: url("../fonts/themify.eot?#iefix-fvbane") format("embedded-opentype"), url("../fonts/themify.woff?-fvbane") format("woff"), url("../fonts//themify.ttf?-fvbane") format("truetype"), url("../fonts/themify.svg?-fvbane#themify") format("svg");
+    src: url(src/assets/home/Fonts/themify.woff);
+    src: url(src/assets/home/Fonts/themify.woff) format("embedded-opentype"), url(src/assets/home/Fonts/themify.woff) format("woff"), url(src/assets/home/Fonts/themify.woff) format("truetype"), url(src/assets/home/Fonts/themify.woff) format("svg");
     font-weight: normal;
     font-style: normal
 }
@@ -14126,8 +14127,8 @@ a .icon-flip-vertical:before {
 
 @font-face {
     font-family: 'themify';
-    src: url("../fonts/themify.eot?-fvbane");
-    src: url("../fonts/themify.eot?#iefix-fvbane") format("embedded-opentype"), url("../fonts/themify.woff?-fvbane") format("woff"), url("../fonts/themify.ttf?-fvbane") format("truetype"), url("../fonts/themify.svg?-fvbane#themify") format("svg");
+    src: url(src/assets/home/Fonts/themify.woff);
+    src: url(src/assets/home/Fonts/themify.woff) format("embedded-opentype"), url(src/assets/home/Fonts/themify.woff) format("woff"), url(src/assets/home/Fonts/themify.woff) format("truetype"), url(src/assets/home/Fonts/themify.woff) format("svg");
     font-weight: normal;
     font-style: normal
 }
@@ -28263,7 +28264,7 @@ ul.chat-cont-setting li a .icon-chat-cont svg {
 }
 
 .dark .app-sidebar .default-form select {
-    background: url(../images/drop-1.png) #25262c no-repeat scroll 95.5% center;
+    /* background: url(../images/drop-1.png) #25262c no-repeat scroll 95.5% center; */
     color: #fff
 }
 
@@ -28322,9 +28323,10 @@ ul.chat-cont-setting li a .icon-chat-cont svg {
     color: #fff
 }
 
-.dark .modal-content .default-form select {
+
+/* .dark .modal-content .default-form select {
     background: url(../images/drop-1.png) #25262c no-repeat scroll 95.5% center
-}
+} */
 
 .dark .modal-content .modal-body .form-group ul.reminder-count li+li {
     background-color: #25262c
@@ -28378,9 +28380,10 @@ ul.chat-cont-setting li a .icon-chat-cont svg {
     color: #fff
 }
 
-.dark .slider-block {
+
+/* .dark .slider-block {
     background-image: url(../images/landing/3.jpg)
-}
+} */
 
 .dark .slider-block .slider-main .slider-contain h1,
 .dark .slider-block .slider-main .slider-contain h4 {
@@ -28620,9 +28623,10 @@ ul.chat-cont-setting li a .icon-chat-cont svg {
     right: unset
 }
 
-.rtl .add-popup .default-form .form-group select {
+
+/* .rtl .add-popup .default-form .form-group select {
     background: url(../images/drop-1.png) #eff7fe no-repeat scroll 2.5% center
-}
+} */
 
 .rtl .emojis-main .emojis-contain {
     right: 0;
@@ -29692,9 +29696,10 @@ ul.chat-cont-setting li a .icon-chat-cont svg {
     left: -365px
 }
 
-.rtl .default-form select {
+
+/* .rtl .default-form select {
     background: url(../images/drop-1.png) #eff7fe no-repeat scroll 7% center
-}
+} */
 
 .rtl .sidebar-pannle-main {
     left: 20px;
@@ -30978,7 +30983,7 @@ ul.chat-cont-setting li a .icon-chat-cont svg {
     border-radius: 15px;
     color: #647589;
     border: none;
-    background: url(../images/drop-1.png) #eff7fe no-repeat scroll 94% center;
+    /* background: url(../images/drop-1.png) #eff7fe no-repeat scroll 94% center; */
     margin-bottom: 30px
 }
 
@@ -36190,7 +36195,7 @@ header.theme-landing .landing-header .navbar-collapse .navbar-nav .nav-item .nav
 
 .slider-block {
     background-color: #eff8ff;
-    background-image: url("../images/landing/1.jpg");
+    /* background-image: url("../images/landing/1.jpg"); */
     overflow: hidden;
     position: relative;
     background-position: right;
@@ -37012,7 +37017,7 @@ header.theme-landing .landing-header .navbar-collapse .navbar-nav .nav-item .nav
 }
 
 .secure-app-main {
-    background-image: url("../images/landing/parallax/main.png");
+    /* background-image: url("../images/landing/parallax/main.png"); */
     background-color: #eff8ff;
     background-position: left;
     background-repeat: no-repeat;
@@ -39715,21 +39720,21 @@ footer .footer-mobile-title {
 }
 
 .landing-screen-animation .pc-bg-1 {
-    background-image: url(../images/landing-page/threeinonepage/image_1.png);
+    /* background-image: url(../images/landing-page/threeinonepage/image_1.png); */
     height: 550px;
     -webkit-transition: 2s;
     transition: 2s
 }
 
 .landing-screen-animation .pc-bg-2 {
-    background-image: url(../images/landing-page/threeinonepage/landing.png);
+    /* background-image: url(../images/landing-page/threeinonepage/landing.png); */
     height: 250px;
     -webkit-transition: 10s;
     transition: 10s
 }
 
 .landing-screen-animation .pc-bg-3 {
-    background-image: url(../images/landing-page/threeinonepage/email.jpg);
+    /* background-image: url(../images/landing-page/threeinonepage/email.jpg); */
     height: 250px;
     -webkit-transition: 2s;
     transition: 2s
@@ -40052,7 +40057,7 @@ footer .footer-mobile-title {
     position: absolute;
     bottom: -85px;
     right: 60px;
-    background-image: url(../images/landing-page/mobile-version/line.png);
+    /* background-image: url(../images/landing-page/mobile-version/line.png); */
     background-repeat: no-repeat;
     content: "";
     width: 256px;
@@ -40327,9 +40332,10 @@ footer .footer-mobile-title {
     }
 }
 
-.snippet-modal-main .default-form select {
+
+/* .snippet-modal-main .default-form select {
     background: url(../images/drop-1.png) #eff7fe no-repeat scroll 97.6% center
-}
+} */
 
 .theme-pannel-main {
     background-color: #fff;

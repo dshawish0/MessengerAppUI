@@ -6,13 +6,15 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { IndexComponent } from './index/index.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { SidebarchatModule } from '../sidebarchat/sidebarchat.module';
+import { ChatemptyComponent } from './chatempty/chatempty.component';
 
 
 @NgModule({
   declarations: [
     NavbarComponent,
     IndexComponent,
-    SideBarComponent
+    SideBarComponent,
+    ChatemptyComponent
   ],
   imports: [
     CommonModule,

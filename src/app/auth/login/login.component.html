@@ -16,7 +16,8 @@
 
                                 <div class="col-12">
                                     <div class="form-floating">
-                                        <input type="email" class="form-control" id="signin-email" [(ngModel)]="email" matInput formControlName="email">
+                                        <!-- [(ngModel)]="email" -->
+                                        <input type="email" class="form-control" id="signin-email" placeholder="Email" matInput formControlName="email">
                                         <label for="signin-email">Email</label>
                                         <label *ngIf="log.controls['email'].hasError('required') && log.controls['email'].touched" for="signup-name" style="color:red; font-weight:bold;">Email</label>
                                         <span *ngIf="log.controls['email'].hasError('email') && log.controls['email'].touched" style="color:red; font-weight: bold;">   Email is not valid</span>
@@ -25,10 +26,11 @@
 
                                 <div class="col-12">
                                     <div class="form-floating">
-                                        <input type="password" class="form-control" id="signin-password" [(ngModel)]="password" matInput formControlName="password">
+                                        <!-- [(ngModel)]="password" -->
+                                        <input type="password" class="form-control" id="signin-password" placeholder="Password" matInput formControlName="password">
                                         <label for="signin-password">Password</label>
                                         <label *ngIf="log.controls['password'].hasError('required') && log.controls['password'].touched" for="signin-password" style="color:red; font-weight:bold;">Password</label>
-                                        <span *ngIf="log.controls['password'].hasError('minlength') && log.controls['password'].touched" style="color:red; font-weight: bold;">Your Password less than 8 Characters</span>
+                                        <!-- <span *ngIf="log.controls['password'].hasError('minlength') && log.controls['password'].touched" style="color:red; font-weight: bold;">Your Password less than 8 Characters</span> -->
                                     </div>
                                 </div>
 

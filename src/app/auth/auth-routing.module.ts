@@ -15,7 +15,7 @@ const routes: Routes = [
   component:RegisterComponent
 },
 {
-  path:'Passrest',
+  path:'RestPassword',
   component:PasswordResetComponent
 },
 {

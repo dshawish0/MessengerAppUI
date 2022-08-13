@@ -17,8 +17,9 @@
                                     <div class="form-floating">
                                         <input type="text" class="form-control" id="signup-name" placeholder="First Name" matInput formControlName="Fname">
                                         <label for="signup-name">First Name</label>
+                                        <label *ngIf="register.controls['Fname'].hasError('required') && register.controls['Fname'].touched" for="signup-name" style="color:red; font-weight:bold;">First Name</label>
                                     </div>
-                                    <span style="color:red; font-weight: bold;" id="ForFname"></span>
+                                    <!-- <span *ngIf="register.controls['Fname'].hasError('required') && register.controls['Fname'].touched" style="color:red; font-weight: bold;" id="ForFname">required</span> -->
                                 </div>
 
                                 <div class="col-12">
@@ -34,7 +35,8 @@
                                         <input type="email" class="form-control" id="signup-email" placeholder="Email" matInput formControlName="email">
                                         <label for="signup-email">Email</label>
                                     </div>
-                                    <span style="color:red; font-weight: bold;" id="ForEmail"></span>
+                                    <span *ngIf="register.controls['email'].hasError('required') && register.controls['email'].touched" style="color:red; font-weight: bold;">required</span>
+                                    <span *ngIf="register.controls['email'].hasError('email') && register.controls['email'].touched" style="color:red; font-weight: bold;">Email is not valid</span>
                                 </div>
 
                                 <div class="col-12">

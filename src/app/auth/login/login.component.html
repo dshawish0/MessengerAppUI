@@ -1,64 +1,57 @@
 <div class="bg-light">
-    <div class="container">
-        <div class="row align-items-center justify-content-center min-vh-100 gx-0">
-            <div class="col-12 col-md-5 col-lg-4">
-                <div class="card card-shadow border-0">
-                    <div class="card-body">
-                        <div class="row g-6">
-                            <div class="col-12">
-                                <div class="text-center">
-                                    <h3 class="fw-bold mb-2">Sign In</h3>
-                                    <p>Login to your account</p>
-                                </div>
-                            </div>
-                            <mat-form-field>
+    <form [formGroup]="log">
+        <div class="container">
+            <div class="row align-items-center justify-content-center min-vh-100 gx-0">
+
+                <div class="col-12 col-md-5 col-lg-4">
+                    <div class="card card-shadow border-0">
+                        <div class="card-body">
+                            <div class="row g-6">
                                 <div class="col-12">
-                                    <div class="form-floating">
-                                        <mat-label>Email</mat-label>
-                                        <input type="email" class="form-control"  [formControl]="email"  placeholder="Email">
-                                        <!-- <label for="signin-email">Email</label> -->
-                                        <mat-error *ngIf="email.hasError('email')">
-                                            Please enter a valid email address
-                                        </mat-error>
-                                        <mat-error *ngIf="email.hasError('required')">
-                                            Email is <strong>required</strong>
-                                        </mat-error>
-                                    </div>
-                                </div>
-                            </mat-form-field>
-                            <mat-form-field>
-                                <div class="col-12">
-                                    <div class="form-floating">
-                                        <mat-label>Password</mat-label>
-                                        <input type="password" class="form-control" [formControl]="password"  placeholder="Password">
-                                        <!-- <label for="signin-password"></label> -->
-                                        <mat-error *ngIf="password.hasError('minlength') && !password.hasError('required')">
-                                            Please enter strong password
-                                        </mat-error>
-                                        <mat-error *ngIf="password.hasError('required')">
-                                            password is <strong>required</strong>
-                                        </mat-error>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="level options">
-                                        <div class="checkbox level-left">
-                                          <input type="checkbox" id="checkbox" class="regular-checkbox">
-                                          <label for="checkbox"></label>
-                                          <span>Remember me</span>
-                                        </div>
+                                    <div class="text-center">
+                                        <h3 class="fw-bold mb-2">Sign In</h3>
+                                        <p>Login to your account</p>
                                     </div>
                                 </div>
 
                                 <div class="col-12">
-                                    <button (click)="Submit()" class="btn btn-block btn-lg btn-primary w-100" type="submit" [disabled]="!email.valid || !password.valid">Sign In</button>
+                                    <div class="form-floating">
+                                        <input type="email" class="form-control" id="signin-email" [(ngModel)]="email" matInput formControlName="email">
+                                        <label for="signin-email">Email</label>
+                                        <label *ngIf="log.controls['email'].hasError('required') && log.controls['email'].touched" for="signup-name" style="color:red; font-weight:bold;">Email</label>
+                                        <span *ngIf="log.controls['email'].hasError('email') && log.controls['email'].touched" style="color:red; font-weight: bold;">   Email is not valid</span>
+                                    </div>
                                 </div>
-                            </mat-form-field>
+
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <input type="password" class="form-control" id="signin-password" [(ngModel)]="password" matInput formControlName="password">
+                                        <label for="signin-password">Password</label>
+                                        <label *ngIf="log.controls['password'].hasError('required') && log.controls['password'].touched" for="signin-password" style="color:red; font-weight:bold;">Password</label>
+                                        <span *ngIf="log.controls['password'].hasError('minlength') && log.controls['password'].touched" style="color:red; font-weight: bold;">Your Password less than 8 Characters</span>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <button [disabled]="!log.valid" class="btn btn-block btn-lg btn-primary w-100" type="submit" (click)="submit()">Sign In</button>
+                                </div>
+                            </div>
                         </div>
+                    </div>
+
+                    <!-- Text -->
+                    <div class="text-center mt-8">
+                        <div class="checkbox level-left">
+                            <input type="checkbox" id="RemmberMe" class="regular-checkbox">
+                            <label for="checkbox"></label>
+                            <span>Remember me</span>
+                        </div>
+                        <p>Don't have an account yet? <a href="signup.html">Sign up</a></p>
+                        <p><a href="password-reset.html">Forgot Password?</a></p>
                     </div>
                 </div>
             </div>
+            <!-- / .row -->
         </div>
-    </div>
-
+    </form>
 </div>

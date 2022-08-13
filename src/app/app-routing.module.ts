@@ -9,7 +9,7 @@ import { AuthModule } from './auth/auth.module';
 
 const routes: Routes = [
   {
-    path:"Chat",
+    path:"chat",
     loadChildren:()=>ChatModule
    },
    {

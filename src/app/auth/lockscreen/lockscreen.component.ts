@@ -14,4 +14,9 @@ export class LockscreenComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  unlock(){
+    console.log(this.password.value);
+    console.log(localStorage.getItem('username'));
+  }
+
 }

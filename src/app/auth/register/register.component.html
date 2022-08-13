@@ -26,33 +26,40 @@
                                     <div class="form-floating">
                                         <input type="text" class="form-control" id="signup-name" placeholder="Last Name" matInput formControlName="Lname">
                                         <label for="signup-name">Last Name</label>
+                                        <label *ngIf="register.controls['Lname'].hasError('required') && register.controls['Lname'].touched" for="signup-name" style="color:red; font-weight:bold;">Last Name</label>
                                     </div>
-                                    <span style="color:red; font-weight: bold;" id="ForLname"></span>
+                                    <!-- <span style="color:red; font-weight: bold;" id="ForLname"></span> -->
                                 </div>
 
                                 <div class="col-12">
                                     <div class="form-floating">
                                         <input type="email" class="form-control" id="signup-email" placeholder="Email" matInput formControlName="email">
                                         <label for="signup-email">Email</label>
+                                        <label *ngIf="register.controls['email'].hasError('required') && register.controls['email'].touched" for="signup-name" style="color:red; font-weight:bold;">Email</label>
+                                        <span *ngIf="register.controls['email'].hasError('email') && register.controls['email'].touched" style="color:red; font-weight: bold;">   Email is not valid</span>
                                     </div>
-                                    <span *ngIf="register.controls['email'].hasError('required') && register.controls['email'].touched" style="color:red; font-weight: bold;">required</span>
-                                    <span *ngIf="register.controls['email'].hasError('email') && register.controls['email'].touched" style="color:red; font-weight: bold;">Email is not valid</span>
+                                    <!-- <span *ngIf="register.controls['email'].hasError('required') && register.controls['email'].touched" style="color:red; font-weight: bold;">required</span>
+                                    <span *ngIf="register.controls['email'].hasError('email') && register.controls['email'].touched" style="color:red; font-weight: bold;">Email is not valid</span> -->
                                 </div>
 
                                 <div class="col-12">
                                     <div class="form-floating">
                                         <input type="password" class="form-control" id="signup-password" placeholder="Password" matInput formControlName="password">
-                                        <label for="signup-password">Password</label>
+                                        <label for="signin-password">Password</label>
+                                        <label *ngIf="register.controls['password'].hasError('required') && register.controls['password'].touched" for="signin-password" style="color:red; font-weight:bold;">Password</label>
+                                        <span *ngIf="register.controls['password'].hasError('minlength') && register.controls['password'].touched" style="color:red; font-weight: bold;">Your Password less than 8 Characters</span>
                                     </div>
-                                    <span style="color:red; font-weight: bold;" id="ForPassword"></span>
+                                    <!-- <span style="color:red; font-weight: bold;" id="ForPassword"></span> -->
                                 </div>
 
                                 <div class="col-12">
                                     <div class="form-floating">
                                         <input type="password" class="form-control" id="signup-password" placeholder="RePassword" matInput formControlName="RePassword">
                                         <label for="signup-password">RePassword</label>
+                                        <label *ngIf="register.controls['RePassword'].hasError('required') && register.controls['RePassword'].touched" for="signin-password" style="color:red; font-weight:bold;">RePassword</label>
+                                        <span *ngIf="register.controls['RePassword'].hasError('minlength') && register.controls['RePassword'].touched" style="color:red; font-weight: bold;">Your Password less than 8 Characters</span>
                                     </div>
-                                    <span style="color:red; font-weight: bold;" id="ForRePassward"></span>
+                                    <!-- <span style="color:red; font-weight: bold;" id="ForRePassward"></span> -->
                                 </div>
 
                                 <div class="col-12">

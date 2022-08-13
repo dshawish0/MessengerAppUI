@@ -8,10 +8,13 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class PasswordResetComponent implements OnInit {
   email : FormControl=new FormControl('',[Validators.email,Validators.required]);
+
   constructor() { }
-  
-  
   ngOnInit(): void {
+  }
+
+  RestPassword(){
+    console.log(this.email.valid);
   }
 
 }

@@ -7,9 +7,9 @@ import { FormControl, Validators } from '@angular/forms';
   styleUrls: ['./password-reset.component.css']
 })
 export class PasswordResetComponent implements OnInit {
-
-  constructor() { }
   email : FormControl=new FormControl('',[Validators.email,Validators.required]);
+  constructor() { }
+  
   
   ngOnInit(): void {
   }

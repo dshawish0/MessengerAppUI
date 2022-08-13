@@ -10,20 +10,16 @@ import { AuthModule } from './auth/auth.module';
 const routes: Routes = [
   {
     path:"Chat",
-  loadChildren:()=>ChatModule
+    loadChildren:()=>ChatModule
    },
    {
-    path:"",
-  loadChildren:()=>HomeModule
+    path:"home",
+    loadChildren:()=>HomeModule
    },
- {
-    path:'',
-    component:AppComponent
-  },
-  {
-    path:'security',
-    loadChildren:()=>AuthModule
-  }
+   {
+      path:'',
+      loadChildren:()=>AuthModule
+   }
 ];
 
 @NgModule({

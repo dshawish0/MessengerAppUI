@@ -7,8 +7,8 @@ import { RegisterComponent } from './register/register.component';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
 import { LockscreenComponent } from './lockscreen/lockscreen.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import {MatFormFieldModule} from '@angular/material/form-field'
 import {MatInputModule} from '@angular/material/input'
+import { MatFormFieldModule } from '@angular/material/form-field';
 @NgModule({
   declarations: [
     LoginComponent,
@@ -21,7 +21,8 @@ import {MatInputModule} from '@angular/material/input'
     AuthRoutingModule,
     ReactiveFormsModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    
   ]
 })
 export class AuthModule { }

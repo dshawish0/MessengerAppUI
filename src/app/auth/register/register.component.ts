@@ -41,30 +41,30 @@ export class RegisterComponent implements OnInit {
     const ForRePassward = document.getElementById('ForRePassward');
 
   if (ForFname != null) {
-      if(this.register.controls['Fname'].hasError('required'))
-            ForFname.textContent="Required";
+      // if(this.register.controls['Fname'].hasError('required'))
+      //       ForFname.textContent="Required";
 
-      else
-          ForFname.textContent="";
-          }
+      // else
+      //     ForFname.textContent="";
+           }
 
   if (ForLname != null) {
-    if(this.register.controls['Lname'].hasError('required'))
-          ForLname.textContent="Required";
+    // if(this.register.controls['Lname'].hasError('required'))
+    //       ForLname.textContent="Required";
 
-    else
-        ForLname.textContent="";
+    // else
+    //     ForLname.textContent="";
         }
 
   if (ForEmail != null) {
-    if(this.register.controls['email'].hasError('required'))
-          ForEmail.textContent="Required";
+    // if(this.register.controls['email'].hasError('required'))
+    //       ForEmail.textContent="Required";
 
-    else if(this.register.controls['email'].hasError('email'))
-          ForEmail.textContent="Email not valid";
+    // else if(this.register.controls['email'].hasError('email'))
+    //       ForEmail.textContent="Email not valid";
 
-    else
-          ForEmail.textContent="";
+    // else
+    //       ForEmail.textContent="";
         }
   if (ForPassword != null) {
       if(this.register.controls['password'].hasError('required'))

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-lockscreen',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LockscreenComponent implements OnInit {
 
+  password :FormControl= new FormControl('',[Validators.required,Validators.minLength(8)]);
   constructor() { }
 
   ngOnInit(): void {

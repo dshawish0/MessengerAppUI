@@ -16,13 +16,14 @@ export class LoginComponent implements OnInit {
   
 
   
-  constructor() { 
-    
-
-  }
+  constructor() { }
 
   ngOnInit(): void {
+    
   }
-  
+  Submit(){
+    localStorage.setItem('username',this.email.value);
+    localStorage.setItem('password',this.password.value);
+  }
 
 }

@@ -7,6 +7,10 @@ import { IndexComponent } from './index/index.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { SidebarchatModule } from '../sidebarchat/sidebarchat.module';
 import { ChatemptyComponent } from './chatempty/chatempty.component';
+import { HttpClientModule } from '@angular/common/http';
+import { SharedModule } from '../shared/shared.module';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -19,7 +23,17 @@ import { ChatemptyComponent } from './chatempty/chatempty.component';
   imports: [
     CommonModule,
     ChatRoutingModule,
-    SidebarchatModule
+    SidebarchatModule,
+    HttpClientModule,
+    SharedModule,
+    MatDialogModule,
+    ReactiveFormsModule
+  ],
+  exports:[
+    NavbarComponent,
+    IndexComponent,
+    SideBarComponent,
+    ChatemptyComponent
   ]
 })
 export class ChatModule { }

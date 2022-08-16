@@ -5,6 +5,7 @@ import { HomeRoutingModule } from './home-routing.module';
 import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { DefultComponent } from './defult/defult.component';
+import { ChatModule } from '../chat/chat.module';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { DefultComponent } from './defult/defult.component';
   ],
   imports: [
     CommonModule,
-    HomeRoutingModule
+    HomeRoutingModule,
+    
   ]
 })
 export class HomeModule { }

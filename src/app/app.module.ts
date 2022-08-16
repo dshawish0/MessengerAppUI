@@ -5,6 +5,7 @@ import { Route, Routes } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ChatModule } from './chat/chat.module';
 
 
 
@@ -19,7 +20,9 @@ const routes:Routes = [] ;
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ChatModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -4,6 +4,7 @@ import { ChatModule } from './chat/chat.module';
 import { HomeModule } from './home/home.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
+import { AdminModule } from './admin/admin.module';
 
 
 
@@ -19,7 +20,11 @@ const routes: Routes = [
    {
       path:'log',
       loadChildren:()=>AuthModule
-   }
+   },
+   {
+    path:'admin',
+    loadChildren:()=>AdminModule
+ }
 ];
 
 @NgModule({

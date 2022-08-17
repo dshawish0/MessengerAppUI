@@ -518,7 +518,7 @@
                                                         <hr class="dropdown-divider">
                                                     </li>
                                                     <li>
-                                                        <a class="dropdown-item text-danger" href="#">Block user</a>
+                                                        <a class="dropdown-item text-danger" (click)="Blockuser(item.frindid)">Block user</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -962,7 +962,7 @@
                             <!-- Title -->
 
                             <!-- Card -->
-                            <div class="card border-0 mb-5">
+                            <div class="card border-0 mb-5" *ngFor="let item of this.chat.lopy">
                                 <div class="card-body">
 
                                     <div class="row gx-5">
@@ -977,12 +977,12 @@
                                             </a>
                                         </div>
 
-                                        <div class="col">
+                                        <div class="col" >
                                             <div class="d-flex align-items-center mb-2">
                                                 <h5 class="me-auto mb-0">
-                                                    <a href="#">Mila White</a>
+                                                    <a>{{item.user.fname}} {{item.user.lname}}</a>
                                                 </h5>
-                                                <span class="extra-small text-muted ms-2">08:45 PM</span>
+                                                <span class="text-muted ms-2">{{item.adddate}}</span>
                                             </div>
 
                                             <div class="d-flex">
@@ -1005,10 +1005,10 @@
                                 <div class="card-footer">
                                     <div class="row gx-4">
                                         <div class="col">
-                                            <a href="#" class="btn btn-sm btn-soft-primary w-100">Hide</a>
+                                            <a class="btn btn-sm btn-soft-danger w-100" (click)="RejectFriend(item.frindid)">Reject</a>
                                         </div>
                                         <div class="col">
-                                            <a href="#" class="btn btn-sm btn-primary w-100">Confirm</a>
+                                            <a class="btn btn-sm btn-primary w-100" (click)="AcceptFriend(item.frindid)"> Accept</a>
                                         </div>
                                     </div>
                                 </div>
@@ -1544,8 +1544,8 @@
                                             </div>
                                         </div>
 
-                                        <!-- Switch -->
-                                        <div class="accordion-item">
+                                          <!-- Switch -->
+                                          <div class="accordion-item">
                                             <div class="accordion-header">
                                                 <div class="row align-items-center">
                                                     <div class="col">
@@ -1553,8 +1553,8 @@
                                                         <p>Choose light or dark theme</p>
                                                     </div>
                                                     <div class="col-auto">
-                                                        <a class="switcher-btn text-reset" href="#!" title="Themes">
-                                                            <div class="switcher-icon switcher-icon-dark icon icon-lg d-none" data-theme-mode="dark">
+                                                        <a class="switcher-btn text-reset" href="#yazan" title="Themes">
+                                                            <div class="switcher-icon switcher-icon-dark icon icon-lg d-none" id="yazan" data-theme-mode="dark">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
                                                             </div>
                                                             <div class="switcher-icon switcher-icon-light icon icon-lg d-none" data-theme-mode="light">

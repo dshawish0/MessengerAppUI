@@ -6,6 +6,7 @@ import { UserService } from 'src/app/Services/user.service';
 
 
 
+
  
 @Component({
   selector: 'app-side-bar',
@@ -24,10 +25,6 @@ userName = new FormControl('',[Validators.required, Validators.email]);
   numOfFriend:number=0;
   ngOnInit(): void {
      this.chat.GetAllFrinds();
-    
-    
-    
-    
   }
 
   opendDialogAddFriend(){
@@ -43,5 +40,17 @@ userName = new FormControl('',[Validators.required, Validators.email]);
     this.chat.AddFriend(userObj);
   }
 
+  AcceptFriend(frindid:any){
+    console.log(frindid);
+    this.chat.AcceptFriend(frindid)
+  }
+  Blockuser(frindid:any){
+    console.log(frindid);
+    this.chat.Blockuser(frindid)
+  }
+  RejectFriend(frindid:any){
+    console.log(frindid);
+    this.chat.RejectFriend(frindid);
+  }
 }
 

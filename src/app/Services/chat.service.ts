@@ -12,58 +12,81 @@ export class ChatService {
 
   users:any=[]
   myFriend:any=[];
-  lopy:any=[]
-  
+  lopy:any=[];
+  blockFriend:any=[];
+
   numOfFriend:number=0;
   GetAllFrinds(){
     this.http.get('https://localhost:44318/api/Frind/GetFrinds/4').subscribe((res)=>{
       this.users= res;
-      this.numOfFriend = this.users.length;
-      console.log(this.users.length)
-
-      console.log(this.myFriend = this.users.filter((obj:any) => {
-        return obj.User_Id === 2;
-      }))
-
-
-      this.lopy = this.users.find((x:any) => x.Status == 0)
-      console.log("myFriend", this.myFriend);
-      console.log("lopy", this.lopy);
-      console.log(this.users.find((x:any) => x.Status == 1));
       
-      
-      
+      this.myFriend = this.users.filter((item:any)=>item.status===1);
+      this.lopy = this.users.filter((item:any)=>item.status===0); 
+      this.blockFriend = this.users.filter((item:any)=>item.status===2); 
+      this.numOfFriend = this.myFriend.length;
+
     },
-    Error=>{
+    err=>{
       console.log('error')
     })
   }
 
   user:any=[]
   friend:any={}
+  ids:any=[]
   AddFriend(email:any){
     this.http.post('https://localhost:44318/api/User/GetUserByEmail',email).subscribe((res)=>{
       this.user=[res]
-      const ids = this.user.map((obj:any) => obj.userId);
-      
+      this.ids = this.user.map((obj:any) => obj.userId);
+      console.log(this.ids[0]);
+
       this.friend={
-        Userreceiveid:ids[0],
+        Userreceiveid:this.ids[0],
         Status : 0,
-        Adddate: new Date().toLocaleString(),
         User_Id:4
       };
-      this.http.post('https://localhost:44318/api/Frind/AddFrind',this.friend).subscribe((result)=>{
-        console.log("ok",result)
-      },
-      err=>{console.log(err.message)})
 
-      
+      this.http.post('https://localhost:44318/api/Frind/AddFrind',this.friend).subscribe((result)=>{
+        console.log("ok",result);
+        console.log("yazan");
+      },
+      err=>{console.log("error")
+    })
+
     },
-    Error=>{
-      console.log('error');
-      console.log('err',email);
+    err=>{
+      console.log(err.message);
     })
   }
-  
+
+  AcceptFriend(frindid:any){
+    this.http.put(`https://localhost:44318/api/Frind/confirmFriend/${41}`,"").subscribe((result)=>{
+      console.log("Ok Tayem");
+      window.location.reload();
+    },
+    error=>{
+      console.log('error');
+    })
+  }
+
+  Blockuser(frindid:any){
+    this.http.put(`https://localhost:44318/api/Frind/BlockFriend/${41}`,"").subscribe((result)=>{
+      console.log("Ok Tayem");
+      window.location.reload();
+    },
+    error=>{
+      console.log('error');
+    })
+  }
+
+  RejectFriend(frindid:any){
+    this.http.delete(`https://localhost:44318/api/Frind/DeleteFrind/${frindid}`).subscribe((result)=>{
+      console.log("Ok Tayem");
+      window.location.reload();
+    },
+    error=>{
+      console.log('error');
+    })
+  }
 }
 

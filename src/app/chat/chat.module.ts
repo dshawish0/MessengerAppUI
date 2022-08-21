@@ -5,37 +5,51 @@ import { ChatRoutingModule } from './chat-routing.module';
 import { NavbarComponent } from './navbar/navbar.component';
 import { IndexComponent } from './index/index.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
-import { SidebarchatModule } from '../sidebarchat/sidebarchat.module';
 import { ChatemptyComponent } from './chatempty/chatempty.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from '../shared/shared.module';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
-
+import { CreateChatComponent } from './create-chat/create-chat.component';
+import { FriendsComponent } from './friends/friends.component';
+import { AllChatComponent } from './all-chat/all-chat.component';
+import { NotificationsComponent } from './notifications/notifications.component';
+import { SupportComponent } from './support/support.component';
+import { SettingComponent } from './setting/setting.component';
+import { ChatWithMessageComponent } from './chat-with-message/chat-with-message.component';
 
 @NgModule({
   declarations: [
     NavbarComponent,
     IndexComponent,
     SideBarComponent,
-    ChatemptyComponent
+    ChatemptyComponent,
+    CreateChatComponent,
+    FriendsComponent,
+    AllChatComponent,
+    NotificationsComponent,
+    SupportComponent,
+    SettingComponent,
+    ChatWithMessageComponent
   ],
   imports: [
     CommonModule,
     ChatRoutingModule,
-    SidebarchatModule,
     HttpClientModule,
     SharedModule,
     MatDialogModule,
     ReactiveFormsModule,
-    MatSelectModule
+    MatSelectModule,
+    
   ],
   exports:[
     NavbarComponent,
     IndexComponent,
     SideBarComponent,
     ChatemptyComponent
+    
+    
   ]
 })
 export class ChatModule { }

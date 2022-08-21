@@ -17,7 +17,7 @@ export class ChatService {
 
   numOfFriend:number=0;
   GetAllFrinds(){
-    this.http.get('https://localhost:44318/api/Frind/GetFrinds/4').subscribe((res)=>{
+    this.http.get('https://localhost:44318/api/Frind/GetFrinds/1').subscribe((res)=>{
       this.users= res;
       
       this.myFriend = this.users.filter((item:any)=>item.status===1);
@@ -61,7 +61,6 @@ export class ChatService {
 
   AcceptFriend(frindid:any){
     this.http.put(`https://localhost:44318/api/Frind/confirmFriend/${41}`,"").subscribe((result)=>{
-      console.log("Ok Tayem");
       window.location.reload();
     },
     error=>{
@@ -71,8 +70,7 @@ export class ChatService {
 
   Blockuser(frindid:any){
     this.http.put(`https://localhost:44318/api/Frind/BlockFriend/${41}`,"").subscribe((result)=>{
-      console.log("Ok Tayem");
-      window.location.reload();
+    window.location.reload();
     },
     error=>{
       console.log('error');
@@ -88,5 +86,75 @@ export class ChatService {
       console.log('error');
     })
   }
+  
+  all_chat:any=[];
+  last_Message:any=[]
+  GetAllChat(id:any){
+    this.http.get("https://localhost:44318/api/MessageGroup/GetFullMessageGroup/1").subscribe((res)=>{
+      this.all_chat = res;
+      console.log(this.all_chat);
+      
+       this.last_Message = this.all_chat.result.map((obj:any) => obj.messages);
+      // console.log(this.all_chat.result);
+      // console.log(this.last_Message[this.last_Message.length-1].text);
+      // window.location.reload();
+    },
+    error=>{
+      console.log('error');
+    })
+  }
+
+display_Img:any;
+  uploadImage(file:FormData){
+    this.http.post('https://localhost:44318/api/MessageGroup/uploadImage',file).subscribe((res)=>{
+    this.display_Img = res;
+    console.log(this.display_Img);
+    
+    },
+    error=>{
+      console.log("upload",error);
+    })
+  }
+
+  createChat(messageGroup:any){
+    messageGroup.GroupImg = this.display_Img.groupImg;
+     
+
+     this.http.post('https://localhost:44318/api/MessageGroup/CreateMessageGroup',messageGroup).subscribe((res)=>{
+     
+    window.location.reload();
+    },
+    error=>{
+      console.log(error);
+    })
+  }
+
+
+  UpdateChat(messageGroup:any){
+    messageGroup.GroupImg = this.display_Img.groupImg;
+     
+
+     this.http.put('https://localhost:44318/api/MessageGroup/UpDateMessageGroup',messageGroup).subscribe((res)=>{
+     
+    window.location.reload();
+    },
+    error=>{
+      console.log(error);
+    })
+  }
+
+  AllMessage:any=[]
+  MessageChat(messageGroupId:any){
+    console.log("srevice",messageGroupId);
+    this.http.get(`https://localhost:44318/api/Message/GetMessageForMessageGroup/${messageGroupId}`).subscribe((res)=>{
+      this.AllMessage= res;
+      console.log("Message", this.AllMessage);
+      
+    },
+    err=>{
+      console.log('error')
+    })
+  }
+
 }
 

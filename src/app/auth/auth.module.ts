@@ -9,12 +9,16 @@ import { LockscreenComponent } from './lockscreen/lockscreen.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input'
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { ConfirmEmailComponent } from './confirm-email/confirm-email.component';
+import { RestPassComponent } from './rest-pass/rest-pass.component';
 @NgModule({
   declarations: [
     LoginComponent,
     RegisterComponent,
     PasswordResetComponent,
-    LockscreenComponent
+    LockscreenComponent,
+    ConfirmEmailComponent,
+    RestPassComponent
   ],
   imports: [
     CommonModule,

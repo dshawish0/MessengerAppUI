@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChatModule } from './chat/chat.module';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -21,7 +22,8 @@ const routes:Routes = [] ;
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    ChatModule
+    ChatModule,
+    HttpClientModule
 
   ],
   providers: [],

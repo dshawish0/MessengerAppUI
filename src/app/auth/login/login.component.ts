@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { LoginService } from 'src/app/Services/login.service';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
   })
 
   
-  constructor() { }
+  constructor(public login:LoginService) { }
   email:any;
   password:any;
   ngOnInit(): void {
@@ -38,6 +39,8 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('username',this.log.controls["email"].value);
         localStorage.setItem('password',this.log.controls["password"].value);
     }
+
+    this.login.submit(this.log.controls["email"].value,this.log.controls["password"].value)
     
   }
 

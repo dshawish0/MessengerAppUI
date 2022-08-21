@@ -11,5 +11,9 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  CreateChat(){
+    console.log('mohammad');
+    
+  }
 
 }

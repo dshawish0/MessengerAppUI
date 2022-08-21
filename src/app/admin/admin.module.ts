@@ -6,6 +6,9 @@ import { SidebarAdminComponent } from './sidebar-admin/sidebar-admin.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavbarAdminComponent } from './navbar-admin/navbar-admin.component';
 import { FooterAdminComponent } from './footer-admin/footer-admin.component';
+import { ReportComponent } from './report/report.component';
+import { SharedModule } from '../shared/shared.module';
+import { UsersComponent } from './users/users.component';
 
 
 @NgModule({
@@ -13,11 +16,17 @@ import { FooterAdminComponent } from './footer-admin/footer-admin.component';
     SidebarAdminComponent,
     DashboardComponent,
     NavbarAdminComponent,
-    FooterAdminComponent
+    FooterAdminComponent,
+    ReportComponent,
+    UsersComponent
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    SharedModule,
+  ],
+  exports:[
+    UsersComponent
   ]
 })
 export class AdminModule { }

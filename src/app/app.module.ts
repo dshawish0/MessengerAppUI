@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { Route, Routes } from '@angular/router';
+import { Route, RouterLink, Routes } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChatModule } from './chat/chat.module';
-
-
+import { NgxSpinnerModule } from "ngx-spinner";
+import { ToastrModule, ToastNoAnimation, ToastNoAnimationModule } from 'ngx-toastr';
 
 const routes:Routes = [] ;
 
@@ -21,7 +21,10 @@ const routes:Routes = [] ;
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    ChatModule
+    ChatModule,
+    NgxSpinnerModule,
+    ToastNoAnimationModule.forRoot(),
+    ToastrModule.forRoot(),
 
   ],
   providers: [],

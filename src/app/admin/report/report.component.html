@@ -1,0 +1,204 @@
+<div class="wrapper ">
+
+    <app-sidebar-admin></app-sidebar-admin>
+    <div class="main-panel">
+        <app-navbar-admin></app-navbar-admin>
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header card-header-primary card-header-icon">
+                                    <h3 style="text-align: center; color: black; cursor: pointer;" (click)="CreateRep()">
+                                        Create Report</h3>
+                                    <div class="card-icon">
+                                        <i class="material-icons">assignment</i>
+                                    </div>
+                                    <h4 class="card-title">Report User</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="toolbar">
+                                        <div class="form-inline" style="margin-top: 3%; float: right;">
+                                            <div class="form-group mx-sm-3 mb-2">
+                                                <input type="text" class="form-control" placeholder="Report Id" [value]="reportid"
+                                                    (change)="inputValue($event)">
+                                            </div>
+                                            <button type="submit" class="btn btn-success" (click)="search()">Search</button>
+                                        </div>
+                                    </div>
+                                    <div class="material-datatables">
+                                        <table id="datatables" class="table table-striped table-no-bordered table-hover"
+                                            cellspacing="0" width="100%" style="width:100%">
+                                            <thead>
+                                                <tr>
+                                                    <th>User Reoprt Id</th>
+                                                    <th>Report Text</th>
+                                                    <th>Report Date</th>
+                                                    <th>User Id</th>
+                                                    <th class="disabled-sorting text-right">Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let obj of report.reports">
+                                                    <td>{{obj.userReportedId}}</td>
+                                                    <td>{{obj.reportText}}</td>
+                                                    <td>{{obj.reportDate}}</td>
+                                                    <td>{{obj.user_Id}}</td>
+                                                    <td class="td-actions text-right">
+                                                        <!-- <button type="button" rel="tooltip" class="btn btn-success">
+                                                            <i class="material-icons" (click)="updateDailog(obj.reportUserId,obj.userReportedId,obj.reportText,obj.reportDate,obj.user_Id)">edit</i>
+                                                        </button><br> -->
+                                                        <button type="button" rel="tooltip" class="btn btn-success">
+                                                            <i class="material-icons" (click)="updateDailog(obj)">edit</i>
+                                                        </button><br>
+                                                        <button type="button" rel="tooltip" class="btn btn-danger" (click)="deleteRep(obj.reportUserId)">
+                                                            <i class="material-icons">close</i>
+                                                        </button>
+                                                    </td>  
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <app-footer-admin></app-footer-admin>
+    </div>
+
+<ng-template #callCreateDailog>
+    <div class="col-lg-12">
+        <div class="card ">
+            <div class="card-header card-header-rose card-header-text">
+                <div class="card-text">
+                    <h4 class="card-title">Create Report</h4>
+                </div>
+            </div>
+            <div class="card-body ">
+                <mat-dialog-content class="mat-typography">
+                    <form [formGroup]="createreport">
+                        <div class="row">
+                            <label class="col-sm-6 col-form-label">User Reported Id</label>
+                            <div class="col-sm-10">
+                                <div class="form-group">
+                                    <input type="number" class="form-control" matInput formControlName="userReportedId">
+                                    <span
+                                        *ngIf="createreport.controls['userReportedId'].hasError('required') && createreport.controls['userReportedId'].touched"
+                                        style="color:red; font-weight: bold;">required</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-4 col-form-label">Report Text</label>
+                            <div class="col-sm-10">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" matInput formControlName="reportText">
+                                    <span
+                                        *ngIf="createreport.controls['reportText'].hasError('required') && createreport.controls['reportText'].touched"
+                                        style="color:red; font-weight: bold;">required</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <label class="col-sm-4 col-form-label">Report Date</label>
+                            <div class="col-sm-10">
+                                <div class="form-group">
+                                    <input type="date" class="form-control" matInput formControlName="reportDate">
+                                    <span
+                                        *ngIf="createreport.controls['reportDate'].hasError('required') && createreport.controls['reportDate'].touched"
+                                        style="color:red; font-weight: bold;">required</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-4 col-form-label">User Id</label>
+                            <div class="col-sm-10">
+                                <div class="form-group">
+                                    <input type="number" class="form-control" matInput formControlName="user_Id">
+                                    <span
+                                        *ngIf="createreport.controls['user_Id'].hasError('required') && createreport.controls['user_Id'].touched"
+                                        style="color:red; font-weight: bold;">required</span>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </mat-dialog-content>
+                <mat-dialog-actions >
+                    <button mat-button mat-dialog-close>Cancel</button>
+                    <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="SaveData()">save</button>
+                  </mat-dialog-actions>
+                <!-- <button (click)="SaveData()" class="btn btn-success">Save</button> -->
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #callupdateDailog>
+    <div class="col-lg-12">
+      <div class="card ">
+        <div class="card-header card-header-rose card-header-text">
+          <div class="card-text">
+            <h4 class="card-title">Update Report</h4>
+          </div>
+        </div>
+        <div class="card-body ">
+          <mat-dialog-content class="mat-typography">
+            <form [formGroup]="updatereport">
+              <div class="row">
+                <label class="col-sm-4 col-form-label">Report User Id</label>
+                <div class="col-sm-10">
+                  <div class="form-group">
+                      <input type="number" class="form-control" matInput formControlName="userReportedId" [(ngModel)]="p_data.userReportedId">
+                      <span *ngIf="updatereport.controls['userReportedId'].hasError('required')&& updatereport.controls['userReportedId'].touched"
+                                          style="color:red; font-weight: bold;">required</span>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <label class="col-sm-4 col-form-label">Report Text</label>
+                <div class="col-sm-10">
+                  <div class="form-group">
+                    <input type="text" class="form-control" matInput formControlName="reportText" [(ngModel)]="p_data.reportText">
+                    <span *ngIf="updatereport.controls['reportText'].hasError('required') && updatereport.controls['reportText'].touched"
+                                  style="color:red; font-weight: bold;">required</span>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <label class="col-sm-4 col-form-label">Report Date</label>
+                <div class="col-sm-10">
+                  <div class="form-group">
+                    <input type="date" class="form-control" matInput formControlName="reportDate" [(ngModel)]="p_data.reportDate">
+                    <span *ngIf="updatereport.controls['reportDate'].hasError('required') && updatereport.controls['reportDate'].touched"
+                      style="color:red; font-weight: bold;">required</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="row">
+                <label class="col-sm-4 col-form-label">User Id</label>
+                <div class="col-sm-10">
+                  <div class="form-group">
+                    <input type="number" class="form-control" matInput formControlName="user_Id" [(ngModel)]="p_data.user_Id">
+                    <span *ngIf="updatereport.controls['user_Id'].hasError('required') && updatereport.controls['user_Id'].touched"
+                      style="color:red; font-weight: bold;">required</span>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </mat-dialog-content>
+          <button (click)="UpdateRep()">Update</button>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+<ng-template #calldeleteDailog>
+    <h2>Are you Sure your went to delete this Report?</h2>
+    <button mat-dialog-close="yes" class="btn btn-success">yes</button>
+    <button mat-dialog-close="no" class="btn btn-danger">No</button>
+    </ng-template>

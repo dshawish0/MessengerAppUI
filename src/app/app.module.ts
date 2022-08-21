@@ -8,6 +8,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChatModule } from './chat/chat.module';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { ToastrModule, ToastNoAnimation, ToastNoAnimationModule } from 'ngx-toastr';
+import { HttpClientModule } from '@angular/common/http';
+
+
 
 const routes:Routes = [] ;
 
@@ -22,9 +25,11 @@ const routes:Routes = [] ;
     AppRoutingModule,
     BrowserAnimationsModule,
     ChatModule,
+
     NgxSpinnerModule,
     ToastNoAnimationModule.forRoot(),
     ToastrModule.forRoot(),
+    HttpClientModule
 
   ],
   providers: [],

@@ -9,7 +9,7 @@ import { FooterAdminComponent } from './footer-admin/footer-admin.component';
 import { ReportComponent } from './report/report.component';
 import { SharedModule } from '../shared/shared.module';
 import { UsersComponent } from './users/users.component';
-
+import { BlockComponent } from './block/block.component';
 
 @NgModule({
   declarations: [
@@ -18,12 +18,15 @@ import { UsersComponent } from './users/users.component';
     NavbarAdminComponent,
     FooterAdminComponent,
     ReportComponent,
-    UsersComponent
+    UsersComponent,
+    BlockComponent,
+    
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     SharedModule,
+    
   ],
   exports:[
     UsersComponent

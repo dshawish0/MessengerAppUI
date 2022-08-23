@@ -6,13 +6,15 @@ import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { DefultComponent } from './defult/defult.component';
 import { ChatModule } from '../chat/chat.module';
+import { TestimonialComponent } from './testimonial/testimonial.component';
 
 
 @NgModule({
   declarations: [
     FooterComponent,
     NavbarComponent,
-    DefultComponent
+    DefultComponent,
+    TestimonialComponent
   ],
   imports: [
     CommonModule,

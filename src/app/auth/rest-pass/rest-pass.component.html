@@ -18,7 +18,7 @@
                                     <div class="form-floating">
                                         <!-- [(ngModel)]="password" -->
                                         <input type="password" class="form-control" id="signin-password" placeholder="Password" matInput formControlName="password">
-                                        <label for="signin-password">Password</label>
+                                        <label for="signin-password">New Password</label>
                                         <label *ngIf="log.controls['password'].hasError('required') && log.controls['password'].touched" for="signin-password" style="color:red; font-weight:bold;">Password</label>
                                         <!-- <span *ngIf="log.controls['password'].hasError('minlength') && log.controls['password'].touched" style="color:red; font-weight: bold;">Your Password less than 8 Characters</span> -->
                                     </div>
@@ -28,7 +28,7 @@
                                     <div class="form-floating">
                                         <!-- [(ngModel)]="password" -->
                                         <input type="password" class="form-control" id="signin-password" placeholder="Password" matInput formControlName="Repassword">
-                                        <label for="signin-password">Repassword</label>
+                                        <label for="signin-password">New RePassword</label>
                                         <label *ngIf="log.controls['Repassword'].hasError('required') && log.controls['Repassword'].touched" for="signin-password" style="color:red; font-weight:bold;">Repassword</label>
                                         <!-- <span *ngIf="log.controls['password'].hasError('minlength') && log.controls['password'].touched" style="color:red; font-weight: bold;">Your Password less than 8 Characters</span> -->
                                     </div>

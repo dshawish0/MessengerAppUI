@@ -30,7 +30,8 @@
                         ],
                         "scripts": [
                             "src/assets/home/Scripts/bootstrap.js",
-                            "src/assets/home/Scripts/script.js"
+                            "src/assets/home/Scripts/script.js",
+                            "src/assets/home/Scripts/swiper-bundle.min.js"
                         ]
                     },
                     "configurations": {
@@ -98,7 +99,8 @@
                         ],
                         "scripts": [
                             "src/assets/home/Scripts/bootstrap.js",
-                            "src/assets/home/Scripts/script.js"
+                            "src/assets/home/Scripts/script.js",
+                            "src/assets/home/Scripts/swiper-bundle.min.js"
                         ]
                     }
                 }

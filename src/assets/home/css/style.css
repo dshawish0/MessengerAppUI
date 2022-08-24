@@ -22981,12 +22981,13 @@ ul.grop-icon li img {
     justify-content: center
 }
 
-.content {
+
+/* .content {
     position: absolute;
     bottom: 10%;
     left: 0;
     right: 0
-}
+} */
 
 .content .icon-btn {
     margin-bottom: 20px

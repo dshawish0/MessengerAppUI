@@ -29,4 +29,21 @@ export class ChatemptyComponent implements OnInit {
   upDateChat(){
     console.log(this.updateChat.value); 
   }
+
+  messageText:any;
+  messageform: FormGroup = new FormGroup({
+    text:new FormControl('',[Validators.required]),
+    senderId:new FormControl(''),
+    messageGroupId:new FormControl('')
+  });
+
+  CreateMessage(){
+    this.messageform.controls['messageGroupId'].setValue(this.chatService.id)
+    this.messageform.controls['senderId'].setValue(1)
+    console.log(this.messageform.value,"messageform")
+    console.log(this.messageform.valid,"valid")
+
+    this.chatService.CreateMessage(this.messageform.value)
+ this.messageText='';
+  }
 }

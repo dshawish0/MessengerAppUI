@@ -1,6 +1,5 @@
      <!-- Chat -->
-     <main class="main is-visible" data-dropzone-area="">
-        <div class="container h-100">
+
 
             <div class="d-flex flex-column h-100 position-relative">
                 <!-- Chat: Header -->
@@ -9,7 +8,7 @@
 
                         <!-- Mobile: close -->
                         <div class="col-2 d-xl-none">
-                            <a class="icon icon-lg text-muted" href="#" data-toggle-chat="">
+                            <a class="icon icon-lg text-muted" routerLink="/AllChat">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
                             </a>
                         </div>
@@ -100,7 +99,7 @@
                     <!-- Chat: Files -->
 
                     <!-- Chat: Form -->
-                    <form class="chat-form rounded-pill bg-dark" data-emoji-form="">
+                    <form class="chat-form rounded-pill bg-dark" data-emoji-form="" [formGroup]="messageform">
                         <div class="row align-items-center gx-0">
                             <div class="col-auto">
                                 <a href="#" class="btn btn-icon btn-link text-body rounded-circle" id="dz-btn">
@@ -110,7 +109,7 @@
 
                             <div class="col">
                                 <div class="input-group">
-                                    <textarea class="form-control px-0" placeholder="Type your message..." rows="1" data-emoji-input="" data-autosize="true"></textarea>
+                                    <textarea class="form-control px-0" placeholder="Type your message..." rows="1" data-emoji-input="" data-autosize="true" formControlName="text" [(ngModel)]="messageText"></textarea>
 
                                     <a href="#" class="input-group-text text-body pe-0" data-emoji-btn="">
                                         <span class="icon icon-lg">
@@ -121,7 +120,7 @@
                             </div>
 
                             <div class="col-auto">
-                                <button class="btn btn-icon btn-primary rounded-circle ms-5">
+                                <button class="btn btn-icon btn-primary rounded-circle ms-5" (click)="CreateMessage()">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-send"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
                                 </button>
                             </div>
@@ -132,8 +131,7 @@
                 <!-- Chat: Footer -->
             </div>
 
-        </div>
-    </main>
+
     <!-- Chat --><!-- Chat -->
 
 

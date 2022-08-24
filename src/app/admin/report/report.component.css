@@ -1,6 +1,8 @@
 @import "../../../assets/Admin/css/material-dashboard.min6c54.css";
 @import "../../../assets/Admin/demo/demo.css";
-
-table,th,tr,td{
+table,
+th,
+tr,
+td {
     border: 1px solid;
 }

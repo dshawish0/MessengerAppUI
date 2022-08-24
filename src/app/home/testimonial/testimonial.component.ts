@@ -12,5 +12,5 @@ export class TestimonialComponent implements OnInit {
      
   }
 
-
+ 
 }

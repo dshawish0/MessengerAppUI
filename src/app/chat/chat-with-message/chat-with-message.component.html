@@ -1,3 +1,4 @@
+
 <div class="d-flex flex-column h-100 position-relative">
     <!-- Chat: Header -->
     <div class="chat-header border-bottom py-4 py-lg-7">
@@ -19,13 +20,12 @@
                         <div class="row align-items-center gx-5">
                             <div class="col-auto">
                                 <div class="avatar d-none d-xl-inline-block">
-                                    <img class="avatar-img" src="assets/img/avatars/bootstrap.svg" alt="">
+                                    <img class="avatar-img"  src="../../../assets/images/{{this.chatService.AllMessage[0].messageGroup.groupImg}}" alt="">
                                 </div>
                             </div>
 
                             <div class="col overflow-hidden">
-                                <h5 class="text-truncate">Bootstrap Community</h5>
-                                <p class="text-truncate">35 members, 3 online</p>
+                                <h5 class="text-truncate">{{this.chatService.AllMessage[0].messageGroup.groupName}}</h5>
                             </div>
                         </div>
                     </div>
@@ -42,11 +42,11 @@
 
                             <div class="col-auto">
                                 <div class="avatar-group">
-                                    <a href="#" class="avatar avatar-sm" data-bs-toggle="modal" data-bs-target="#modal-user-profile">
-                                        <img class="avatar-img" src="assets/img/avatars/1.jpg" alt="#">
+                                    <a *ngFor="let item of this.chatService.allMemberinMessageGroup" class="avatar avatar-sm" data-bs-toggle="modal" data-bs-target="#modal-user-profile">
+                                        <img class="avatar-img" src="../../../assets/Img/{{item.user.proFileImg}}" alt="#">
                                     </a>
 
-                                    <a href="#" class="avatar avatar-sm" data-bs-toggle="modal" data-bs-target="#modal-user-profile">
+                                    <!-- <a href="#" class="avatar avatar-sm" data-bs-toggle="modal" data-bs-target="#modal-user-profile">
                                         <img class="avatar-img" src="assets/img/avatars/11.jpg" alt="#">
                                     </a>
 
@@ -58,7 +58,7 @@
                                         <span class="avatar-text" data-bs-toggle="tooltip" data-bs-placement="bottom" title="<strong>Add People</strong><p>Invite friends to group</p>">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                                         </span>
-                                    </a>
+                                    </a> -->
                                 </div>
                             </div>
                         </div>
@@ -99,18 +99,84 @@
             <div class="py-6 py-lg-12" *ngFor="let item of this.chatService.AllMessage">
 
                 <!-- Message -->
-                <div class="message" *ngIf="item.senderId==1">
+                <div class="message" *ngIf="item.senderId!=1">
                     <a href="#" data-bs-toggle="modal" data-bs-target="#modal-user-profile" class="avatar avatar-responsive">
-                        <img class="avatar-img" src="assets/img/avatars/11.jpg" alt="">
+                        <img class="avatar-img" src="../../../assets/{{item.user.proFileImg}}" alt="">
                     </a>
 
                     <div class="message-inner">
                         <div class="message-body">
                             <div class="message-content">
                                 <div class="message-text">
-                                    <p>{{[(item.text)]}}</p>
+                                    <p style="font-size: medium;" >{{item.text}}</p>
                                 </div>
 
+                                <!-- Dropdown -->
+                                <!-- <div class="message-action">
+                                    <div class="dropdown">
+                                        <a class="icon text-muted" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
+                                        </a>
+
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                                    <span class="me-auto">Edit</span>
+                                                    <div class="icon">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-3"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                                    <span class="me-auto">Reply</span>
+                                                    <div class="icon">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-corner-up-left"><polyline points="9 14 4 9 9 4"></polyline><path d="M20 20v-7a4 4 0 0 0-4-4H4"></path></svg>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <hr class="dropdown-divider">
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item d-flex align-items-center text-danger" href="#">
+                                                    <span class="me-auto">Delete</span>
+                                                    <div class="icon">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div> -->
+                            </div>
+
+                        </div>
+
+                        <div class="message-footer">
+                            <span class="extra-small text-muted" style="font-size: 1em;">{{item.messageDate|date:'shortTime'}}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Message -->
+                <div class="message message-out" *ngIf="item.senderId==1">
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#modal-profile" class="avatar avatar-responsive">
+                        <img class="avatar-img" src="../../../assets/{{item.user.proFileImg}}" alt="">
+                    </a>
+
+                    <div class="message-inner">
+                        <div class="message-body">
+                            <div class="message-content">
+                                <div class="message-text">
+                                    <!-- <blockquote class="blockquote overflow-hidden">
+                                        <h6 class="text-reset text-truncate">William Wright</h6>
+                                        <p class="small text-truncate">Hey, Marshall! How are you? Can you please change the color theme of the website to pink and purple?</p>
+                                    </blockquote> -->
+                                    <p>{{item.text}}</p>
+                                </div>
+
+                                <!-- Dropdown -->
                                 <!-- Dropdown -->
                                 <div class="message-action">
                                     <div class="dropdown">
@@ -151,34 +217,6 @@
                                 </div>
                             </div>
 
-                        </div>
-
-                        <div class="message-footer">
-                            <span class="extra-small text-muted">{{item.messageDate}}</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Message -->
-                <div class="message message-out" *ngIf="item.senderId!=1">
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#modal-profile" class="avatar avatar-responsive">
-                        <img class="avatar-img" src="assets/img/avatars/1.jpg" alt="">
-                    </a>
-
-                    <div class="message-inner">
-                        <div class="message-body">
-                            <div class="message-content">
-                                <div class="message-text">
-                                    <!-- <blockquote class="blockquote overflow-hidden">
-                                        <h6 class="text-reset text-truncate">William Wright</h6>
-                                        <p class="small text-truncate">Hey, Marshall! How are you? Can you please change the color theme of the website to pink and purple?</p>
-                                    </blockquote> -->
-                                    <p>{{item.text}}</p>
-                                </div>
-
-                                <!-- Dropdown -->
-                            </div>
-
                             <!-- <div class="message-content">
                                 <div class="message-text">
 
@@ -205,7 +243,7 @@
                         </div>
 
                         <div class="message-footer">
-                            <span class="extra-small text-muted">{{item.messageDate}}</span>
+                            <span class="extra-small text-muted" style="font-size: 1em;">{{item.messageDate|date:'shortTime'}}</span>
                         </div>
                     </div>
                 </div>
@@ -227,7 +265,7 @@
         <!-- Chat: Files -->
 
         <!-- Chat: Form -->
-        <form class="chat-form rounded-pill bg-dark" data-emoji-form="">
+        <form class="chat-form rounded-pill bg-dark" data-emoji-form="" [formGroup]="messageform">
             <div class="row align-items-center gx-0">
                 <div class="col-auto">
                     <a href="#" class="btn btn-icon btn-link text-body rounded-circle" id="dz-btn">
@@ -237,7 +275,7 @@
 
                 <div class="col">
                     <div class="input-group">
-                        <textarea class="form-control px-0" placeholder="Type your message..." rows="1" data-emoji-input="" data-autosize="true"></textarea>
+                        <textarea class="form-control px-0" placeholder="Type your message..." rows="1" data-emoji-input="" data-autosize="true" formControlName="text" [(ngModel)]="messageText"></textarea>
 
                         <a href="#" class="input-group-text text-body pe-0" data-emoji-btn="">
                             <span class="icon icon-lg">
@@ -248,7 +286,7 @@
                 </div>
 
                 <div class="col-auto">
-                    <button class="btn btn-icon btn-primary rounded-circle ms-5">
+                    <button class="btn btn-icon btn-primary rounded-circle ms-5" [disabled]="messageform.invalid" (click)="CreateMessage()">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-send"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
                     </button>
                 </div>

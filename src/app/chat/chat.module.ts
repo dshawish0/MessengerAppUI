@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { ChatRoutingModule } from './chat-routing.module';
 import { NavbarComponent } from './navbar/navbar.component';
 import { IndexComponent } from './index/index.component';
@@ -32,6 +31,7 @@ import { ChatWithMessageComponent } from './chat-with-message/chat-with-message.
     SupportComponent,
     SettingComponent,
     ChatWithMessageComponent
+    
   ],
   imports: [
     CommonModule,

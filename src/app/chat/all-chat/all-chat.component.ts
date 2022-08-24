@@ -14,37 +14,39 @@ export class AllChatComponent implements OnInit {
   currentItem:any;
 
   constructor(public chatService:ChatService, public dialog:MatDialog) { }
-
+  public innerWidth: any;
   ngOnInit(): void {
+    
     this.chatService.GetAllChat(1)
-    
-    
+    this.innerWidth = window.innerWidth;
+    console.log(this.innerWidth, "width screen");
+   
   }
 
   updateChatForm:FormGroup = new FormGroup({
-    GroupName : new FormControl(''),
-    GroupImg :new FormControl(''),
+    groupName : new FormControl(''),
+    groupImg :new FormControl(''),
     messageGroupId:new FormControl('')
   });
  old_Data:any={};
   opendDialogUpDateChat(messageGroupId1:any, groupName1:any, groupImg1:any){
     this.old_Data={
       messageGroupId : messageGroupId1,
-      GroupName : groupName1,
+      groupName : groupName1,
       groupImg : groupImg1
     }
     
     this.updateChatForm.controls['messageGroupId'].setValue(this.old_Data.messageGroupId)
-    this.updateChatForm.controls['GroupName'].setValue(this.old_Data.GroupName)
-    this.updateChatForm.controls['GroupImg'].setValue(this.old_Data.groupImg)
+    // this.updateChatForm.controls['GroupName'].setValue(this.old_Data.GroupName)
+    this.updateChatForm.controls['groupImg'].setValue(this.old_Data.groupImg)
     this.dialog.open(this.UpDateChat, {height:'600px', width:'500px'});
-    console.log(this.old_Data);
+    console.log("old",this.old_Data);
+    console.log("formGroup",this.updateChatForm.value);
+    console.log(this.updateChatForm.valid);
     
   }
 
   upDateChat(){
-    console.log(this.updateChatForm.value);
-    console.log(this.old_Data);
     this.chatService.UpdateChat(this.updateChatForm.value)
   }
  
@@ -64,10 +66,13 @@ export class AllChatComponent implements OnInit {
   MessageChat(messageGroupId:any){
     // this.currentItem=messageGroupId;
     // console.log("messageGroupId",this.currentItem);
+    this.currentItem = messageGroupId;
     this.chatService.MessageChat(messageGroupId)
     // this.route.navigate([''])
   }
-  test(){
-    this.chatService.MessageChat(1)
+  
+
+  DeleteChat(messageGroupId:any){
+    this.chatService.DeleteChat(messageGroupId)
   }
 }

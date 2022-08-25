@@ -10,6 +10,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { ToastrModule, ToastNoAnimation, ToastNoAnimationModule } from 'ngx-toastr';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterCeptor } from 'src/InterCeptor/token.InterCeptor';
+import { AdminModule } from './admin/admin.module';
 
 
 
@@ -26,7 +27,7 @@ const routes:Routes = [] ;
     AppRoutingModule,
     BrowserAnimationsModule,
     ChatModule,
-
+    AdminModule,
     NgxSpinnerModule,
     ToastNoAnimationModule.forRoot(),
     ToastrModule.forRoot(),

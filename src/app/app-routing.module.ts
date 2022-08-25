@@ -5,13 +5,15 @@ import { HomeModule } from './home/home.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { AdminModule } from './admin/admin.module';
+import { AutherizationGuard } from './autherization.guard';
 
 
 
 const routes: Routes = [
   {
     path:"Chat",
-    loadChildren:()=>ChatModule
+    loadChildren:()=>ChatModule,
+    canActivate:[AutherizationGuard]
    },
    {
     path:"",
@@ -23,7 +25,8 @@ const routes: Routes = [
    },
    {
     path:'admin',
-    loadChildren:()=>AdminModule
+    loadChildren:()=>AdminModule,
+    canActivate:[AutherizationGuard]
  }
 ];
 

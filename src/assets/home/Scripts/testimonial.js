@@ -1,31 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-
-@Component({
-  selector: 'app-testimonial',
-  templateUrl: './testimonial.component.html',
-  styleUrls: ['./testimonial.component.css']
-})
-export class TestimonialComponent implements OnInit {
-  constructor() { }
-  number:any=1;
-  ngOnInit(): void {
-     
-  }
-
-change(num:any){
-  //alert("dasdasd");
-
-  const after = <HTMLElement> document.getElementsByClassName('client-single')[num-1];
-  const before = <HTMLElement> document.getElementsByClassName('client-single')[this.number-1];
-
-
-  after.className = 'client-single active position-'+num;
-  before.className='client-single inactive position-'+ this.number;
-
-  this.number=num;
-}
-
-//   $(document).ready(
+// alert("dsadsad");
+// $(document).ready(
 //     (function() {
 //         $(".client-single").on("click", function(event) {
 //             event.preventDefault();
@@ -58,5 +32,3 @@ change(num:any){
 //         });
 //     })(jQuery)
 // );
- 
-}

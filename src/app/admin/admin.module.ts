@@ -19,17 +19,23 @@ import { BlockComponent } from './block/block.component';
     FooterAdminComponent,
     ReportComponent,
     UsersComponent,
-    BlockComponent,
+    BlockComponent
     
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
-    SharedModule,
+    SharedModule
     
   ],
   exports:[
-    UsersComponent
+    SidebarAdminComponent,
+    DashboardComponent,
+    NavbarAdminComponent,
+    FooterAdminComponent,
+    ReportComponent,
+    UsersComponent,
+    BlockComponent
   ]
 })
 export class AdminModule { }

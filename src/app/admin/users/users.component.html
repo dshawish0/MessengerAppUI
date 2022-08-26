@@ -25,7 +25,8 @@
                         <th>Last Name</th>
                         <th>Gender</th>
                         <th>Image User</th>
-                        <th class="text-right">Actions</th>
+                        <th>User Name</th>
+                        <!-- <th class="text-right">Actions</th> -->
                       </tr>
                     </thead>
                     <tbody>
@@ -34,9 +35,9 @@
                         <td>{{item.fname}}</td>
                         <td>{{item.lname}}</td>
                         <td>{{item.gender}}</td>
-                        <td><img src="../../../assets/Admin/img/{{item.proFileImg}}" width="50" height="50" alt="image">
-                        </td>
-                        <td class="td-actions text-right">
+                        <td><img src="../../../assets/Admin/img/{{item.proFileImg}}" width="50" height="50" alt="image"></td>
+                        <td>{{item.userName}}</td>
+                        <!-- <td class="td-actions text-right">
                           <button type="button" rel="tooltip" class="btn btn-info">
                             <i class="material-icons">person</i>
                           </button>
@@ -47,7 +48,7 @@
                             <i class="material-icons">close</i>
                           </button>
                         </td>
-                      </tr>
+                      </tr>  -->
 
                     </tbody>
                   </table>

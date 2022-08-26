@@ -430,7 +430,7 @@
  <!-- Chat -->
             
  <!-- <main class="main is-visible" data-dropzone-area *ngIf="this.innerWidth>=1115"> -->
-    <main class="main is-visible" data-dropzone>
+    <main class="main" [ngClass]="this.chatService.collapse  ? 'is-visible' : ''" data-dropzone>
     <div class="container h-100">
         <app-chatempty *ngIf="this.chatService.AllMessage.length==0" ></app-chatempty>
         <app-chat-with-message *ngIf="this.chatService.AllMessage.length!=0" [messageGroup]="currentItem"></app-chat-with-message>        

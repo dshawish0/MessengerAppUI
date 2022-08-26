@@ -29,6 +29,7 @@ import { BlockComponent } from './block/block.component';
     
   ],
   exports:[
+    UsersComponent,
     SidebarAdminComponent,
     DashboardComponent,
     NavbarAdminComponent,

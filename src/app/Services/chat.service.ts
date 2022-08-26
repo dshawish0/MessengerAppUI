@@ -12,6 +12,8 @@ export class ChatService {
 
   constructor(private http: HttpClient, private spinner: NgxSpinnerService, private toastr: ToastrService) { }
 
+  collapse:boolean = false
+
   users: any = []
   myFriend: any = [];
   lopy: any = [];

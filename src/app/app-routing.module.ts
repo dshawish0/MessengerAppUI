@@ -24,7 +24,7 @@ const routes: Routes = [
       loadChildren:()=>AuthModule
    },
    {
-    path:'admin',
+    path:'Admin',
     loadChildren:()=>AdminModule,
     canActivate:[AutherizationGuard]
  }

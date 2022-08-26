@@ -16,11 +16,11 @@ export class AutherizationGuard implements CanActivate {
 
       if(token){
         debugger
-        if(state.url.indexOf('admin')>=0){
+        if(state.url.indexOf('Admin')>=0){
           let data :any = jwt_decode(token);
 
           if(data.role=='admin'){
-            this.router.navigate(['admin']);
+            this.router.navigate(['Admin']);
             return true;
           }
           else{

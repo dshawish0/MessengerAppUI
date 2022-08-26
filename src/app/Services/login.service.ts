@@ -35,16 +35,15 @@ const headerDir={
       }
       localStorage.setItem('token',responce.token);
       let data :any = jwt_decode(responce.token);
-      console.log(data);
+      //console.log(data);
       //localStorage.setItem('user',JSON.stringify({...data}) );
-      this.router.navigate(['']);
       if(data.role=='admin')
       {
-        
+        this.router.navigate(['admin']);
       }
-      else if (data.role=='customer')
+      else if (data.role=='user')
       {
-        
+        this.router.navigate(['Chat']);
       }
     })
 

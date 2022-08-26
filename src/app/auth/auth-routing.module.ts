@@ -9,23 +9,23 @@ import { RestPassComponent } from './rest-pass/rest-pass.component';
 
 const routes: Routes = [
   {
-    path:'',
-    component:LoginComponent
+    path: '',
+    component: LoginComponent
   },
   {
-  path:'reg',
+  path:'zzzzz',
   component:RegisterComponent
 },
 {
-  path:'respass',
+  path:'zzzz',
   component:PasswordResetComponent
 },
 {
-  path:'cof',
+  path:'zzz',
   component:ConfirmEmailComponent
 },
 {
-  path:'restpass',
+  path:'zzzz',
   component:RestPassComponent
 },
 {

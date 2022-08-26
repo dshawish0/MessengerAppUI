@@ -12,20 +12,12 @@ const routes: Routes = [
     component:DashboardComponent
   },
   {
-    path:'user',
+    path:'User',
     component:UsersComponent
   },
   {
-    path:'block',
+    path:'Block',
     component:BlockComponent
-  },
-  {
-    path:'testimonial',
-    component:TestimonialComponent
-  },
-  {
-    path:'edit',
-    component:EditProfileComponent
   },
 ];
 

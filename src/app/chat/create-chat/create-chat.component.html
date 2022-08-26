@@ -70,19 +70,20 @@
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                                         </div>
 
-                                        <input id="upload-chat-img" class="d-none" type="file">
+                                        <input id="upload-chat-img" #file class="d-none" type="file"  (change)="UploadChatImg(file.files)">
                                         <label class="stretched-label mb-0" for="upload-chat-img"></label>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="card-body">
-                                <form autocomplete="off">
+                                <form autocomplete="off" [formGroup]="createChatForm">
                                     <div class="row gy-6">
                                         <div class="col-12">
                                             <div class="form-floating">
-                                                <input type="text" class="form-control" id="floatingInput" placeholder="Enter a chat name">
+                                                <input type="text" class="form-control" id="floatingInput" formControlName="GroupName"  placeholder="Enter a chat name">
                                                 <label for="floatingInput">Enter group name</label>
+                                                <p style="color: red;" *ngIf="createChatForm.controls['GroupName'].hasError('required')">group name is requred</p>
                                             </div>
                                         </div>
                                         <div class="col-12">
@@ -138,30 +139,30 @@
                             </div>
 
                             <!-- Card -->
-                            <div class="card border-0 mt-5">
+                            <div class="card border-0 mt-5" *ngFor="let item of this.chatService.myFriend">
                                 <div class="card-body">
 
                                     <div class="row align-items-center gx-5">
                                         <div class="col-auto">
                                             <div class="avatar ">
                                                 
-                                                    <img class="avatar-img" src="assets/img/avatars/6.jpg" alt="">
+                                                    <img class="avatar-img" src="../../../assets/images/{{item.user.proFileImg}}" alt="">
                                                 
                                                 
                                             </div>
                                         </div>
                                         <div class="col">
-                                            <h5>Bill Marrow</h5>
+                                            <h5>{{item.user.fname}} {{item.user.lname}}</h5>
                                             <p>last seen 3 days ago</p>
                                         </div>
                                         <div class="col-auto">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="id-member-1">
-                                                <label class="form-check-label" for="id-member-1"></label>
+                                                <input class="form-check-input" type="checkbox" value="" id="{{item.user.userId}}" (click)="select($event, item.user.userId)">
+                                                <label class="form-check-label" for="{{item.user.userId}}"></label>
                                             </div>
                                         </div>
                                     </div>
-                                    <label class="stretched-label" for="id-member-1"></label>
+                                    <label class="stretched-label" for="{{item.user.userId}}"></label>
                                 </div>
                             </div>
                             <!-- Card -->
@@ -426,7 +427,7 @@
 
         <!-- Button -->
         <div class="container mt-n4 mb-8 position-relative">
-            <button class="btn btn-lg btn-primary w-100 d-flex align-items-center" type="button">
+            <button class="btn btn-lg btn-primary w-100 d-flex align-items-center" type="button" [disabled]="this.disable || this.createChatForm.invalid" (click)="CreateChat()">
                 Start chat
                 <span class="icon ms-auto">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>

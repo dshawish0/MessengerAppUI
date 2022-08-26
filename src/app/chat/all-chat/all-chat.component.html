@@ -49,20 +49,36 @@
                                             <div class="col">
                                                 <div class="d-flex align-items-center mb-3">
                                                     <h5 class="me-auto mb-0">{{item.groupName}}</h5>
-                                                    <span class="text-muted extra-small ms-2">{{item.messages[item.messages.length-1].messageDate}}</span>
+                                                    <span class="text-muted extra-small ms-2" *ngIf="item.messages[0]!=null">
+                                                        {{item.messages[item.messages.length-1].messageDate |date:'shortTime'}}
+                                                    </span>
                                                 </div>
     
                                                 <div class="d-flex align-items-center" >
-                                                    <div class="line-clamp me-auto">
+                                                    <div class="line-clamp me-auto" *ngIf="item.messages[0]!=null">
                                                        {{item.messages[item.messages.length-1].text}}
                                                        
-                                                    </div>
+                                                    </div> 
     
     
-                                                    <div>
+                                                    <!-- <div>
                                                         <a _ngcontent-fsl-c84="" (click)="opendDialogUpDateChat(item.messageGroupId, item.groupName, item.groupImg)" role="button" data-bs-toggle="dropdown" aria-expanded="false" class="icon text-muted">
                                                             <svg _ngcontent-fsl-c84="" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle _ngcontent-fsl-c84="" cx="12" cy="12" r="1"></circle><circle _ngcontent-fsl-c84="" cx="19" cy="12" r="1"></circle><circle _ngcontent-fsl-c84="" cx="5" cy="12" r="1"></circle></svg>
                                                         </a>
+                                                    </div> -->
+                                                    <div class="dropdown ms-5">
+                                                        <a class="icon text-muted" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
+                                                        </a>
+                                                        <ul class="dropdown-menu">
+                                                            <li>
+                                                                <a class="dropdown-item" (click)="opendDialogUpDateChat(item.messageGroupId, item.groupName, item.groupImg)" >
+                                                                    <!-- <svg _ngcontent-fsl-c84="" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle _ngcontent-fsl-c84="" cx="12" cy="12" r="1"></circle><circle _ngcontent-fsl-c84="" cx="19" cy="12" r="1"></circle><circle _ngcontent-fsl-c84="" cx="5" cy="12" r="1"></circle></svg> -->
+                                                                    Edit
+                                                                </a>
+                                                            </li>
+                                                            <li><a class="dropdown-item" (click)="DeleteChat(item.messageGroupId)" >Delete</a></li>
+                                                        </ul>
                                                     </div>
                                                     <!-- <div class="badge badge-circle bg-primary ms-5">
                                                         <span>3</span>
@@ -413,11 +429,11 @@
 
  <!-- Chat -->
             
- <main class="main">
+ <!-- <main class="main is-visible" data-dropzone-area *ngIf="this.innerWidth>=1115"> -->
+    <main class="main is-visible" data-dropzone>
     <div class="container h-100">
-
-        <app-chatempty *ngIf="this.chatService.AllMessage.length==0"></app-chatempty>
-        <app-chat-with-message *ngIf="this.chatService.AllMessage.length!=0" ></app-chat-with-message>        
+        <app-chatempty *ngIf="this.chatService.AllMessage.length==0" ></app-chatempty>
+        <app-chat-with-message *ngIf="this.chatService.AllMessage.length!=0" [messageGroup]="currentItem"></app-chat-with-message>        
     </div>
 </main>
         
@@ -442,14 +458,15 @@
                         <div class="profile-body p-0">
                             <div class="avatar avatar-lg">
                                 <span class="avatar-text bg-primary">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-image"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                                    <!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-image"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg> -->
+                                    <img src="../../../assets/images/{{old_Data.groupImg}}" alt="" class="avatar-img">
                                 </span>
 
                                 <div class="badge badge-lg badge-circle bg-primary border-outline position-absolute bottom-0 end-0">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                                 </div>
                                 
-                                <input id="upload-chat-img"  #file class="d-none" type="file" (change)="UploadChatImg(file.files)" formControlName="GroupImg" >
+                                <input id="upload-chat-img"  #file class="d-none" type="file" formControlName="groupImg" [(ngModel)]="old_Data.groupImg" (change)="UploadChatImg(file.files)" >
                                 <label class="stretched-label mb-0" for="upload-chat-img"></label>
                             </div>
                         </div>
@@ -463,7 +480,7 @@
                         
                             <div class="col-12">
                                 <label for="invite-email" class="form-label text-muted">name</label>
-                                <input type="text" class="form-control form-control-lg" formControlName="GroupName" [(ngModel)]="old_Data.groupName" >
+                                <input type="text" class="form-control form-control-lg" formControlName="groupName" [(ngModel)]="old_Data.groupName" >
                             </div>
                             
                         

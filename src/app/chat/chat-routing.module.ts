@@ -30,11 +30,11 @@ const routes: Routes = [
     component:ChatWithMessageComponent
   },
   {
-    path:'',
+    path:'CreateChat',
     component:CreateChatComponent
   },
   {
-    path:'AllChat',
+    path:'',
     component:AllChatComponent
   },
   {

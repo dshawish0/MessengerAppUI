@@ -1,6 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+
+
+import { HttpClientModule } from '@angular/common/http';
+
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { ReactiveFormsModule } from '@angular/forms';
+import {MatSelectModule} from '@angular/material/select';
+
 import { AdminRoutingModule } from './admin-routing.module';
 import { SidebarAdminComponent } from './sidebar-admin/sidebar-admin.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -28,9 +36,14 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
     CommonModule,
     AdminRoutingModule,
     SharedModule,
+    HttpClientModule,
+    MatDialogModule,
+    ReactiveFormsModule,
+    MatSelectModule,  
     
   ],
   exports:[
+    UsersComponent,
     SidebarAdminComponent,
     DashboardComponent,
     NavbarAdminComponent,

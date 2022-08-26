@@ -39,7 +39,7 @@ const headerDir={
       //localStorage.setItem('user',JSON.stringify({...data}) );
       if(data.role=='admin')
       {
-        this.router.navigate(['admin']);
+        this.router.navigate(['Admin']);
       }
       else if (data.role=='user')
       {

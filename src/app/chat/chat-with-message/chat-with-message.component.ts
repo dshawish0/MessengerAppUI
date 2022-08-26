@@ -23,7 +23,9 @@ export class ChatWithMessageComponent implements OnInit {
      console.log(this.messageGroupId,"ddddddd");
      this.chatService.getGroupMemberByMessageGroupId(this.messageGroupId)
   }
-
+  collapse(){
+    this.chatService.collapse = false
+  }
   
 
 messageText:any;

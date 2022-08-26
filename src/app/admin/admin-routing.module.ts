@@ -12,7 +12,7 @@ const routes: Routes = [
     component:DashboardComponent
   },
   {
-    path:'User',
+    path:'user',
     component:UsersComponent
   },
   {

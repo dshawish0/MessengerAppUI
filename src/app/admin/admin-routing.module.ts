@@ -19,6 +19,10 @@ const routes: Routes = [
     path:'Block',
     component:BlockComponent
   },
+  {
+    path: "testimonial",
+    component:TestimonialComponent
+  }
 ];
 
 @NgModule({

@@ -29,7 +29,7 @@ import { BlockComponent } from './block/block.component';
     
   ],
   exports:[
-    UsersComponent
+    UsersComponent,
   ]
 })
 export class AdminModule { }

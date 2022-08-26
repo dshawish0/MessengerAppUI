@@ -13,19 +13,19 @@ const routes: Routes = [
     component:LoginComponent
   },
   {
-  path:'zzzzz',
+  path:'reg',
   component:RegisterComponent
 },
 {
-  path:'zzzz',
+  path:'respass',
   component:PasswordResetComponent
 },
 {
-  path:'zzz',
+  path:'cof',
   component:ConfirmEmailComponent
 },
 {
-  path:'zzzz',
+  path:'restpass',
   component:RestPassComponent
 },
 {

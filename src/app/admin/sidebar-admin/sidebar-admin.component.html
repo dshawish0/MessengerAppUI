@@ -1,4 +1,5 @@
-<div class="sidebar" data-color="rose" data-background-color="black" data-image="../../../assets/Admin/img/sidebar-1.jpg">
+<div class="sidebar" data-color="rose" data-background-color="black"
+    data-image="../../../assets/Admin/img/sidebar-1.jpg">
 
     <div class="logo"><a href="#" class="simple-text logo-mini">
             CT
@@ -22,13 +23,7 @@
                 <div class="collapse" id="collapseExample">
                     <ul class="nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span class="sidebar-mini"> MP </span>
-                                <span class="sidebar-normal"> My Profile </span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" routerLink="/edit">
                                 <span class="sidebar-mini"> EP </span>
                                 <span class="sidebar-normal"> Edit Profile </span>
                             </a>
@@ -44,34 +39,11 @@
             </div>
         </div>
         <ul class="nav">
+            <!-- Dashboard -->
             <li class="nav-item active ">
                 <a class="nav-link" routerLink="/admin">
                     <i class="material-icons">dashboard</i>
                     <p> Dashboard </p>
-                </a>
-            </li>
-            <li class="nav-item ">
-                <a class="nav-link" [routerLink]="['/User']">
-                    <i class="material-icons">timeline</i>
-                    <p>Users Active</p>
-                </a>
-            </li>
-            <li class="nav-item ">
-                <a class="nav-link" routerLink='./Block' routerLinkActive="active">
-                    <i class="material-icons">timeline</i>
-                    <p>Block Users</p>
-                </a>
-            </li>
-            <li class="nav-item ">
-                <a class="nav-link" routerLink="#">
-                    <i class="material-icons">timeline</i>
-                    <p>Report</p>
-                </a>
-            </li>
-            <li class="nav-item ">
-                <a class="nav-link" routerLink="#">
-                    <i class="material-icons">timeline</i>
-                    <p>service</p>
                 </a>
             </li>
             <!-- mange pages -->
@@ -102,7 +74,7 @@
                             </a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" routerLink='/admin/testimonial' routerLinkActive="router-link-active">
                                 <span class="sidebar-mini"> T </span>
                                 <span class="sidebar-normal"> Testimonial </span>
                             </a>
@@ -110,7 +82,6 @@
                     </ul>
                 </div>
             </li>
-
             <!-- User pages -->
             <li class="nav-item ">
                 <a class="nav-link" data-toggle="collapse" href="#componentsExamples">
@@ -121,136 +92,42 @@
                 </a>
                 <div class="collapse" id="componentsExamples">
                     <ul class="nav">
+                        <!-- Users Active -->
                         <li class="nav-item ">
-                            <a class="nav-link" data-toggle="collapse" href="#componentsCollapse">
-                                <span class="sidebar-mini"> MLT </span>
-                                <span class="sidebar-normal"> Multi Level Collapse
-                                    <b class="caret"></b>
-                                </span>
-                            </a>
-                            <div class="collapse" id="componentsCollapse">
-                                <ul class="nav">
-                                    <li class="nav-item ">
-                                        <a class="nav-link" href="#0">
-                                            <span class="sidebar-mini"> E </span>
-                                            <span class="sidebar-normal"> Example </span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="components/buttons.html">
-                                <span class="sidebar-mini"> B </span>
-                                <span class="sidebar-normal"> Buttons </span>
+                            <a class="nav-link" routerLink='/admin/user'>
+                                <i class="material-icons">timeline</i>
+                                <p>Users Active</p>
                             </a>
                         </li>
+                        <!-- Block Users -->
                         <li class="nav-item ">
-                            <a class="nav-link" href="components/grid.html">
-                                <span class="sidebar-mini"> GS </span>
-                                <span class="sidebar-normal"> Grid System </span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="components/panels.html">
-                                <span class="sidebar-mini"> P </span>
-                                <span class="sidebar-normal"> Panels </span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="components/sweet-alert.html">
-                                <span class="sidebar-mini"> SA </span>
-                                <span class="sidebar-normal"> Sweet Alert </span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="components/notifications.html">
-                                <span class="sidebar-mini"> N </span>
-                                <span class="sidebar-normal"> Notifications </span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="components/icons.html">
-                                <span class="sidebar-mini"> I </span>
-                                <span class="sidebar-normal"> Icons </span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="components/typography.html">
-                                <span class="sidebar-mini"> T </span>
-                                <span class="sidebar-normal"> Typography </span>
+                            <a class="nav-link" routerLink='/block'>
+
+                                <i class="material-icons">block</i>
+                                <p>Block Users</p>
                             </a>
                         </li>
                     </ul>
                 </div>
             </li>
+
+
+            <!-- Report Users -->
             <li class="nav-item ">
-                <a class="nav-link" data-toggle="collapse" href="#formsExamples">
-                    <i class="material-icons">content_paste</i>
-                    <p> Forms
-                        <b class="caret"></b>
-                    </p>
+                <a class="nav-link" routerLink="#">
+                    <i class="material-icons">report</i>
+                    <p>Report Users</p>
                 </a>
-                <div class="collapse" id="formsExamples">
-                    <ul class="nav">
-                        <li class="nav-item ">
-                            <a class="nav-link" href="forms/regular.html">
-                                <span class="sidebar-mini"> RF </span>
-                                <span class="sidebar-normal"> Regular Forms </span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="forms/extended.html">
-                                <span class="sidebar-mini"> EF </span>
-                                <span class="sidebar-normal"> Extended Forms </span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="forms/validation.html">
-                                <span class="sidebar-mini"> VF </span>
-                                <span class="sidebar-normal"> Validation Forms </span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="forms/wizard.html">
-                                <span class="sidebar-mini"> W </span>
-                                <span class="sidebar-normal"> Wizard </span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
             </li>
+            <!-- service -->
             <li class="nav-item ">
-                <a class="nav-link" data-toggle="collapse" href="#tablesExamples">
-                    <i class="material-icons">grid_on</i>
-                    <p> Tables
-                        <b class="caret"></b>
-                    </p>
+                <a class="nav-link" routerLink="#">
+                    <i class="material-icons">access_alarm</i>
+                    <p>service</p>
                 </a>
-                <div class="collapse" id="tablesExamples">
-                    <ul class="nav">
-                        <li class="nav-item ">
-                            <a class="nav-link" href="tables/regular.html">
-                                <span class="sidebar-mini"> RT </span>
-                                <span class="sidebar-normal"> Regular Tables </span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="tables/extended.html">
-                                <span class="sidebar-mini"> ET </span>
-                                <span class="sidebar-normal"> Extended Tables </span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="tables/datatables.net.html">
-                                <span class="sidebar-mini"> DT </span>
-                                <span class="sidebar-normal"> DataTables.net </span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
             </li>
-            <li class="nav-item ">
+
+            <!-- <li class="nav-item ">
                 <a class="nav-link" data-toggle="collapse" href="#mapsExamples">
                     <i class="material-icons">place</i>
                     <p> Maps
@@ -279,17 +156,17 @@
                         </li>
                     </ul>
                 </div>
-            </li>
+            </li> -->
             <li class="nav-item ">
                 <a class="nav-link" href="widgets.html">
-                    <i class="material-icons">widgets</i>
+                    <i class="material-icons">access_alarm</i>
                     <p> Widgets </p>
                 </a>
             </li>
-            <li class="nav-item ">
-                <a class="nav-link" href="calendar.html">
-                    <i class="material-icons">date_range</i>
-                    <p> Calendar </p>
+            <li class="nav-item " (click)="logout()">
+                <a class="nav-link" >
+                    <i class="material-icons">lock</i>
+                    <p> Log Out </p>
                 </a>
             </li>
         </ul>

@@ -10,11 +10,11 @@ import { AdminModule } from './admin/admin.module';
 
 const routes: Routes = [
   {
-    path:"",
+    path:"chat",
     loadChildren:()=>ChatModule
    },
    {
-    path:"home",
+    path:"",
     loadChildren:()=>HomeModule
    },
    {

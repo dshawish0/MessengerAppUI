@@ -35,7 +35,7 @@ const headerDir={
       }
       localStorage.setItem('token',responce.token);
       let data :any = jwt_decode(responce.token);
-      console.log(data);
+      //console.log(data);
       //localStorage.setItem('user',JSON.stringify({...data}) );
       if(data.role=='admin')
       {

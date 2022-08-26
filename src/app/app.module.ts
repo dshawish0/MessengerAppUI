@@ -14,7 +14,7 @@ import { AdminModule } from './admin/admin.module';
 
 
 
-const routes:Routes = [] ;
+// const routes:Routes = [] ;
 
 
 @NgModule({

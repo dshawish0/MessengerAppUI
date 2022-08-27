@@ -22,6 +22,10 @@ const routes: Routes = [
   {
     path: "testimonial",
     component:TestimonialComponent
+  },
+  {
+    path: "edit",
+    component:EditProfileComponent
   }
 ];
 

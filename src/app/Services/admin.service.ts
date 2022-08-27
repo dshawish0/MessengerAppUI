@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-
+import jwt_decode from "jwt-decode";
 @Injectable({
   providedIn: 'root'
 })
@@ -175,4 +175,90 @@ export class AdminService {
       })
 
   }
+  Searchpublishdate(body: any) {
+    this.spinner.show();
+    debugger
+    this.http.post('https://localhost:44318/api/Testimonial/Getpublishdate',body).subscribe(
+      (res) => {
+        console.log(res);
+        this.testimonail = res;
+        this.spinner.hide();
+        this.toastr.success('Search success');
+      }, err => {
+        this.spinner.hide();
+        this.toastr.error("Error");
+        this.toastr.error(err.message);
+        //this.toaster.error('something error');
+      })
+  }
+  UserInfo:any=[];
+  getInfoProfile(){
+    let token:any = localStorage.getItem('token');
+    // console.log(token);
+    let data :any = jwt_decode(token);
+    // console.log(data);
+    //console.log(data.email);
+    // this.userEmail=data.email;
+    // console.log(data.nameid);
+    // this.UserId=data.nameid;
+    // console.log(data.unique_name);
+    // this.UserName=data.unique_name;
+
+    //show spinner
+    this.spinner.show();
+    //hits Api
+    this.http.get('https://localhost:44318/api/User/GetUserById/'+ data.nameid).subscribe(
+      (result) => {
+        // hide spinner
+        this.spinner.hide();
+        this.UserInfo = result;
+        //show toster
+        this.toastr.success('sucssess');
+      }, err => {
+        //hide spinner
+        this.spinner.hide();
+        //show toster
+        this.toastr.error('Error');
+      })
+  }
+  displayImg:any;
+  uploadAttachment(file:FormData){
+    debugger
+    this.http.post('https://localhost:44318/api/user/upLoadImg',file).subscribe(
+      (res:any)=>{
+        console.log("***********************");
+        console.log(res);
+        this.displayImg=res.proFileImg;
+        // hide spinner
+        this.spinner.hide();
+        //show toster
+        this.toastr.success('sucssess Updated');
+
+    },err =>{
+      //hide spinner
+      this.spinner.hide();
+      //show toster
+      this.toastr.error('Error');
+    })
+  }
+  UpdateUser(body:any){
+  //show spinner
+  this.spinner.show();
+  //hits Api
+  debugger
+  this.http.put('https://localhost:44318/api/User/UpdateUser',body).subscribe(
+    (result) => {
+      // hide spinner
+      this.spinner.hide();
+      //show toster
+      this.toastr.success('sucssess Updated');
+    }, err => {
+      //hide spinner
+      this.spinner.hide();
+      //show toster
+      this.toastr.error('Error');
+  })
+  window.location.reload();
+  }
 }
+

@@ -10,19 +10,20 @@
     <div class="sidebar-wrapper">
         <div class="user">
             <div class="photo">
-                <img src="../../../assets/Admin/img/faces/avatar.jpg" />
+                <!-- <img src="../../../assets/img/{{admin.UserInfo.proFileImg}}" alt="image profile" /> -->
+                <img src="../../../assets/Img/{{admin.UserInfo.proFileImg}}" alt="image profile" />
             </div>
             <div class="user-info">
                 <a data-toggle="collapse" href="#collapseExample" class="username">
                     <span>
-                        Tania Andrew
+                        {{admin.UserInfo.userName}}
                         <b class="caret"></b>
                     </span>
                 </a>
                 <div class="collapse" id="collapseExample">
                     <ul class="nav">
                         <li class="nav-item">
-                            <a class="nav-link" routerLink="/edit">
+                            <a class="nav-link" routerLink="/admin/edit">
                                 <span class="sidebar-mini"> EP </span>
                                 <span class="sidebar-normal"> Edit Profile </span>
                             </a>

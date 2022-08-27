@@ -175,4 +175,148 @@ export class AdminService {
       })
 
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  reports: any = [];
+  GetAllReport() {
+    //show spinner
+    this.spinner.show();
+    //hits Api
+    this.http.get('https://localhost:44318/api/ReportUser/GetReportUsers').subscribe(
+      (result) => {
+        this.reports = result;
+        console.log(result);
+        // hide spinner
+        this.spinner.hide();
+        //show toster
+        this.toastr.success('sucssess');
+      }, err => {
+        //hide spinner
+        this.spinner.hide();
+        //show toster
+        this.toastr.error('Error');
+      })
+  }
+  Accepts(body: any) {
+    this.spinner.show();
+    debugger
+    this.http.put('https://localhost:44318/api/ReportUser/acceptingReportUser', body).subscribe(
+      (result) => {
+        debugger
+        console.log(result);
+        // hide spinner
+        this.spinner.hide();
+        //show toster
+        this.toastr.success('sucssess');
+      },
+      err => {
+
+        this.spinner.hide();
+        this.toastr.error('Error');
+      })
+      window.location.reload();
+  }
+  Regects(body: any) {
+    this.spinner.show();
+    debugger
+    this.http.put('https://localhost:44318/api/ReportUser/rejectreport', body).subscribe(
+      (result) => {
+        debugger
+        console.log(result);
+        this.spinner.hide();
+        this.toastr.success('sucssess');
+      },
+      err => {
+        this.spinner.hide();
+        this.toastr.error('Error');
+      })
+      window.location.reload();
+  }
+  searchReport(id: number) {
+    this.spinner.show();
+    this.http.get('https://localhost:44318/api/ReportUser/GetReportUsersById/'+id).subscribe(
+      (res) => {
+        console.log(res);
+        this.reports = res;
+        this.spinner.hide();
+        this.toastr.success('Search success');
+      }, err => {
+        this.spinner.hide();
+        this.toastr.error("Error");
+        this.toastr.error(err.message);
+        //this.toaster.error('something error');
+      })
+
+  }
+  addservices: any = [];
+  GetAll() {
+    this.http.get('https://localhost:44318/api/Services/GetAllServices').subscribe(
+      (res) => {
+        this.addservices = res;
+        console.log(res);
+        console.log('getAll');
+      },
+      err => {
+        console.log('error');
+      })
+  }
+  Createservice(body: any) {
+    debugger
+    this.http.post('https://localhost:44318/api/Services/AddServices', body).subscribe(
+      (res) => {
+        debugger
+        console.log("created");
+      }, err => {
+        console.log("Error");
+
+      })
+    console.log(body);
+    window.location.reload();
+  }
+  deleteservices(id: any) {
+    debugger
+    this.http.delete('https://localhost:44318/api/Services/DeleteServices/' + id).subscribe(
+      (res) => {
+        console.log('deleted');
+
+      }, err => {
+
+        console.log("Error");
+      })
+    window.location.reload();
+
+  }
+  Updateservices(body: any) {
+    debugger
+    this.http.put('https://localhost:44318/api/Services/update', body).subscribe
+      ((resp) => {
+      },
+        err => {
+          console.log("Error");
+        })
+    window.location.reload();
+  }
+  searchservices(data: number) {
+    this.http.get('https://localhost:44318/api/Services/GetServiseById/' + data)
+      .subscribe((res) => {
+        console.log(res);
+        this.addservices = [res];
+      },
+        err => {
+        })
+  }
 }

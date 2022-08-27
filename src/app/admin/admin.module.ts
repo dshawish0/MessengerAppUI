@@ -19,6 +19,8 @@ import { UsersComponent } from './users/users.component';
 import { BlockComponent } from './block/block.component';
 import { TestimonialComponent } from './testimonial/testimonial.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { AddServicesComponent } from './add-services/add-services.component';
+import { ReportComponent } from './report/report.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
     BlockComponent,
     TestimonialComponent,
     EditProfileComponent,
+    AddServicesComponent,
+    ReportComponent,
     
   ],
   imports: [

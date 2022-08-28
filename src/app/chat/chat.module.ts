@@ -17,6 +17,8 @@ import { NotificationsComponent } from './notifications/notifications.component'
 import { SupportComponent } from './support/support.component';
 import { SettingComponent } from './setting/setting.component';
 import { ChatWithMessageComponent } from './chat-with-message/chat-with-message.component';
+import { MyprofileComponent } from './myprofile/myprofile.component';
+import { ChatInfoComponent } from './chat-info/chat-info.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { ChatWithMessageComponent } from './chat-with-message/chat-with-message.
     NotificationsComponent,
     SupportComponent,
     SettingComponent,
-    ChatWithMessageComponent
+    ChatWithMessageComponent,
+    MyprofileComponent,
+    ChatInfoComponent
     
   ],
   imports: [

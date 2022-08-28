@@ -12,7 +12,7 @@ import { AutherizationGuard } from './autherization.guard';
 
 const routes: Routes = [
   {
-    path:"",
+    path:"Chat",
     loadChildren:()=>ChatModule
    },
    {

@@ -11,7 +11,7 @@ export class LoginService {
 
   constructor(private http:HttpClient, private router :Router) { }
 
-
+  data :any;
   submit(email:any,password:any){
 
 
@@ -34,14 +34,14 @@ const headerDir={
         token:resp.toString()
       }
       localStorage.setItem('token',responce.token);
-      let data :any = jwt_decode(responce.token);
-      //console.log(data);
+       this.data= jwt_decode(responce.token);
+      console.log(this.data);
       //localStorage.setItem('user',JSON.stringify({...data}) );
-      if(data.role=='admin')
+      if(this.data.role=='admin')
       {
         this.router.navigate(['Admin']);
       }
-      else if (data.role=='user')
+      else if (this.data.role=='user')
       {
         this.router.navigate(['Chat']);
       }

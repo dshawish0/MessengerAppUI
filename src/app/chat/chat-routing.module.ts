@@ -6,6 +6,7 @@ import { ChatemptyComponent } from './chatempty/chatempty.component';
 import { CreateChatComponent } from './create-chat/create-chat.component';
 import { FriendsComponent } from './friends/friends.component';
 import { IndexComponent } from './index/index.component';
+import { MyprofileComponent } from './myprofile/myprofile.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { SettingComponent } from './setting/setting.component';
 import { SupportComponent } from './support/support.component';
@@ -48,6 +49,10 @@ const routes: Routes = [
   {
     path:'Setting',
     component:SettingComponent
+  },
+  {
+    path:'MyProfile',
+    component:MyprofileComponent
   }
 ];
 

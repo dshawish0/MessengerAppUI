@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { ChatService } from 'src/app/Services/chat.service';
 
 @Component({
@@ -8,8 +9,9 @@ import { ChatService } from 'src/app/Services/chat.service';
   styleUrls: ['./chat-info.component.css']
 })
 export class ChatInfoComponent implements OnInit {
+  @ViewChild('ReportUserDialog') ReportUserDialog! :TemplateRef<any>;
 
-  constructor(public chatService:ChatService) { }
+  constructor(public chatService:ChatService, public dialog:MatDialog) { }
 
   ngOnInit(): void {
   }
@@ -29,5 +31,26 @@ export class ChatInfoComponent implements OnInit {
     console.log(this.searchMessage.value);
     console.log(this.searchMessage.invalid);
     this.chatService.SearchMessageBetweenDate(this.searchMessage.value)
+  }
+
+  reportUserForm:FormGroup = new FormGroup({
+    UserReportedId:new FormControl(''),
+    ReportText:new FormControl(''),
+    User_Id:new FormControl('')
+  });
+
+  OpenReportUserDialog(userId:any){
+    console.log(userId,'report');
+    this.reportUserForm.controls['UserReportedId'].setValue(userId);
+    this.dialog.open(this.ReportUserDialog, {width:'500px'});
+  }
+
+  ReportUser(){
+    this.reportUserForm.controls['User_Id'].setValue(1), //from Login
+    console.log(this.reportUserForm.value,'reportUserForm');
+    this.chatService.ReportUser(this.reportUserForm.value);
+  }
+  CloseReportDialog(){
+    this.dialog.closeAll();
   }
 }

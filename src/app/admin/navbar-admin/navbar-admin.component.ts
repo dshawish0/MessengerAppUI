@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AdminService } from 'src/app/Services/admin.service';
 
 @Component({
   selector: 'app-navbar-admin',
@@ -8,12 +9,12 @@ import { Router } from '@angular/router';
 })
 export class NavbarAdminComponent implements OnInit {
 
-  constructor(private router:Router) { }
+  constructor(private router:Router,public admin:AdminService) { }
 
   ngOnInit(): void {
   }
   logout(){
     localStorage.clear();
-    this.router.navigate(['log']);
+    this.router.navigate(['']);
   }
 }

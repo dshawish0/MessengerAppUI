@@ -34,11 +34,12 @@ export class RegistrationService {
   }
 
   confirmEmail(code:any){
+    debugger
     this.http.get('https://localhost:44318/api/user/ConfirmEmail/'+code).subscribe(
       (resp)=>{
         this.router.navigate(['log']);
     },err =>{
-
+      this.router.navigate(['log']);
     })
   }
 }

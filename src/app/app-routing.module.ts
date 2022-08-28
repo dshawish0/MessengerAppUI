@@ -8,12 +8,11 @@ import { AdminModule } from './admin/admin.module';
 import { AutherizationGuard } from './autherization.guard';
 
 
-// mahmoud
-
 const routes: Routes = [
   {
     path:"Chat",
-    loadChildren:()=>ChatModule
+    loadChildren:()=>ChatModule,
+    canActivate:[AutherizationGuard]
    },
    {
     path:"",
@@ -24,9 +23,9 @@ const routes: Routes = [
       loadChildren:()=>AuthModule
    },
    {
-    path:'Admin',
+    path:'admin',
     loadChildren:()=>AdminModule,
-    canActivate:[AutherizationGuard]
+    // canActivate:[AutherizationGuard]
  }
 ];
 

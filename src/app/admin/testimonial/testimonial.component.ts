@@ -19,18 +19,18 @@ export class TestimonialComponent implements OnInit {
   Reject(id:any){
     this.admin.RejectTest(id);
   }
-  UserId:any = '';
+  publishdate:any = '';
   inputValue(ev: any) {
-    this.UserId = ev.target.value;
+    this.publishdate = ev.target.value;
     console.log(ev.target.value);
   }
   search(){
     const serchUserId =
     {
-      UserId: this.UserId.toString()
+      publishdate: this.publishdate.toString()
     };
     debugger;
-    if(this.UserId!='')
-      this.admin.SearchUserById(serchUserId);
+    if(this.publishdate !='')
+      this.admin.Searchpublishdate(serchUserId);
   }
 }

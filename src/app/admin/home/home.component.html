@@ -1,1 +1,74 @@
-<p>home works!</p>
+<div class="wrapper ">
+
+  <app-sidebar-admin></app-sidebar-admin>
+  <div class="main-panel">
+    <app-navbar-admin></app-navbar-admin>
+    <div class="content">
+      <div class="container-fluid">
+        <h1>Users</h1>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header card-header-rose card-header-icon">
+                <div class="card-icon">
+                  <i class="material-icons">assignment</i>
+                </div>
+                <h4 class="card-title">Home Info</h4>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th class="text-center">#</th>
+                        <th>lapImg</th>
+                        <th>chatAppImg</th>
+                        <th>mobileImg</th>
+                        <th>qRcodeImg</th>
+                        <th>userCustamizerImg</th>
+                        <th>futcherImg</th>
+                        <th>rtlImg</th>
+                        <th>filesImg</th>
+                        <th>noteImg</th>
+                        <th>remiderImg</th>
+                        <th>someFutchersImg</th>
+                        <th>darkLightImg</th>
+                        <th>audioImg</th>
+                        <th>sendStickerImg</th>
+                        <th>chatHistoryContactImg</th>
+                        <th>viewStatusImg</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let obj of admin.HomeInfo">
+                        <td class="text-center">1</td>
+                        <td>{{obj.lapImg}}</td>
+                        <td>{{obj.chatAppImg}}</td>
+                        <td>{{obj.mobileImg}}</td>
+                        <td>{{obj.qRcodeImg}}</td>
+                        <td>{{obj.userCustamizerImg}}</td>
+                        <td>{{obj.futcherImg}}</td>
+                        <td>{{obj.rtlImg}}</td>
+                        <td>{{obj.filesImg}}</td>
+                        <td>{{obj.noteImg}}</td>
+                        <td>{{obj.remiderImg}}</td>
+                        <td>{{obj.someFutchersImg}}</td>
+                        <td>{{obj.darkLightImg}}</td>
+                        <td>{{obj.audioImg}}</td>
+                        <td>{{obj.sendStickerImg}}</td>
+                        <td>{{obj.chatHistoryContactImg}}</td>
+                        <td>{{obj.viewStatusImg}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <app-footer-admin></app-footer-admin>
+  </div>
+  
+</div>

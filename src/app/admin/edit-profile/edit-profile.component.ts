@@ -32,22 +32,21 @@ export class EditProfileComponent implements OnInit {
     }
     console.log(this.p_data);
     this.updateForm.controls['userId'].setValue(this.p_data.userId);
-    
   }
   uploadImg(file:any){
+    debugger
     if(file.length==0)
       return ; 
     let fileToUpload=<File>file[0];//
     const formDate=new FormData();//object 
     formDate.append('file',fileToUpload,fileToUpload.name);
     debugger
-
-    this.admin.uploadAttachment(formDate);
-
+    this.admin.uploadAttachmentUser(formDate);
   }
   updateProfile(){
-    this.updateForm.controls['userId'].setValue(this.p_data.userId);
-    this.updateForm.controls['proFileImg'].setValue(this.p_data.proFileImg);
+    debugger
+    console.log(this.updateForm.value);
+    
     this.admin.UpdateUser(this.updateForm.value);
   }
   

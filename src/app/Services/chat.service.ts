@@ -4,6 +4,7 @@ import { SideBarComponent } from '../chat/side-bar/side-bar.component';
 import { SharedModule } from '../shared/shared.module';
 import { NgxSpinnerService } from "ngx-spinner";
 import { ToastrService } from 'ngx-toastr';
+import { MyprofileComponent } from '../chat/myprofile/myprofile.component';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,8 @@ export class ChatService {
 
   constructor(private http: HttpClient, private spinner: NgxSpinnerService, private toastr: ToastrService) { }
 
-  collapse:boolean = false
+  collapse:boolean = false;
+  ShowChatInfo:boolean= true;
 
   users: any = []
   myFriend: any = [];
@@ -47,7 +49,7 @@ export class ChatService {
       this.friend = {
         Userreceiveid: this.ids[0],
         Status: 0,
-        User_Id: 4
+        User_Id: 4 //from login
       };
 
       this.http.post('https://localhost:44318/api/Frind/AddFrind', this.friend).subscribe((result) => {
@@ -222,5 +224,75 @@ export class ChatService {
         console.log('error')
       })
   }
+
+  userProfile:any= this.allMemberinMessageGroup.filter((i:any)=>i.groupMemberId == this.allMemberinMessageGroup[0].groupMemberId);
+  UserProfile(memberId:any){
+    this.userProfile = this.allMemberinMessageGroup.filter((i:any)=>i.groupMemberId == memberId);
+    console.log("userProfileService",this.userProfile);
+    
+  }
+
+  myProfile:any;
+  MyProfile(userId: any){
+    console.log(userId, 'MyProfileService');
+    this.spinner.show();
+    this.http.get(`https://localhost:44318/api/User/GetUserById/${userId}`).subscribe((result)=>{
+      this.myProfile = result;
+      this.spinner.hide();
+      console.log(this.myProfile);
+      
+    },
+    error=>{
+      this.spinner.hide();
+      this.toastr.error(error.message);
+    })
+    
+ }
+
+ imageProfile:any;
+ uplodeImageForProfileUser(file: FormData){
+  this.http.post('https://localhost:44318/api/user/uploadImage',file).subscribe(
+    (resp)=>{
+      this.imageProfile=resp;
+      console.log(this.imageProfile,"uplodeimageService");
+      
+    },err =>{
+      this.toastr.error(err.message);
+    })
+ }
+
+ UpDataProfileUser(profile:any){
+  if(this.imageProfile!= undefined){
+    profile.proFileImg = this.imageProfile.proFileImg;
+  }
+  console.log(profile,'profileService');
+  
+  this.spinner.show();
+  this.http.put('https://localhost:44318/api/User/UpdateUser',profile).subscribe((result)=>{
+    this.myProfile = result;
+    this.spinner.hide();
+    
+  },
+  error=>{
+    this.spinner.hide();
+    this.toastr.error(error.message);
+  })
+ }
+
+ search:any;
+ SearchMessageBetweenDate(body:any){
+  this.spinner.show();
+  this.http.post('https://localhost:44318/api/Message/SearchMessageBetweenDate',body).subscribe((result)=>{
+    this.AllMessage = result;
+    console.log(this.AllMessage,"Search");
+    this.spinner.hide();
+    this.toastr.success('success')
+  }, err=>{
+    this.spinner.hide();
+    this.toastr.error(err.message);
+  })
+ }
 }
+
+
 

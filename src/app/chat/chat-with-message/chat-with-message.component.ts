@@ -1,6 +1,7 @@
-import { Component, OnInit , Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit , Input, OnChanges, SimpleChanges, TemplateRef, ViewChild } from '@angular/core';
 import { ChatService } from 'src/app/Services/chat.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 
 
 @Component({
@@ -11,9 +12,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 // 
 export class ChatWithMessageComponent implements OnInit { 
   @Input() messageGroup:any;
+  @ViewChild('userProfileDialog') userProfileDialog! :TemplateRef<any>;
   changelog: string[] = [];
 
-  constructor(public chatService:ChatService) { }
+  constructor(public chatService:ChatService, public dialog:MatDialog) { }
   messageGroupId:any
   ngOnInit(): void {
     console.log(this.messageGroupId, "chatwithMessage");
@@ -25,6 +27,10 @@ export class ChatWithMessageComponent implements OnInit {
   }
   collapse(){
     this.chatService.collapse = false
+  }
+  
+  ShowChatInformation(){
+    this.chatService.ShowChatInfo = !this.chatService.ShowChatInfo
   }
   
 
@@ -43,5 +49,13 @@ messageText:any;
 
     this.chatService.CreateMessage(this.messageform.value)
  this.messageText='';
+  }
+
+  UserProfile(memberId:any){
+    console.log("UserProfile", this.chatService.allMemberinMessageGroup);
+    
+    console.log('UserProfile',memberId);
+    this.chatService.UserProfile(memberId)
+    this.dialog.open(this.userProfileDialog,{width:'500px',height:'800px'});
   }
 }

@@ -228,7 +228,7 @@ export class AdminService {
         this.spinner.hide();
         this.toastr.error('Error');
       })
-      window.location.reload();
+    window.location.reload();
   }
   Regects(body: any) {
     this.spinner.show();
@@ -244,7 +244,7 @@ export class AdminService {
         this.spinner.hide();
         this.toastr.error('Error');
       })
-      window.location.reload();
+    window.location.reload();
   }
   searchReport(id: number) {
     this.spinner.show();
@@ -344,46 +344,124 @@ export class AdminService {
   displayImg:any;
   uploadAttachment(file:FormData){
     debugger
-    this.http.post('https://localhost:44318/api/user/upLoadImg',file).subscribe(
+    this.http.post('https://localhost:44318/api/Footer/upLoadImg', file).subscribe(
       (res:any)=>{
         console.log("***********************");
         console.log(res);
-        this.displayImg=res.proFileImg;
+        this.displayImg=res.logoImg;
+        console.log(this.displayImg);
+        // hide spinner
+        this.spinner.hide();
+        //show toster
+        this.toastr.success('sucssess Upload');
+
+      },err =>{
+        //hide spinner
+        this.spinner.hide();
+        //show toster
+        this.toastr.error('Error');
+      })
+  }
+  display_Img:any;
+  UpdateUser(body:any){
+    body.proFileImg = this.display_Img;
+    //show spinner
+    this.spinner.show();
+    //hits Api
+    debugger
+    this.http.put('https://localhost:44318/api/User/UpdateUser',body).subscribe(
+      (result) => {
         // hide spinner
         this.spinner.hide();
         //show toster
         this.toastr.success('sucssess Updated');
-
-    },err =>{
-      //hide spinner
-      this.spinner.hide();
-      //show toster
-      this.toastr.error('Error');
-    })
+      }, err => {
+        //hide spinner
+        this.spinner.hide();
+        //show toster
+        this.toastr.error('Error');
+      })
+    window.location.reload();
   }
-  UpdateUser(body:any){
-  //show spinner
-  this.spinner.show();
-  //hits Api
-  debugger
-  this.http.put('https://localhost:44318/api/User/UpdateUser',body).subscribe(
-    (result) => {
-      // hide spinner
+  footerInfo: any = [];
+  GetAllFooter() {
+    //show spinner
+    this.spinner.show();
+    //hits Api
+    this.http.get('https://localhost:44318/api/Footer').subscribe(
+      (result) => {
+        this.footerInfo = result;
+        // console.log(result);
+        // hide spinner
+        this.spinner.hide();
+        //show toster
+        this.toastr.success('sucssess');
+      }, err => {
+        //hide spinner
+        this.spinner.hide();
+        //show toster
+        this.toastr.error('Error');
+      })
+  }
+  UpdateFooter(body: any) {
+    this.spinner.show();
+    body.logoImg = this.displayImg;
+    debugger
+    this.http.put('https://localhost:44318/api/Footer/UpdateFooter', body).subscribe(
+      (resp) => {
       this.spinner.hide();
-      //show toster
       this.toastr.success('sucssess Updated');
     }, err => {
-      //hide spinner
       this.spinner.hide();
-      //show toster
       this.toastr.error('Error');
-  })
-  window.location.reload();
-}
+    })
+    window.location.reload();
+  }
+  HomeInfo: any = [];
+  GetHome(){
+    //show spinner
+    this.spinner.show();
+    //hits Api
+    this.http.get('https://localhost:44318/api/Home/GetHome').subscribe(
+      (result) => {
+        this.HomeInfo = result;
+        console.log(result);
+        // hide spinner
+        this.spinner.hide();
+        //show toster
+        this.toastr.success('sucssess');
+      }, err => {
+        //hide spinner
+        this.spinner.hide();
+        //show toster
+        this.toastr.error('Error');
+      })
+  }
   
-  
-  
-  
-  
+  uploadAttachmentUser(file: FormData) {
+    debugger
+    this.http.post('https://localhost:44318/api/User/upLoadImg', file).subscribe(
+      (res: any) => {
+        console.log("**************** Upload user *************");
+        console.log(res.proFileImg);
+        this.display_Img = res.proFileImg;
+        console.log(this.display_Img);
+        // hide spinner
+        this.spinner.hide();
+        //show toster
+        this.toastr.success('sucssess Upload Image');
+
+      }, err => {
+        //hide spinner
+        this.spinner.hide();
+        //show toster
+        this.toastr.error('Error');
+      })
+  }
+
+
+
+
+
 }
 

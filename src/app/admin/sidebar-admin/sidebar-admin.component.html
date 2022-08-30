@@ -1,5 +1,4 @@
-<div class="sidebar" data-color="rose" data-background-color="black" data-image="../../../assets/Admin/img/sidebar-1.jpg">
-
+<div class="sidebar" data-color="green" data-background-color="white" data-image="../../../assets/Admin/Img/sidebar-1.jpg">
     <div class="logo"><a href="#" class="simple-text logo-mini">
             CT
         </a>
@@ -10,8 +9,7 @@
     <div class="sidebar-wrapper">
         <div class="user">
             <div class="photo">
-                <!-- <img src="../../../assets/img/{{admin.UserInfo.proFileImg}}" alt="image profile" /> -->
-                <img src="../../../assets/Img/{{admin.UserInfo.proFileImg}}" alt="image profile" />
+                <img src="../../../assets/Admin/img/{{admin.UserInfo.proFileImg}}" alt="image profile" />
             </div>
             <div class="user-info">
                 <a data-toggle="collapse" href="#collapseExample" class="username">
@@ -56,21 +54,21 @@
                 <div class="collapse" id="pagesExamples">
                     <ul class="nav">
                         <li class="nav-item ">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" routerLink='/admin/home'>
                                 <span class="sidebar-mini"> H </span>
                                 <span class="sidebar-normal"> Home </span>
                             </a>
                         </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="#">
+                        <!-- <li class="nav-item ">
+                            <a class="nav-link" routerLink=''>
                                 <span class="sidebar-mini"> AU </span>
                                 <span class="sidebar-normal"> About Us </span>
                             </a>
-                        </li>
+                        </li> -->
                         <li class="nav-item ">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" routerLink='/admin/footer'>
                                 <span class="sidebar-mini"> CU </span>
-                                <span class="sidebar-normal"> Contact Us </span>
+                                <span class="sidebar-normal"> Footer </span>
                             </a>
                         </li>
                         <li class="nav-item ">
@@ -83,14 +81,14 @@
                 </div>
             </li>
             <!-- User pages -->
-            <li class="nav-item ">
-                <a class="nav-link" data-toggle="collapse" href="#componentsExamples">
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" href="#pages">
                     <i class="material-icons">apps</i>
                     <p> User
                         <b class="caret"></b>
                     </p>
                 </a>
-                <div class="collapse" id="componentsExamples">
+                <div class="collapse" id="pages">
                     <ul class="nav">
                         <!-- Users Active -->
                         <li class="nav-item ">
@@ -101,7 +99,7 @@
                         </li>
                         <!-- Block Users -->
                         <li class="nav-item ">
-                            <a class="nav-link" routerLink='/Block'>
+                            <a class="nav-link" routerLink='/admin/Block'>
 
                                 <i class="material-icons">block</i>
                                 <p>Block Users</p>
@@ -110,8 +108,6 @@
                     </ul>
                 </div>
             </li>
-
-
             <!-- Report Users -->
             <li class="nav-item ">
                 <a class="nav-link" routerLink="/admin/Report">
@@ -124,43 +120,6 @@
                 <a class="nav-link" routerLink="/admin/services">
                     <i class="material-icons">access_alarm</i>
                     <p>service</p>
-                </a>
-            </li>
-
-            <!-- <li class="nav-item ">
-                <a class="nav-link" data-toggle="collapse" href="#mapsExamples">
-                    <i class="material-icons">place</i>
-                    <p> Maps
-                        <b class="caret"></b>
-                    </p>
-                </a>
-                <div class="collapse" id="mapsExamples">
-                    <ul class="nav">
-                        <li class="nav-item ">
-                            <a class="nav-link" href="maps/google.html">
-                                <span class="sidebar-mini"> GM </span>
-                                <span class="sidebar-normal"> Google Maps </span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="maps/fullscreen.html">
-                                <span class="sidebar-mini"> FSM </span>
-                                <span class="sidebar-normal"> Full Screen Map </span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="maps/vector.html">
-                                <span class="sidebar-mini"> VM </span>
-                                <span class="sidebar-normal"> Vector Map </span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </li> -->
-            <li class="nav-item ">
-                <a class="nav-link" href="widgets.html">
-                    <i class="material-icons">access_alarm</i>
-                    <p> Widgets </p>
                 </a>
             </li>
             <li class="nav-item " (click)="logout()">

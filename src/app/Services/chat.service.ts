@@ -345,6 +345,21 @@ data:any;
  }
 
 
+ //ReportUser(body:any){
+  //this.spinner.show();
+  //this.http.post('https://localhost:44318/api/ReportUser/Create',body).subscribe((result)=>{
+   // this.spinner.hide();
+ //   this.toastr.success('success')
+ // }, err=>{
+  //  this.spinner.hide();
+  //  this.toastr.error(err.message);
+ // })
+// }
+//}
+
+
+
+
  ReportUser(body:any){
   this.spinner.show();
   this.http.post('https://localhost:44318/api/ReportUser/Create',body).subscribe((result)=>{

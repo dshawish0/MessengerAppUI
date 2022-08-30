@@ -9,11 +9,12 @@ import { LoginService } from 'src/app/Services/login.service';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private LoginService:LoginService, public chatService :ChatService) { }
+  constructor(public chatService :ChatService) { }
   userImage:any;
   ngOnInit(): void {
     // const userId = this.LoginService.data.nameid;
-    this.chatService.MyProfile(1); 
+    this.chatService.getUser();
+    this.chatService.MyProfile(this.chatService.data.nameid); 
   }
  
 }

@@ -12,8 +12,7 @@ export class MyprofileComponent implements OnInit {
   constructor(private LoginService:LoginService, public chatService :ChatService) { }
   emailUser:any;
   ngOnInit(): void {
-    this.emailUser = this.LoginService.data.email
-    
+    this.emailUser = this.LoginService.data.email;
   }
 
 }

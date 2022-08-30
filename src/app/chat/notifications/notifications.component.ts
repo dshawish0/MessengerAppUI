@@ -16,7 +16,7 @@ export class NotificationsComponent implements OnInit {
     this.chat.GetAllFrinds();
   }
 
-  groupMembers:any = [{User_Id:1}]
+  groupMembers:any = [{User_Id: this.chat.data.nameid}]
   chatAndMember:any;
 
   createChatForm:FormGroup = new FormGroup({

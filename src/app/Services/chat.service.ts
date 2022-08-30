@@ -5,13 +5,35 @@ import { SharedModule } from '../shared/shared.module';
 import { NgxSpinnerService } from "ngx-spinner";
 import { ToastrService } from 'ngx-toastr';
 import { MyprofileComponent } from '../chat/myprofile/myprofile.component';
+import jwt_decode from "jwt-decode";
+import { environment } from 'src/environments/environment';
+import { ChatWithMessageComponent } from '../chat/chat-with-message/chat-with-message.component';
+import * as signalR from '@microsoft/signalr';
+
+interface Message{
+  userName:string,
+  text:string,
+  messageGroupId :string
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChatService {
+  updateedId='';
+  constructor(private http: HttpClient, private spinner: NgxSpinnerService, private toastr: ToastrService) { 
+    this.startConnection();
+  }
 
-  constructor(private http: HttpClient, private spinner: NgxSpinnerService, private toastr: ToastrService) { }
+   
+data:any;
+
+  getUser(){
+    const token = localStorage.getItem('token');
+    if(token){
+        this.data = jwt_decode(token);
+    }
+  }
 
   collapse:boolean = false;
   ShowChatInfo:boolean= true;
@@ -23,7 +45,7 @@ export class ChatService {
 
   numOfFriend: number = 0;
   GetAllFrinds() {
-    this.http.get('https://localhost:44318/api/Frind/GetFrinds/1').subscribe((res) => {
+    this.http.get('https://localhost:44318/api/Frind/GetFrinds/'+this.data.nameid).subscribe((res) => {
       this.users = res;
 
       this.myFriend = this.users.filter((item: any) => item.status === 1);
@@ -40,8 +62,9 @@ export class ChatService {
   user: any = []
   friend: any = {}
   ids: any = []
-  AddFriend(email: any) {
-    this.http.post('https://localhost:44318/api/User/GetUserByEmail', email).subscribe((res) => {
+  AddFriend(userName: any) {
+    debugger
+    this.http.get('https://localhost:44318/api/User/GetUserByUserName/'+userName.userName).subscribe((res) => {
       this.user = [res]
       this.ids = this.user.map((obj: any) => obj.userId);
       console.log(this.ids[0]);
@@ -49,12 +72,12 @@ export class ChatService {
       this.friend = {
         Userreceiveid: this.ids[0],
         Status: 0,
-        User_Id: 4 //from login
+        User_Id: this.data.nameid //from login
       };
 
       this.http.post('https://localhost:44318/api/Frind/AddFrind', this.friend).subscribe((result) => {
-        console.log("ok", result);
-        console.log("yazan");
+        //console.log("ok", result);
+        //console.log("yazan");
       },
         err => {
           console.log("error")
@@ -99,7 +122,7 @@ export class ChatService {
   last_Message: any = []
   GetAllChat(id: any) {
 
-    this.http.get("https://localhost:44318/api/MessageGroup/GetFullMessageGroup/1").subscribe((res) => {
+    this.http.get("https://localhost:44318/api/MessageGroup/GetFullMessageGroup/"+this.data.nameid).subscribe((res) => {
       this.all_chat = res;
       console.log(this.all_chat);
       if (this.all_chat.messages != null)
@@ -188,18 +211,45 @@ export class ChatService {
 
   AllMessage: any = []
   id: any
+  messages: Message[]=[]
+ 
+  connection = new signalR.HubConnectionBuilder()
+  .withUrl("https://localhost:44318/chat")
+  .build();
+  
   MessageChat(messageGroupId: any) {
+    environment.messageGroupIdGlobal=messageGroupId;
+    this.updateedId=environment.messageGroupIdGlobal.toString();
     console.log("srevice", messageGroupId);
+    environment.messageGroupIdGlobal=messageGroupId;
+    console.log("Deiaa in ChatService "+this.updateedId);
     this.id = messageGroupId
     this.http.get(`https://localhost:44318/api/Message/GetMessageForMessageGroup/${messageGroupId}`).subscribe((res) => {
       this.AllMessage = res;
       console.log("Message", this.AllMessage);
+
+      this.messages=[];
 
     },
       err => {
         console.log('error')
       })
   }
+
+
+  startConnection(){
+    this.connection.on("newMessage",(userName: string, text: string)=>{
+      this.messages.push({
+        text: text,
+        userName: userName,
+        messageGroupId: environment.messageGroupIdGlobal.toString()
+      });
+      this.messages.forEach(projet=>console.log(projet.messageGroupId));
+    });
+  
+    this.connection.start();
+  }
+
 
   CreateMessage(message: any) {
     console.log("service", message);
@@ -234,6 +284,7 @@ export class ChatService {
 
   myProfile:any;
   MyProfile(userId: any){
+    debugger
     console.log(userId, 'MyProfileService');
     this.spinner.show();
     this.http.get(`https://localhost:44318/api/User/GetUserById/${userId}`).subscribe((result)=>{
@@ -293,6 +344,22 @@ export class ChatService {
   })
  }
 
+
+ //ReportUser(body:any){
+  //this.spinner.show();
+  //this.http.post('https://localhost:44318/api/ReportUser/Create',body).subscribe((result)=>{
+   // this.spinner.hide();
+ //   this.toastr.success('success')
+ // }, err=>{
+  //  this.spinner.hide();
+  //  this.toastr.error(err.message);
+ // })
+// }
+//}
+
+
+
+
  ReportUser(body:any){
   this.spinner.show();
   this.http.post('https://localhost:44318/api/ReportUser/Create',body).subscribe((result)=>{
@@ -304,6 +371,3 @@ export class ChatService {
   })
  }
 }
-
-
-

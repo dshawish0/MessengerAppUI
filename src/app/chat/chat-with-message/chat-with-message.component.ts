@@ -3,6 +3,7 @@ import { ChatService } from 'src/app/Services/chat.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import * as signalR from '@microsoft/signalr';
+import { environment } from 'src/environments/environment';
 
 
 interface Message{
@@ -16,8 +17,10 @@ interface Message{
   templateUrl: './chat-with-message.component.html',
   styleUrls: ['./chat-with-message.component.css']
 })
-// 
+
 export class ChatWithMessageComponent implements OnInit { 
+
+  
   @Input() messageGroup:any;
   @ViewChild('userProfileDialog') userProfileDialog! :TemplateRef<any>;
   changelog: string[] = [];
@@ -27,39 +30,48 @@ export class ChatWithMessageComponent implements OnInit {
   messages: Message[]=[]
   messDataBase: any[]=[]
 
-connection = new signalR.HubConnectionBuilder()
-      .withUrl("https://localhost:44318/chat")
-      .build();
+// connection = new signalR.HubConnectionBuilder()
+//       .withUrl("https://localhost:44318/chat")
+//       .build();
 
+  currentGroupId:any;
   constructor(public chatService:ChatService, public dialog:MatDialog) { 
 
-    this.startConnection();
-
-
+    // this.startConnection();
+    console.log("i'm Herrrrrrrrrrrrrrrrrrrrrrrrrrrrrre");
+    this.currentGroupId=this.chatService.id;
   }
   messageGroupId:any
   ngOnInit(): void {
+
     console.log(this.messageGroupId, "chatwithMessage");
      this.messageGroupId=this.messageGroup
     
      this.messageGroupId = this.chatService.id;
      console.log(this.messageGroupId,"ddddddd");
      this.chatService.getGroupMemberByMessageGroupId(this.messageGroupId)
+
+     if(this.currentGroupId != this.chatService.id)
+          console.log("ezzzzzzzzzzzzzzzzzzzzz");
+
+      console.log(this.currentGroupId+"Deiaa was here");
+      console.log(this.chatService.id+"Deiaa was here Again");
   }
 
 
 
-startConnection(){
-  this.connection.on("newMessage",(userName: string, text: string)=>{
-    this.messages.push({
-      text: text,
-      userName: userName,
-      messageGroupId: this.chatService.id
-    });
-  });
+// startConnection(){
+//   this.connection.on("newMessage",(userName: string, text: string)=>{
+//     this.messages.push({
+//       text: text,
+//       userName: userName,
+//       messageGroupId: environment.messageGroupIdGlobal.toString()
+//     });
+//     console.log('deiaaTest '+environment.messageGroupIdGlobal);
+//   });
 
-  this.connection.start();
-}
+//   this.connection.start();
+// }
 
 
 
@@ -82,7 +94,7 @@ messageText:any;
 
   CreateMessage(){
 
-    this.messageform.controls['messageGroupId'].setValue(this.chatService.id);
+    this.messageform.controls['messageGroupId'].setValue(this.chatService.updateedId);
     this.messageform.controls['senderId'].setValue(this.userLoged);
     this.messageform.controls['messageDate'].setValue(new Date());
     //this.messageform.controls['messageDate'].setValue();
@@ -112,7 +124,7 @@ messageText:any;
 
     this.chatService.CreateMessage(this.messageform.value)
 
-    this.connection.send("newMessage", this.userLoged, this.messageform.controls['text'].value)
+    this.chatService.connection.send("newMessage", this.userLoged, this.messageform.controls['text'].value)
         .then(()=>{
           this.messageform.controls['text'].setValue('');
         });

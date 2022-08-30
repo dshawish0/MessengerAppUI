@@ -6,13 +6,24 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { ToastrService } from 'ngx-toastr';
 import { MyprofileComponent } from '../chat/myprofile/myprofile.component';
 import jwt_decode from "jwt-decode";
+import { environment } from 'src/environments/environment';
+import { ChatWithMessageComponent } from '../chat/chat-with-message/chat-with-message.component';
+import * as signalR from '@microsoft/signalr';
+
+interface Message{
+  userName:string,
+  text:string,
+  messageGroupId :string
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChatService {
-
-  constructor(private http: HttpClient, private spinner: NgxSpinnerService, private toastr: ToastrService) { }
+  updateedId='';
+  constructor(private http: HttpClient, private spinner: NgxSpinnerService, private toastr: ToastrService) { 
+    this.startConnection();
+  }
 
    
 data:any;
@@ -200,18 +211,45 @@ data:any;
 
   AllMessage: any = []
   id: any
+  messages: Message[]=[]
+ 
+  connection = new signalR.HubConnectionBuilder()
+  .withUrl("https://localhost:44318/chat")
+  .build();
+  
   MessageChat(messageGroupId: any) {
+    environment.messageGroupIdGlobal=messageGroupId;
+    this.updateedId=environment.messageGroupIdGlobal.toString();
     console.log("srevice", messageGroupId);
+    environment.messageGroupIdGlobal=messageGroupId;
+    console.log("Deiaa in ChatService "+this.updateedId);
     this.id = messageGroupId
     this.http.get(`https://localhost:44318/api/Message/GetMessageForMessageGroup/${messageGroupId}`).subscribe((res) => {
       this.AllMessage = res;
       console.log("Message", this.AllMessage);
+
+      this.messages=[];
 
     },
       err => {
         console.log('error')
       })
   }
+
+
+  startConnection(){
+    this.connection.on("newMessage",(userName: string, text: string)=>{
+      this.messages.push({
+        text: text,
+        userName: userName,
+        messageGroupId: environment.messageGroupIdGlobal.toString()
+      });
+      this.messages.forEach(projet=>console.log(projet.messageGroupId));
+    });
+  
+    this.connection.start();
+  }
+
 
   CreateMessage(message: any) {
     console.log("service", message);
@@ -246,6 +284,7 @@ data:any;
 
   myProfile:any;
   MyProfile(userId: any){
+    debugger
     console.log(userId, 'MyProfileService');
     this.spinner.show();
     this.http.get(`https://localhost:44318/api/User/GetUserById/${userId}`).subscribe((result)=>{
@@ -304,8 +343,7 @@ data:any;
     this.toastr.error(err.message);
   })
  }
-<<<<<<< Updated upstream
-=======
+
 
  ReportUser(body:any){
   this.spinner.show();
@@ -317,12 +355,4 @@ data:any;
     this.toastr.error(err.message);
   })
  }
-
- //***********************************SignlR**********************
-
- 
->>>>>>> Stashed changes
 }
-
-
-

@@ -23,6 +23,8 @@ change(num:any){
   before.className='client-single inactive position-'+ this.number;
 
   this.number=num;
+
+  //testimanial list ----> get all
 }
 
 //   $(document).ready(

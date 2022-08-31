@@ -81,7 +81,7 @@ urls:any;
 imgName:any
 files:any=[]
   detectFiles(event:any) {
-    
+    debugger
     this.urls = [];
     this.files = event.target.files;
     console.log(this.files,'files');
@@ -114,18 +114,19 @@ files:any=[]
   }
 
 
- deleteImage(name: any): void {
+ deleteImage(name: any, index:any): void {
+  debugger
   this.urls = this.urls.filter((a:any) => a.name !== name);
-  // this.files = this.files[0].file.name;
-
+    this.files.splice(index,1);
+    console.log(this.files,'Delete Files');
   let test:any
-  for (let file of this.files) {
-    console.log(file.name,"InFor");
-    if(file.name != name){
-      test.push(file)
-    }
-  } 
-  this.files = test
+  // for (let file of this.files) {
+  //   console.log(file.name,"InFor");
+  //   if(file.name != name){
+  //     test.push(file)
+  //   }
+  // } 
+  // this.files = test
   console.log(this.urls,'Delete urls');
   console.log(this.files,'Delete Files');
   

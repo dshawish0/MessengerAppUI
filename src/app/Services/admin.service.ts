@@ -264,14 +264,24 @@ export class AdminService {
   }
   addservices: any = [];
   GetAll() {
+    //show spinner
+    this.spinner.show();
     this.http.get('https://localhost:44318/api/Services/GetAllServices').subscribe(
       (res) => {
         this.addservices = res;
         console.log(res);
         console.log('getAll');
+        // hide spinner
+        this.spinner.hide();
+        //show toster
+        this.toastr.success('sucssess');
       },
       err => {
         console.log('error');
+        //hide spinner
+        this.spinner.hide();
+        //show toster
+        this.toastr.error('Error');
       })
   }
   Createservice(body: any) {
@@ -405,7 +415,7 @@ export class AdminService {
   }
   UpdateFooter(body: any) {
     this.spinner.show();
-    body.logoImg = this.displayImg;
+    //body.logoImg = this.displayImg;
     debugger
     this.http.put('https://localhost:44318/api/Footer/UpdateFooter', body).subscribe(
       (resp) => {
@@ -440,7 +450,7 @@ export class AdminService {
   
   uploadAttachmentUser(file: FormData) {
     debugger
-    this.http.post('https://localhost:44318/api/User/upLoadImg', file).subscribe(
+    this.http.post('https://localhost:44318/api/User/uploadImageAdmin', file).subscribe(
       (res: any) => {
         console.log("**************** Upload user *************");
         console.log(res.proFileImg);

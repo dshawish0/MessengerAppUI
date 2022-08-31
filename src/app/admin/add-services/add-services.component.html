@@ -42,6 +42,7 @@
                                                     <th>Servic ename</th>
                                                     <th>Pre price</th>
                                                     <th>Sale price</th>
+                                                    <th class="text-center">Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -51,8 +52,9 @@
                                                     <td>{{obj.preprice}}</td>
                                                     <td>{{obj.saleprice}}</td>
                                                     
-                                                    <td><button (click)="deleteser(obj.serviceid)">Delete</button> 
-                                                        <button (click)="updateDailog(obj)">Update</button>
+                                                    <td class="text-center">
+                                                        <button class="btn btn-danger" (click)="deleteser(obj.serviceid)">Delete</button> 
+                                                        <button class="btn btn-info" (click)="updateDailog(obj)">Update</button>
                                                     </td>
                                                 </tr>
                                             </tbody>

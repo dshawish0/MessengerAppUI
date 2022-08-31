@@ -13,6 +13,7 @@ export class CreateChatComponent implements OnInit {
 
   ngOnInit(): void {
     this.chatService.GetAllFrinds();
+    console.log("CreateChatComponent");
   }
   createChatForm:FormGroup = new FormGroup({
     GroupName : new FormControl('',Validators.required),

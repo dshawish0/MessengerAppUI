@@ -14,6 +14,7 @@ export class NotificationsComponent implements OnInit {
 
   ngOnInit(): void {
     this.chat.GetAllFrinds();
+    console.log("NotificationsComponentomponent");
   }
 
   groupMembers:any = [{User_Id: this.chat.data.nameid}]
@@ -42,5 +43,10 @@ export class NotificationsComponent implements OnInit {
   RejectFriend(frindid:any){
     console.log(frindid);
     this.chat.RejectFriend(frindid);
+  }
+
+  UnBlock(friendId:any){
+    console.log(friendId);
+    this.chat.UnBlockFrind(friendId)
   }
 }

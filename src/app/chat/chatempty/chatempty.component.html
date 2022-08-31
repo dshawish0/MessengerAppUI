@@ -102,31 +102,35 @@
                 <!-- Chat: Footer -->
                 <div class="chat-footer pb-3 pb-lg-7 position-absolute bottom-0 start-0">
                     <!-- Chat: Files -->
-                    <div class=" bg-dark" id="dz-preview-row" data-horizontal-scroll="" *ngFor="let item of uploadForm.value.name">
-                        <img  [alt]="uploadForm.value.name" [src]="item">
+                    <div class=" bg-dark" id="dz-preview-row" data-horizontal-scroll=""  *ngIf="urls.length > 0">
+                        <!-- <span class="avatar-text rounded bg-secondary text-body file-title" title="٢٠١٦٠٥١٦_١٩٥٨١٤.jpg">      
+                            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>        
+                       </span>  
+                        <img id="blah"  [src]="imageSrc" alt="" width="50px"/> -->
+
+                        <div class="Upcard" style="display: inline-block;" *ngFor="let u of urls ; let index = index">
+                            <img [src]="u.url" width="50px" height="50px" style="margin-left: 10px;"><span class="delete-entry btnDelete" (click)="deleteImage(u.name)">x</span>
+                            <!--  -->
+                        </div>
+                        <!-- <img [src]="urls[0]" width="50px"><span class="delete-entry" style="cursor: pointer;" (click)="deleteImage(urls[0].name)">x</span> -->
+
+                        <button class="btn btn-icon btn-primary rounded-circle ms-5" (click)="UploadMessageImg()" >
+                            <!--  -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-send"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                        </button>
                     </div>
                     <!-- Chat: Files -->
-
-                    <form [formGroup]="uploadForm" (ngSubmit)="submit()">
-                        <!-- Select File -->
-                        <input type="file" accept="image/*" (change)="showPreview($event)" multiple="" data-max_length="20" >
-                        <!-- Image Preview -->
-                        <!-- <div class="imagePreview dz-preview bg-dark" id="dz-preview-row" data-horizontal-scroll="" *ngIf="imageURL && imageURL !== ''">
-                          <img [src]="imageURL" [alt]="uploadForm.value.name">
-                        </div> -->
-                        <!-- Assign Image Alt -->
-                        <input formControlName="name" placeholder="Enter name" class="btn btn-icon btn-link text-body rounded-circle" id="dz-btn">
-                        
-                      </form>
+                    
 
                     <!-- Chat: Form -->
                     <form class="chat-form rounded-pill bg-dark" data-emoji-form="" [formGroup]="messageform">
                         <div class="row align-items-center gx-0">
                             <div class="col-auto">
-                                <a class="btn btn-icon btn-link text-body rounded-circle" id="dz-btn">
-                                    <input type="file" accept="image/*" (change)="showPreview($event)" />
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-paperclip"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg>
-                                </a>
+                                <label for="files">
+                                    <svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-paperclip"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg>
+                                </label>
+                            
+                                <input class="btn btn-icon btn-link text-body rounded-circle" type="file" id="files" multiple (change)="detectFiles($event)" style="display: none;">
                             </div>
 
                             <div class="col">

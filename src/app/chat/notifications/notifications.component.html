@@ -96,6 +96,58 @@
                                         </div>
                                     </div>
                                     <!-- Card -->
+
+                                    <!-- userBlocked -->
+                                    <!-- Card -->
+                                    <div class="card border-0 mb-5" *ngFor="let item of this.chat.blockFriend">
+                                        <div class="card-body">
+        
+                                            <div class="row gx-5">
+                                                <div class="col-auto">
+                                                    <!-- Avatar -->
+                                                    <a href="#" class="avatar">
+                                                        <img class="avatar-img" src="./assets/Chat/img/avatars/11.jpg" alt="">
+        
+                                                        <div class="badge badge-circle bg-primary border-outline position-absolute bottom-0 end-0">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                                                        </div>
+                                                    </a>
+                                                </div>
+        
+                                                <div class="col" >
+                                                    <div class="d-flex align-items-center mb-2">
+                                                        <h5 class="me-auto mb-0">
+                                                            <a>{{item.user.fname}} {{item.user.lname}}</a>
+                                                        </h5>
+                                                        <span class="text-muted ms-2">{{item.adddate}}</span>
+                                                    </div>
+        
+                                                    <div class="d-flex">
+                                                        <div class="me-auto">your friend Is Bolcked.</div>
+        
+                                                        <div class="dropdown ms-5">
+                                                            <a class="icon text-muted" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
+                                                            </a>
+                                                            <ul class="dropdown-menu">
+                                                                <li><a class="dropdown-item" href="#">Show less often</a></li>
+                                                                <li><a class="dropdown-item" href="#">Hide</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+        
+                                        <div class="card-footer">
+                                            <div class="row gx-4">
+                                                <div class="col">
+                                                    <a class="btn btn-sm btn-primary w-100" (click)="UnBlock(item.frindid)"> UnBlock</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Card -->
         
                                     <!-- Card -->
                                     <div class="card border-0 mb-5">
@@ -362,7 +414,7 @@
          <main class="main">
             <div class="container h-100">
         
-                <app-chatempty *ngIf="this.chat.AllMessage.length==0"></app-chatempty>
+                <!-- <app-chatempty *ngIf="this.chat.AllMessage.length==0"></app-chatempty> -->
                 <app-chat-with-message *ngIf="this.chat.AllMessage.length!=0" ></app-chat-with-message>
                 
             </div>

@@ -51,11 +51,15 @@ export class ChatWithMessageComponent implements OnInit {
      console.log(this.messageGroupId,"ddddddd");
      this.chatService.getGroupMemberByMessageGroupId(this.messageGroupId)
 
+     console.log("ChatWithMessageComponent");
+
+
      if(this.currentGroupId != this.chatService.id)
           console.log("ezzzzzzzzzzzzzzzzzzzzz");
 
       console.log(this.currentGroupId+"Deiaa was here");
       console.log(this.chatService.id+"Deiaa was here Again");
+
   }
 
 
@@ -80,7 +84,7 @@ export class ChatWithMessageComponent implements OnInit {
   }
   
   ShowChatInformation(){
-    this.chatService.ShowChatInfo = !this.chatService.ShowChatInfo
+    this.chatService.ShowChatInfo = false
   }
   
 
@@ -137,7 +141,7 @@ messageText:any;
     
     console.log('UserProfile',memberId);
     this.chatService.UserProfile(memberId)
-    this.dialog.open(this.userProfileDialog,{width:'500px',height:'800px'});
+    this.dialog.open(this.userProfileDialog,{width:'500px',height:'600px'});
   }
 
 

@@ -27,21 +27,18 @@ export class FooterComponent implements OnInit {
   p_data: any = {};
   updateDailog(obj:any) {
     debugger
-    if(obj.logoImg !=''){
-      console.log("inner updateDailog");
-      console.log(obj);
-      this.p_data = {
-        footerId: obj.footerId,
+    console.log(obj);
+    this.p_data = {
+      footerId: obj.footerId,
         logoImg: obj.logoImg,
         text: obj.text,
         location: obj.location,
         phoneNumber: obj.phoneNumber,
         email: obj.email
-      }
-      // console.log(this.p_data);
-      this.updateForm.controls['logoImg'].setValue(this.p_data.logoImg);
     }
+    console.log(this.p_data);
     this.updateForm.controls['footerId'].setValue(this.p_data.footerId);
+    this.updateForm.controls['logoImg'].setValue(this.p_data.logoImg);
     this.dialog.open(this.callupdateDailog2)
   }
   uploadImage(file: any) {

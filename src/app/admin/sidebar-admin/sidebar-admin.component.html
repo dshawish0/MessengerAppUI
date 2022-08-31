@@ -1,15 +1,16 @@
+sidebar
+
+
 <div class="sidebar" data-color="green" data-background-color="white" data-image="../../../assets/Admin/Img/sidebar-1.jpg">
-    <div class="logo"><a href="#" class="simple-text logo-mini">
-            CT
-        </a>
-        <a href="#" class="simple-text logo-normal">
-            Creative Tim
+    <div class="logo">
+        <a routerLink="/admin" class="simple-text logo-normal">
+            <img   src="../../../assets/home/Images/logo/landing-logo.png" width="70%" style="padding: 12px;" alt="logo">
         </a>
     </div>
     <div class="sidebar-wrapper">
         <div class="user">
             <div class="photo">
-                <img src="../../../assets/Admin/img/{{admin.UserInfo.proFileImg}}" alt="image profile" />
+                <img src="../../../assets/Img/{{admin.UserInfo.proFileImg}}" alt="image profile" />
             </div>
             <div class="user-info">
                 <a data-toggle="collapse" href="#collapseExample" class="username">
@@ -45,41 +46,7 @@
                 </a>
             </li>
             <!-- mange pages -->
-            <li class="nav-item ">
-                <a class="nav-link" data-toggle="collapse" href="#pagesExamples">
-                    <i class="material-icons">image</i>
-                    <p> Manage pages <b class="caret"></b>
-                    </p>
-                </a>
-                <div class="collapse" id="pagesExamples">
-                    <ul class="nav">
-                        <li class="nav-item ">
-                            <a class="nav-link" routerLink='/admin/home'>
-                                <span class="sidebar-mini"> H </span>
-                                <span class="sidebar-normal"> Home </span>
-                            </a>
-                        </li>
-                        <!-- <li class="nav-item ">
-                            <a class="nav-link" routerLink=''>
-                                <span class="sidebar-mini"> AU </span>
-                                <span class="sidebar-normal"> About Us </span>
-                            </a>
-                        </li> -->
-                        <li class="nav-item ">
-                            <a class="nav-link" routerLink='/admin/footer'>
-                                <span class="sidebar-mini"> CU </span>
-                                <span class="sidebar-normal"> Footer </span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" routerLink='/admin/testimonial' routerLinkActive="router-link-active">
-                                <span class="sidebar-mini"> T </span>
-                                <span class="sidebar-normal"> Testimonial </span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
+            
             <!-- User pages -->
             <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" href="#pages">
@@ -118,9 +85,44 @@
             <!-- service -->
             <li class="nav-item ">
                 <a class="nav-link" routerLink="/admin/services">
-                    <i class="material-icons">access_alarm</i>
+                    <i class="material-icons">room_service</i>
                     <p>service</p>
                 </a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" data-toggle="collapse" href="#pagesExamples">
+                    <i class="material-icons">image</i>
+                    <p> Manage pages <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse" id="pagesExamples">
+                    <ul class="nav">
+                        <li class="nav-item ">
+                            <a class="nav-link" routerLink='/admin/home'>
+                                <span class="sidebar-mini"> H </span>
+                                <span class="sidebar-normal"> Home </span>
+                            </a>
+                        </li>
+                        <!-- <li class="nav-item ">
+                            <a class="nav-link" routerLink=''>
+                                <span class="sidebar-mini"> AU </span>
+                                <span class="sidebar-normal"> About Us </span>
+                            </a>
+                        </li> -->
+                        <li class="nav-item ">
+                            <a class="nav-link" routerLink='/admin/footer'>
+                                <span class="sidebar-mini"> CU </span>
+                                <span class="sidebar-normal"> Footer </span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" routerLink='/admin/testimonial' routerLinkActive="router-link-active">
+                                <span class="sidebar-mini"> T </span>
+                                <span class="sidebar-normal"> Testimonial </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </li>
             <li class="nav-item " (click)="logout()">
                 <a class="nav-link">

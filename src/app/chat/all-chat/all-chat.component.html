@@ -42,7 +42,7 @@
                                         <div class="row gx-5">
                                             <div class="col-auto">
                                                 <div class="avatar avatar-online">
-                                                    <img src="../../../assets/images/{{item.groupImg}}" alt="#" class="avatar-img">
+                                                    <img [src]="item.groupImg?'../../../assets/images/{{item.groupImg}}':'../../../assets/images/111.jpg'" alt="#" class="avatar-img">
                                                 </div>
                                             </div>
     
@@ -431,7 +431,7 @@
             
  <!-- <main class="main is-visible" data-dropzone-area *ngIf="this.innerWidth>=1115"> -->
     <main class="main" [ngClass]="this.chatService.collapse  ? 'is-visible' : ''" data-dropzone>
-    <div class="container h-100">
+    <div class="container h-100" style="background-color: #ebf1f7;">
         <!-- <app-chatempty *ngIf="this.chatService.AllMessage.length==0" ></app-chatempty> -->
         <app-chat-with-message *ngIf="this.chatService.AllMessage.length!=0" [messageGroup]="currentItem"></app-chat-with-message>        
     </div>

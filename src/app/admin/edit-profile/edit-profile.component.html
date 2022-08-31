@@ -58,11 +58,9 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <div class="form-control">
                                                     <label class="bmd-label-floating">Upolad Image Profile </label>
                                                     <!-- <input type="file" class="form-control" matInput formControlName="proFileImg" [(ngModel)]="p_data.proFileImg">  -->
-                                                    <input type="file" #file formControlName="proFileImg" [(ngModel)]="p_data.proFileImg" (change)="uploadImg($event)">
-                                                </div>
+                                                    <input type="file" #file formControlName="proFileImg" [(ngModel)]="p_data.proFileImg" (change)="uploadImg(file.files)">
                                             </div>
                                         </div>
                                         <br><br>

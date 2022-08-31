@@ -31,7 +31,7 @@ export class CreateChatComponent implements OnInit {
     this.chatService.uploadImage(formDate);
   }
 
-  groupMembers:any = [{User_Id:1}]
+  groupMembers:any = [{User_Id:this.chatService.data.nameid}]
   disable:boolean = true;
 
   select(e:any,userid:any){

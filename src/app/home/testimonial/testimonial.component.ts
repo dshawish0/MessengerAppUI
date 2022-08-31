@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AdminService } from 'src/app/Services/admin.service';
 
 @Component({
   selector: 'app-testimonial',
@@ -6,10 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./testimonial.component.css']
 })
 export class TestimonialComponent implements OnInit {
-  constructor() { }
+  constructor(public admin:AdminService) { }
   number:any=1;
   ngOnInit(): void {
-     
+     this.admin.GetAlltestimonialShow();
   }
 
 change(num:any){
@@ -23,6 +24,8 @@ change(num:any){
   before.className='client-single inactive position-'+ this.number;
 
   this.number=num;
+
+  //testimanial list ----> get all
 }
 
 //   $(document).ready(

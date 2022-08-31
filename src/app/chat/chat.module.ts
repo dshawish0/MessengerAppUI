@@ -65,4 +65,5 @@ import { ChatInfoComponent } from './chat-info/chat-info.component';
     
   ]
 })
-export class ChatModule { }
+export class ChatModule { 
+}

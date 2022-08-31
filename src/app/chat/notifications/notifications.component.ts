@@ -17,7 +17,7 @@ export class NotificationsComponent implements OnInit {
     console.log("NotificationsComponentomponent");
   }
 
-  groupMembers:any = [{User_Id:1}]
+  groupMembers:any = [{User_Id: this.chat.data.nameid}]
   chatAndMember:any;
 
   createChatForm:FormGroup = new FormGroup({

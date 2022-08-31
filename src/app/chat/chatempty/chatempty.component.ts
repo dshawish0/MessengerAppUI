@@ -13,17 +13,13 @@ export class ChatemptyComponent implements OnInit {
   @ViewChild('ChatInfo') ChatInfo! :TemplateRef<any>;
 
 
-  constructor(public chatService:ChatService, public fb: FormBuilder, public dialog:MatDialog) { 
-     // Reactive Form
-     this.uploadForm = this.fb.group({
-      avatar: [null],
-      name: ['']
-    })
+  constructor(public chatService:ChatService,  public dialog:MatDialog) { 
+     
   }
+  imageSrc: any=[];
 
   ngOnInit(): void {
-    console.log("chatempty",this.chatService.AllMessage);
-    
+    console.log("ChatemptyComponent");
   }
 
   collapse(){
@@ -66,30 +62,75 @@ export class ChatemptyComponent implements OnInit {
  this.messageText='';
   }
 
-  imageURL: string | undefined;
-  uploadForm: FormGroup= new FormGroup({});
-
-
-  showPreview(event:any) {
-    const file:any = event.target.files[0] as HTMLInputElement;
-    this.uploadForm?.patchValue({
-      avatar: file
-    });
-    // this.uploadForm.get('avatar').updateValueAndValidity()
-    // File Preview
-    const reader = new FileReader();
-    reader.onload = () => {
-      this.imageURL = reader.result as string;
-    }
-    reader.readAsDataURL(file)
-  }
-  // Submit Form
-  submit() {
-    console.log(this.uploadForm.value)
-  }
-
   chatInfo(){
     this.dialog.open(this.ChatInfo, {height:'1000px'});
   }
+
+  readURL(event: any): void {
+    if (event.target.files && event.target.files[0]) {
+        const file = event.target.files[0];
+
+        const reader = new FileReader();
+        reader.onload = e => this.imageSrc = reader.result;
+
+        reader.readAsDataURL(file);
+    }
+}
+
+urls:any;
+imgName:any
+files:any=[]
+  detectFiles(event:any) {
+    
+    this.urls = [];
+    this.files = event.target.files;
+    console.log(this.files,'files');
+    if (this.files) {
+      for (let file of this.files) {
+        let reader = new FileReader();
+        reader.onload = (e: any) => {
+          this.urls.push({url:e.target.result, name:file.name});        
+        }
+        reader.readAsDataURL(file);
+      }     
+    }
+    console.log(this.urls,'urls');
+  }
+
+  UploadMessageImg(){
+    if (this.files) {
+      for (let file of this.files) {
+        
+        
+        let fileToUpload = <File>file;
+        const formDate = new FormData();
+        formDate.append('file',fileToUpload,fileToUpload.name)
+        this.chatService.uplodeImageForMessage(formDate);
+        console.log(formDate,'formDate');
+        this.urls = [];
+        this.files=[];
+      }     
+    }
+  }
+
+
+ deleteImage(name: any): void {
+  this.urls = this.urls.filter((a:any) => a.name !== name);
+  // this.files = this.files[0].file.name;
+
+  let test:any
+  for (let file of this.files) {
+    console.log(file.name,"InFor");
+    if(file.name != name){
+      test.push(file)
+    }
+  } 
+  this.files = test
+  console.log(this.urls,'Delete urls');
+  console.log(this.files,'Delete Files');
+  
+  // console.log(index,'Delete index');
+
+}
 
 }

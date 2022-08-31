@@ -2,6 +2,7 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { EmailValidator, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ChatService } from 'src/app/Services/chat.service';
+import { LoginService } from 'src/app/Services/login.service';
 
 
 @Component({
@@ -13,14 +14,14 @@ export class AllChatComponent implements OnInit {
   @ViewChild('UpDateChat') UpDateChat! :TemplateRef<any>;
   currentItem:any;
 
-  constructor(public chatService:ChatService, public dialog:MatDialog) { }
+  constructor(public chatService:ChatService, public dialog:MatDialog, private LoginService:LoginService) { }
   public innerWidth: any;
   ngOnInit(): void {
     
     this.chatService.GetAllChat(1)
-    this.innerWidth = window.innerWidth;
-    console.log(this.innerWidth, "width screen");
-   
+    const userId = this.LoginService.data.nameid;
+    this.chatService.MyProfile(userId); 
+    console.log("AllChatComponent");
   }
 
   updateChatForm:FormGroup = new FormGroup({
@@ -73,7 +74,7 @@ export class AllChatComponent implements OnInit {
   }
   
 
-  DeleteChat(messageGroupId:any){
-    this.chatService.DeleteChat(messageGroupId)
+  DeleteChat(GroupMemberId:any){
+    this.chatService.DeleteChat(GroupMemberId)
   }
 }

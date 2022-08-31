@@ -27,10 +27,14 @@ export class ChatService {
       this.users = res;
 
       this.myFriend = this.users.filter((item: any) => item.status === 1);
-      this.lopy = this.users.filter((item: any) => item.status === 0);
+      this.lopy = this.users.filter((item: any) => item.status === 0 && item.userReciveId=== 1); //1FromLogin
       this.blockFriend = this.users.filter((item: any) => item.status === 2);
       this.numOfFriend = this.myFriend.length;
-
+      console.log(this.blockFriend,"FriendBlock");
+      console.log(this.myFriend,"myFriend");
+      console.log(this.lopy,"lopy");
+      console.log(this.users,"users");
+      
     },
       err => {
         console.log('error')
@@ -77,7 +81,17 @@ export class ChatService {
   }
 
   Blockuser(frindid: any) {
-    this.http.put(`https://localhost:44318/api/Frind/BlockFriend/${41}`, "").subscribe((result) => {
+    this.http.put(`https://localhost:44318/api/Frind/BlockFriend/${frindid}`, "").subscribe((result) => {
+      window.location.reload();
+    },
+      error => {
+        console.log('error');
+      })
+  }
+
+  UnBlockFrind(friendId:any){
+    console.log(friendId);
+    this.http.put(`https://localhost:44318/api/Frind/BlockFriend/${friendId}`, "").subscribe((result) => {
       window.location.reload();
     },
       error => {
@@ -170,9 +184,10 @@ export class ChatService {
       })
   }
 
-  DeleteChat(messageGroupId: any) {
+  DeleteChat(GroupMemberId: any) {
+    console.log(GroupMemberId,"yazannnnnn");
     this.spinner.show();
-    this.http.delete(`https://localhost:44318/api/MessageGroup/DeleteMessageGroup/${messageGroupId}`).subscribe((res) => {
+    this.http.delete(`https://localhost:44318/api/GroupMember/DeleteGroupMember/${GroupMemberId}`).subscribe((res) => {
       console.log(res);
 
       this.spinner.hide();
@@ -302,6 +317,62 @@ export class ChatService {
     this.spinner.hide();
     this.toastr.error(err.message);
   })
+ }
+
+
+ imageMessage:any;
+ uplodeImageForMessage(file: FormData){
+  this.http.post('https://localhost:44318/api/Message/uploadImageMessage',file).subscribe(
+    (resp)=>{
+      this.imageMessage=resp;
+      console.log(this.imageMessage,"uplodeimageService");
+      this.SendImageAsMessage()
+    },err =>{
+      this.toastr.error(err.message);
+    })
+ }
+
+ SendImageAsMessage(){
+  this.imageMessage.messageGroupId = this.id;
+  this.imageMessage.senderId = 1 //from login
+
+  console.log(this.imageMessage);
+  this.http.post('https://localhost:44318/api/Message/CreateMessage', this.imageMessage).subscribe((res) => {
+
+
+    },
+      err => {
+        console.log('error')
+        this.toastr.error("Error")
+      })
+ }
+
+ numberOfPayment:any;
+ sumOfTotalPayment:any
+ payment:any;
+ GetAllPaymentsByUserId(){   
+  this.spinner.show();                                           //from Login
+  this.http.get(`https://localhost:44318/api/Payment/GetPaymentsByUserId/${1}`).subscribe((res) => {
+    this.payment = res;
+    this.numberOfPayment = this.payment.length;
+    
+    this.sumOfTotalPayment = this.payment.map((item: any) => item.service.saleprice)
+      .reduce((accumulator:any, current:any) => {
+      return accumulator + current;
+    }, 0);
+
+    console.log(this.payment,"payment");
+    console.log(this.sumOfTotalPayment,"sumOfTotalPayment");
+    console.log(this.numberOfPayment,"numberOfPayment");
+
+    this.spinner.hide();
+
+  },
+    err => {
+      console.log('error')
+      this.spinner.hide();
+      this.toastr.error("Error")
+    })
  }
 }
 

@@ -15,20 +15,22 @@ export class AutherizationGuard implements CanActivate {
       const token = localStorage.getItem('token');
 
       if(token){
-        debugger
-        if(state.url.indexOf('admin')>=0){
+        // debugger
+        
           let data :any = jwt_decode(token);
 
-          if(data.role=='admin'){
-            this.router.navigate(['admin']);
+          if(data.role=='admin' && state.url.indexOf('admin')>=0){
+            // this.router.navigate(['admin']);
+            return true;
+          }
+          else if(data.role=='user' && state.url.indexOf('Chat')>=0){
+            // this.router.navigate(['Chat']);
             return true;
           }
           else{
-            this.router.navigate(['Chat']);
+            this.router.navigate(['log']);
             return false;
           }
-        }
-        return true;
       }
       else{
         this.router.navigate(['log']);

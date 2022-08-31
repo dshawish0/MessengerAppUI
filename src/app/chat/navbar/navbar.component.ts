@@ -11,9 +11,13 @@ export class NavbarComponent implements OnInit {
 
   constructor(private LoginService:LoginService, public chatService :ChatService) { }
   userImage:any;
+  emailUser:any;
   ngOnInit(): void {
-    // const userId = this.LoginService.data.nameid;
-    this.chatService.MyProfile(1); 
+    const userId = this.LoginService.data.nameid;
+    this.emailUser = this.LoginService.data.email
+    this.chatService.MyProfile(userId); 
+    console.log("NavbarComponent");
+    
   }
  
 }

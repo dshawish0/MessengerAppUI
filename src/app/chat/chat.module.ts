@@ -51,7 +51,16 @@ import { ChatInfoComponent } from './chat-info/chat-info.component';
     NavbarComponent,
     IndexComponent,
     SideBarComponent,
-    ChatemptyComponent
+    ChatemptyComponent,
+    CreateChatComponent,
+    FriendsComponent,
+    AllChatComponent,
+    NotificationsComponent,
+    SupportComponent,
+    SettingComponent,
+    ChatWithMessageComponent,
+    MyprofileComponent,
+    ChatInfoComponent
     
     
   ]

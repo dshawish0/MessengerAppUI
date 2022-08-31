@@ -14,6 +14,7 @@ export class SettingComponent implements OnInit {
   ngOnInit(): void {
     this.old_Data = this.chatService.myProfile;
     console.log("old",this.old_Data);
+    console.log("SettingComponent");
   }
   Profile:FormGroup= new FormGroup({
     userId:new FormControl(''),

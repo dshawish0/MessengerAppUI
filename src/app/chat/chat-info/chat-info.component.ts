@@ -14,10 +14,11 @@ export class ChatInfoComponent implements OnInit {
   constructor(public chatService:ChatService, public dialog:MatDialog) { }
 
   ngOnInit(): void {
+    console.log("ChatInfoComponent");
   }
 
   ShowChatInformation(){
-    this.chatService.ShowChatInfo = !this.chatService.ShowChatInfo
+    this.chatService.ShowChatInfo = false
   }
 
   searchMessage:FormGroup = new FormGroup({

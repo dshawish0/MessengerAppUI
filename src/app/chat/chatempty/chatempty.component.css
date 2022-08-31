@@ -78,3 +78,13 @@ p {
     position: relative;
     padding-bottom: 100%;
   }
+
+.btnDelete{
+  cursor: pointer;
+  background-color: #f5eeee;
+  border-radius: 50%;
+  margin-left: -10px;
+  position: absolute;
+  width: 10px;
+  text-align: center
+}

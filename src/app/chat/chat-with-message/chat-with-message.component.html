@@ -390,10 +390,10 @@
 
 
 
-    <ng-template #userProfileDialog>
+    <ng-template #userProfileDialog >
  <!-- Modal: User profile -->
  <!-- <div class="modal fade" id="modal-user-profile" tabindex="-1" aria-labelledby="modal-user-profile" aria-hidden="true"> -->
-    <div>     
+    <div style="padding: 0px!important; margin:-24px">     
        <div class="modal-dialog modal-dialog-centered "><!--modal-fullscreen-xl-down-->
     <div class="modal-content">
 
@@ -419,7 +419,7 @@
                     </div>
 
                     <h4 class="mb-1">{{this.chatService.userProfile[0].user.fname}} {{this.chatService.userProfile[0].user.lname}}</h4>
-                    <p>{{this.chatService.userProfile[0].groupMemberId}} </p>
+                    <p>{{this.chatService.userProfile[0].isActive}} </p>
                 </div>
             </div>
             <!-- Header -->
@@ -478,7 +478,7 @@
             <hr class="hr-bold modal-gx-n my-0">
 
             <!-- List -->
-            <ul class="list-group list-group-flush">
+            <!-- <ul class="list-group list-group-flush">
                 <li class="list-group-item">
                     <div class="row align-items-center gx-6">
                         <div class="col">
@@ -494,13 +494,13 @@
                         </div>
                     </div>
                 </li>
-            </ul>
+            </ul> -->
             <!-- List -->
 
             <hr class="hr-bold modal-gx-n my-0">
 
             <!-- List -->
-            <ul class="list-group list-group-flush">
+            <!-- <ul class="list-group list-group-flush">
                 <li class="list-group-item">
                     <a href="#" class="text-reset">Send Message</a>
                 </li>
@@ -508,7 +508,7 @@
                 <li class="list-group-item">
                     <a href="#" class="text-danger">Block User</a>
                 </li>
-            </ul>
+            </ul> -->
             <!-- List -->
         </div>
         <!-- Modal body -->

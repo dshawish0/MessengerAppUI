@@ -19,8 +19,7 @@ export class FriendsComponent implements OnInit {
 
   ngOnInit(): void {
     this.chat.GetAllFrinds();
-    console.log(this.chat.myFriend,'my Friend');
-    
+    console.log("FriendsComponent");
   }
 
 

@@ -343,7 +343,7 @@ export class AdminService {
         this.spinner.hide();
         this.UserInfo = result;
         //show toster
-        this.toastr.success('sucssess');
+        //this.toastr.success('sucssess');
       }, err => {
         //hide spinner
         this.spinner.hide();
@@ -401,7 +401,7 @@ export class AdminService {
     this.http.get('https://localhost:44318/api/Footer').subscribe(
       (result) => {
         this.footerInfo = result;
-        // console.log(result);
+        console.log(result);
         // hide spinner
         this.spinner.hide();
         //show toster
@@ -415,7 +415,9 @@ export class AdminService {
   }
   UpdateFooter(body: any) {
     this.spinner.show();
-    //body.logoImg = this.displayImg;
+    if(this.displayImg != null){
+      body.logoImg = this.displayImg;
+    } 
     debugger
     this.http.put('https://localhost:44318/api/Footer/UpdateFooter', body).subscribe(
       (resp) => {
@@ -461,6 +463,27 @@ export class AdminService {
         //show toster
         this.toastr.success('sucssess Upload Image');
 
+      }, err => {
+        //hide spinner
+        this.spinner.hide();
+        //show toster
+        this.toastr.error('Error');
+      })
+  }
+  testimonailShow:any=[];
+  GetAlltestimonialShow() {
+    //show spinner
+    this.spinner.show();
+    //hits Api
+    this.http.get('https://localhost:44318/api/Testimonial/GetTestimonialShow').subscribe(
+      (result) => {
+        debugger
+        this.testimonailShow = result;
+        console.log(result);
+        // hide spinner
+        this.spinner.hide();
+        //show toster
+        //this.toastr.success('sucssess GetAlltestimonialShow');
       }, err => {
         //hide spinner
         this.spinner.hide();

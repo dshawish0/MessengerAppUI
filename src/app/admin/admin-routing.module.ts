@@ -12,7 +12,7 @@ import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   {
-    path:'',
+    path:'das',
     component:DashboardComponent
   },
   {
@@ -40,7 +40,7 @@ const routes: Routes = [
     component:EditProfileComponent
   },
   {
-    path: "home",
+    path: "",
     component:HomeComponent
   },
   {

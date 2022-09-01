@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from 'src/app/Services/admin.service';
+import { HomeService } from 'src/app/Services/home.service';
+import { moveSyntheticComments } from 'typescript';
 
 @Component({
   selector: 'app-testimonial',
@@ -7,11 +9,36 @@ import { AdminService } from 'src/app/Services/admin.service';
   styleUrls: ['./testimonial.component.css']
 })
 export class TestimonialComponent implements OnInit {
-  constructor(public admin:AdminService) { }
-  number:any=1;
-  ngOnInit(): void {
-     this.admin.GetAlltestimonialShow();
+  constructor(public home:HomeService) {
+    //this.home.GetAlltestimonialShow();
   }
+  number:any=1;
+  testimonailShowSelected:any=[]
+  rand = new Set<number>();
+  ngOnInit(): void {
+
+    // debugger     
+    //  console.log(this.home.testimonailShow.size);
+    //  while(this.rand.size<7){
+    //   this.rand.add((Math.floor(Math.random() * (15 - 1 + 1)) + 1)-1)
+    //   console.log(this.rand.size);
+    //  }
+
+    //  for(let data in this.rand){
+    //   this.testimonailShowSelected.push(this.home.testimonailShow[data]);
+    //  }
+
+    //  console.log(this.testimonailShowSelected+"dasdasdasdasdasd")
+
+
+    
+     
+
+
+
+  }
+
+  
 
 change(num:any){
   //alert("dasdasd");

@@ -1,11 +1,13 @@
-<div class="d-flex flex-column h-100 position-relative" style="background-color: #fff;">
+<div class="d-flex flex-column h-100 position-relative">
     <!-- Chat: Header -->
     <div class="chat-header border-bottom py-4 py-lg-7">
         <div class="row align-items-center">
             <!-- Mobile: close -->
             <div class="col-2 d-xl-none">
                 <a class="icon icon-lg text-muted" (click)="collapse()" data-toggle-chat="">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="feather feather-chevron-left">
                         <polyline points="15 18 9 12 15 6"></polyline>
                     </svg>
                 </a>
@@ -20,12 +22,13 @@
                         <div class="row align-items-center gx-5">
                             <div class="col-auto">
                                 <div class="avatar d-none d-xl-inline-block">
-                                    <img class="avatar-img" src="../../../assets/images/{{this.chatService.AllMessage[0].messageGroup.groupImg}}" alt="">
+                                    <img class="avatar-img"
+                                        src="../../../assets/images/{{this.chatService.groupData[0].groupImg}}" alt="">
                                 </div>
                             </div>
 
                             <div class="col overflow-hidden">
-                                <h5 class="text-truncate">{{this.chatService.AllMessage[0].messageGroup.groupName}}</h5>
+                                <h5 class="text-truncate">{{this.chatService.groupData[0].groupName}}</h5>
                             </div>
                         </div>
                     </div>
@@ -35,8 +38,12 @@
                     <div class="col-xl-6 d-none d-xl-block">
                         <div class="row align-items-center justify-content-end gx-6">
                             <div class="col-auto">
-                                <a (click)="ShowChatInformation()" class="icon icon-lg text-muted" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-more-group" aria-controls="offcanvas-more-group">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal">
+                                <a (click)="ShowChatInformation()" class="icon icon-lg text-muted"
+                                    data-bs-toggle="offcanvas" data-bs-target="#offcanvas-more-group"
+                                    aria-controls="offcanvas-more-group">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="feather feather-more-horizontal">
                                         <circle cx="12" cy="12" r="1"></circle>
                                         <circle cx="19" cy="12" r="1"></circle>
                                         <circle cx="5" cy="12" r="1"></circle>
@@ -46,8 +53,11 @@
 
                             <div class="col-auto">
                                 <div class="avatar-group">
-                                    <a *ngFor="let item of this.chatService.allMemberinMessageGroup" (click)="UserProfile(item.groupMemberId)" class="avatar avatar-sm" data-bs-toggle="modal" data-bs-target="#modal-user-profile">
-                                        <img class="avatar-img" src="../../../assets/Img/{{item.user.proFileImg}}" alt="#">
+                                    <a *ngFor="let item of this.chatService.allMemberinMessageGroup"
+                                        (click)="UserProfile(item.user.userId)" class="avatar avatar-sm"
+                                        data-bs-toggle="modal" data-bs-target="#modal-user-profile">
+                                        <img class="avatar-img" src="../../../assets/Img/{{item.user.proFileImg}}"
+                                            alt="#">
                                     </a>
 
                                     <!-- <a href="#" class="avatar avatar-sm" data-bs-toggle="modal" data-bs-target="#modal-user-profile">
@@ -77,7 +87,9 @@
                 <div class="dropdown">
                     <a class="text-muted" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <div class="icon icon-lg">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="feather feather-more-vertical">
                                 <circle cx="12" cy="12" r="1"></circle>
                                 <circle cx="12" cy="5" r="1"></circle>
                                 <circle cx="12" cy="19" r="1"></circle>
@@ -87,11 +99,13 @@
 
                     <ul class="dropdown-menu">
                         <li>
-                            <a class="dropdown-item" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-add-members" aria-controls="offcanvas-add-members">Add
+                            <a class="dropdown-item" href="#" data-bs-toggle="offcanvas"
+                                data-bs-target="#offcanvas-add-members" aria-controls="offcanvas-add-members">Add
                                 members</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-more-group" aria-controls="offcanvas-more-group">More</a>
+                            <a class="dropdown-item" href="#" data-bs-toggle="offcanvas"
+                                data-bs-target="#offcanvas-more-group" aria-controls="offcanvas-more-group">More</a>
                         </li>
                     </ul>
                 </div>
@@ -102,8 +116,31 @@
     </div>
     <!-- Chat: Header -->
 
+    <!-- Chat Empty: Content  -->
+    <div class="chat-body hide-scrollbar flex-1 h-100" *ngIf="this.chatService.AllMessage.length==0">
+        <div class="chat-body-inner h-100">
+
+            <div class="d-flex flex-column h-100 justify-content-center">
+                <div class="text-center mb-6">
+                    <span class="icon icon-xl text-muted">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="feather feather-send">
+                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                        </svg>
+                    </span>
+                </div>
+
+                <p class="text-center text-muted">No messages yet, <br> start the conversation!</p>
+            </div>
+
+        </div>
+    </div>
     <!-- Chat: Content -->
-    <div class="chat-body hide-scrollbar flex-1 h-100">
+
+    <!-- Chat: Content -->
+    <div class="chat-body hide-scrollbar flex-1 h-100" #scrollMe style="overflow: scroll; height: xyz;" *ngIf="this.chatService.AllMessage.length!=0">
         <div class="chat-body-inner">
 
             <!-- dataBase -->
@@ -113,16 +150,29 @@
 
                         <!-- Message -->
                         <div class="message padingMessage-custom" *ngIf="item.senderId!=userLoged">
-                            <a href="#" data-bs-toggle="modal" data-bs-target="#modal-user-profile" class="avatar avatar-responsive">
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#modal-user-profile"
+                                class="avatar avatar-responsive">
                                 <img class="avatar-img" src="../../../assets/{{item.user.proFileImg}}" alt="">
                             </a>
 
                             <div class="message-inner">
                                 <div class="message-body">
                                     <div class="message-content">
-                                        <div class="message-text">
-                                            <p style="font-size: medium;">{{item.text}}</p>
+                                        <!-- Image Message -->
+                                <div class="message-gallery" *ngIf="item.text.match('jpg')">
+                                    <div class="row gx-3">
+                                        <div class="col">
+                                            <img class="img-fluid rounded" src="../../../assets/images/{{item.text}}" data-action="zoom" alt="">
                                         </div>
+                                    </div>
+                                </div>
+                                <!--End Image Message -->
+
+                                <!-- Text Message -->
+                                <div class="message-text" *ngIf="!item.text.match('jpg')">
+                                    <p style="font-size: medium;">{{item.text}}</p>
+                                </div>
+                                <!--End Text Message -->
 
                                         <!-- Dropdown -->
                                         <!-- <div class="message-action">
@@ -166,34 +216,49 @@
                                 </div>
 
                                 <div class="message-footer">
-                                    <span class="extra-small text-muted" style="font-size: 0.9em;">{{item.messageDate|date:'shortTime'}}</span>
+                                    <span class="extra-small text-muted"
+                                        style="font-size: 0.9em;">{{item.messageDate|date:'shortTime'}}</span>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Message -->
                         <div class="message message-out padingMessage-custom" *ngIf="item.senderId==userLoged">
-                            <a href="#" data-bs-toggle="modal" data-bs-target="#modal-profile" class="avatar avatar-responsive">
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#modal-profile"
+                                class="avatar avatar-responsive">
                                 <img class="avatar-img" src="../../../assets/{{item.user.proFileImg}}" alt="">
                             </a>
 
                             <div class="message-inner">
                                 <div class="message-body">
                                     <div class="message-content">
-                                        <div class="message-text">
-                                            <!-- <blockquote class="blockquote overflow-hidden">
-                                                <h6 class="text-reset text-truncate">William Wright</h6>
-                                                <p class="small text-truncate">Hey, Marshall! How are you? Can you please change the color theme of the website to pink and purple?</p>
-                                            </blockquote> -->
-                                            <p class="messagetext-custom">{{item.text}}</p>
+                                        <!-- Image Message -->
+                                <div class="message-gallery" *ngIf="item.text.match('jpg')">
+                                    <div class="row gx-3">
+                                        <div class="col">
+                                            <img class="img-fluid rounded" src="../../../assets/images/{{item.text}}" data-action="zoom" alt="">
                                         </div>
+                                    </div>
+                                </div>
+                                <!--End Image Message -->
+
+                                <!-- Text Message -->
+                                <div class="message-text" *ngIf="!item.text.match('jpg')">
+                                    <p style="font-size: medium;">{{item.text}} {{this.chatService.updateedId}}
+                                        {{item.messageGroupId}}</p>
+                                </div>
+                                <!--End Text Message -->
 
                                         <!-- Dropdown -->
                                         <!-- Dropdown -->
                                         <div class="message-action">
                                             <div class="dropdown">
-                                                <a class="icon text-muted" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical">
+                                                <a class="icon text-muted" href="#" role="button"
+                                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                        class="feather feather-more-vertical">
                                                         <circle cx="12" cy="12" r="1"></circle>
                                                         <circle cx="12" cy="5" r="1"></circle>
                                                         <circle cx="12" cy="19" r="1"></circle>
@@ -205,7 +270,11 @@
                                                         <a class="dropdown-item d-flex align-items-center" href="#">
                                                             <span class="me-auto">Edit</span>
                                                             <div class="icon">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-3">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                    height="24" viewBox="0 0 24 24" fill="none"
+                                                                    stroke="currentColor" stroke-width="2"
+                                                                    stroke-linecap="round" stroke-linejoin="round"
+                                                                    class="feather feather-edit-3">
                                                                     <path d="M12 20h9"></path>
                                                                     <path
                                                                         d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z">
@@ -218,7 +287,11 @@
                                                         <a class="dropdown-item d-flex align-items-center" href="#">
                                                             <span class="me-auto">Reply</span>
                                                             <div class="icon">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-corner-up-left">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                    height="24" viewBox="0 0 24 24" fill="none"
+                                                                    stroke="currentColor" stroke-width="2"
+                                                                    stroke-linecap="round" stroke-linejoin="round"
+                                                                    class="feather feather-corner-up-left">
                                                                     <polyline points="9 14 4 9 9 4"></polyline>
                                                                     <path d="M20 20v-7a4 4 0 0 0-4-4H4"></path>
                                                                 </svg>
@@ -229,10 +302,15 @@
                                                         <hr class="dropdown-divider">
                                                     </li>
                                                     <li>
-                                                        <a class="dropdown-item d-flex align-items-center text-danger" href="#">
+                                                        <a class="dropdown-item d-flex align-items-center text-danger"
+                                                            href="#">
                                                             <span class="me-auto">Delete</span>
                                                             <div class="icon">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                    height="24" viewBox="0 0 24 24" fill="none"
+                                                                    stroke="currentColor" stroke-width="2"
+                                                                    stroke-linecap="round" stroke-linejoin="round"
+                                                                    class="feather feather-trash-2">
                                                                     <polyline points="3 6 5 6 21 6"></polyline>
                                                                     <path
                                                                         d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
@@ -272,7 +350,8 @@
                                 </div>
 
                                 <div class="message-footer">
-                                    <span class="extra-small text-muted" style="font-size: 0.9em;">{{item.messageDate|date:'shortTime'}}</span>
+                                    <span class="extra-small text-muted"
+                                        style="font-size: 0.9em;">{{item.messageDate|date:'shortTime'}}</span>
                                 </div>
                             </div>
                         </div>
@@ -288,19 +367,33 @@
 
 
             <div class="py-6" *ngFor="let item of this.chatService.messages">
-
                 <!-- Message -->
-                <div class="message padingMessage-custom" *ngIf="userLoged != item.userName && item.messageGroupId == this.chatService.updateedId">
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#modal-user-profile" class="avatar avatar-responsive">
+                <div class="message padingMessage-custom"
+                    *ngIf="userLoged != item.userName && item.messageGroupId == this.chatService.updateedId">
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#modal-user-profile"
+                        class="avatar avatar-responsive">
                         <!-- <img class="avatar-img" src="../../../assets/{{item.user.proFileImg}}" alt=""> -->
                     </a>
 
                     <div class="message-inner">
                         <div class="message-body">
                             <div class="message-content">
-                                <div class="message-text">
-                                    <p style="font-size: medium;">{{item.text}} {{this.chatService.updateedId}} {{item.messageGroupId}}</p>
+                                <!-- Image Message -->
+                                <div class="message-gallery" *ngIf="item.text.match('jpg')">
+                                    <div class="row gx-3">
+                                        <div class="col">
+                                            <img class="img-fluid rounded" src="../../../assets/images/{{item.text}}" data-action="zoom" alt="">
+                                        </div>
+                                    </div>
                                 </div>
+                                <!--End Image Message -->
+
+                                <!-- Text Message -->
+                                <div class="message-text" *ngIf="!item.text.match('jpg')">
+                                    <p style="font-size: medium;" >{{item.text}} {{this.chatService.updateedId}}
+                                        {{item.messageGroupId}}</p>
+                                </div>
+                                <!--End Text Message -->
 
                                 <!-- Dropdown -->
                                 <!-- <div class="message-action">
@@ -351,7 +444,8 @@
                 </div>
 
                 <!-- Message -->
-                <div class="message message-out padingMessage-custom" *ngIf="userLoged == item.userName  && item.messageGroupId == this.chatService.updateedId">
+                <div class="message message-out padingMessage-custom"
+                    *ngIf="userLoged == item.userName  && item.messageGroupId == this.chatService.updateedId">
                     <!-- <a href="#" data-bs-toggle="modal" data-bs-target="#modal-profile" class="avatar avatar-responsive">
                         <img class="avatar-img" src="../../../assets/{{item.user.proFileImg}}" alt="">
                     </a> -->
@@ -359,20 +453,33 @@
                     <div class="message-inner">
                         <div class="message-body">
                             <div class="message-content">
-                                <div class="message-text">
-                                    <!-- <blockquote class="blockquote overflow-hidden">
-                                        <h6 class="text-reset text-truncate">William Wright</h6>
-                                        <p class="small text-truncate">Hey, Marshall! How are you? Can you please change the color theme of the website to pink and purple?</p>
-                                    </blockquote> -->
-                                    <p class="messagetext-custom">{{item.text}} {{this.chatService.updateedId}} {{item.messageGroupId}}</p>
+                                <!-- Image Message -->
+                                <div class="message-gallery" *ngIf="item.text.match('jpg')">
+                                    <div class="row gx-3">
+                                        <div class="col">
+                                            <img class="img-fluid rounded" src="../../../assets/images/{{item.text}}" data-action="zoom" alt="">
+                                        </div>
+                                    </div>
                                 </div>
+                                <!--End Image Message -->
+
+                                <!-- Text Message -->
+                                <div class="message-text" *ngIf="!item.text.match('jpg')">
+                                    <p style="font-size: medium;" >{{item.text}} {{this.chatService.updateedId}}
+                                        {{item.messageGroupId}}</p>
+                                </div>
+                                <!--End Text Message -->
 
                                 <!-- Dropdown -->
                                 <!-- Dropdown -->
                                 <div class="message-action">
                                     <div class="dropdown">
-                                        <a class="icon text-muted" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical">
+                                        <a class="icon text-muted" href="#" role="button" data-bs-toggle="dropdown"
+                                            aria-expanded="false">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="feather feather-more-vertical">
                                                 <circle cx="12" cy="12" r="1"></circle>
                                                 <circle cx="12" cy="5" r="1"></circle>
                                                 <circle cx="12" cy="19" r="1"></circle>
@@ -384,7 +491,10 @@
                                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                                     <span class="me-auto">Edit</span>
                                                     <div class="icon">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-3">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                            stroke-width="2" stroke-linecap="round"
+                                                            stroke-linejoin="round" class="feather feather-edit-3">
                                                             <path d="M12 20h9"></path>
                                                             <path
                                                                 d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z">
@@ -397,7 +507,11 @@
                                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                                     <span class="me-auto">Reply</span>
                                                     <div class="icon">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-corner-up-left">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                            stroke-width="2" stroke-linecap="round"
+                                                            stroke-linejoin="round"
+                                                            class="feather feather-corner-up-left">
                                                             <polyline points="9 14 4 9 9 4"></polyline>
                                                             <path d="M20 20v-7a4 4 0 0 0-4-4H4"></path>
                                                         </svg>
@@ -411,7 +525,10 @@
                                                 <a class="dropdown-item d-flex align-items-center text-danger" href="#">
                                                     <span class="me-auto">Delete</span>
                                                     <div class="icon">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                            stroke-width="2" stroke-linecap="round"
+                                                            stroke-linejoin="round" class="feather feather-trash-2">
                                                             <polyline points="3 6 5 6 21 6"></polyline>
                                                             <path
                                                                 d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
@@ -469,28 +586,34 @@
 
     <!-- Chat: Footer -->
     <div class="chat-footer pb-3 pb-lg-7 position-absolute bottom-0 start-0" style="width: 90%; margin: 0 20px;">
-        <!-- Chat: Files -->
-        <div class="dz-preview bg-dark" id="dz-preview-row" data-horizontal-scroll="">
-        </div>
-        <!-- Chat: Files -->
+                    <!-- Chat: Files -->
+                    <div class=" bg-dark" id="dz-preview-row" data-horizontal-scroll=""  *ngIf="urls.length != 0">
+                        <div class="Upcard" style="display: inline-block;" *ngFor="let u of urls ; let index = index">
+                            <img [src]="u.url" width="50px" height="50px" style="margin-left: 10px;"><span class="delete-entry btnDelete" (click)="deleteImage(u.name,index)">x</span>
+                            <!--  -->
+                        </div>
+                        <button class="btn btn-icon btn-primary rounded-circle ms-5" (click)="UploadMessageImg()" >
+                            <!--  -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-send"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                        </button>
+                    </div>
+                    <!-- Chat: Files -->
 
         <!-- Chat: Form -->
         <form class="chat-form rounded-pill bg-dark" data-emoji-form="" [formGroup]="messageform">
             <div class="row align-items-center gx-0">
                 <div class="col-auto">
-                    <!-- <input type="file" class="btn btn-icon btn-link text-body rounded-circle" id="dz-btn"> -->
-                    <a class="btn btn-icon btn-link text-body rounded-circle test" id="dz-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-paperclip">
-                            <path
-                                d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48">
-                            </path>
-                        </svg>
-                    </a>
+                    <label for="files">
+                        <svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-paperclip"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg>
+                    </label>
+                
+                    <input class="btn btn-icon btn-link text-body rounded-circle" type="file" id="files" multiple (onClear)="detectFiles($event)" (change)="detectFiles($event)" style="display: none;">
                 </div>
 
                 <div class="col">
                     <div class="input-group">
-                        <input class="form-control px-0" placeholder="Type your message..." rows="1" data-emoji-input="" data-autosize="true" formControlName="text" [(ngModel)]="messageText">
+                        <input class="form-control px-0" placeholder="Type your message..." rows="1" data-emoji-input=""
+                            data-autosize="true" formControlName="text" [(ngModel)]="messageText">
 
                         <a class="input-group-text text-body pe-0 " data-emoji-btn="">
                             <span class="icon icon-lg">
@@ -508,7 +631,8 @@
                 </div>
 
                 <div class="col-auto">
-                    <button class="btn btn-icon btn-primary rounded-circle ms-5" [disabled]="messageform.invalid" (click)="CreateMessage()">
+                    <button class="btn btn-icon btn-primary rounded-circle ms-5" [disabled]="messageform.invalid"
+                        (click)="CreateMessage()">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                             class="feather feather-send">
@@ -524,52 +648,73 @@
     <!-- Chat: Footer -->
 </div>
 
+
+
+
 <!-- ChatInfo -->
 
-<app-chat-info></app-chat-info>
+<app-chat-info *ngIf="this.chatService.id!=0"></app-chat-info>
 
 <!-- ChatInfo -->
 
 <!-- User Profile -->
 
 
-    <ng-template #userProfileDialog >
- <!-- Modal: User profile -->
- <!-- <div class="modal fade" id="modal-user-profile" tabindex="-1" aria-labelledby="modal-user-profile" aria-hidden="true"> -->
-    <div style="padding: 0px!important; margin:-24px">     
-       <div class="modal-dialog modal-dialog-centered "><!--modal-fullscreen-xl-down-->
-    <div class="modal-content">
-
-                    <!-- <h4 class="mb-1">{{this.chatService.userProfile[0].user.fname}} {{this.chatService.userProfile[0].user.lname}}</h4>
-                    <p>{{this.chatService.userProfile[0].isActive}} </p>
-                </div>
-            </div> -->
-            <!-- Header -->
-
-
+<ng-template #userProfileDialog >
+    <!-- Modal: User profile -->
+    <!-- <div class="modal fade" id="modal-user-profile" tabindex="-1" aria-labelledby="modal-user-profile" aria-hidden="true"> -->
+    <div style="padding: 0px!important; margin:-24px;">
+        <div class="modal-dialog modal-dialog-centered ">
+            <!--modal-fullscreen-xl-down-->
+            <div class="modal-content">
                 <!-- Modal body -->
                 <div class="modal-body py-0">
                     <!-- Header -->
                     <div class="profile modal-gx-n">
                         <div class="profile-img text-primary rounded-top-xl">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 400 140.74"><defs><style>.cls-2{fill:#fff;opacity:0.1;}</style></defs><g><g><path d="M400,125A1278.49,1278.49,0,0,1,0,125V0H400Z"/><path class="cls-2" d="M361.13,128c.07.83.15,1.65.27,2.46h0Q380.73,128,400,125V87l-1,0a38,38,0,0,0-38,38c0,.86,0,1.71.09,2.55C361.11,127.72,361.12,127.88,361.13,128Z"/><path class="cls-2" d="M12.14,119.53c.07.79.15,1.57.26,2.34v0c.13.84.28,1.66.46,2.48l.07.3c.18.8.39,1.59.62,2.37h0q33.09,4.88,66.36,8,.58-1,1.09-2l.09-.18a36.35,36.35,0,0,0,1.81-4.24l.08-.24q.33-.94.6-1.9l.12-.41a36.26,36.26,0,0,0,.91-4.42c0-.19,0-.37.07-.56q.11-.86.18-1.73c0-.21,0-.42,0-.63,0-.75.08-1.51.08-2.28a36.5,36.5,0,0,0-73,0c0,.83,0,1.64.09,2.45C12.1,119.15,12.12,119.34,12.14,119.53Z"/><circle class="cls-2" cx="94.5" cy="57.5" r="22.5"/><path class="cls-2" d="M276,0a43,43,0,0,0,43,43A43,43,0,0,0,362,0Z"/></g></g></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 400 140.74">
+                                <defs>
+                                    <style>
+                                        .cls-2 {
+                                            fill: #fff;
+                                            opacity: 0.1;
+                                        }
+                                    </style>
+                                </defs>
+                                <g>
+                                    <g>
+                                        <path d="M400,125A1278.49,1278.49,0,0,1,0,125V0H400Z" />
+                                        <path class="cls-2"
+                                            d="M361.13,128c.07.83.15,1.65.27,2.46h0Q380.73,128,400,125V87l-1,0a38,38,0,0,0-38,38c0,.86,0,1.71.09,2.55C361.11,127.72,361.12,127.88,361.13,128Z" />
+                                        <path class="cls-2"
+                                            d="M12.14,119.53c.07.79.15,1.57.26,2.34v0c.13.84.28,1.66.46,2.48l.07.3c.18.8.39,1.59.62,2.37h0q33.09,4.88,66.36,8,.58-1,1.09-2l.09-.18a36.35,36.35,0,0,0,1.81-4.24l.08-.24q.33-.94.6-1.9l.12-.41a36.26,36.26,0,0,0,.91-4.42c0-.19,0-.37.07-.56q.11-.86.18-1.73c0-.21,0-.42,0-.63,0-.75.08-1.51.08-2.28a36.5,36.5,0,0,0-73,0c0,.83,0,1.64.09,2.45C12.1,119.15,12.12,119.34,12.14,119.53Z" />
+                                        <circle class="cls-2" cx="94.5" cy="57.5" r="22.5" />
+                                        <path class="cls-2" d="M276,0a43,43,0,0,0,43,43A43,43,0,0,0,362,0Z" />
+                                    </g>
+                                </g>
+                            </svg>
 
                             <div class="position-absolute top-0 start-0 p-5">
-                                <button type="button" class="btn-close btn-close-white btn-close-arrow opacity-100" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <button type="button" class="btn-close btn-close-white btn-close-arrow opacity-100"
+                                    data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                         </div>
 
                         <div class="profile-body">
                             <div class="avatar avatar-xl">
-                                <img class="avatar-img" src="../../../assets/images/{{this.chatService.userProfile[0].user.proFileImg}}" alt="#">
+                                <img class="avatar-img"
+                                    src="../../../assets/Img/{{this.chatService.userProfile[0].proFileImg}}"
+                                    width="100%" height="100%" alt="#">
 
-                                <a href="#" class="badge badge-lg badge-circle bg-primary text-white border-outline position-absolute bottom-0 end-0">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                                </a>
                             </div>
 
-                            <h4 class="mb-1">{{this.chatService.userProfile[0].user.fname}} {{this.chatService.userProfile[0].user.lname}}</h4>
-                            <p>{{this.chatService.userProfile[0].groupMemberId}} </p>
+                            <h4 class="mb-1">{{this.chatService.userProfile[0].fname}}
+                                {{this.chatService.userProfile[0].lname}}
+                            <br/>
+                            <p *ngIf="this.chatService.userProfile[0].isActive==1">onLine</p>
+                            <p *ngIf="this.chatService.userProfile[0].isActive==0">offLine</p>
+                            </h4>
+
                         </div>
                     </div>
                     <!-- Header -->
@@ -581,14 +726,8 @@
                         <li class="list-group-item">
                             <div class="row align-items-center gx-6">
                                 <div class="col">
-                                    <h5>Location</h5>
-                                    <p>USA, Houston</p>
-                                </div>
-
-                                <div class="col-auto">
-                                    <div class="btn btn-sm btn-icon btn-dark">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-globe"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
-                                    </div>
+                                    <h5>User Name</h5>
+                                    <p>{{this.chatService.userProfile[0].userName}}</p>
                                 </div>
                             </div>
                         </li>
@@ -596,105 +735,45 @@
                         <li class="list-group-item">
                             <div class="row align-items-center gx-6">
                                 <div class="col">
-                                    <h5>User Name</h5>
-                                    <p>{{this.chatService.userProfile[0].user.userName}}</p>
-                                </div>
-
-                                <div class="col-auto">
-                                    <div class="btn btn-sm btn-icon btn-dark">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                                    </div>
+                                    <h5>User Bio</h5>
+                                    <p>{{this.chatService.userProfile[0].userBio}}</p>
                                 </div>
                             </div>
 
                         </li>
                     </ul>
-                        <!-- </div>
+                    <!-- </div>
                     </div> -->
-                
-            <!-- List -->
 
-            <hr class="hr-bold modal-gx-n my-0">
+                    <!-- List -->
 
-            <!-- List -->
-            <!-- <ul class="list-group list-group-flush">
-                <li class="list-group-item">
+                    <hr class="hr-bold modal-gx-n my-0">
+
+                    <!-- List -->
+                    <ul class="list-group list-group-flush">
+                        <!-- <li class="list-group-item">
                     <div class="row align-items-center gx-6">
                         <div class="col">
                             <h5>Notifications</h5>
                             <p>Enable sound notifications</p>
-                        </div>
-
-                        </li>
-
-
+                        </div> -->
                         <li class="list-group-item">
                             <div class="row align-items-center gx-6">
                                 <div class="col">
                                     <h5>Gender</h5>
-                                    <p>{{this.chatService.userProfile[0].user.gender}}</p>
-                                </div>
-
-                                <div class="col-auto">
-                                    <div class="btn btn-sm btn-icon btn-dark">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-phone-call"><path d="M15.05 5A5 5 0 0 1 19 8.95M15.05 1A9 9 0 0 1 23 8.94m-1 7.98v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                                    </div>
+                                    <p>{{this.chatService.userProfile[0].gender}}</p>
                                 </div>
                             </div>
 
-                        </div>
-                    </div>
-                </li>
-            </ul> -->
-            <!-- List -->
 
-            <hr class="hr-bold modal-gx-n my-0">
-
-            <!-- List -->
-            <!-- <ul class="list-group list-group-flush">
-                <li class="list-group-item">
-                    <a href="#" class="text-reset">Send Message</a>
-                </li>
-
-                <li class="list-group-item">
-                    <a href="#" class="text-danger">Block User</a>
-                </li>
-            </ul> -->
-            <!-- List -->
-        <!-- </div> -->
-        <!-- Modal body -->
-
-                        <!-- </li>
-                    </ul> -->
-                    <!-- List -->
-
-
-                    <hr class="hr-bold modal-gx-n my-0">
-
-                    <!-- List -->
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                            <div class="row align-items-center gx-6">
-                                <div class="col">
-                                    <h5>Notifications</h5>
-                                    <p>Enable sound notifications</p>
-                                </div>
-
-                                <div class="col-auto">
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="user-notification-check">
-                                        <label class="form-check-label" for="user-notification-check"></label>
-                                    </div>
-                                </div>
-                            </div>
                         </li>
                     </ul>
                     <!-- List -->
 
-                    <hr class="hr-bold modal-gx-n my-0">
+                    <!-- <hr class="hr-bold modal-gx-n my-0"> -->
 
                     <!-- List -->
-                    <ul class="list-group list-group-flush">
+                    <!-- <ul class="list-group list-group-flush">
                         <li class="list-group-item">
                             <a href="#" class="text-reset">Send Message</a>
                         </li>
@@ -702,7 +781,7 @@
                         <li class="list-group-item">
                             <a href="#" class="text-danger">Block User</a>
                         </li>
-                    </ul>
+                    </ul> -->
                     <!-- List -->
                 </div>
                 <!-- Modal body -->

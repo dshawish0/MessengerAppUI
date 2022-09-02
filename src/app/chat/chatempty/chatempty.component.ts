@@ -19,7 +19,7 @@ export class ChatemptyComponent implements OnInit {
   imageSrc: any=[];
 
   ngOnInit(): void {
-    console.log("ChatemptyComponent");
+    
   }
 
   collapse(){

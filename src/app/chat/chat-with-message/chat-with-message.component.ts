@@ -1,4 +1,4 @@
-import { Component, OnInit , Input, OnChanges, SimpleChanges, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnInit , Input, OnChanges, SimpleChanges, TemplateRef, ViewChild, AfterViewChecked, ElementRef } from '@angular/core';
 import { ChatService } from 'src/app/Services/chat.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -18,11 +18,12 @@ interface Message{
   styleUrls: ['./chat-with-message.component.css']
 })
 
-export class ChatWithMessageComponent implements OnInit { 
+export class ChatWithMessageComponent implements OnInit, AfterViewChecked { 
 
   
   @Input() messageGroup:any;
   @ViewChild('userProfileDialog') userProfileDialog! :TemplateRef<any>;
+  @ViewChild('scrollMe') private myScrollContainer!: ElementRef;
   changelog: string[] = [];
 
   userLoged=this.chatService.data.nameid;
@@ -41,9 +42,16 @@ export class ChatWithMessageComponent implements OnInit {
     console.log("i'm Herrrrrrrrrrrrrrrrrrrrrrrrrrrrrre");
     this.currentGroupId=this.chatService.id;
   }
+
+
+  ngAfterViewChecked(): void {
+    this.scrollToBottom();
+  }
+
+
   messageGroupId:any
   ngOnInit(): void {
-
+    this.scrollToBottom();
     console.log(this.messageGroupId, "chatwithMessage");
      this.messageGroupId=this.messageGroup
     
@@ -62,7 +70,11 @@ export class ChatWithMessageComponent implements OnInit {
 
   }
 
-
+  scrollToBottom(): void {
+    try {
+        this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+    } catch(err) { }                 
+}
 
 // startConnection(){
 //   this.connection.on("newMessage",(userName: string, text: string)=>{
@@ -136,13 +148,83 @@ messageText:any;
 
   }
 
-  UserProfile(memberId:any){
+  UserProfile(userId:any){
     console.log("UserProfile", this.chatService.allMemberinMessageGroup);
     
-    console.log('UserProfile',memberId);
-    this.chatService.UserProfile(memberId)
+    console.log('UserProfile',userId);
+    this.chatService.UserProfile(userId)
     this.dialog.open(this.userProfileDialog,{width:'500px',height:'600px'});
   }
 
+
+
+  urls:any[]=[];
+imgName:any
+files:any[]=[];
+  detectFiles(event:any) {
+    this.urls = [];
+    this.files = event.target.files;
+    console.log(this.files,'files');
+    if (this.files) {
+      for (let file of this.files) {
+        let reader = new FileReader();
+        reader.onload = (e: any) => {
+          this.urls.push({url:e.target.result, name:file.name});        
+        }
+        reader.readAsDataURL(file);
+      }     
+    }
+    console.log(this.urls,'urls');
+  }
+
+  UploadMessageImg(){
+    if (this.files) {
+      for (let file of this.files) {
+        
+        
+        let fileToUpload = <File>file;
+        const formDate = new FormData();
+        formDate.append('file',fileToUpload,fileToUpload.name)
+        this.chatService.uplodeImageForMessage(formDate);
+
+        this.messageform.controls['messageGroupId'].setValue(this.chatService.updateedId);
+    this.messageform.controls['senderId'].setValue(this.userLoged);
+    this.messageform.controls['messageDate'].setValue(new Date());
+    this.messageform.controls['text'].setValue(this.chatService.imageMessage.text)
+
+        this.chatService.SendImageAsMessage(this.messageform.value);
+        
+        this.chatService.connection.send("newMessage", this.userLoged, this.messageform.controls['text'].value)
+        .then(()=>{
+          this.messageform.controls['text'].setValue('');
+        });
+
+        console.log(formDate,'formDate');
+        this.urls = [];
+        this.files=[];
+      }     
+    }
+  }
+
+
+ deleteImage(name: any, index:any): void {
+  debugger
+  this.urls = this.urls.filter((a:any) => a.name !== name);
+    // this.files.splice(index,1);
+    console.log(this.files,'Delete Files');
+  // let test:any
+  // for (let file of this.files) {
+  //   console.log(file.name,"InFor");
+  //   if(file.name != name){
+  //     test.push(file)
+  //   }
+  // } 
+  // this.files = test
+  console.log(this.urls,'Delete urls');
+  console.log(this.files,'Delete Files');
+  
+  // console.log(index,'Delete index');
+
+}
 
 }

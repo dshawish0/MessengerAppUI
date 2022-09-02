@@ -9,6 +9,7 @@ import jwt_decode from "jwt-decode";
 import { environment } from 'src/environments/environment';
 import { ChatWithMessageComponent } from '../chat/chat-with-message/chat-with-message.component';
 import * as signalR from '@microsoft/signalr';
+import { LoginService } from './login.service';
 
 interface Message{
   userName:string,
@@ -21,7 +22,7 @@ interface Message{
 })
 export class ChatService {
   updateedId='';
-  constructor(private http: HttpClient, private spinner: NgxSpinnerService, private toastr: ToastrService) { 
+  constructor(private http: HttpClient, private spinner: NgxSpinnerService, private toastr: ToastrService, private loginService:LoginService) { 
     this.startConnection();
   }
 
@@ -49,7 +50,7 @@ data:any;
       this.users = res;
 
       this.myFriend = this.users.filter((item: any) => item.status === 1);
-      this.lopy = this.users.filter((item: any) => item.status === 0 && item.userReciveId=== 1); //1FromLogin
+      this.lopy = this.users.filter((item: any) => item.status === 0 && item.userReciveId=== this.data.nameid); //1FromLogin
       this.blockFriend = this.users.filter((item: any) => item.status === 2);
       this.numOfFriend = this.myFriend.length;
       console.log(this.blockFriend,"FriendBlock");
@@ -67,7 +68,6 @@ data:any;
   friend: any = {}
   ids: any = []
   AddFriend(userName: any) {
-    debugger
     this.http.get('https://localhost:44318/api/User/GetUserByUserName/'+userName.userName).subscribe((res) => {
       this.user = [res]
       this.ids = this.user.map((obj: any) => obj.userId);
@@ -134,7 +134,7 @@ data:any;
 
   all_chat: any = [];
   last_Message: any = []
-  GetAllChat(id: any) {
+  GetAllChat() {
 
     this.http.get("https://localhost:44318/api/MessageGroup/GetFullMessageGroup/"+this.data.nameid).subscribe((res) => {
       this.all_chat = res;
@@ -225,9 +225,9 @@ data:any;
   }
 
   AllMessage: any = []
-  id: any
+  id: any=0;
   messages: Message[]=[]
- 
+ groupData:any;
   connection = new signalR.HubConnectionBuilder()
   .withUrl("https://localhost:44318/chat")
   .build();
@@ -242,7 +242,9 @@ data:any;
     this.http.get(`https://localhost:44318/api/Message/GetMessageForMessageGroup/${messageGroupId}`).subscribe((res) => {
       this.AllMessage = res;
       console.log("Message", this.AllMessage);
-
+      this.groupData = this.all_chat.filter((group:any)=>group.messageGroupId == this.id)
+      console.log(this.groupData,"this.groupData");
+      this.getGroupMemberByMessageGroupId(messageGroupId)
       this.messages=[];
 
     },
@@ -277,12 +279,13 @@ data:any;
         this.toastr.error("Error")
       })
   }
+
   allMemberinMessageGroup: any = []
   getGroupMemberByMessageGroupId(MessageGroupId: any) {
     console.log(MessageGroupId, "getGroupMember");
     this.http.get(`https://localhost:44318/api/GroupMember/GetGroupMemberForMessageGroup/${MessageGroupId}`).subscribe((res) => {
       this.allMemberinMessageGroup = res;
-      console.log("Message", this.allMemberinMessageGroup);
+      console.log("allMemberinMessageGroup", this.allMemberinMessageGroup);
 
     },
       err => {
@@ -290,19 +293,22 @@ data:any;
       })
   }
 
-  userProfile:any= this.allMemberinMessageGroup.filter((i:any)=>i.groupMemberId == this.allMemberinMessageGroup[0].groupMemberId);
-  UserProfile(memberId:any){
-    this.userProfile = this.allMemberinMessageGroup.filter((i:any)=>i.groupMemberId == memberId);
+  userProfile:any;
+  UserProfile(userId:any){
+    this.userProfile = this.allMemberinMessageGroup.filter((i:any)=>i.user.userId == userId).map((user:any)=>user.user);
     console.log("userProfileService",this.userProfile);
+
+    if(this.userProfile.length==0){
+      this.userProfile = this.myFriend.filter((item: any) => item.user.userId === userId).map((u:any)=>u.user);
+      console.log("IIIIIFFFFFFFuserProfileService",this.userProfile);
+    }
     
   }
 
   myProfile:any;
-  MyProfile(userId: any){
-    debugger
-    console.log(userId, 'MyProfileService');
+  MyProfile(){
     this.spinner.show();
-    this.http.get(`https://localhost:44318/api/User/GetUserById/${userId}`).subscribe((result)=>{
+    this.http.get(`https://localhost:44318/api/User/GetUserById/${this.data.nameid}`).subscribe((result)=>{
       this.myProfile = result;
       this.spinner.hide();
       console.log(this.myProfile);
@@ -337,7 +343,7 @@ data:any;
   this.http.put('https://localhost:44318/api/User/UpdateUser',profile).subscribe((result)=>{
     this.myProfile = result;
     this.spinner.hide();
-    
+    this.toastr.success("success");
   },
   error=>{
     this.spinner.hide();
@@ -394,18 +400,17 @@ data:any;
     (resp)=>{
       this.imageMessage=resp;
       console.log(this.imageMessage,"uplodeimageService");
-      this.SendImageAsMessage()
+      // this.SendImageAsMessage()
     },err =>{
       this.toastr.error(err.message);
     })
  }
 
- SendImageAsMessage(){
-  this.imageMessage.messageGroupId = this.id;
-  this.imageMessage.senderId = 1 //from login
-
-  console.log(this.imageMessage);
-  this.http.post('https://localhost:44318/api/Message/CreateMessage', this.imageMessage).subscribe((res) => {
+ SendImageAsMessage(messageimg:any){
+  // this.imageMessage.messageGroupId = this.id;
+  // this.imageMessage.senderId = this.data.nameid //from login
+  // console.log(this.imageMessage);
+  this.http.post('https://localhost:44318/api/Message/CreateMessage', messageimg).subscribe((res) => {
 
 
     },
@@ -415,12 +420,12 @@ data:any;
       })
  }
 
- numberOfPayment:any;
- sumOfTotalPayment:any
+ numberOfPayment:any=0;
+ sumOfTotalPayment:any=0;
  payment:any;
  GetAllPaymentsByUserId(){   
   this.spinner.show();                                           //from Login
-  this.http.get(`https://localhost:44318/api/Payment/GetPaymentsByUserId/${1}`).subscribe((res) => {
+  this.http.get(`https://localhost:44318/api/Payment/GetPaymentsByUserId/${this.data.nameid}`).subscribe((res) => {
     this.payment = res;
     this.numberOfPayment = this.payment.length;
     
@@ -441,6 +446,36 @@ data:any;
       this.spinner.hide();
       this.toastr.error("Error")
     })
+ }
+
+ UserActive(user:any){
+  this.spinner.show();
+  this.http.put('https://localhost:44318/api/User/ActivationChange',user).subscribe((result)=>{
+    this.myProfile = result;
+    this.spinner.hide();
+    this.toastr.success("success");
+  },
+  error=>{
+    this.spinner.hide();
+    this.toastr.error(error.message);
+  })
+ }
+
+
+ allServices:any;
+ GetAllServices(){
+  this.http.get('https://localhost:44318/api/Services/GetAllServices').subscribe((result)=>{
+    this.allServices = result;
+    console.log(this.allServices,"this.allServices");
+    
+  },error=>{
+    this.toastr.error(error.message)
+  })
+ }
+
+ PayService(serviceId:any){
+  console.log(serviceId,"serviceId");
+  
  }
 }
 

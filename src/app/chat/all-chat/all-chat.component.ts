@@ -17,10 +17,10 @@ export class AllChatComponent implements OnInit {
   constructor(public chatService:ChatService, public dialog:MatDialog, private LoginService:LoginService) { }
   public innerWidth: any;
   ngOnInit(): void {
+    // this.chatService.MyProfile(); 
+    // this.chatService.GetAllChat()
+    // const userId = this.LoginService.data.nameid;
     
-    this.chatService.GetAllChat(1)
-    const userId = this.LoginService.data.nameid;
-    this.chatService.MyProfile(userId); 
     console.log("AllChatComponent");
   }
 

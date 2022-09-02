@@ -29,12 +29,12 @@ export class AdminService {
         // hide spinner
         this.spinner.hide();
         //show toster
-        this.toastr.success('sucssess');
+        //this.toastr.success('sucssess','',{ positionClass:'toast-bottom-center' });
       }, err => {
         //hide spinner
         this.spinner.hide();
         //show toster
-        this.toastr.error('Error');
+        this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
       })
   }
   BlockUser(body: any) {
@@ -49,12 +49,12 @@ export class AdminService {
         // hide spinner
         this.spinner.hide();
         //show toster
-        this.toastr.success('sucssess');
+        this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
       }, err => {
         //hide spinner
         this.spinner.hide();
         //show toster
-        this.toastr.error('Error');
+        this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
       })
     window.location.reload();
   }
@@ -70,12 +70,12 @@ export class AdminService {
         // hide spinner
         this.spinner.hide();
         //show toster
-        this.toastr.success('sucssess');
+        this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
       }, err => {
         //hide spinner
         this.spinner.hide();
         //show toster
-        this.toastr.error('Error');
+        this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
       })
     window.location.reload();
   }
@@ -87,14 +87,13 @@ export class AdminService {
         console.log(res);
         this.users = [res];
         this.spinner.hide();
-        this.toastr.success('Search success');
+        this.toastr.success('Search success', '', { positionClass: 'toast-bottom-center' });
       }, err => {
         this.spinner.hide();
-        this.toastr.error("Error");
-        this.toastr.error(err.message);
+
+        this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
         //this.toaster.error('something error');
       })
-
   }
   GetAlltestimonial() {
     //show spinner
@@ -108,12 +107,12 @@ export class AdminService {
         // hide spinner
         this.spinner.hide();
         //show toster
-        this.toastr.success('sucssess');
+        this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
       }, err => {
         //hide spinner
         this.spinner.hide();
         //show toster
-        this.toastr.error('Error');
+        this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
       })
   }
   AcceptTest(body: any) {
@@ -128,12 +127,12 @@ export class AdminService {
         // hide spinner
         this.spinner.hide();
         //show toster
-        this.toastr.success('sucssess');
+        this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
       }, err => {
         //hide spinner
         this.spinner.hide();
         //show toster
-        this.toastr.error('Error');
+        this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
       })
     window.location.reload();
   }
@@ -149,28 +148,28 @@ export class AdminService {
         // hide spinner
         this.spinner.hide();
         //show toster
-        this.toastr.success('sucssess');
+        this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
       }, err => {
         //hide spinner
         this.spinner.hide();
         //show toster
-        this.toastr.error('Error');
+        this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
       })
     window.location.reload();
   }
   SearchUserById(body: any) {
     this.spinner.show();
     debugger
-    this.http.post('https://localhost:44318/api/Testimonial/GetUserById',body).subscribe(
+    this.http.post('https://localhost:44318/api/Testimonial/GetUserById', body).subscribe(
       (res) => {
         console.log(res);
         this.testimonail = res;
         this.spinner.hide();
-        this.toastr.success('Search success');
+        this.toastr.success('Search success', '', { positionClass: 'toast-bottom-center' });
       }, err => {
         this.spinner.hide();
         this.toastr.error("Error");
-        this.toastr.error(err.message);
+        this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
         //this.toaster.error('something error');
       })
 
@@ -178,37 +177,40 @@ export class AdminService {
   Searchpublishdate(body: any) {
     this.spinner.show();
     debugger
-    this.http.post('https://localhost:44318/api/Testimonial/Getpublishdate',body).subscribe(
+    this.http.post('https://localhost:44318/api/Testimonial/Getpublishdate', body).subscribe(
       (res) => {
         console.log(res);
         this.testimonail = res;
         this.spinner.hide();
-        this.toastr.success('Search success');
+        this.toastr.success('Search success', '', { positionClass: 'toast-bottom-center' });
       }, err => {
         this.spinner.hide();
         this.toastr.error("Error");
-        this.toastr.error(err.message);
+        this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
         //this.toaster.error('something error');
       })
   }
   reports: any = [];
+  numofreport=0;
+  reportsaccept:any=[];
   GetAllReport() {
     //show spinner
     this.spinner.show();
-    //hits Api
+    
     this.http.get('https://localhost:44318/api/ReportUser/GetReportUsers').subscribe(
       (result) => {
         this.reports = result;
-        console.log(result);
+        this.reportsaccept = this.reports.filter((obj: any) => obj.status === 0);
+        this.numofreport = this.reportsaccept.length;
         // hide spinner
         this.spinner.hide();
         //show toster
-        this.toastr.success('sucssess');
+        this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
       }, err => {
         //hide spinner
         this.spinner.hide();
         //show toster
-        this.toastr.error('Error');
+        this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
       })
   }
   Accepts(body: any) {
@@ -221,12 +223,12 @@ export class AdminService {
         // hide spinner
         this.spinner.hide();
         //show toster
-        this.toastr.success('sucssess');
+        this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
       },
       err => {
 
         this.spinner.hide();
-        this.toastr.error('Error');
+        this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
       })
     window.location.reload();
   }
@@ -238,26 +240,26 @@ export class AdminService {
         debugger
         console.log(result);
         this.spinner.hide();
-        this.toastr.success('sucssess');
+        this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
       },
       err => {
         this.spinner.hide();
-        this.toastr.error('Error');
+        this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
       })
     window.location.reload();
   }
   searchReport(id: number) {
     this.spinner.show();
-    this.http.get('https://localhost:44318/api/ReportUser/GetReportUsersById/'+id).subscribe(
+    this.http.get('https://localhost:44318/api/ReportUser/GetReportUsersById/' + id).subscribe(
       (res) => {
         console.log(res);
         this.reports = res;
         this.spinner.hide();
-        this.toastr.success('Search success');
+        this.toastr.success('Search success', '', { positionClass: 'toast-bottom-center' });
       }, err => {
         this.spinner.hide();
         this.toastr.error("Error");
-        this.toastr.error(err.message);
+        this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
         //this.toaster.error('something error');
       })
 
@@ -274,122 +276,137 @@ export class AdminService {
         // hide spinner
         this.spinner.hide();
         //show toster
-        this.toastr.success('sucssess');
+        this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
       },
       err => {
         console.log('error');
         //hide spinner
         this.spinner.hide();
         //show toster
-        this.toastr.error('Error');
+        this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
       })
   }
   Createservice(body: any) {
     debugger
+    this.spinner.show();
     this.http.post('https://localhost:44318/api/Services/AddServices', body).subscribe(
       (res) => {
         debugger
-        console.log("created");
+        this.spinner.hide();
+        //show toster
+        this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
       }, err => {
-        console.log("Error");
+        this.spinner.hide();
+        this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
 
       })
     console.log(body);
     window.location.reload();
   }
   deleteservices(id: any) {
-    debugger
+    this.spinner.show();
     this.http.delete('https://localhost:44318/api/Services/DeleteServices/' + id).subscribe(
       (res) => {
         console.log('deleted');
-
+        this.spinner.hide();
+        //show toster
+        this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
       }, err => {
-
-        console.log("Error");
+        this.spinner.hide();
+        this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
       })
     window.location.reload();
 
   }
   Updateservices(body: any) {
-    debugger
+    this.spinner.show();
     this.http.put('https://localhost:44318/api/Services/update', body).subscribe
       ((resp) => {
-      },
-        err => {
-          console.log("Error");
-        })
+        this.spinner.hide();
+        //show toster
+        this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
+      }, err => {
+        this.spinner.hide();
+        this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
+      })
     window.location.reload();
   }
   searchservices(data: number) {
+    this.spinner.show();
     this.http.get('https://localhost:44318/api/Services/GetServiseById/' + data)
       .subscribe((res) => {
-        console.log(res);
+
         this.addservices = [res];
+        this.spinner.hide();
+        //show toster
+        this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
       },
         err => {
+          this.spinner.hide();
+          this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
         })
   }
-  UserInfo:any=[];
-  getInfoProfile(){
-    let token:any = localStorage.getItem('token');
+  UserInfo: any = [];
+  getInfoProfile() {
+    let token: any = localStorage.getItem('token');
     // console.log(token);
-    let data :any = jwt_decode(token);
+    let data: any = jwt_decode(token);
     //show spinner
     this.spinner.show();
     //hits Api
-    this.http.get('https://localhost:44318/api/User/GetUserById/'+ data.nameid).subscribe(
+    this.http.get('https://localhost:44318/api/User/GetUserById/' + data.nameid).subscribe(
       (result) => {
         // hide spinner
         this.spinner.hide();
         this.UserInfo = result;
         //show toster
-        //this.toastr.success('sucssess');
+        //this.toastr.success('sucssess','',{ positionClass:'toast-bottom-center' });
       }, err => {
         //hide spinner
         this.spinner.hide();
         //show toster
-        this.toastr.error('Error');
+        this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
       })
   }
-  displayImg:any;
-  uploadAttachment(file:FormData){
+  displayImg: any;
+  uploadAttachment(file: FormData) {
     debugger
     this.http.post('https://localhost:44318/api/Footer/upLoadImg', file).subscribe(
-      (res:any)=>{
+      (res: any) => {
         console.log("***********************");
         console.log(res);
-        this.displayImg=res.logoImg;
+        this.displayImg = res.logoImg;
         console.log(this.displayImg);
         // hide spinner
         this.spinner.hide();
         //show toster
-        this.toastr.success('sucssess Upload');
+        this.toastr.success('sucssess Upload', '', { positionClass: 'toast-bottom-center' });
 
-      },err =>{
+      }, err => {
         //hide spinner
         this.spinner.hide();
         //show toster
-        this.toastr.error('Error');
+        this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
       })
   }
-  display_Img:any;
-  UpdateUser(body:any){
+  display_Img: any;
+  UpdateUser(body: any) {
     body.proFileImg = this.display_Img;
     //show spinner
     this.spinner.show();
     //hits Api
     debugger
-    this.http.put('https://localhost:44318/api/User/UpdateUser',body).subscribe(
+    this.http.put('https://localhost:44318/api/User/UpdateUser', body).subscribe(
       (result) => {
         // hide spinner
         this.spinner.hide();
         //show toster
-        this.toastr.success('sucssess Updated');
+        this.toastr.success('sucssess Updated', '', { positionClass: 'toast-bottom-center' });
       }, err => {
         //hide spinner
         this.spinner.hide();
         //show toster
-        this.toastr.error('Error');
+        this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
       })
     window.location.reload();
   }
@@ -405,32 +422,32 @@ export class AdminService {
         // hide spinner
         this.spinner.hide();
         //show toster
-        this.toastr.success('sucssess');
+        this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
       }, err => {
         //hide spinner
         this.spinner.hide();
         //show toster
-        this.toastr.error('Error');
+        this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
       })
   }
   UpdateFooter(body: any) {
     this.spinner.show();
-    if(this.displayImg != null){
+    if (this.displayImg != null) {
       body.logoImg = this.displayImg;
-    } 
+    }
     debugger
     this.http.put('https://localhost:44318/api/Footer/UpdateFooter', body).subscribe(
       (resp) => {
-      this.spinner.hide();
-      this.toastr.success('sucssess Updated');
-    }, err => {
-      this.spinner.hide();
-      this.toastr.error('Error');
-    })
+        this.spinner.hide();
+        this.toastr.success('sucssess Updated', '', { positionClass: 'toast-bottom-center' });
+      }, err => {
+        this.spinner.hide();
+        this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
+      })
     window.location.reload();
   }
   HomeInfo: any = [];
-  GetHome(){
+  GetHome() {
     //show spinner
     this.spinner.show();
     //hits Api
@@ -441,15 +458,15 @@ export class AdminService {
         // hide spinner
         this.spinner.hide();
         //show toster
-        this.toastr.success('sucssess');
+        //this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
       }, err => {
         //hide spinner
         this.spinner.hide();
         //show toster
-        this.toastr.error('Error');
+        this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
       })
   }
-  
+
   uploadAttachmentUser(file: FormData) {
     debugger
     this.http.post('https://localhost:44318/api/User/uploadImageAdmin', file).subscribe(
@@ -461,14 +478,120 @@ export class AdminService {
         // hide spinner
         this.spinner.hide();
         //show toster
-        this.toastr.success('sucssess Upload Image');
+        this.toastr.success('sucssess Upload Image', '', { positionClass: 'toast-bottom-center' });
 
       }, err => {
         //hide spinner
         this.spinner.hide();
         //show toster
-        this.toastr.error('Error');
+        this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
       })
+  }
+  logout(userid: any) {
+    //show spinner
+    this.spinner.show();
+    //hits Api
+    this.http.post('https://localhost:44318/api/Login/logOut/' + userid, userid).subscribe(
+      (result) => {
+        // hide spinner
+        this.spinner.hide();
+        //show toster
+        this.toastr.success('logout', '', { positionClass: 'toast-bottom-center' });
+      }, err => {
+        //hide spinner
+        this.spinner.hide();
+        //show toster
+        this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
+      })
+  }
+  AboutUs: any = [];
+  GetAboutUs() {
+    //show spinner
+    this.spinner.show();
+    //hits Api
+    this.http.get('https://localhost:44318/api/AboutUs/GetAbout').subscribe(
+      (result) => {
+        this.AboutUs = result;
+        console.log(result);
+        // hide spinner
+        this.spinner.hide();
+        //show toster
+        //this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
+      }, err => {
+        //hide spinner
+        this.spinner.hide();
+        //show toster
+        this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
+      })
+  }
+  displayImgabout: any;
+  uploadAttachmentAbout(file: FormData) {
+    debugger
+    this.http.post('https://localhost:44318/api/AboutUs/upLoadImg', file).subscribe(
+      (res: any) => {
+        console.log(res);
+        this.displayImgabout = res.imgPaht;
+        // hide spinner
+        this.spinner.hide();
+        //show toster
+        this.toastr.success('sucssess Upload', '', { positionClass: 'toast-bottom-center' });
+
+      }, err => {
+        //hide spinner
+        this.spinner.hide();
+        //show toster
+        this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
+      })
+  }
+  UpdateAbout(body:any){
+    this.spinner.show();
+    if (this.displayImgabout != null) {
+      body.imgPaht = this.displayImgabout;
+    }
+    debugger
+    this.http.put('https://localhost:44318/api/AboutUs/UpdateAbout', body).subscribe(
+      (resp) => {
+        this.spinner.hide();
+        this.toastr.success('sucssess Updated', '', { positionClass: 'toast-bottom-center' });
+      }, err => {
+        this.spinner.hide();
+        this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
+      })
+    window.location.reload();
+  }
+  ContactUs: any = [];
+  GetContactUs() {
+    //show spinner
+    this.spinner.show();
+    //hits Api
+    this.http.get('https://localhost:44318/api/ContactUs/GetContact').subscribe(
+      (result) => {
+        console.log(result);
+        
+        this.ContactUs = result;
+        // hide spinner
+        this.spinner.hide();
+        //show toster
+        //this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
+      }, err => {
+        //hide spinner
+        this.spinner.hide();
+        //show toster
+        this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
+      })
+  }
+  UpdateContact(body:any){
+    this.spinner.show();
+    debugger
+    this.http.put('https://localhost:44318/api/ContactUs/UpdateContact', body).subscribe(
+      (resp) => {
+        this.spinner.hide();
+        this.toastr.success('sucssess Updated', '', { positionClass: 'toast-bottom-center' });
+      }, err => {
+        this.spinner.hide();
+        this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
+      })
+    window.location.reload();
   }
 
 }

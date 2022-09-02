@@ -10,32 +10,10 @@ import { moveSyntheticComments } from 'typescript';
 })
 export class TestimonialComponent implements OnInit {
   constructor(public home:HomeService) {
-    //this.home.GetAlltestimonialShow();
+    
   }
   number:any=1;
-  testimonailShowSelected:any=[]
-  rand = new Set<number>();
   ngOnInit(): void {
-
-    // debugger     
-    //  console.log(this.home.testimonailShow.size);
-    //  while(this.rand.size<7){
-    //   this.rand.add((Math.floor(Math.random() * (15 - 1 + 1)) + 1)-1)
-    //   console.log(this.rand.size);
-    //  }
-
-    //  for(let data in this.rand){
-    //   this.testimonailShowSelected.push(this.home.testimonailShow[data]);
-    //  }
-
-    //  console.log(this.testimonailShowSelected+"dasdasdasdasdasd")
-
-
-    
-     
-
-
-
   }
 
   

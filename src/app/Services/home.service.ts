@@ -12,6 +12,8 @@ export class HomeService {
 
 
   testimonailShow:any=[];
+  testimonailShowSelected:any=[];
+  rand = new Set<number>();
   GetAlltestimonialShow() {
     //show spinner
     this.spinner.show();
@@ -26,6 +28,7 @@ export class HomeService {
         this.spinner.hide();
         //show toster
         //this.toastr.success('sucssess GetAlltestimonialShow');
+
       }, err => {
         //hide spinner
         this.spinner.hide();
@@ -33,5 +36,7 @@ export class HomeService {
         this.toastr.error('Error');
       })
   }
+
+
 
 }

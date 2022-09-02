@@ -1,134 +1,140 @@
 body {
-    background-color: #d1f3e7;
+    color: #fff;
+    background-color: #4fa2ff;
 }
 
-#title-Tag-Line {
-    font-size: 20px;
+.right_conatct_social_icon {
+    background: linear-gradient(to top right, #4fa2ff -5%, #1A2D99 100%);
 }
 
-/* .card-item__bg{
-    width: 150px;
-    margin-left: auto;
-    margin-right: auto;
-    left: 0;
-    right: 0;
-    display: block;
+.contact_us {
+    background-color: #f1f1f1;
+    padding: 120px 0px;
+}
+
+.contact_inner {
+    background-color: #fff;
     position: relative;
-    margin: 30px auto;
-    transform: translate(0px, 50px);
-    z-index: 5;
-  } */
-
-/* form animation starts */
-.form {
-    background: #fff;
-    box-shadow: 0 30px 60px 0 rgba(90, 116, 148, 0.4);
-    border-radius: 5px;
-    max-width: 480px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    left: 0;
-    right: 0;
-    position: absolute;
-    border-top: 5px solid #0e3721;
-    /*   z-index: 1; */
-    animation: bounce 1.5s infinite;
+    box-shadow: 20px 22px 44px #cccc;
+    border-radius: 25px;
 }
 
-::-webkit-input-placeholder {
-    font-size: 1.3em;
+.contact_field {
+    padding: 60px 340px 90px 100px;
 }
 
-.title {
-    display: block;
-    font-family: sans-serif;
-    margin: 10px auto 5px;
-    width: 300px;
+.right_conatct_social_icon {
+    height: 100%;
 }
 
-.termsConditions {
-    margin: 0 auto 5px 80px;
+.contact_field h3 {
+    color: #000;
+    font-size: 40px;
+    letter-spacing: 1px;
+    font-weight: 600;
+    margin-bottom: 10px
 }
 
-.pageTitle {
-    font-size: 2em;
-    font-weight: bold;
+.contact_field p {
+    color: #000;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin-bottom: 35px;
 }
 
-.secondaryTitle {
-    color: grey;
-}
-
-.name {
-    background-color: #ebebeb;
-    color: white;
-}
-
-.name:hover {
-    border-bottom: 5px solid #0e3721;
-    height: 30px;
-    width: 380px;
-    transition: ease 0.5s;
-}
-
-.email {
-    background-color: #ebebeb;
-    height: 2em;
-}
-
-.email:hover {
-    border-bottom: 5px solid #0e3721;
-    height: 30px;
-    width: 380px;
-    transition: ease 0.5s;
-}
-
-.message {
-    background-color: #ebebeb;
-    overflow: hidden;
-    height: 10rem;
-}
-
-.message:hover {
-    border-bottom: 5px solid #0e3721;
-    height: 12em;
-    width: 380px;
-    transition: ease 0.5s;
-}
-
-.formEntry {
-    display: block;
-    margin: 30px auto;
-    min-width: 300px;
-    padding: 10px;
-    border-radius: 2px;
+.contact_field .form-control {
+    border-radius: 10px;
     border: none;
-    transition: all 0.5s ease 0s;
+    border-bottom: 1px solid #ccc;
+    margin-top: 15px;
 }
 
-.submit {
-    width: 200px;
-    color: white;
-    background-color: #0e3721;
-    font-size: 20px;
+.contact_field .form-control:focus {
+    box-shadow: none;
+    outline: none;
+    border-bottom: 2px solid #4fa2ff;
 }
 
-.submit:hover {
-    box-shadow: 15px 15px 15px 5px rgba(78, 72, 77, 0.219);
-    transform: translateY(-3px);
-    width: 300px;
-    border-top: 5px solid #0e3750;
-    border-radius: 0%;
+.contact_field .form-control::placeholder {
+    font-size: 13px;
+    letter-spacing: 1px;
 }
 
-@keyframes bounce {
-    0% {
-        tranform: translate(0, 4px);
-    }
+.contact_info_sec {
+    position: absolute;
+    background-color: #2d2d2d;
+    right: 1px;
+    top: 18%;
+    height: 340px;
+    width: 340px;
+    padding: 40px;
+    border-radius: 25px 0 0 25px;
+}
 
-    50% {
-        transform: translate(0, 8px);
-    }
+.contact_info_sec h4 {
+    color: #fff;
+    letter-spacing: 1px;
+    padding-bottom: 15px;
+}
+
+.info_single {
+    margin: 30px 0px;
+}
+
+.info_single i {
+    margin-right: 15px;
+}
+
+.info_single span {
+    color: #fff;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+button.contact_form_submit {
+    background: linear-gradient(to top right, #4fa2ff -5%, #4fa2ff 100%);
+    border: none;
+    color: #fff;
+    padding: 10px 15px;
+    width: 100%;
+    margin-top: 25px;
+    border-radius: 35px;
+    cursor: pointer;
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+
+.socil_item_inner li {
+    list-style: none;
+}
+
+.socil_item_inner li a {
+    color: #fff;
+    margin: 0px 15px;
+    font-size: 14px;
+}
+
+.socil_item_inner {
+    padding-bottom: 10px;
+}
+
+.map_sec {
+    padding: 50px 0px;
+}
+
+.map_inner h4,
+.map_inner p {
+    color: #000;
+    text-align: center
+}
+
+.map_inner p {
+    font-size: 13px;
+}
+
+.map_bind {
+    margin-top: 50px;
+    border-radius: 30px;
+    overflow: hidden;
 }

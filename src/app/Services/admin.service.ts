@@ -470,31 +470,6 @@ export class AdminService {
         this.toastr.error('Error');
       })
   }
-  testimonailShow:any=[];
-  GetAlltestimonialShow() {
-    //show spinner
-    this.spinner.show();
-    //hits Api
-    this.http.get('https://localhost:44318/api/Testimonial/GetTestimonialShow').subscribe(
-      (result) => {
-        debugger
-        this.testimonailShow = result;
-        console.log(result);
-        // hide spinner
-        this.spinner.hide();
-        //show toster
-        //this.toastr.success('sucssess GetAlltestimonialShow');
-      }, err => {
-        //hide spinner
-        this.spinner.hide();
-        //show toster
-        this.toastr.error('Error');
-      })
-  }
-
-
-
-
 
 }
 

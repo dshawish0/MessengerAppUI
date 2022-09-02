@@ -50,7 +50,8 @@ const headerDir={
       }
     },err=>{
       this.spinner.hide();
-      this.toastr.error('Email and Password Invalid');
+      this.toastr.error('Email and Password Invalid', '', {
+        positionClass: 'toast-bottom-center' });
     })
 
 

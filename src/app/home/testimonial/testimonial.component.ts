@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from 'src/app/Services/admin.service';
+import { HomeService } from 'src/app/Services/home.service';
+import { moveSyntheticComments } from 'typescript';
 
 @Component({
   selector: 'app-testimonial',
@@ -7,11 +9,14 @@ import { AdminService } from 'src/app/Services/admin.service';
   styleUrls: ['./testimonial.component.css']
 })
 export class TestimonialComponent implements OnInit {
-  constructor(public admin:AdminService) { }
+  constructor(public home:HomeService) {
+    
+  }
   number:any=1;
   ngOnInit(): void {
-     this.admin.GetAlltestimonialShow();
   }
+
+  
 
 change(num:any){
   //alert("dasdasd");

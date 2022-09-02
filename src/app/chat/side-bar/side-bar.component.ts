@@ -27,7 +27,7 @@ userName = new FormControl('',[Validators.required, Validators.email]);
   numOfFriend:number=0;
   ngOnInit(): void {
      this.chat.GetAllFrinds();
-     this.chat.GetAllChat(1)
+     this.chat.GetAllChat()
   }
 
   opendDialogAddFriend(){

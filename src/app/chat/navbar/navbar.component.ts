@@ -16,8 +16,8 @@ export class NavbarComponent implements OnInit {
 
     // const userId = this.LoginService.data.nameid;
     this.chatService.getUser();
-    this.chatService.MyProfile(this.chatService.data.nameid); 
-
+    this.chatService.MyProfile(); 
+    this.chatService.GetAllChat()
   }
  
 }

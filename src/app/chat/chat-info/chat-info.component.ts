@@ -43,7 +43,7 @@ export class ChatInfoComponent implements OnInit {
   OpenReportUserDialog(userId:any){
     console.log(userId,'report');
     this.reportUserForm.controls['UserReportedId'].setValue(userId);
-    this.dialog.open(this.ReportUserDialog, {width:'500px'});
+    this.dialog.open(this.ReportUserDialog, {width:'400px',height:'600px'});
   }
 
   ReportUser(){

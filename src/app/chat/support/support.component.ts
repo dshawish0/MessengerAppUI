@@ -12,16 +12,25 @@ export class SupportComponent implements OnInit {
 
   ngOnInit(): void {
     this.chat.GetAllPaymentsByUserId();
+    this.chat.GetAllServices();
     console.log("SupportComponent");
   }
 
-  UserActive(e:any,userId:any){
+  UserActive(e:any,user:any){
     if(e.target.checked==true){
-      console.log(userId,'true');
+      user.isActive=1;
+      this.chat.UserActive(user);
+      console.log(user,'true');
     }
     else{
-      console.log(userId,'false');
+      user.isActive=0;
+      console.log(user,'false');
+      this.chat.UserActive(user);
     }
+  }
+
+  PayService(serviceId:any){
+    this.chat.PayService(serviceId);
   }
 
 }

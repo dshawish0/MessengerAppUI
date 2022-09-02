@@ -11,6 +11,7 @@ import { ChatService } from 'src/app/Services/chat.service';
 export class FriendsComponent implements OnInit {
   @ViewChild('AddFriendDialog') AddFriendDialog! :TemplateRef<any>;
   @ViewChild('ReportUserDialog') ReportUserDialog! :TemplateRef<any>;
+  @ViewChild('userProfileDialog') userProfileDialog! :TemplateRef<any>;
 
   userName = new FormControl('',[Validators.required, Validators.email]);
 
@@ -24,7 +25,7 @@ export class FriendsComponent implements OnInit {
 
 
   opendDialogAddFriend(){
-    this.dialog.open(this.AddFriendDialog, {height:'1000px'});
+    this.dialog.open(this.AddFriendDialog, {width:'400px'});
   }
   addFriend(){
     console.log(this.userName.value);
@@ -49,7 +50,7 @@ export class FriendsComponent implements OnInit {
   OpenReportUserDialog(userId:any){
     console.log(userId,'report');
     this.reportUserForm.controls['UserReportedId'].setValue(userId);
-    this.dialog.open(this.ReportUserDialog, {width:'500px'});
+    this.dialog.open(this.ReportUserDialog,  {width:'400px',height:'600px'});
   }
 
   ReportUser(){
@@ -59,5 +60,11 @@ export class FriendsComponent implements OnInit {
   }
   CloseReportDialog(){
     this.dialog.closeAll();
+  }
+
+  UserProfile(userId:any){
+    console.log(userId,"userIdddddd");
+    this.chat.UserProfile(userId);
+    this.dialog.open(this.userProfileDialog,{width:'500px',height:'600px'});
   }
 }

@@ -8,8 +8,7 @@ import { HomeService } from './Services/home.service';
 })
 export class AppComponent {
   title = 'MessengerApp';
-  constructor(private home:HomeService){
-    debugger
+  constructor(public home:HomeService){
     this.home.GetAlltestimonialShow();
   }
   

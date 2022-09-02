@@ -12,6 +12,8 @@ export class HomeService {
 
 
   testimonailShow:any=[];
+  testimonailShowSelected:any=[];
+  rand = new Set<number>();
   GetAlltestimonialShow() {
     //show spinner
     this.spinner.show();
@@ -213,5 +215,7 @@ export class HomeService {
       })
     window.location.reload();
   }
+
+
 
 }

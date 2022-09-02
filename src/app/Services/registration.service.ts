@@ -55,4 +55,19 @@ export class RegistrationService {
       this.router.navigate(['log']);
     })
   }
+
+
+  UpdateVerificationCode(){
+    debugger
+    this.http.get('https://localhost:44318/api/Login/UpdateVerificationCode').subscribe(
+      (resp)=>{
+        this.spinner.hide();
+        this.toastr.success('Confirm Complete');
+        this.router.navigate(['log']);
+    },err =>{
+      this.spinner.hide();
+      this.toastr.error("can't Confirm Email");
+      this.router.navigate(['log']);
+    })
+  }
 }

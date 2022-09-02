@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { LoginService } from 'src/app/Services/login.service';
 import { RegistrationService } from 'src/app/Services/registration.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { RegistrationService } from 'src/app/Services/registration.service';
 })
 export class ConfirmEmailComponent implements OnInit {
   code : FormControl=new FormControl('',Validators.required);
-  constructor(public user:RegistrationService) { }
+  constructor(public user:RegistrationService, private Registration:RegistrationService) { }
   timeLeftSec: number=0;
   timeLeftMin:number=5;
   interval:any;
@@ -25,6 +26,7 @@ export class ConfirmEmailComponent implements OnInit {
             const reSend = document.getElementById('resend') as HTMLDivElement | null;
             if(reSend!=null){
                 reSend.innerHTML="ReSend";
+                this.interval=stop();
             }
 
         }
@@ -43,8 +45,8 @@ export class ConfirmEmailComponent implements OnInit {
   }
 
    SendCodeAgain(){
-    if(this.timeLeftMin + this.timeLeftSec ==0){
-    alert("dsadasdsad");
+   
+      this.Registration.UpdateVerificationCode();
+    
     }
-  }
 }

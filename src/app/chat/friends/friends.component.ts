@@ -58,13 +58,14 @@ export class FriendsComponent implements OnInit {
     console.log(this.reportUserForm.value,'reportUserForm');
     this.chat.ReportUser(this.reportUserForm.value);
   }
-  CloseReportDialog(){
-    this.dialog.closeAll();
-  }
+
 
   UserProfile(userId:any){
     console.log(userId,"userIdddddd");
     this.chat.UserProfile(userId);
-    this.dialog.open(this.userProfileDialog,{width:'500px',height:'600px'});
+    this.dialog.open(this.userProfileDialog,{width:'450px',height:'550px'});
+  }
+  CloseDialog(){
+    this.dialog.closeAll()
   }
 }

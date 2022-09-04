@@ -153,7 +153,10 @@ messageText:any;
     
     console.log('UserProfile',userId);
     this.chatService.UserProfile(userId)
-    this.dialog.open(this.userProfileDialog,{width:'500px',height:'600px'});
+    this.dialog.open(this.userProfileDialog,{width:'450px',height:'550px'});
+  }
+  CloseDialog(){
+    this.dialog.closeAll()
   }
 
 
@@ -210,7 +213,7 @@ files:any[]=[];
  deleteImage(name: any, index:any): void {
   debugger
   this.urls = this.urls.filter((a:any) => a.name !== name);
-    // this.files.splice(index,1);
+     this.files.splice(index,1);
     console.log(this.files,'Delete Files');
   // let test:any
   // for (let file of this.files) {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ChatService } from 'src/app/Services/chat.service';
@@ -9,7 +9,8 @@ import { ChatService } from 'src/app/Services/chat.service';
   styleUrls: ['./notifications.component.css']
 })
 export class NotificationsComponent implements OnInit {
-
+  @ViewChild('userProfileDialog') userProfileDialog! :TemplateRef<any>;
+  
   constructor(public chat:ChatService, public dialog:MatDialog,) { }
 
   ngOnInit(): void {
@@ -48,5 +49,16 @@ export class NotificationsComponent implements OnInit {
   UnBlock(friendId:any){
     console.log(friendId);
     this.chat.UnBlockFrind(friendId)
+  }
+
+  UserProfile(userId:any){
+    console.log("UserProfile", this.chat.allMemberinMessageGroup);
+    
+    console.log('UserProfile',userId);
+    this.chat.UserProfile(userId)
+    this.dialog.open(this.userProfileDialog,{width:'450px',height:'550px'});
+  }
+  CloseDialog(){
+    this.dialog.closeAll()
   }
 }

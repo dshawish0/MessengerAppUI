@@ -9,11 +9,11 @@ import { LoginService } from 'src/app/Services/login.service';
 })
 export class MyprofileComponent implements OnInit {
 
-  constructor(private LoginService:LoginService, public chatService :ChatService) { }
+  constructor(public chatService :ChatService) { }
   emailUser:any;
   ngOnInit(): void {
 
-    this.emailUser = this.LoginService.data.email;
+    this.emailUser = this.chatService.data.email;
 
   }
 

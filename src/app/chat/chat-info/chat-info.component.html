@@ -53,15 +53,28 @@
         <div class="offcanvas-body hide-scrollbar">
             <!-- Avatar -->
             <div class="text-center py-10">
-                <div class="row gy-6">
+                <div class="row gy-6" *ngIf="this.chatService.groupData[0].groupMembers.length>1">
                     <div class="col-12">
-                        <div class="avatar avatar-xl mx-auto">
+                        <div class="avatar avatar-xl mx-auto" >
                             <img src="../../../assets/Img/{{this.chatService.groupData[0].groupImg}}" alt="#" class="avatar-img">
                         </div>
                     </div>
 
                     <div class="col-12">
                         <h4>{{this.chatService.groupData[0].groupName}}</h4>
+                        <p>Number of Message {{this.chatService.AllMessage.length}} <br> Number Of Members {{this.chatService.allMemberinMessageGroup.length}}</p>
+                    </div>
+                </div>
+
+                <div class="row gy-6" *ngIf="this.chatService.groupData[0].groupMembers.length==1">
+                    <div class="col-12">
+                        <div class="avatar avatar-xl mx-auto" >
+                            <img class="avatar-img" src="../../../assets/Img/{{this.chatService.groupData[0].groupMembers[0].user.proFileImg}}" alt="">
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <h4>{{this.chatService.groupData[0].groupMembers[0].user.fname}}</h4>
                         <p>Number of Message {{this.chatService.AllMessage.length}} <br> Number Of Members {{this.chatService.allMemberinMessageGroup.length}}</p>
                     </div>
                 </div>

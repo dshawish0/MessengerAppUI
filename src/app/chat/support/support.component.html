@@ -34,7 +34,7 @@
                                             </div>
                                         </div>
 
-                                        <input type="text" class="form-control form-control-lg ps-0"
+                                        <input name="searchText" [(ngModel)]="this.chat.searchText" type="text" class="form-control form-control-lg ps-0"
                                             placeholder="Search messages or users"
                                             aria-label="Search for messages or users...">
                                     </div>
@@ -128,7 +128,7 @@
                                 </div>
 
                                 <!-- <div > -->
-                                    <div class="card border-0" *ngFor="let item of this.chat.allServices">
+                                    <div class="card border-0" *ngFor="let item of this.chat.transform(this.chat.allServices,{'servicename':this.chat.searchText},false)" >
                                         <div class="card-body">
                                             <div class="row align-items-center gx-0">
                                                 <div class="col">

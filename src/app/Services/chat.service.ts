@@ -227,7 +227,7 @@ data:any;
   AllMessage: any = []
   id: any=0;
   messages: Message[]=[]
- groupData:any;
+ groupData:any[]=[];
   connection = new signalR.HubConnectionBuilder()
   .withUrl("https://localhost:44318/chat")
   .build();
@@ -295,11 +295,11 @@ data:any;
 
   userProfile:any;
   UserProfile(userId:any){
-    this.userProfile = this.allMemberinMessageGroup.filter((i:any)=>i.user.userId == userId).map((user:any)=>user.user);
+    this.userProfile = this.allMemberinMessageGroup.filter((i:any)=>i.user.userId == userId).map((u:any)=>u.user);
     console.log("userProfileService",this.userProfile);
 
     if(this.userProfile.length==0){
-      this.userProfile = this.myFriend.filter((item: any) => item.user.userId === userId).map((u:any)=>u.user);
+      this.userProfile = this.users.filter((item: any) => item.user.userId === userId).map((u:any)=>u.user);
       console.log("IIIIIFFFFFFFuserProfileService",this.userProfile);
     }
     
@@ -476,6 +476,57 @@ data:any;
  PayService(serviceId:any){
   console.log(serviceId,"serviceId");
   
+ }
+
+
+ searchText:any;
+ transform(items: any, filter: any, isAnd: boolean): any {
+   if (filter && Array.isArray(items)) {
+     let filterKeys = Object.keys(filter);
+     if (isAnd) {
+       return items.filter(item => {
+         filterKeys.reduce((memo, keyName) => {
+           return (memo && new RegExp(filter[keyName], 'gi').test(item[keyName])) || filter[keyName] === "";
+         }, true)
+       });
+     } else {
+
+       return items.filter(item => {
+         return filterKeys.some((keyName) => {
+
+
+           let parts = keyName.split(".");
+           if (parts.length > 1) {
+             let dataList = item[parts[0]];
+             if (dataList) {
+               const all = dataList.filter((obj: any) => {
+                 return obj[parts[1]]?.includes( filter[keyName]);
+               });
+
+
+               return new RegExp(filter[keyName], 'gi').test(JSON.stringify(dataList)) || filter[keyName] === "";
+             }
+             else {
+               return filter[keyName] === "";
+             }
+
+           }
+           else {
+             let res =new RegExp(filter[keyName], 'gi').test(item[keyName]) || filter[keyName] === "";
+             console.log(res,"res");
+             
+             return res
+           }
+
+         });
+       });
+     }
+   } else {
+    console.log(items,"items");
+     return items;
+     
+     
+   }
  }
 }
 

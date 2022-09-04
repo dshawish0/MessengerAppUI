@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HomeService } from './Services/home.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'MessengerApp';
+  constructor(public home:HomeService){
+    this.home.GetAlltestimonialShow();
+  }
+  
 }

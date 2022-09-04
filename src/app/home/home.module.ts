@@ -8,6 +8,7 @@ import { DefultComponent } from './defult/defult.component';
 import { ChatModule } from '../chat/chat.module';
 import { TestimonialComponent } from './testimonial/testimonial.component';
 import { ContactusComponent } from './contactus/contactus.component';
+import { AboutasComponent } from './aboutas/aboutas.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { ContactusComponent } from './contactus/contactus.component';
     NavbarComponent,
     DefultComponent,
     TestimonialComponent,
-    ContactusComponent
+    ContactusComponent,
+    AboutasComponent
   ],
   imports: [
     CommonModule,

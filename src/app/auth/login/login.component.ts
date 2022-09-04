@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { interval } from 'rxjs';
 import { LoginService } from 'src/app/Services/login.service';
 
 
@@ -16,14 +17,19 @@ export class LoginComponent implements OnInit {
     email: new FormControl('',[Validators.required,Validators.email]),
     password: new FormControl('',[Validators.required,Validators.minLength(8)])
   })
-
-  
   constructor(public login:LoginService) { }
   email:any;
   password:any;
   ngOnInit(): void {
     this.email =localStorage.getItem('username');
     this.password=localStorage.getItem('password');
+
+  
+
+    
+    // console.log(this.timeLeft)
+  
+
     // alert(this.email);
     // alert(this.password);
   }
@@ -43,5 +49,4 @@ export class LoginComponent implements OnInit {
     this.login.submit(this.log.controls["email"].value,this.log.controls["password"].value)
     
   }
-
 }

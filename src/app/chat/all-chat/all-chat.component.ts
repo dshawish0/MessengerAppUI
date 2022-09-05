@@ -3,7 +3,7 @@ import { EmailValidator, FormControl, FormGroup, Validators } from '@angular/for
 import { MatDialog } from '@angular/material/dialog';
 import { ChatService } from 'src/app/Services/chat.service';
 import { LoginService } from 'src/app/Services/login.service';
-
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-all-chat',
@@ -75,6 +75,10 @@ export class AllChatComponent implements OnInit {
   
 
   DeleteChat(GroupMemberId:any){
-    this.chatService.DeleteChat(GroupMemberId)
+    console.log();
+    
+    // this.chatService.DeleteChat(GroupMemberId)
   }
+
+
 }

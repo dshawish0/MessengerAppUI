@@ -29,26 +29,32 @@
                                             </div>
                                         </div>
     
-                                        <input type="text" class="form-control form-control-lg ps-0" placeholder="Search messages or users" aria-label="Search for messages or users...">
+                                        <input type="text"  name="searchText" [(ngModel)]="this.chatService.searchText" class="form-control form-control-lg ps-0" placeholder="Search Users or Group" aria-label="Search for messages or users...">
                                     </div>
+                                    <!-- <p>Hello {{username}}!</p> -->
                                 </form>
                             </div>
     
                             <!-- Chats -->
                             <div class="card-list">
                                 <!-- Card -->
-                                <a class="card border-0 text-reset" style="cursor: inherit;" *ngFor="let item of this.chatService.all_chat" (click)="MessageChat(item.messageGroupId)">
+                                <a class="card border-0 text-reset" style="cursor: inherit;" *ngFor="let item of this.chatService.transform(this.chatService.all_chat,{'groupName':this.chatService.searchText},false)" (click)="MessageChat(item.messageGroupId)">
                                     <div class="card-body">
                                         <div class="row gx-5">
                                             <div class="col-auto">
-                                                <div class="avatar avatar-online">
-                                                    <img [src]="item.groupImg?'../../../assets/Img/{{item.groupImg}}':'../../../assets/images/111.jpg'" alt="#" class="avatar-img">
+                                                <div class="avatar" *ngIf="item.groupMembers.length>1">
+                                                    <img src="../../../assets/Img/{{item.groupImg}}" alt="#" class="avatar-img">
+                                                </div>
+                                                <div class="avatar" [ngClass]="item.groupMembers[0].user.isActive==1?' avatar-online':''" *ngIf="item.groupMembers.length==1">
+                                                    <img class="avatar-img" src="../../../assets/Img/{{item.groupMembers[0].user.proFileImg}}" alt="">
+                                                    <!-- <img [src]="item.groupMembers[0].user.proFileImg?'../../../assets/Img/{{item.groupMembers[0].user.proFileImg}}':'../../../assets/images/111.jpg'" alt="#" class="avatar-img"> -->
                                                 </div>
                                             </div>
     
                                             <div class="col">
                                                 <div class="d-flex align-items-center mb-3">
-                                                    <h5 class="me-auto mb-0">{{item.groupName}}</h5>
+                                                    <h5 class="me-auto mb-0" *ngIf="item.groupMembers.length>1">{{item.groupName}}</h5>
+                                                    <h5 class="me-auto mb-0" *ngIf="item.groupMembers.length==1">{{item.groupMembers[0].user.fname}}</h5>
                                                     <span class="text-muted extra-small ms-2" *ngIf="item.messages[0]!=null">
                                                         {{item.messages[item.messages.length-1].messageDate |date:'shortTime'}}
                                                     </span>

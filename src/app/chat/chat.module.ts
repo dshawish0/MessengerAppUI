@@ -8,7 +8,7 @@ import { ChatemptyComponent } from './chatempty/chatempty.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from '../shared/shared.module';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
 import { CreateChatComponent } from './create-chat/create-chat.component';
 import { FriendsComponent } from './friends/friends.component';
@@ -45,7 +45,7 @@ import { ChatInfoComponent } from './chat-info/chat-info.component';
     MatDialogModule,
     ReactiveFormsModule,
     MatSelectModule,
-    
+    FormsModule,
   ],
   exports:[
     NavbarComponent,

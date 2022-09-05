@@ -19,16 +19,27 @@
                 <div class="row align-items-center text-center text-xl-start">
                     <!-- Title -->
                     <div class="col-12 col-xl-6">
-                        <div class="row align-items-center gx-5">
+                        <div class="row align-items-center gx-5" *ngIf="this.chatService.groupData[0].groupMembers.length>1">
                             <div class="col-auto">
                                 <div class="avatar d-none d-xl-inline-block">
-                                    <img class="avatar-img"
-                                        src="../../../assets/images/{{this.chatService.groupData[0].groupImg}}" alt="">
+                                    <img class="avatar-img" src="../../../assets/Img/{{this.chatService.groupData[0].groupImg}}" alt="">
                                 </div>
                             </div>
 
                             <div class="col overflow-hidden">
                                 <h5 class="text-truncate">{{this.chatService.groupData[0].groupName}}</h5>
+                            </div>
+                        </div>
+
+                        <div class="row align-items-center gx-5" *ngIf="this.chatService.groupData[0].groupMembers.length==1">
+                            <div class="col-auto">
+                                <div class="avatar d-none d-xl-inline-block">
+                                    <img class="avatar-img" src="../../../assets/Img/{{this.chatService.groupData[0].groupMembers[0].user.proFileImg}}" alt="">
+                                </div>
+                            </div>
+
+                            <div class="col overflow-hidden">
+                                <h5 class="text-truncate">{{this.chatService.groupData[0].groupMembers[0].user.fname}}</h5>
                             </div>
                         </div>
                     </div>
@@ -162,7 +173,7 @@
                                 <div class="message-gallery" *ngIf="item.text.match('jpg')">
                                     <div class="row gx-3">
                                         <div class="col">
-                                            <img class="img-fluid rounded" src="../../../assets/images/{{item.text}}" data-action="zoom" alt="">
+                                            <img class="img-fluid rounded" src="../../../assets/Img/{{item.text}}" data-action="zoom" alt="">
                                         </div>
                                     </div>
                                 </div>
@@ -236,7 +247,7 @@
                                 <div class="message-gallery" *ngIf="item.text.match('jpg')">
                                     <div class="row gx-3">
                                         <div class="col">
-                                            <img class="img-fluid rounded" src="../../../assets/images/{{item.text}}" data-action="zoom" alt="">
+                                            <img class="img-fluid rounded" src="../../../assets/Img/{{item.text}}" data-action="zoom" alt="">
                                         </div>
                                     </div>
                                 </div>
@@ -244,8 +255,7 @@
 
                                 <!-- Text Message -->
                                 <div class="message-text" *ngIf="!item.text.match('jpg')">
-                                    <p style="font-size: medium;">{{item.text}} {{this.chatService.updateedId}}
-                                        {{item.messageGroupId}}</p>
+                                    <p style="font-size: medium;">{{item.text}} </p>
                                 </div>
                                 <!--End Text Message -->
 
@@ -382,7 +392,7 @@
                                 <div class="message-gallery" *ngIf="item.text.match('jpg')">
                                     <div class="row gx-3">
                                         <div class="col">
-                                            <img class="img-fluid rounded" src="../../../assets/images/{{item.text}}" data-action="zoom" alt="">
+                                            <img class="img-fluid rounded" src="../../../assets/Img/{{item.text}}" data-action="zoom" alt="">
                                         </div>
                                     </div>
                                 </div>
@@ -390,8 +400,7 @@
 
                                 <!-- Text Message -->
                                 <div class="message-text" *ngIf="!item.text.match('jpg')">
-                                    <p style="font-size: medium;" >{{item.text}} {{this.chatService.updateedId}}
-                                        {{item.messageGroupId}}</p>
+                                    <p style="font-size: medium;" >{{item.text}}</p>
                                 </div>
                                 <!--End Text Message -->
 
@@ -457,7 +466,7 @@
                                 <div class="message-gallery" *ngIf="item.text.match('jpg')">
                                     <div class="row gx-3">
                                         <div class="col">
-                                            <img class="img-fluid rounded" src="../../../assets/images/{{item.text}}" data-action="zoom" alt="">
+                                            <img class="img-fluid rounded" src="../../../assets/Img/{{item.text}}" data-action="zoom" alt="">
                                         </div>
                                     </div>
                                 </div>
@@ -465,8 +474,7 @@
 
                                 <!-- Text Message -->
                                 <div class="message-text" *ngIf="!item.text.match('jpg')">
-                                    <p style="font-size: medium;" >{{item.text}} {{this.chatService.updateedId}}
-                                        {{item.messageGroupId}}</p>
+                                    <p style="font-size: medium;" >{{item.text}}</p>
                                 </div>
                                 <!--End Text Message -->
 
@@ -662,13 +670,7 @@
 
 <ng-template #userProfileDialog >
     <!-- Modal: User profile -->
-    <!-- <div class="modal fade" id="modal-user-profile" tabindex="-1" aria-labelledby="modal-user-profile" aria-hidden="true"> -->
-    <div style="padding: 0px!important; margin:-24px;">
-        <div class="modal-dialog modal-dialog-centered ">
-            <!--modal-fullscreen-xl-down-->
-            <div class="modal-content">
-                <!-- Modal body -->
-                <div class="modal-body py-0">
+    <div class="modal-body py-0">
                     <!-- Header -->
                     <div class="profile modal-gx-n">
                         <div class="profile-img text-primary rounded-top-xl">
@@ -695,7 +697,7 @@
                             </svg>
 
                             <div class="position-absolute top-0 start-0 p-5">
-                                <button type="button" class="btn-close btn-close-white btn-close-arrow opacity-100"
+                                <button type="button" class="btn-close btn-close-white btn-close-arrow opacity-100" (click)="CloseDialog()"
                                     data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                         </div>
@@ -742,8 +744,6 @@
 
                         </li>
                     </ul>
-                    <!-- </div>
-                    </div> -->
 
                     <!-- List -->
 
@@ -751,12 +751,6 @@
 
                     <!-- List -->
                     <ul class="list-group list-group-flush">
-                        <!-- <li class="list-group-item">
-                    <div class="row align-items-center gx-6">
-                        <div class="col">
-                            <h5>Notifications</h5>
-                            <p>Enable sound notifications</p>
-                        </div> -->
                         <li class="list-group-item">
                             <div class="row align-items-center gx-6">
                                 <div class="col">
@@ -769,25 +763,5 @@
                         </li>
                     </ul>
                     <!-- List -->
-
-                    <!-- <hr class="hr-bold modal-gx-n my-0"> -->
-
-                    <!-- List -->
-                    <!-- <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                            <a href="#" class="text-reset">Send Message</a>
-                        </li>
-
-                        <li class="list-group-item">
-                            <a href="#" class="text-danger">Block User</a>
-                        </li>
-                    </ul> -->
-                    <!-- List -->
-                </div>
-                <!-- Modal body -->
-
-            </div>
-        </div>
     </div>
-
 </ng-template>

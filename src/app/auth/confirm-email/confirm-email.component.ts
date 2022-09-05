@@ -45,8 +45,9 @@ export class ConfirmEmailComponent implements OnInit {
   }
 
    SendCodeAgain(){
-   
+    if(this.timeLeftMin + this.timeLeftSec ==0){
       this.Registration.UpdateVerificationCode();
+    }
     
     }
 }

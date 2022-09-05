@@ -32,16 +32,16 @@
                                                 <th class="text-center">#</th>
                                                 <th>Message</th>
                                                 <th>Publish Date</th>
-                                                <th>User Id</th>
+                                                <th>User Name</th>
                                                 <th class="text-center">Actions</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr *ngFor="let item of admin.testimonail">
-                                                <td class="text-center">{{item.testId}}</td>
+                                            <tr *ngFor="let item of admin.testimonail;index as i">
+                                                <td class="text-center">{{i+1}}</td>
                                                 <td>{{item.message}}</td>
                                                 <td>{{item.publishDate}}</td>
-                                                <td>{{item.userId}}</td>
+                                                <td>{{item.userName}}</td>
                                                 <td class="text-center">
                                                     <button type="button" rel="tooltip" class="btn btn-success" *ngIf="item.status == 0" 
                                                     (click)="Accept(item)">

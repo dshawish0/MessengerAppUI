@@ -28,8 +28,8 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr *ngFor="let obj of admin.ContactUs">
-                          <td class="text-center">1</td>
+                        <tr *ngFor="let obj of admin.ContactUs,index as i">
+                          <td class="text-center">{{i+1}}</td>
                           <td>{{obj.fullName}}</td>
                           <td>{{obj.email}}</td>
                           <td>{{obj.message}}</td>

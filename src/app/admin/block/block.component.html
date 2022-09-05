@@ -37,8 +37,8 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr *ngFor="let item of admin.users">
-                                                <td class="text-center">{{item.userId}}</td>
+                                            <tr *ngFor="let item of admin.users;index as i">
+                                                <td class="text-center">{{i+1}}</td>
                                                 <td>{{item.fname}}</td>
                                                 <td>{{item.lname}}</td>
                                                 <td>{{item.gender}}</td>

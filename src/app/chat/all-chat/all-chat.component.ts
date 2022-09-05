@@ -74,10 +74,8 @@ export class AllChatComponent implements OnInit {
   }
   
 
-  DeleteChat(GroupMemberId:any){
-    console.log();
-    
-    // this.chatService.DeleteChat(GroupMemberId)
+  DeleteChat(){
+    this.chatService.DeleteChat()
   }
 
 

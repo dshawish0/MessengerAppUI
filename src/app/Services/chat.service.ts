@@ -46,6 +46,7 @@ data:any;
 
   numOfFriend: number = 0;
   GetAllFrinds() {
+    this.spinner.show()
     this.http.get('https://localhost:44318/api/Frind/GetFrinds/'+this.data.nameid).subscribe((res) => {
       this.users = res;
 
@@ -57,10 +58,11 @@ data:any;
       console.log(this.myFriend,"myFriend");
       console.log(this.lopy,"lopy");
       console.log(this.users,"users");
-      
+      this.spinner.hide()
     },
       err => {
         console.log('error')
+        this.spinner.hide()
       })
   }
 
@@ -186,6 +188,18 @@ data:any;
       })
   }
 
+  CreateGroupMember(groupMember:any){
+    this.spinner.show();
+    this.http.post('https://localhost:44318/api/GroupMember/InsertListOfGroupMember', groupMember).subscribe((res) => {
+      this.spinner.hide();
+      this.toastr.success("Create Group Member Successfuly");
+      window.location.reload();
+    },
+      error => {
+        this.spinner.hide();
+        this.toastr.error("Error")
+      })
+  }
 
   UpdateChat(messageGroup: any) {
 
@@ -194,23 +208,6 @@ data:any;
     }
     this.spinner.show();
     this.http.put('https://localhost:44318/api/MessageGroup/UpDateMessageGroup', messageGroup).subscribe((res) => {
-      console.log(res);
-
-      this.spinner.hide();
-      this.toastr.success("Update success");
-      window.location.reload();
-    },
-      error => {
-        this.spinner.hide();
-        console.log(error.message);
-        this.toastr.error("Error");
-      })
-  }
-
-  DeleteChat(GroupMemberId: any) {
-    console.log(GroupMemberId,"yazannnnnn");
-    this.spinner.show();
-    this.http.delete(`https://localhost:44318/api/GroupMember/DeleteGroupMember/${GroupMemberId}`).subscribe((res) => {
       console.log(res);
 
       this.spinner.hide();
@@ -244,6 +241,8 @@ data:any;
       console.log("Message", this.AllMessage);
       this.groupData = this.all_chat.filter((group:any)=>group.messageGroupId == this.id)
       console.log(this.groupData,"this.groupData");
+      console.log(this.messages,"this.messages");
+
       this.getGroupMemberByMessageGroupId(messageGroupId)
       this.messages=[];
 
@@ -281,15 +280,33 @@ data:any;
   }
 
   allMemberinMessageGroup: any = []
+  myGroupMemberId:any;
   getGroupMemberByMessageGroupId(MessageGroupId: any) {
     console.log(MessageGroupId, "getGroupMember");
     this.http.get(`https://localhost:44318/api/GroupMember/GetGroupMemberForMessageGroup/${MessageGroupId}`).subscribe((res) => {
       this.allMemberinMessageGroup = res;
       console.log("allMemberinMessageGroup", this.allMemberinMessageGroup);
-
+      this.myGroupMemberId =this.allMemberinMessageGroup.filter((item:any)=>item.user.userId==this.data.nameid)
+      console.log("myGroupMemberId", this.myGroupMemberId);
     },
       err => {
         console.log('error')
+      })
+  }
+
+  DeleteChat() {
+    this.spinner.show();
+    this.http.delete(`https://localhost:44318/api/GroupMember/DeleteGroupMember/${this.myGroupMemberId[0].groupMemberId}`).subscribe((res) => {
+      console.log(res);
+
+      this.spinner.hide();
+      this.toastr.success("Update success");
+      window.location.reload();
+    },
+      error => {
+        this.spinner.hide();
+        console.log(error.message);
+        this.toastr.error("Error");
       })
   }
 
@@ -512,9 +529,7 @@ data:any;
 
            }
            else {
-             let res =new RegExp(filter[keyName], 'gi').test(item[keyName]) || filter[keyName] === "";
-             console.log(res,"res");
-             
+             let res =new RegExp(filter[keyName], 'gi').test(item[keyName]) || filter[keyName] === "";             
              return res
            }
 
@@ -522,10 +537,7 @@ data:any;
        });
      }
    } else {
-    console.log(items,"items");
-     return items;
-     
-     
+     return items;          
    }
  }
 }

@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { ChatRoutingModule } from './chat-routing.module';
 import { NavbarComponent } from './navbar/navbar.component';
 import { IndexComponent } from './index/index.component';
-import { SideBarComponent } from './side-bar/side-bar.component';
 import { ChatemptyComponent } from './chatempty/chatempty.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from '../shared/shared.module';
@@ -24,7 +23,6 @@ import { ChatInfoComponent } from './chat-info/chat-info.component';
   declarations: [
     NavbarComponent,
     IndexComponent,
-    SideBarComponent,
     ChatemptyComponent,
     CreateChatComponent,
     FriendsComponent,
@@ -47,23 +45,6 @@ import { ChatInfoComponent } from './chat-info/chat-info.component';
     MatSelectModule,
     FormsModule,
   ],
-  exports:[
-    NavbarComponent,
-    IndexComponent,
-    SideBarComponent,
-    ChatemptyComponent,
-    CreateChatComponent,
-    FriendsComponent,
-    AllChatComponent,
-    NotificationsComponent,
-    SupportComponent,
-    SettingComponent,
-    ChatWithMessageComponent,
-    MyprofileComponent,
-    ChatInfoComponent
-    
-    
-  ]
 })
 export class ChatModule { 
 }

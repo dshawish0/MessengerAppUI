@@ -213,7 +213,8 @@ files:any[]=[];
  deleteImage(name: any, index:any): void {
   debugger
   this.urls = this.urls.filter((a:any) => a.name !== name);
-     this.files.splice(index,1);
+    // this.files.splice(index,1);
+    this.files =this.files.filter((item:any)=> item.name!==name)
     console.log(this.files,'Delete Files');
   // let test:any
   // for (let file of this.files) {

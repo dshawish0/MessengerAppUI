@@ -47,7 +47,7 @@ export class HomeService {
         // hide spinner
         this.spinner.hide();
         //show toster
-        this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
+        //this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
       }, err => {
         //hide spinner
         this.spinner.hide();
@@ -67,7 +67,7 @@ export class HomeService {
         // hide spinner
         this.spinner.hide();
         //show toster
-        this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
+        //this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
       }, err => {
         //hide spinner
         this.spinner.hide();
@@ -135,7 +135,7 @@ export class HomeService {
         // hide spinner
         this.spinner.hide();
         //show toster
-        this.toastr.success('sucssess Upload Image', '', { positionClass: 'toast-bottom-center' });
+        //this.toastr.success('sucssess Upload Image', '', { positionClass: 'toast-bottom-center' });
       }, err => {
         //hide spinner
         this.spinner.hide();
@@ -206,7 +206,7 @@ export class HomeService {
         // hide spinner
         this.spinner.hide();
         //show toster
-        this.toastr.success('sucssess Upload Image', '', { positionClass: 'toast-bottom-center' });
+        //this.toastr.success('sucssess Upload Image', '', { positionClass: 'toast-bottom-center' });
       }, err => {
         //hide spinner
         this.spinner.hide();

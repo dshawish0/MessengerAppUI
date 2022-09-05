@@ -62,12 +62,10 @@ export class RegistrationService {
     this.http.get('https://localhost:44318/api/Login/UpdateVerificationCode').subscribe(
       (resp)=>{
         this.spinner.hide();
-        this.toastr.success('Confirm Complete');
-        this.router.navigate(['log']);
+        this.toastr.success('Check Your Email');
     },err =>{
       this.spinner.hide();
-      this.toastr.error("can't Confirm Email");
-      this.router.navigate(['log']);
+      this.toastr.error("Somthing Wrong Try Again");
     })
   }
 }

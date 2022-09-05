@@ -50,7 +50,7 @@ const headerDir={
       }
     },err=>{
       this.spinner.hide();
-      this.toastr.error('Email and Password Invalid', '', {
+      this.toastr.error('Email or Password Invalid', '', {
         positionClass: 'toast-bottom-center' });
     })
 
@@ -117,6 +117,26 @@ updatePassowrd(password:any){
       this.spinner.hide();
       this.toastr.error(err.message);
      })
+}
+
+
+ChangeCurrentPassword(userId:any, oldPassword:any, NewPassword:any){
+
+var body={
+  userId:userId,
+  oldPassword:oldPassword,
+  NewPassword:NewPassword
+}
+this.spinner.show();
+this.http.post('https://localhost:44318/api/Login/ChangeCurrentPassword',body).subscribe(
+  (resp)=>{
+    this.spinner.hide();
+    this.toastr.success('Updated Password', '', { positionClass: 'toast-bottom-center' });
+},err =>{
+  this.spinner.hide();
+  this.toastr.error("Somthing Wrong Try Again", '', { positionClass: 'toast-bottom-center' });
+})
+
 }
 
 

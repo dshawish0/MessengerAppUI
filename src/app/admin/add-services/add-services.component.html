@@ -38,6 +38,7 @@
                                             cellspacing="0" width="100%" style="width:100%">
                                             <thead>
                                                 <tr>
+                                                    <th class="text-center">#</th>
                                                     <th>Service id</th>
                                                     <th>Servic ename</th>
                                                     <th>Pre price</th>
@@ -46,7 +47,8 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr *ngFor="let obj of admin.addservices">
+                                                <tr *ngFor="let obj of admin.addservices;index as i">
+                                                    <th class="text-center">{{i+1}}</th>
                                                     <td>{{obj.serviceid}}</td>
                                                     <td>{{obj.servicename}}</td>
                                                     <td>{{obj.preprice}}</td>

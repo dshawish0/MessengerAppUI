@@ -23,6 +23,8 @@ import { AddServicesComponent } from './add-services/add-services.component';
 import { ReportComponent } from './report/report.component';
 import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
+import { AboutComponent } from './about/about.component';
+import { ContactComponent } from './contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,8 @@ import { FooterComponent } from './footer/footer.component';
     ReportComponent,
     HomeComponent,
     FooterComponent,
+    AboutComponent,
+    ContactComponent,
     
   ],
   imports: [

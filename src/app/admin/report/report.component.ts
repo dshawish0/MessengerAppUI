@@ -19,18 +19,24 @@ export class ReportComponent implements OnInit {
   }
  
   
-  reportid: any = '';
+  userName: any = '';
   inputValue(ev: any) {
-    this.reportid = ev.target.value;
+    this.userName = ev.target.value;
     console.log(ev.target.value);
   }
   search() {
     const reportobj =
     {
-      reportid: this.reportid.toString()
+      reportid: this.userName.toString()
     };
     debugger;
-    this.admin.searchReport(this.reportid);
+    if(this.userName != ''){
+      this.admin.searchReport(this.userName);
+    }
+    else{
+      this.admin.GetAllReport();
+    }
+    
 }
 Accept(accept:any){
   console.log(accept);

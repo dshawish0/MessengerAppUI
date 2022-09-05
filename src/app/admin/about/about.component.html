@@ -1,0 +1,89 @@
+<div class="wrapper ">
+
+    <app-sidebar-admin></app-sidebar-admin>
+    <div class="main-panel">
+      <app-navbar-admin></app-navbar-admin>
+      <div class="content">
+        <div class="container-fluid">
+          <h1>About Us</h1>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-rose card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">assignment</i>
+                  </div>
+                  <h4 class="card-title">About Us</h4>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th class="text-center">#</th>
+                          <th>Text</th>
+                          <th>Email</th>
+                          <th>Image Path</th>
+                          <th class="text-center">Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let obj of admin.AboutUs;index as i">
+                          <td class="text-center">{{i+1}}</td>
+                          <td>{{obj.text}}</td>
+                          <td>{{obj.email}}</td>
+                          <td class="text-center">
+                            <img src="../../../assets/Img/{{obj.imgPaht}}" width="50" height="50" alt="image">
+                          </td>
+                          <td class="text-center"><button type="submit" class="btn btn-info"
+                              (click)="updateDailog(obj)">Edit</button></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <app-footer-admin></app-footer-admin>
+    </div>
+  
+  </div>
+  
+  <ng-template #callupdateDailog>
+    <div class="col-md-12">
+      <form [formGroup]="updateForm">
+        <div class="card">
+          <div class="card-header card-header-rose card-header-icon">
+            <div class="card-icon">
+              <i class="material-icons">mail_outline</i>
+            </div>
+            <h4 class="card-title">Update Footer</h4>
+          </div>
+          <div class="card-body">
+            <div class="form-group">
+              <label for="exampleText" class="bmd-label-floating"> Text *</label>
+              <input type="text" class="form-control" id="exampleText" matInput formControlName="text"
+                [(ngModel)]="p_data.text">
+            </div>
+            <div class="form-group">
+              <label for="exampleLocation" class="bmd-label-floating"> Location *</label>
+              <input type="text" class="form-control" id="exampleLocation" matInput formControlName="email"
+                [(ngModel)]="p_data.email">
+            </div>
+            <label for="exampleFile" class="bmd-label-floating"> Upload Image Logo *</label>
+            <input class="form-control" type="file" #file id="exampleFile" matInput formControlName="imgPaht"
+              [(ngModel)]="p_data.imgPaht" (change)="uploadImage(file.files)">
+            
+          </div>
+          <div class="card-footer text-right">
+            <button type="submit" class="btn btn-rose" (click)="updateAbout()">Update</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  
+  
+  </ng-template>

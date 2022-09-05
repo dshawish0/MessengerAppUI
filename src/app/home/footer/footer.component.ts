@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from 'src/app/Services/admin.service';
+import { HomeService } from 'src/app/Services/home.service';
 
 @Component({
   selector: 'app-footer',
@@ -8,7 +9,7 @@ import { AdminService } from 'src/app/Services/admin.service';
 })
 export class FooterComponent implements OnInit {
 
-  constructor(public footer:AdminService) { }
+  constructor(public footer:HomeService) { }
 
   ngOnInit(): void {
     this.footer.GetAllFooter();

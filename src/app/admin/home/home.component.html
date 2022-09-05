@@ -1,5 +1,4 @@
 <div class="wrapper ">
-
   <app-sidebar-admin></app-sidebar-admin>
   <div class="main-panel">
     <app-navbar-admin></app-navbar-admin>
@@ -15,52 +14,97 @@
                 </div>
                 <h4 class="card-title">Home Info</h4>
               </div>
-              <div class="card-body">
-                <div class="table-responsive">
-                  <table class="table table-striped">
-                    <thead>
-                      <tr>
-                        <th class="text-center">#</th>
-                        <th>lapImg</th>
-                        <th>chatAppImg</th>
-                        <th>mobileImg</th>
-                        <th>qRcodeImg</th>
-                        <th>userCustamizerImg</th>
-                        <th>futcherImg</th>
-                        <th>rtlImg</th>
-                        <th>filesImg</th>
-                        <th>noteImg</th>
-                        <th>remiderImg</th>
-                        <th>someFutchersImg</th>
-                        <th>darkLightImg</th>
-                        <th>audioImg</th>
-                        <th>sendStickerImg</th>
-                        <th>chatHistoryContactImg</th>
-                        <th>viewStatusImg</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let obj of admin.HomeInfo">
-                        <td class="text-center">1</td>
-                        <td>{{obj.lapImg}}</td>
-                        <td>{{obj.chatAppImg}}</td>
-                        <td>{{obj.mobileImg}}</td>
-                        <td>{{obj.qRcodeImg}}</td>
-                        <td>{{obj.userCustamizerImg}}</td>
-                        <td>{{obj.futcherImg}}</td>
-                        <td>{{obj.rtlImg}}</td>
-                        <td>{{obj.filesImg}}</td>
-                        <td>{{obj.noteImg}}</td>
-                        <td>{{obj.remiderImg}}</td>
-                        <td>{{obj.someFutchersImg}}</td>
-                        <td>{{obj.darkLightImg}}</td>
-                        <td>{{obj.audioImg}}</td>
-                        <td>{{obj.sendStickerImg}}</td>
-                        <td>{{obj.chatHistoryContactImg}}</td>
-                        <td>{{obj.viewStatusImg}}</td>
-                      </tr>
-                    </tbody>
-                  </table>
+              <div class="card-body" *ngFor="let obj of home.HomeInfo">
+                <div class="row text-center">
+                  <div class="col-md-3">
+                    <h4 class="text-center">Image Logo</h4>
+                    <img src="../../../assets/Img/{{obj.lapImg}}" width="50" height="50" alt=""><br><br>
+                    <button class="btn btn-info" (click)="updatehomeLab(obj,1)">Edit</button>
+                  </div>
+                  <div class="col-md-3">
+                    <h4 class="card-title">chatAppImg</h4>
+                    <img src="../../../assets/Img/{{obj.chatAppImg}}" width="50" height="50" alt=""><br><br>
+                    <button class="btn btn-info" (click)="updatehomeLab(obj,2)">Edit</button>
+                  </div>
+                  <div class="col-md-3">
+                    <h4 class="card-title">mobileImg</h4>
+                    <img src="../../../assets/Img/{{obj.mobileImg}}" width="50" height="50" alt=""><br><br>
+                    <button class="btn btn-info" (click)="updatehomeLab(obj,3)">Edit</button>
+                  </div>
+                  <div class="col-md-3">
+                    <h4 class="card-title">qRcodeImg</h4>
+                    <img src="../../../assets/Img/{{obj.qRcodeImg}}" width="50" height="50" alt=""><br><br>
+                    <button class="btn btn-info" (click)="updatehomeLab(obj,4)">Edit</button>
+                  </div>
+                </div>
+                <br>
+                <div class="row text-center">
+                  <div class="col-md-3">
+                    <h4 class="card-title">userCustamizerImg</h4>
+                    <img src="../../../assets/Img/{{obj.userCustamizerImg}}" width="50" height="50" alt=""><br><br>
+                    <button class="btn btn-info" (click)="updatehomeLab(obj,5)">Edit</button>
+                  </div>
+                  <div class="col-md-3">
+                    <h4 class="card-title">rtlImg</h4>
+                    <img src="../../../assets/Img/{{obj.rtlImg}}" width="50" height="50" alt=""><br><br>
+                    <button class="btn btn-info" (click)="updatehomeLab(obj,6)">Edit</button>
+                  </div>
+                  <div class="col-md-3">
+                    <h4 class="card-title">filesImg</h4>
+                    <img src="../../../assets/Img/{{obj.filesImg}}" width="50" height="50" alt=""><br><br>
+                    <button class="btn btn-info" (click)="updatehomeLab(obj,7)">Edit</button>
+                  </div>
+                  <div class="col-md-3">
+                    <h4 class="card-title">futcherImg</h4>
+                    <img src="../../../assets/Img/{{obj.futcherImg}}" width="50" height="50" alt=""><br><br>
+                    <button class="btn btn-info" (click)="updatehomeLab(obj,8)">Edit</button>
+                  </div>
+                </div>
+                <br>
+                <div class="row text-center">
+                  <div class="col-md-3">
+                    <h4 class="card-title">noteImg</h4>
+                    <img src="../../../assets/Img/{{obj.noteImg}}" width="50" height="50" alt=""><br><br>
+                    <button class="btn btn-info" (click)="updatehomeLab(obj,9)">Edit</button>
+                  </div>
+                  <div class="col-md-3">
+                    <h4 class="card-title">remiderImg</h4>
+                    <img src="../../../assets/Img/{{obj.remiderImg}}" width="50" height="50" alt=""><br><br>
+                    <button class="btn btn-info" (click)="updatehomeLab(obj,10)">Edit</button>
+                  </div>
+                  <div class="col-md-3">
+                    <h4 class="card-title">someFutchersImg</h4>
+                    <img src="../../../assets/Img/{{obj.someFutchersImg}}" width="50" height="50" alt=""><br><br>
+                    <button class="btn btn-info" (click)="updatehomeLab(obj,11)">Edit</button>
+                  </div>
+                  <div class="col-md-3">
+                    <h4 class="card-title">darkLightImg</h4>
+                    <img src="../../../assets/Img/{{obj.darkLightImg}}" width="50" height="50" alt=""><br><br>
+                    <button class="btn btn-info" (click)="updatehomeLab(obj,12)">Edit</button>
+                  </div>
+                </div>
+                <br>
+                <div class="row text-center">
+                  <div class="col-md-3">
+                    <h4 class="card-title">audioImg</h4>
+                    <img src="../../../assets/Img/{{obj.audioImg}}" width="50" height="50" alt=""><br><br>
+                    <button class="btn btn-info" (click)="updatehomeLab(obj,13)">Edit</button>
+                  </div>
+                  <div class="col-md-3">
+                    <h4 class="card-title">sendStickerImg</h4>
+                    <img src="../../../assets/Img/{{obj.sendStickerImg}}" width="50" height="50" alt=""><br><br>
+                    <button class="btn btn-info" (click)="updatehomeLab(obj,14)">Edit</button>
+                  </div>
+                  <div class="col-md-3">
+                    <h4 class="card-title">chatHistoryContactImg</h4>
+                    <img src="../../../assets/Img/{{obj.chatHistoryContactImg}}" width="50" height="50" alt=""><br><br>
+                    <button class="btn btn-info" (click)="updatehomeLab(obj,15)">Edit</button>
+                  </div>
+                  <div class="col-md-3">
+                    <h4 class="card-title">viewStatusImg</h4>
+                    <img src="../../../assets/Img/{{obj.viewStatusImg}}" width="50" height="50" alt=""><br><br>
+                    <button class="btn btn-info" (click)="updatehomeLab(obj,16)">Edit</button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -70,5 +114,390 @@
     </div>
     <app-footer-admin></app-footer-admin>
   </div>
-  
 </div>
+
+<ng-template #callupdateDailog1>
+  <div class="col-md-12">
+    <form [formGroup]="updateForm">
+      <div class="card">
+        <div class="card-header card-header-rose card-header-icon">
+          <div class="card-icon">
+            <i class="material-icons">mail_outline</i>
+          </div>
+          <h4 class="card-title">Update Home</h4>
+        </div>
+        <div class="card-body">
+          <label for="exampleFile" class="bmd-label-floating"> Upload Image Logo *</label>
+          <input class="form-control" type="file" #file id="exampleFile" matInput formControlName="lapImg"
+            [(ngModel)]="p_data.lapImg" (change)="uploadImage(file.files,1)">
+        </div>
+        <div class="card-footer text-right">
+          <button type="submit" class="btn btn-rose" (click)="updateimage(1)">Update</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+
+</ng-template>
+<ng-template #callupdateDailog2>
+  <div class="col-md-12">
+    <form [formGroup]="updateForm">
+      <div class="card">
+        <div class="card-header card-header-rose card-header-icon">
+          <div class="card-icon">
+            <i class="material-icons">mail_outline</i>
+          </div>
+          <h4 class="card-title">Update chatAppImg</h4>
+        </div>
+        <div class="card-body">
+          <label for="exampleFile" class="bmd-label-floating"> Upload chatAppImg *</label>
+          <input class="form-control" type="file" #file id="exampleFile" matInput formControlName="chatAppImg"
+            [(ngModel)]="p_data.chatAppImg" (change)="uploadImage(file.files,2)">
+        </div>
+        <div class="card-footer text-right">
+          <button type="submit" class="btn btn-rose" (click)="updateimage(2)">Update</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+
+</ng-template>
+<ng-template #callupdateDailog3>
+  <div class="col-md-12">
+    <form [formGroup]="updateForm">
+      <div class="card">
+        <div class="card-header card-header-rose card-header-icon">
+          <div class="card-icon">
+            <i class="material-icons">mail_outline</i>
+          </div>
+          <h4 class="card-title">Update Home</h4>
+        </div>
+        <div class="card-body">
+          <label for="exampleFile" class="bmd-label-floating"> Upload mobileImg *</label>
+          <input class="form-control" type="file" #file id="exampleFile" matInput formControlName="mobileImg"
+            [(ngModel)]="p_data.mobileImg" (change)="uploadImage(file.files,3)">
+        </div>
+        <div class="card-footer text-right">
+          <button type="submit" class="btn btn-rose" (click)="updateimage(3)">Update</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+
+</ng-template>
+<ng-template #callupdateDailog4>
+  <div class="col-md-12">
+    <form [formGroup]="updateForm">
+      <div class="card">
+        <div class="card-header card-header-rose card-header-icon">
+          <div class="card-icon">
+            <i class="material-icons">mail_outline</i>
+          </div>
+          <h4 class="card-title">Update chatAppImg</h4>
+        </div>
+        <div class="card-body">
+          <label for="exampleFile" class="bmd-label-floating"> Upload chatAppImg *</label>
+          <input class="form-control" type="file" #file id="exampleFile" matInput formControlName="qRcodeImg"
+            [(ngModel)]="p_data.qRcodeImg" (change)="uploadImage(file.files,4)">
+        </div>
+        <div class="card-footer text-right">
+          <button type="submit" class="btn btn-rose" (click)="updateimage(4)">Update</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+
+</ng-template>
+<ng-template #callupdateDailog5>
+  <div class="col-md-12">
+    <form [formGroup]="updateForm">
+      <div class="card">
+        <div class="card-header card-header-rose card-header-icon">
+          <div class="card-icon">
+            <i class="material-icons">mail_outline</i>
+          </div>
+          <h4 class="card-title">Update chatAppImg</h4>
+        </div>
+        <div class="card-body">
+          <label for="exampleFile" class="bmd-label-floating"> Upload chatAppImg *</label>
+          <input class="form-control" type="file" #file id="exampleFile" matInput formControlName="chatAppImg"
+            [(ngModel)]="p_data.chatAppImg" (change)="uploadImage(file.files,2)">
+        </div>
+        <div class="card-footer text-right">
+          <button type="submit" class="btn btn-rose" (click)="updateimage(2)">Update</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+
+</ng-template>
+<ng-template #callupdateDailog6>
+  <div class="col-md-12">
+    <form [formGroup]="updateForm">
+      <div class="card">
+        <div class="card-header card-header-rose card-header-icon">
+          <div class="card-icon">
+            <i class="material-icons">mail_outline</i>
+          </div>
+          <h4 class="card-title">Update Home</h4>
+        </div>
+        <div class="card-body">
+          <label for="exampleFile" class="bmd-label-floating"> Upload rtlImg *</label>
+          <input class="form-control" type="file" #file id="exampleFile" matInput formControlName="rtlImg"
+            [(ngModel)]="p_data.rtlImg" (change)="uploadImage(file.files,6)">
+        </div>
+        <div class="card-footer text-right">
+          <button type="submit" class="btn btn-rose" (click)="updateimage(6)">Update</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+
+</ng-template>
+<ng-template #callupdateDailog7>
+  <div class="col-md-12">
+    <form [formGroup]="updateForm">
+      <div class="card">
+        <div class="card-header card-header-rose card-header-icon">
+          <div class="card-icon">
+            <i class="material-icons">mail_outline</i>
+          </div>
+          <h4 class="card-title">Update Home</h4>
+        </div>
+        <div class="card-body">
+          <label for="exampleFile" class="bmd-label-floating"> Upload filesImg *</label>
+          <input class="form-control" type="file" #file id="exampleFile" matInput formControlName="filesImg"
+            [(ngModel)]="p_data.filesImg" (change)="uploadImage(file.files,7)">
+        </div>
+        <div class="card-footer text-right">
+          <button type="submit" class="btn btn-rose" (click)="updateimage(7)">Update</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+
+</ng-template>
+<ng-template #callupdateDailog8>
+  <div class="col-md-12">
+    <form [formGroup]="updateForm">
+      <div class="card">
+        <div class="card-header card-header-rose card-header-icon">
+          <div class="card-icon">
+            <i class="material-icons">mail_outline</i>
+          </div>
+          <h4 class="card-title">Update Home</h4>
+        </div>
+        <div class="card-body">
+          <label for="exampleFile" class="bmd-label-floating"> Upload futcherImg *</label>
+          <input class="form-control" type="file" #file id="exampleFile" matInput formControlName="futcherImg"
+            [(ngModel)]="p_data.futcherImg" (change)="uploadImage(file.files,8)">
+        </div>
+        <div class="card-footer text-right">
+          <button type="submit" class="btn btn-rose" (click)="updateimage(8)">Update</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+
+</ng-template>
+<ng-template #callupdateDailog9>
+  <div class="col-md-12">
+    <form [formGroup]="updateForm">
+      <div class="card">
+        <div class="card-header card-header-rose card-header-icon">
+          <div class="card-icon">
+            <i class="material-icons">mail_outline</i>
+          </div>
+          <h4 class="card-title">Update Home</h4>
+        </div>
+        <div class="card-body">
+          <label for="exampleFile" class="bmd-label-floating"> Upload noteImg *</label>
+          <input class="form-control" type="file" #file id="exampleFile" matInput formControlName="noteImg"
+            [(ngModel)]="p_data.noteImg" (change)="uploadImage(file.files,9)">
+        </div>
+        <div class="card-footer text-right">
+          <button type="submit" class="btn btn-rose" (click)="updateimage(9)">Update</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+
+</ng-template>
+<ng-template #callupdateDailog10>
+  <div class="col-md-12">
+    <form [formGroup]="updateForm">
+      <div class="card">
+        <div class="card-header card-header-rose card-header-icon">
+          <div class="card-icon">
+            <i class="material-icons">mail_outline</i>
+          </div>
+          <h4 class="card-title">Update Home</h4>
+        </div>
+        <div class="card-body">
+          <label for="exampleFile" class="bmd-label-floating"> Upload remiderImg *</label>
+          <input class="form-control" type="file" #file id="exampleFile" matInput formControlName="remiderImg"
+            [(ngModel)]="p_data.remiderImg" (change)="uploadImage(file.files,10)">
+        </div>
+        <div class="card-footer text-right">
+          <button type="submit" class="btn btn-rose" (click)="updateimage(10)">Update</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+
+</ng-template>
+<ng-template #callupdateDailog11>
+  <div class="col-md-12">
+    <form [formGroup]="updateForm">
+      <div class="card">
+        <div class="card-header card-header-rose card-header-icon">
+          <div class="card-icon">
+            <i class="material-icons">mail_outline</i>
+          </div>
+          <h4 class="card-title">Update Home</h4>
+        </div>
+        <div class="card-body">
+          <label for="exampleFile" class="bmd-label-floating"> Upload someFutchersImg *</label>
+          <input class="form-control" type="file" #file id="exampleFile" matInput formControlName="someFutchersImg"
+            [(ngModel)]="p_data.someFutchersImg" (change)="uploadImage(file.files,11)">
+        </div>
+        <div class="card-footer text-right">
+          <button type="submit" class="btn btn-rose" (click)="updateimage(11)">Update</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+
+</ng-template>
+<ng-template #callupdateDailog12>
+  <div class="col-md-12">
+    <form [formGroup]="updateForm">
+      <div class="card">
+        <div class="card-header card-header-rose card-header-icon">
+          <div class="card-icon">
+            <i class="material-icons">mail_outline</i>
+          </div>
+          <h4 class="card-title">Update Home</h4>
+        </div>
+        <div class="card-body">
+          <label for="exampleFile" class="bmd-label-floating"> Upload darkLightImg *</label>
+          <input class="form-control" type="file" #file id="exampleFile" matInput formControlName="darkLightImg"
+            [(ngModel)]="p_data.darkLightImg" (change)="uploadImage(file.files,12)">
+        </div>
+        <div class="card-footer text-right">
+          <button type="submit" class="btn btn-rose" (click)="updateimage(12)">Update</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+
+</ng-template>
+<ng-template #callupdateDailog13>
+  <div class="col-md-12">
+    <form [formGroup]="updateForm">
+      <div class="card">
+        <div class="card-header card-header-rose card-header-icon">
+          <div class="card-icon">
+            <i class="material-icons">mail_outline</i>
+          </div>
+          <h4 class="card-title">Update Home</h4>
+        </div>
+        <div class="card-body">
+          <label for="exampleFile" class="bmd-label-floating"> Upload audioImg *</label>
+          <input class="form-control" type="file" #file id="exampleFile" matInput formControlName="audioImg"
+            [(ngModel)]="p_data.audioImg" (change)="uploadImage(file.files,13)">
+        </div>
+        <div class="card-footer text-right">
+          <button type="submit" class="btn btn-rose" (click)="updateimage(13)">Update</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+
+</ng-template>
+<ng-template #callupdateDailog14>
+  <div class="col-md-12">
+    <form [formGroup]="updateForm">
+      <div class="card">
+        <div class="card-header card-header-rose card-header-icon">
+          <div class="card-icon">
+            <i class="material-icons">mail_outline</i>
+          </div>
+          <h4 class="card-title">Update Home</h4>
+        </div>
+        <div class="card-body">
+          <label for="exampleFile" class="bmd-label-floating"> Upload sendStickerImg *</label>
+          <input class="form-control" type="file" #file id="exampleFile" matInput formControlName="sendStickerImg"
+            [(ngModel)]="p_data.sendStickerImg" (change)="uploadImage(file.files,14)">
+        </div>
+        <div class="card-footer text-right">
+          <button type="submit" class="btn btn-rose" (click)="updateimage(14)">Update</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+
+</ng-template>
+<ng-template #callupdateDailog15>
+  <div class="col-md-12">
+    <form [formGroup]="updateForm">
+      <div class="card">
+        <div class="card-header card-header-rose card-header-icon">
+          <div class="card-icon">
+            <i class="material-icons">mail_outline</i>
+          </div>
+          <h4 class="card-title">Update Home</h4>
+        </div>
+        <div class="card-body">
+          <label for="exampleFile" class="bmd-label-floating"> Upload chatHistoryContactImg *</label>
+          <input class="form-control" type="file" #file id="exampleFile" matInput
+            formControlName="chatHistoryContactImg" [(ngModel)]="p_data.chatHistoryContactImg"
+            (change)="uploadImage(file.files,15)">
+        </div>
+        <div class="card-footer text-right">
+          <button type="submit" class="btn btn-rose" (click)="updateimage(15)">Update</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+
+</ng-template>
+<ng-template #callupdateDailog16>
+  <div class="col-md-12">
+    <form [formGroup]="updateForm">
+      <div class="card">
+        <div class="card-header card-header-rose card-header-icon">
+          <div class="card-icon">
+            <i class="material-icons">mail_outline</i>
+          </div>
+          <h4 class="card-title">Update Home</h4>
+        </div>
+        <div class="card-body">
+          <label for="exampleFile" class="bmd-label-floating"> Upload viewStatusImg *</label>
+          <input class="form-control" type="file" #file id="exampleFile" matInput formControlName="viewStatusImg"
+            [(ngModel)]="p_data.viewStatusImg" (change)="uploadImage(file.files,16)">
+        </div>
+        <div class="card-footer text-right">
+          <button type="submit" class="btn btn-rose" (click)="updateimage(16)">Update</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+
+</ng-template>

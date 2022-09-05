@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ChatService } from 'src/app/Services/chat.service';
+import { LoginService } from 'src/app/Services/login.service';
+import jwt_decode from "jwt-decode";
 
 @Component({
   selector: 'app-setting',
@@ -9,7 +11,7 @@ import { ChatService } from 'src/app/Services/chat.service';
 })
 export class SettingComponent implements OnInit {
 
-  constructor(public chatService:ChatService) { }
+  constructor(public chatService:ChatService, private login:LoginService) { }
   old_Data:any ={}
   ngOnInit(): void {
     this.old_Data = this.chatService.myProfile;
@@ -26,6 +28,13 @@ export class SettingComponent implements OnInit {
     isBlocked:new FormControl(''),
     proFileImg:new FormControl(''),
     userBio:new FormControl('',)
+  });
+
+
+  ChangeCurrentPassword :FormGroup= new FormGroup({
+    oldPassword: new FormControl('',[Validators.required]),
+    NewPassowrd: new FormControl('',[Validators.required,Validators.minLength(8)]),
+    ReNewPassowrd: new FormControl('',[Validators.required,Validators.minLength(8)])
   });
 
   uplodeImgProfile(file:any){
@@ -46,6 +55,17 @@ export class SettingComponent implements OnInit {
     this.Profile.controls['isBlocked'].setValue(this.old_Data.isBlocked);
     console.log(this.Profile.value,"formGroup");
     this.chatService.UpDataProfileUser(this.Profile.value);
+    
+  }
+data:any
+  ChangeCurrPass(){
+    let token = localStorage.getItem('token');
+    if(token !=null){
+       this.data= jwt_decode(token);
+
+      this.login.ChangeCurrentPassword(this.data.nameid,this.ChangeCurrentPassword.controls["oldPassword"].value,
+      this.ChangeCurrentPassword.controls["NewPassowrd"].value)
+    }
     
   }
 }

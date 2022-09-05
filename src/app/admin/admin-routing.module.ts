@@ -9,10 +9,12 @@ import { TestimonialComponent } from './testimonial/testimonial.component';
 import { UsersComponent } from './users/users.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
+import { AboutComponent } from './about/about.component';
+import { ContactComponent } from './contact/contact.component';
 
 const routes: Routes = [
   {
-    path:'das',
+    path:'',
     component:DashboardComponent
   },
   {
@@ -40,12 +42,20 @@ const routes: Routes = [
     component:EditProfileComponent
   },
   {
-    path: "",
+    path: "home",
     component:HomeComponent
   },
   {
     path: "footer",
     component:FooterComponent
+  },
+  {
+    path: "about",
+    component:AboutComponent
+  },
+  {
+    path: "contact",
+    component:ContactComponent
   }
   
 ];

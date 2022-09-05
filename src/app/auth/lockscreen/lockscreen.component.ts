@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { LoginService } from 'src/app/Services/login.service';
 
 @Component({
   selector: 'app-lockscreen',
@@ -8,15 +9,23 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class LockscreenComponent implements OnInit {
 
-  password :FormControl= new FormControl('',[Validators.required,Validators.minLength(8)]);
-  constructor() { }
+  password :FormControl= new FormControl('',[Validators.required]);
+  img:any;
+  FullName:any;
+  Email:any;
+
+  constructor(private login:LoginService) { 
+     this.img =localStorage.getItem('UserImg');
+    this.FullName =localStorage.getItem('FullName');
+     this.Email =localStorage.getItem('UserEmail');
+  }
 
   ngOnInit(): void {
+    
   }
 
   unlock(){
-    console.log(this.password.value);
-    console.log(localStorage.getItem('username'));
+    this.login.submit(this.Email,this.password.value)
   }
 
 }

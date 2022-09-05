@@ -22,24 +22,26 @@
                         <div class="row align-items-center gx-5" *ngIf="this.chatService.groupData[0].groupMembers.length>1">
                             <div class="col-auto">
                                 <div class="avatar d-none d-xl-inline-block">
-                                    <img class="avatar-img" src="../../../assets/Img/{{this.chatService.groupData[0].groupImg}}" alt="">
+                                    <img class="avatar-img" *ngIf="this.chatService.groupData[0].groupImg != null||''||undefined" src="../../../assets/Img/{{this.chatService.groupData[0].groupImg}}" alt="">
+                                    <span class="avatar-text" *ngIf="this.chatService.groupData[0].groupImg == null||''||undefined">{{ this.chatService.groupData[0].groupName |uppercase | slice:0:1 }}</span>
                                 </div>
                             </div>
 
                             <div class="col overflow-hidden">
-                                <h5 class="text-truncate">{{this.chatService.groupData[0].groupName}}</h5>
+                                <h5 class="text-truncate" style="font-weight: bolder;">{{this.chatService.groupData[0].groupName}}</h5>
                             </div>
                         </div>
 
                         <div class="row align-items-center gx-5" *ngIf="this.chatService.groupData[0].groupMembers.length==1">
                             <div class="col-auto">
                                 <div class="avatar d-none d-xl-inline-block">
-                                    <img class="avatar-img" src="../../../assets/Img/{{this.chatService.groupData[0].groupMembers[0].user.proFileImg}}" alt="">
+                                    <img class="avatar-img" *ngIf="this.chatService.groupData[0].groupMembers[0].user.proFileImg != null||''||undefined" src="../../../assets/Img/{{this.chatService.groupData[0].groupMembers[0].user.proFileImg}}" alt="">
+                                    <span class="avatar-text" *ngIf="this.chatService.groupData[0].groupMembers[0].user.proFileImg == null||''||undefined">{{ this.chatService.groupData[0].groupMembers[0].user.userName |uppercase | slice:0:1 }}</span>
                                 </div>
-                            </div>
+                            </div> 
 
                             <div class="col overflow-hidden">
-                                <h5 class="text-truncate">{{this.chatService.groupData[0].groupMembers[0].user.fname}}</h5>
+                                <h5 class="text-truncate" style="font-weight: bolder;">{{this.chatService.groupData[0].groupMembers[0].user.fname}}</h5>
                             </div>
                         </div>
                     </div>
@@ -68,7 +70,9 @@
                                         (click)="UserProfile(item.user.userId)" class="avatar avatar-sm"
                                         data-bs-toggle="modal" data-bs-target="#modal-user-profile">
                                         <img class="avatar-img" src="../../../assets/Img/{{item.user.proFileImg}}"
-                                            alt="#">
+                                        *ngIf="item.user.proFileImg != null||''||undefined" alt="#">
+
+                                        <span class="avatar-text" *ngIf="item.user.proFileImg == null||''||undefined">{{ item.user.userName |uppercase | slice:0:1 }}</span>
                                     </a>
 
                                     <!-- <a href="#" class="avatar avatar-sm" data-bs-toggle="modal" data-bs-target="#modal-user-profile">
@@ -163,7 +167,8 @@
                         <div class="message padingMessage-custom" *ngIf="item.senderId!=userLoged">
                             <a href="#" data-bs-toggle="modal" data-bs-target="#modal-user-profile"
                                 class="avatar avatar-responsive">
-                                <img class="avatar-img" src="../../../assets/{{item.user.proFileImg}}" alt="">
+                                <img class="avatar-img" *ngIf="item.user.proFileImg != null||''||undefined" src="../../../assets/Img/{{item.user.proFileImg}}" alt="">
+                                <span class="avatar-text" *ngIf="item.user.proFileImg == null||''||undefined">{{ item.user.userName |uppercase | slice:0:1 }}</span>
                             </a>
 
                             <div class="message-inner">
@@ -237,7 +242,8 @@
                         <div class="message message-out padingMessage-custom" *ngIf="item.senderId==userLoged">
                             <a href="#" data-bs-toggle="modal" data-bs-target="#modal-profile"
                                 class="avatar avatar-responsive">
-                                <img class="avatar-img" src="../../../assets/{{item.user.proFileImg}}" alt="">
+                                <img class="avatar-img" *ngIf="item.user.proFileImg != null||''||undefined" src="../../../assets/Img/{{item.user.proFileImg}}" alt="">
+                                <span class="avatar-text" *ngIf="item.user.proFileImg == null||''||undefined">{{ item.user.userName |uppercase | slice:0:1 }}</span>
                             </a>
 
                             <div class="message-inner">
@@ -455,9 +461,9 @@
                 <!-- Message -->
                 <div class="message message-out padingMessage-custom"
                     *ngIf="userLoged == item.userName  && item.messageGroupId == this.chatService.updateedId">
-                    <!-- <a href="#" data-bs-toggle="modal" data-bs-target="#modal-profile" class="avatar avatar-responsive">
-                        <img class="avatar-img" src="../../../assets/{{item.user.proFileImg}}" alt="">
-                    </a> -->
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#modal-profile" class="avatar avatar-responsive">
+                        <!-- <img class="avatar-img" *ngIf="item.groupMembers.user.proFileImg != null||''||undefined" src="../../../assets/Img/{{item.groupMembers.user.proFileImg}}" alt=""> -->
+                    </a>
 
                     <div class="message-inner">
                         <div class="message-body">
@@ -704,9 +710,10 @@
 
                         <div class="profile-body">
                             <div class="avatar avatar-xl">
-                                <img class="avatar-img"
+                                <img class="avatar-img" *ngIf="this.chatService.userProfile[0].proFileImg != null||''||undefined"
                                     src="../../../assets/Img/{{this.chatService.userProfile[0].proFileImg}}"
                                     width="100%" height="100%" alt="#">
+                                    <span class="avatar-text" *ngIf="this.chatService.userProfile[0].proFileImg == null||''||undefined">{{ this.chatService.userProfile[0].userName |uppercase | slice:0:1 }}</span>
 
                             </div>
 

@@ -10,11 +10,17 @@ import { ChatService } from 'src/app/Services/chat.service';
 export class CreateChatComponent implements OnInit {
 
   constructor(public chatService:ChatService) { }
-
+  myFriend:any[]=[]
+  searchFriend:any
   ngOnInit(): void {
     this.chatService.GetAllFrinds();
-    console.log("CreateChatComponent");
+    
   }
+  GetFriend(){
+    this.myFriend = this.chatService.myFriend.map((s:any)=>s.user)
+    console.log(this.myFriend, "CreateChatComponent");
+  }
+  
   createChatForm:FormGroup = new FormGroup({
     GroupName : new FormControl('',Validators.required),
     GroupImg :new FormControl('')

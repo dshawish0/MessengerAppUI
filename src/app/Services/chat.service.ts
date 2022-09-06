@@ -146,8 +146,7 @@ data:any;
 
 
       console.log(this.all_chat, "allchat");
-      // console.log(this.last_Message[this.last_Message.length-1].text);
-      // window.location.reload();
+      console.log(this.last_Message,"last_Message");
     },
       error => {
         console.log('error');
@@ -540,6 +539,25 @@ data:any;
      return items;          
    }
  }
+
+ logout(userid: any) {
+  this.spinner.show();
+  this.http.post(`https://localhost:44318/api/Login/logOut/${userid}`,this.user).subscribe(
+    (result) => {
+      this.spinner.hide();
+    }, err => {
+      this.spinner.hide();
+      this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
+    })
+}
+
+DeleteMessage(messageId:any){
+  this.http.delete(`https://localhost:44318/api/Message/DeleteMessage/${messageId}`).subscribe((result)=>{
+    this.toastr.success('Deleted Message')
+  },(error)=>{
+    this.toastr.error('connt delete this message')
+  })
+}
 }
 
 

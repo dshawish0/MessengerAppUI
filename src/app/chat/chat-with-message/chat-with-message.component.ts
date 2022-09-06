@@ -148,6 +148,11 @@ messageText:any;
 
   }
 
+  DeleteMessage(messageId:any){
+    this.chatService.DeleteMessage(messageId);
+    
+  }
+
   UserProfile(userId:any){
     console.log("UserProfile", this.chatService.allMemberinMessageGroup);
     

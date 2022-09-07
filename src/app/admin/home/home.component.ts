@@ -72,7 +72,6 @@ export class HomeComponent implements OnInit {
       chatHistoryContactImg: obj.chatHistoryContactImg,
       viewStatusImg: obj.viewStatusImg,
     }
-    console.log("ggggggggggggggupdatehomeLabgggggggggggggg");
     console.log(this.p_data);
     this.updateForm.controls['homeId'].setValue(this.p_data.homeId);
     this.updateForm.controls['lapImg'].setValue(this.p_data.lapImg);

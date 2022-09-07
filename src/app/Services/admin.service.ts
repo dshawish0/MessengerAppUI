@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import jwt_decode from "jwt-decode";
+import {Chart,registerables } from 'chart.js'
 @Injectable({
   providedIn: 'root'
 })
@@ -324,7 +325,7 @@ export class AdminService {
   }
   Updateservices(body: any) {
     this.spinner.show();
-    this.http.put('https://localhost:44318/api/Services/update', body).subscribe
+    this.http.put('https://localhost:44318/api/Services/UpDateServices', body).subscribe
       ((resp) => {
         this.spinner.hide();
         //show toster
@@ -597,6 +598,87 @@ export class AdminService {
       })
     window.location.reload();
   }
-
+  Payment: any = [];
+  GetPayment() {
+    //show spinner
+    this.spinner.show();
+    //hits Api
+    this.http.get('https://localhost:44318/api/Payment/GetPaymentsByDetails').subscribe(
+      (result) => {
+        console.log(result);
+        this.Payment = result;
+        // hide spinner
+        this.spinner.hide();
+        //show toster
+        //this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
+      }, err => {
+        //hide spinner
+        this.spinner.hide();
+        //show toster
+        this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
+      })
+  }
+  chart:any={}
+  numofuserblock=0;
+  userblock: any = [];
+  GetChart(){
+  this.http.get('https://localhost:44318/api/User').subscribe(
+      (result) => {
+        this.users = result;
+        this.numberofuser = this.users.length;
+        this.userActiv = this.users.filter((obj: any) => obj.isActive === 1);
+        this.numofusersActive = this.userActiv.length;
+        this.userblock = this.users.filter((obj: any) => obj.isBlocked == 1);
+        this.numofuserblock =this.userblock.length;
+        this.chart = new Chart('myChart', {
+          type: 'pie',
+          data: {
+            labels: ['Number of User', 'Number of Activ',"Number of Block"],
+            datasets: [{
+              label: 'Users',
+              data: [this.numberofuser,this.numofusersActive,this.numofuserblock],
+              borderWidth: 1, 
+              //fill:false,
+              backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(93,175,89,01)',
+                'rgb(54, 162, 235)',
+              ],
+              borderColor: '#3e95cd',
+            },],
+          },
+        })
+        // hide spinner
+        this.spinner.hide();
+        //show toster
+        //this.toastr.success('sucssess','',{ positionClass:'toast-bottom-center' });
+      }, err => {
+        //hide spinner
+        this.spinner.hide();
+        //show toster
+        this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
+    })
+  }
+  numofrevenue=0;
+  GetRevenue(){
+    debugger
+    //show spinner
+    this.spinner.show();
+    //hits Api
+    this.http.get('https://localhost:44318/api/Payment/GetRevenue').subscribe(
+      (res:any) => {
+        console.log(res);
+        this.numofrevenue = res[0].revenue;
+        // hide spinner
+        this.spinner.hide();
+        //show toster
+        //this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
+      }, err => {
+        //hide spinner
+        this.spinner.hide();
+        //show toster
+        this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
+      })
+  }
 }
 

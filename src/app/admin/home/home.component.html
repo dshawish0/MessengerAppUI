@@ -4,7 +4,7 @@
     <app-navbar-admin></app-navbar-admin>
     <div class="content">
       <div class="container-fluid">
-        <h1>Users</h1>
+        <h1 class="text-center">Home Info</h1>
         <div class="row">
           <div class="col-md-12">
             <div class="card">
@@ -220,15 +220,15 @@
           <div class="card-icon">
             <i class="material-icons">mail_outline</i>
           </div>
-          <h4 class="card-title">Update chatAppImg</h4>
+          <h4 class="card-title">Update userCustamizerImg</h4>
         </div>
         <div class="card-body">
-          <label for="exampleFile" class="bmd-label-floating"> Upload chatAppImg *</label>
-          <input class="form-control" type="file" #file id="exampleFile" matInput formControlName="chatAppImg"
-            [(ngModel)]="p_data.chatAppImg" (change)="uploadImage(file.files,2)">
+          <label for="exampleFile" class="bmd-label-floating"> Upload userCustamizerImg *</label>
+          <input class="form-control" type="file" #file id="exampleFile" matInput formControlName="userCustamizerImg"
+            [(ngModel)]="p_data.userCustamizerImg" (change)="uploadImage(file.files,5)">
         </div>
         <div class="card-footer text-right">
-          <button type="submit" class="btn btn-rose" (click)="updateimage(2)">Update</button>
+          <button type="submit" class="btn btn-rose" (click)="updateimage(5)">Update</button>
         </div>
       </div>
     </form>

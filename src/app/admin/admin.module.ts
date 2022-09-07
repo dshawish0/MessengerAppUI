@@ -25,6 +25,7 @@ import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
+import { PaymentComponent } from './payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { ContactComponent } from './contact/contact.component';
     FooterComponent,
     AboutComponent,
     ContactComponent,
+    PaymentComponent,
     
   ],
   imports: [
@@ -68,6 +70,9 @@ import { ContactComponent } from './contact/contact.component';
     ReportComponent,
     HomeComponent,
     FooterComponent,
+    AboutComponent,
+    ContactComponent,
+    PaymentComponent,
   ]
 })
 export class AdminModule { }

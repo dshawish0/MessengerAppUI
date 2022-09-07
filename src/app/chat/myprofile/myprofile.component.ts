@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChatService } from 'src/app/Services/chat.service';
-import { LoginService } from 'src/app/Services/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-myprofile',
@@ -9,12 +9,17 @@ import { LoginService } from 'src/app/Services/login.service';
 })
 export class MyprofileComponent implements OnInit {
 
-  constructor(public chatService :ChatService) { }
+  constructor(public chatService :ChatService, private router:Router) { }
   emailUser:any;
   ngOnInit(): void {
 
     this.emailUser = this.chatService.data.email;
 
+  }
+  logout(){
+    this.chatService.logout(this.chatService.data.nameid);
+    localStorage.clear();
+    this.router.navigate(['']);
   }
 
 }

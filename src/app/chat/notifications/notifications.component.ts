@@ -18,7 +18,7 @@ export class NotificationsComponent implements OnInit {
     console.log("NotificationsComponentomponent");
   }
 
-  groupMembers:any = [{User_Id: this.chat.data.nameid}]
+  groupMembers:any = []//{User_Id: this.chat.data.nameid}
   chatAndMember:any;
 
   createChatForm:FormGroup = new FormGroup({
@@ -53,7 +53,6 @@ export class NotificationsComponent implements OnInit {
 
   UserProfile(userId:any){
     console.log("UserProfile", this.chat.allMemberinMessageGroup);
-    
     console.log('UserProfile',userId);
     this.chat.UserProfile(userId)
     this.dialog.open(this.userProfileDialog,{width:'450px',height:'550px'});

@@ -24,6 +24,7 @@ export class ChatWithMessageComponent implements OnInit, AfterViewChecked {
   @Input() messageGroup:any;
   @ViewChild('userProfileDialog') userProfileDialog! :TemplateRef<any>;
   @ViewChild('scrollMe') private myScrollContainer!: ElementRef;
+  @ViewChild('myProfileDialog') myProfileDialog! :TemplateRef<any>;
   changelog: string[] = [];
 
   userLoged=this.chatService.data.nameid;
@@ -68,6 +69,10 @@ export class ChatWithMessageComponent implements OnInit, AfterViewChecked {
       console.log(this.currentGroupId+"Deiaa was here");
       console.log(this.chatService.id+"Deiaa was here Again");
 
+  }
+
+  OpenMyProfileDialog(){
+    this.dialog.open(this.myProfileDialog, {width:'500px',height:'600px'})
   }
 
   scrollToBottom(): void {
@@ -115,6 +120,10 @@ messageText:any;
     this.messageform.controls['messageDate'].setValue(new Date());
     //this.messageform.controls['messageDate'].setValue();
 
+    // if(this.messageText.includes('jpg')){
+    //   console.log(this.messageText,'image',this.messageform.controls['text'].value);
+      
+    // }
     // this.chatService.CreateMessage(this.messageform.value)
     // this.messageText='';
 
@@ -168,7 +177,7 @@ messageText:any;
 
   urls:any[]=[];
 imgName:any
-files:any[]=[];
+files:any;
   detectFiles(event:any) {
     this.urls = [];
     this.files = event.target.files;
@@ -215,12 +224,14 @@ files:any[]=[];
   }
 
 
- deleteImage(name: any, index:any): void {
+ deleteImage(name: any): void {
   debugger
   this.urls = this.urls.filter((a:any) => a.name !== name);
-    // this.files.splice(index,1);
-    this.files =this.files.filter((item:any)=> item.name!==name)
-    console.log(this.files,'Delete Files');
+    
+    // this.files = event.target.files
+
+    // this.files =this.files.File.filter((item:any)=> item.name!==name)
+    // console.log(this.files,'Delete Files');
   // let test:any
   // for (let file of this.files) {
   //   console.log(file.name,"InFor");

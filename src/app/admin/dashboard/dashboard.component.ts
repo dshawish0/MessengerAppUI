@@ -19,6 +19,7 @@ export class DashboardComponent implements OnInit {
     this.admin.GetAll();
     this.admin.GetChart();  
     this.admin.GetRevenue();
+    this.admin.GetChart2();
   } 
 
 }

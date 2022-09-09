@@ -1,30 +1,25 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ChatModule } from './chat/chat.module';
-import { HomeModule } from './home/home.module';
-import { AppComponent } from './app.component';
-import { AuthModule } from './auth/auth.module';
-import { AdminModule } from './admin/admin.module';
 import { AutherizationGuard } from './autherization.guard';
 
 
 const routes: Routes = [
   {
     path:"Chat",
-    loadChildren:()=>ChatModule,
+    loadChildren: () => import('./chat/chat.module').then(m => m.ChatModule),
     canActivate:[AutherizationGuard]
    },
    {
     path:"",
-    loadChildren:()=>HomeModule
+    loadChildren:()=>import('./home/home.module').then(m => m.HomeModule),
    },
    {
       path:'log',
-      loadChildren:()=>AuthModule
+      loadChildren:()=> import('./auth/auth.module').then(m => m.AuthModule),
    },
    {
     path:'admin',
-    loadChildren:()=>AdminModule,
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
     canActivate:[AutherizationGuard]
  }
 ];

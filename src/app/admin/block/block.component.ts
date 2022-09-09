@@ -14,10 +14,14 @@ export class BlockComponent implements OnInit {
     this.admin.GetAllUser();
   }
   Block(id:any){
+    console.log(id,"block user");
+    
     this.admin.BlockUser(id);
   }
   UnBlock(id:any){
+    console.log(id,"Unblock user");
     this.admin.UnBlockUser(id);
+    
   }
   userName: any = '';
   inputValue(ev: any) {

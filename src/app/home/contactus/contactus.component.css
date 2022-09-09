@@ -138,3 +138,14 @@ button.contact_form_submit {
     border-radius: 30px;
     overflow: hidden;
 }
+
+.landing_page_slider {
+    
+    overflow: hidden;
+    position: relative;
+    min-height: 1060px;
+    background-repeat: no-repeat
+}
+
+
+

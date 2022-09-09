@@ -4,12 +4,10 @@ import {HttpClientModule} from '@angular/common/http'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { SpinnerComponent } from './spinner/spinner.component';
 
 
 @NgModule({
   declarations: [
-    SpinnerComponent
   ],
   imports: [
     CommonModule,

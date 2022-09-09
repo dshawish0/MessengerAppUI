@@ -130,6 +130,7 @@ var body={
 this.spinner.show();
 this.http.post('https://localhost:44318/api/Login/ChangeCurrentPassword',body).subscribe(
   (resp)=>{
+    console.log(resp,"asdsadsadsad");
     this.spinner.hide();
     this.toastr.success('Updated Password', '', { positionClass: 'toast-bottom-center' });
 },err =>{

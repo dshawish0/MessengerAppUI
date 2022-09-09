@@ -99,16 +99,9 @@
                                             </div>
                                             <div class="col-auto" *ngIf="item.service.servicename=='Disable Active'">
                                                 <div class="form-check form-switch">
-                                                    <input class="form-check-input"
-                                                        *ngIf="item.user.isActive==0" type="checkbox"
-                                                        id="accordion-security-check-1"
-                                                        (click)="UserActive($event,this.chat.payment[0].user)">
-                                                    <input class="form-check-input" checked
-                                                        *ngIf="item.user.isActive==1" type="checkbox"
-                                                        id="accordion-security-check-1"
-                                                        (click)="UserActive($event,this.chat.payment[0].user)">
-                                                    <label class="form-check-label"
-                                                        for="accordion-security-check-1"></label>
+                                                    <input class="form-check-input" *ngIf="item.user.isActive==0" type="checkbox" id="accordion-security-check-1" (click)="UserActive($event,this.chat.payment[0].user)">
+                                                    <input class="form-check-input" checked *ngIf="item.user.isActive==1" type="checkbox" id="accordion-security-check-1" (click)="UserActive($event,this.chat.payment[0].user)">
+                                                    <label class="form-check-label" for="accordion-security-check-1"></label>
                                                 </div>
                                             </div>
                                         </div>
@@ -123,43 +116,43 @@
                                 </div>
 
                                 <!-- <div > -->
-                                    <div class="card border-0" *ngFor="let item of this.chat.transform(this.chat.allServices,{'servicename':this.chat.searchText},false)" >
-                                        <div class="card-body">
-                                            <div class="row align-items-center gx-0">
-                                                <div class="col">
-                                                    <h4 class="mb-1">{{item.servicename}}</h4>
-                                                    <p>Price: ${{item.saleprice}}</p>
-                                                </div>
-                                                <div class="col-auto" *ngFor="let payments of this.chat.payment">
-                                                    <button class="btn btn-sm btn-icon btn-primary rounded-circle" [disabled]="item.serviceid == payments.service.serviceid" (click)="PayService(item.serviceid)">
+                                <div class="card border-0" *ngFor="let item of this.chat.transform(this.chat.allServices,{'servicename':this.chat.searchText},false)">
+                                    <div class="card-body">
+                                        <div class="row align-items-center gx-0">
+                                            <div class="col">
+                                                <h4 class="mb-1">{{item.servicename}}</h4>
+                                                <p>Price: ${{item.saleprice}}</p>
+                                            </div>
+                                            <div class="col-auto" *ngFor="let payments of this.chat.payment">
+                                                <button class="btn btn-sm btn-icon btn-primary rounded-circle" [disabled]="item.serviceid == payments.service.serviceid" (click)="PayService(item.serviceid, item.saleprice, item.servicename)">
                                                         <!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg> -->
                                                         <p style="color:white;margin: auto;">Pay</p>
                                                     </button>
-                                                </div>
-
                                             </div>
+
                                         </div>
                                     </div>
                                 </div>
-                                <!-- </div> -->
                             </div>
+                            <!-- </div> -->
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </aside>
-    <!-- Chat -->
-    <main class="main" [ngClass]="this.chat.collapse  ? 'is-visible' : ''" data-dropzone>
-        <div class="container h-100">
-            <app-chatempty *ngIf="this.chat.id==0"></app-chatempty>
-            <app-chat-with-message *ngIf="this.chat.id!=0"></app-chat-with-message>
-        </div>
-    </main>
-    <!-- Chat -->
+        <!-- </div>
+    </aside> -->
+        <!-- Chat -->
+        <main class="main" [ngClass]="this.chat.collapse  ? 'is-visible' : ''" data-dropzone>
+            <div class="container h-100">
+                <app-chatempty *ngIf="this.chat.id==0"></app-chatempty>
+                <app-chat-with-message *ngIf="this.chat.id!=0"></app-chat-with-message>
+            </div>
+        </main>
+        <!-- Chat -->
 
 
-    <!-- Layout -->
+        <!-- Layout -->
 
 
-    <!-- Modal: Profile -->
+        <!-- Modal: Profile -->

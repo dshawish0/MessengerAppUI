@@ -33,7 +33,7 @@ export class SupportComponent implements OnInit {
     }
   }
 
-  PayService(serviceId:any,saleprice:any,servicename:any,){
+  PayService(serviceId:any,saleprice:any,servicename:any){
     this.dialog.open(PaymentDialogComponent)
      environment.serviceId=serviceId;
      environment.saleprice=saleprice;

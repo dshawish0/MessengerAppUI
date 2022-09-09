@@ -15,7 +15,7 @@ export class AdminService {
   numofusersActive = 0;
   testimonail: any = [];
 
-  constructor(public http: HttpClient, private spinner: NgxSpinnerService, private toastr: ToastrService,private router :Router) { }
+  constructor(public http: HttpClient, private spinner: NgxSpinnerService, private toastr: ToastrService,private router :Router) { 
     this.getInfoProfile()
   }
 

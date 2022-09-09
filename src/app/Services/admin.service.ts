@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import jwt_decode from "jwt-decode";
+import { Router } from '@angular/router';
 import {Chart,registerables } from 'chart.js'
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class AdminService {
   numofusersActive = 0;
   testimonail: any = [];
 
-  constructor(public http: HttpClient, private spinner: NgxSpinnerService, private toastr: ToastrService) { 
+  constructor(public http: HttpClient, private spinner: NgxSpinnerService, private toastr: ToastrService,private router :Router) { }
     this.getInfoProfile()
   }
 
@@ -123,7 +124,9 @@ export class AdminService {
         //show toster
         this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
       })
-    window.location.reload();
+    //window.location.reload();
+    // this.router.navigate(['admin'])
+    // this.router.navigate(['admin/testimonial']);
   }
   RejectTest(body: any) {
     //show spinner
@@ -144,7 +147,7 @@ export class AdminService {
         //show toster
         this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
       })
-    window.location.reload();
+    // window.location.reload();
   }
   SearchUserById(body: any) {
     this.spinner.show();

@@ -24,19 +24,14 @@
                                     <div class="input-group">
                                         <div class="input-group-text">
                                             <div class="icon icon-lg">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                    class="feather feather-search">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
                                                     <circle cx="11" cy="11" r="8"></circle>
                                                     <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                                                 </svg>
                                             </div>
                                         </div>
 
-                                        <input name="searchText" [(ngModel)]="this.chat.searchText" type="text" class="form-control form-control-lg ps-0"
-                                            placeholder="Search messages or users"
-                                            aria-label="Search for messages or users...">
+                                        <input name="searchText" [(ngModel)]="this.chat.searchText" type="text" class="form-control form-control-lg ps-0" placeholder="Search messages or users" aria-label="Search for messages or users...">
                                     </div>
                                 </form>
                             </div>
@@ -117,7 +112,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -141,9 +136,11 @@
                                                         <p style="color:white;margin: auto;">Pay</p>
                                                     </button>
                                                 </div>
+
                                             </div>
                                         </div>
                                     </div>
+                                </div>
                                 <!-- </div> -->
                             </div>
                         </div>
@@ -155,8 +152,8 @@
     <!-- Chat -->
     <main class="main" [ngClass]="this.chat.collapse  ? 'is-visible' : ''" data-dropzone>
         <div class="container h-100">
-            <app-chatempty *ngIf="this.chat.id==0" ></app-chatempty>
-            <app-chat-with-message *ngIf="this.chat.id!=0"></app-chat-with-message>        
+            <app-chatempty *ngIf="this.chat.id==0"></app-chatempty>
+            <app-chat-with-message *ngIf="this.chat.id!=0"></app-chat-with-message>
         </div>
     </main>
     <!-- Chat -->

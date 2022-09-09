@@ -8,6 +8,8 @@ import jwt_decode from "jwt-decode";
 import { environment } from 'src/environments/environment';
 import * as signalR from '@microsoft/signalr';
 import { LoginService } from './login.service';
+import { MatDialog } from '@angular/material/dialog';
+import { PaymentDialogComponent } from '../chat/payment-dialog/payment-dialog.component';
 
 interface Message{
   userName:string,
@@ -20,13 +22,11 @@ interface Message{
 })
 export class ChatService {
   updateedId='';
-  constructor(private http: HttpClient, private spinner: NgxSpinnerService, private toastr: ToastrService, private loginService:LoginService) { 
-    
+  constructor(private http: HttpClient, private spinner: NgxSpinnerService, private toastr: ToastrService, private loginService:LoginService, public dialog:MatDialog) { 
     this.getUser();
     this.MyProfile() 
     console.log(this.data,"ChatService constructor");
     console.log(this.myProfile,"ChatService constructor myProfile");
-
     this.startConnection();
   }
 
@@ -444,8 +444,25 @@ data:any;
   })
  }
 
- PayService(serviceId:any){
-  
+ PayService(service:any){
+
+  debugger
+  var body ={
+    UserId: this.data.nameid,
+    ServiceId: environment.serviceId
+  };
+
+  this.http.post('https://localhost:44318/api/Payment/AddPayment', body).subscribe((res) => {
+    this.toastr.success('Paid successfully', '', { positionClass: 'toast-bottom-center' });
+    this.dialog.closeAll
+    },
+      err => {
+        this.toastr.error('Somthing Wrong try again', '', { positionClass: 'toast-bottom-center' });
+      })
+
+  //console.log(service,"serviceId");
+  //console.log(service,"Deiaa was hereeeeeeeeeeeee");
+
  }
 
 

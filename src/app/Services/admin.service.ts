@@ -4,7 +4,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import jwt_decode from "jwt-decode";
 import { Router } from '@angular/router';
-
+import {Chart,registerables } from 'chart.js'
 @Injectable({
   providedIn: 'root'
 })
@@ -16,6 +16,8 @@ export class AdminService {
   testimonail: any = [];
 
   constructor(public http: HttpClient, private spinner: NgxSpinnerService, private toastr: ToastrService,private router :Router) { }
+    this.getInfoProfile()
+  }
 
   GetAllUser() {
     //show spinner
@@ -40,46 +42,32 @@ export class AdminService {
       })
   }
   BlockUser(body: any) {
-    //show spinner
     this.spinner.show();
-    //hits Api
-    debugger
     this.http.post('https://localhost:44318/api/User/IsBlocked', body).subscribe(
       (result) => {
-        debugger
         console.log(result);
-        // hide spinner
         this.spinner.hide();
-        //show toster
         this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
+        window.location.reload();
       }, err => {
-        //hide spinner
         this.spinner.hide();
-        //show toster
         this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
       })
-    window.location.reload();
+    
   }
   UnBlockUser(body: any) {
-    //show spinner
     this.spinner.show();
-    //hits Api
-    debugger
     this.http.post('https://localhost:44318/api/User/UnBlocked', body).subscribe(
       (result) => {
-        debugger
         console.log(result);
-        // hide spinner
         this.spinner.hide();
-        //show toster
         this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
+        window.location.reload();
       }, err => {
-        //hide spinner
         this.spinner.hide();
-        //show toster
         this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
       })
-    window.location.reload();
+    
   }
   SearchUserName(name: any) {
     this.spinner.show();
@@ -89,7 +77,7 @@ export class AdminService {
         console.log(res);
         this.users = [res];
         this.spinner.hide();
-        this.toastr.success('Search success', '', { positionClass: 'toast-bottom-center' });
+        //this.toastr.success('Search success', '', { positionClass: 'toast-bottom-center' });
       }, err => {
         this.spinner.hide();
 
@@ -101,7 +89,7 @@ export class AdminService {
     //show spinner
     this.spinner.show();
     //hits Api
-    this.http.get('https://localhost:44318/api/Testimonial/GetAllTests').subscribe(
+    this.http.get('https://localhost:44318/api/Testimonial/GetTestimonialByUserName').subscribe(
       (result) => {
         debugger
         this.testimonail = result;
@@ -109,7 +97,7 @@ export class AdminService {
         // hide spinner
         this.spinner.hide();
         //show toster
-        this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
+        //this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
       }, err => {
         //hide spinner
         this.spinner.hide();
@@ -129,7 +117,7 @@ export class AdminService {
         // hide spinner
         this.spinner.hide();
         //show toster
-        this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
+        //this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
       }, err => {
         //hide spinner
         this.spinner.hide();
@@ -152,7 +140,7 @@ export class AdminService {
         // hide spinner
         this.spinner.hide();
         //show toster
-        this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
+        //this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
       }, err => {
         //hide spinner
         this.spinner.hide();
@@ -169,7 +157,7 @@ export class AdminService {
         console.log(res);
         this.testimonail = res;
         this.spinner.hide();
-        this.toastr.success('Search success', '', { positionClass: 'toast-bottom-center' });
+        //this.toastr.success('Search success', '', { positionClass: 'toast-bottom-center' });
       }, err => {
         this.spinner.hide();
         this.toastr.error("Error");
@@ -186,7 +174,7 @@ export class AdminService {
         console.log(res);
         this.testimonail = res;
         this.spinner.hide();
-        this.toastr.success('Search success', '', { positionClass: 'toast-bottom-center' });
+        //this.toastr.success('Search success', '', { positionClass: 'toast-bottom-center' });
       }, err => {
         this.spinner.hide();
         this.toastr.error("Error");
@@ -201,15 +189,17 @@ export class AdminService {
     //show spinner
     this.spinner.show();
     
-    this.http.get('https://localhost:44318/api/ReportUser/GetReportUsers').subscribe(
+    this.http.get('https://localhost:44318/api/ReportUser/GetAllByusername').subscribe(
       (result) => {
         this.reports = result;
+        console.log(result);
+        
         this.reportsaccept = this.reports.filter((obj: any) => obj.status === 0);
         this.numofreport = this.reportsaccept.length;
         // hide spinner
         this.spinner.hide();
         //show toster
-        this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
+        //this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
       }, err => {
         //hide spinner
         this.spinner.hide();
@@ -219,47 +209,45 @@ export class AdminService {
   }
   Accepts(body: any) {
     this.spinner.show();
-    debugger
     this.http.put('https://localhost:44318/api/ReportUser/acceptingReportUser', body).subscribe(
       (result) => {
-        debugger
         console.log(result);
         // hide spinner
         this.spinner.hide();
         //show toster
         this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
+        window.location.reload();
       },
       err => {
 
         this.spinner.hide();
         this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
       })
-    window.location.reload();
+    
   }
   Regects(body: any) {
     this.spinner.show();
-    debugger
     this.http.put('https://localhost:44318/api/ReportUser/rejectreport', body).subscribe(
       (result) => {
-        debugger
         console.log(result);
         this.spinner.hide();
         this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
+        window.location.reload();
       },
       err => {
         this.spinner.hide();
         this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
       })
-    window.location.reload();
+    
   }
-  searchReport(id: number) {
+  searchReport(name: any) {
     this.spinner.show();
-    this.http.get('https://localhost:44318/api/ReportUser/GetReportUsersById/' + id).subscribe(
+    this.http.get('https://localhost:44318/api/ReportUser/GetReportUsersByName/' + name).subscribe(
       (res) => {
         console.log(res);
         this.reports = res;
         this.spinner.hide();
-        this.toastr.success('Search success', '', { positionClass: 'toast-bottom-center' });
+        //this.toastr.success('Search success', '', { positionClass: 'toast-bottom-center' });
       }, err => {
         this.spinner.hide();
         this.toastr.error("Error");
@@ -269,18 +257,20 @@ export class AdminService {
 
   }
   addservices: any = [];
+  numofServes=0;
   GetAll() {
     //show spinner
     this.spinner.show();
     this.http.get('https://localhost:44318/api/Services/GetAllServices').subscribe(
       (res) => {
         this.addservices = res;
+        this.numofServes = this.addservices.length;
         console.log(res);
         console.log('getAll');
         // hide spinner
         this.spinner.hide();
         //show toster
-        this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
+        //this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
       },
       err => {
         console.log('error');
@@ -298,7 +288,7 @@ export class AdminService {
         debugger
         this.spinner.hide();
         //show toster
-        this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
+        //this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
       }, err => {
         this.spinner.hide();
         this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
@@ -314,7 +304,7 @@ export class AdminService {
         console.log('deleted');
         this.spinner.hide();
         //show toster
-        this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
+        //this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
       }, err => {
         this.spinner.hide();
         this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
@@ -324,11 +314,11 @@ export class AdminService {
   }
   Updateservices(body: any) {
     this.spinner.show();
-    this.http.put('https://localhost:44318/api/Services/update', body).subscribe
+    this.http.put('https://localhost:44318/api/Services/UpDateServices', body).subscribe
       ((resp) => {
         this.spinner.hide();
         //show toster
-        this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
+        //this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
       }, err => {
         this.spinner.hide();
         this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
@@ -343,7 +333,7 @@ export class AdminService {
         this.addservices = [res];
         this.spinner.hide();
         //show toster
-        this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
+        //this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
       },
         err => {
           this.spinner.hide();
@@ -384,7 +374,7 @@ export class AdminService {
         // hide spinner
         this.spinner.hide();
         //show toster
-        this.toastr.success('sucssess Upload', '', { positionClass: 'toast-bottom-center' });
+        //this.toastr.success('sucssess Upload', '', { positionClass: 'toast-bottom-center' });
 
       }, err => {
         //hide spinner
@@ -405,7 +395,7 @@ export class AdminService {
         // hide spinner
         this.spinner.hide();
         //show toster
-        this.toastr.success('sucssess Updated', '', { positionClass: 'toast-bottom-center' });
+        //this.toastr.success('sucssess Updated', '', { positionClass: 'toast-bottom-center' });
       }, err => {
         //hide spinner
         this.spinner.hide();
@@ -426,7 +416,7 @@ export class AdminService {
         // hide spinner
         this.spinner.hide();
         //show toster
-        this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
+        //this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
       }, err => {
         //hide spinner
         this.spinner.hide();
@@ -443,7 +433,7 @@ export class AdminService {
     this.http.put('https://localhost:44318/api/Footer/UpdateFooter', body).subscribe(
       (resp) => {
         this.spinner.hide();
-        this.toastr.success('sucssess Updated', '', { positionClass: 'toast-bottom-center' });
+        //this.toastr.success('sucssess Updated', '', { positionClass: 'toast-bottom-center' });
       }, err => {
         this.spinner.hide();
         this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
@@ -482,7 +472,7 @@ export class AdminService {
         // hide spinner
         this.spinner.hide();
         //show toster
-        this.toastr.success('sucssess Upload Image', '', { positionClass: 'toast-bottom-center' });
+       // this.toastr.success('sucssess Upload Image', '', { positionClass: 'toast-bottom-center' });
 
       }, err => {
         //hide spinner
@@ -500,7 +490,7 @@ export class AdminService {
         // hide spinner
         this.spinner.hide();
         //show toster
-        this.toastr.success('logout', '', { positionClass: 'toast-bottom-center' });
+        //this.toastr.success('logout', '', { positionClass: 'toast-bottom-center' });
       }, err => {
         //hide spinner
         this.spinner.hide();
@@ -538,7 +528,7 @@ export class AdminService {
         // hide spinner
         this.spinner.hide();
         //show toster
-        this.toastr.success('sucssess Upload', '', { positionClass: 'toast-bottom-center' });
+        //this.toastr.success('sucssess Upload', '', { positionClass: 'toast-bottom-center' });
 
       }, err => {
         //hide spinner
@@ -556,7 +546,7 @@ export class AdminService {
     this.http.put('https://localhost:44318/api/AboutUs/UpdateAbout', body).subscribe(
       (resp) => {
         this.spinner.hide();
-        this.toastr.success('sucssess Updated', '', { positionClass: 'toast-bottom-center' });
+        //this.toastr.success('sucssess Updated', '', { positionClass: 'toast-bottom-center' });
       }, err => {
         this.spinner.hide();
         this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
@@ -590,13 +580,94 @@ export class AdminService {
     this.http.put('https://localhost:44318/api/ContactUs/UpdateContact', body).subscribe(
       (resp) => {
         this.spinner.hide();
-        this.toastr.success('sucssess Updated', '', { positionClass: 'toast-bottom-center' });
+        //this.toastr.success('sucssess Updated', '', { positionClass: 'toast-bottom-center' });
       }, err => {
         this.spinner.hide();
         this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
       })
     window.location.reload();
   }
-
+  Payment: any = [];
+  GetPayment() {
+    //show spinner
+    this.spinner.show();
+    //hits Api
+    this.http.get('https://localhost:44318/api/Payment/GetPaymentsByDetails').subscribe(
+      (result) => {
+        console.log(result);
+        this.Payment = result;
+        // hide spinner
+        this.spinner.hide();
+        //show toster
+        //this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
+      }, err => {
+        //hide spinner
+        this.spinner.hide();
+        //show toster
+        this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
+      })
+  }
+  chart:any={}
+  numofuserblock=0;
+  userblock: any = [];
+  GetChart(){
+  this.http.get('https://localhost:44318/api/User').subscribe(
+      (result) => {
+        this.users = result;
+        this.numberofuser = this.users.length;
+        this.userActiv = this.users.filter((obj: any) => obj.isActive === 1);
+        this.numofusersActive = this.userActiv.length;
+        this.userblock = this.users.filter((obj: any) => obj.isBlocked == 1);
+        this.numofuserblock =this.userblock.length;
+        this.chart = new Chart('myChart', {
+          type: 'pie',
+          data: {
+            labels: ['Number of User', 'Number of Activ',"Number of Block"],
+            datasets: [{
+              label: 'Users',
+              data: [this.numberofuser,this.numofusersActive,this.numofuserblock],
+              borderWidth: 1, 
+              //fill:false,
+              backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(93,175,89,01)',
+                'rgb(54, 162, 235)',
+              ],
+              borderColor: '#3e95cd',
+            },],
+          },
+        })
+        // hide spinner
+        this.spinner.hide();
+        //show toster
+        //this.toastr.success('sucssess','',{ positionClass:'toast-bottom-center' });
+      }, err => {
+        //hide spinner
+        this.spinner.hide();
+        //show toster
+        this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
+    })
+  }
+  numofrevenue=0;
+  GetRevenue(){
+    debugger
+    //show spinner
+    this.spinner.show();
+    //hits Api
+    this.http.get('https://localhost:44318/api/Payment/GetRevenue').subscribe(
+      (res:any) => {
+        console.log(res);
+        this.numofrevenue = res[0].revenue;
+        // hide spinner
+        this.spinner.hide();
+        //show toster
+        //this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
+      }, err => {
+        //hide spinner
+        this.spinner.hide();
+        //show toster
+        this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
+      })
+  }
 }
 

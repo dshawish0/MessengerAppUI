@@ -18,10 +18,8 @@ export class HomeService {
     //show spinner
     this.spinner.show();
     //hits Api
-    debugger
     this.http.get('https://localhost:44318/api/Testimonial/GetTestimonialShow').subscribe(
       (result) => {
-        debugger
         this.testimonailShow = result;
         console.log(result);
         // hide spinner
@@ -47,7 +45,7 @@ export class HomeService {
         // hide spinner
         this.spinner.hide();
         //show toster
-        this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
+        //this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
       }, err => {
         //hide spinner
         this.spinner.hide();
@@ -67,7 +65,7 @@ export class HomeService {
         // hide spinner
         this.spinner.hide();
         //show toster
-        this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
+        //this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
       }, err => {
         //hide spinner
         this.spinner.hide();
@@ -77,7 +75,7 @@ export class HomeService {
   }
   displayImg: any;
   uploadAttachment(file: FormData, id: number) {
-    debugger
+    
     this.http.post('https://localhost:44318/api/Home/upLoadImg/' + id, file).subscribe(
       (res: any) => {
         console.log("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
@@ -135,7 +133,7 @@ export class HomeService {
         // hide spinner
         this.spinner.hide();
         //show toster
-        this.toastr.success('sucssess Upload Image', '', { positionClass: 'toast-bottom-center' });
+        //this.toastr.success('sucssess Upload Image', '', { positionClass: 'toast-bottom-center' });
       }, err => {
         //hide spinner
         this.spinner.hide();
@@ -144,7 +142,7 @@ export class HomeService {
       })
   }
   updateHome(body: any,id:number) {
-    debugger
+    
     console.log("-----------------updateHome--------------------");
     console.log(body);
     // if (body.lapImg != null) {
@@ -206,7 +204,7 @@ export class HomeService {
         // hide spinner
         this.spinner.hide();
         //show toster
-        this.toastr.success('sucssess Upload Image', '', { positionClass: 'toast-bottom-center' });
+        //this.toastr.success('sucssess Upload Image', '', { positionClass: 'toast-bottom-center' });
       }, err => {
         //hide spinner
         this.spinner.hide();

@@ -55,13 +55,16 @@
                     </div>
 
                     <!-- Card -->
-                    <div class="card border-0" *ngFor="let item of this.chat.transform(this.chat.myFriend,{'fname': this.chat.searchText},false)">
+                    <div class="card border-0" *ngFor="let item of this.chat.transform(this.chat.myFriend,{'fname':this.chat.searchText },false)">
                         <div class="card-body">
 
                             <div class="row align-items-center gx-5">
                                 <div class="col-auto">
                                     <a class="avatar" (click)="UserProfile(item.user.userId)">
-                                        <img class="avatar-img" [ngClass]="item.user.isActive ==1 ?'avatar-online' : ''" src="../../../assets/Img/{{item.user.proFileImg}}" alt="">                      
+                                        <img class="avatar-img" [ngClass]="item.user.isActive ==1 ?'avatar-online' : ''" 
+                                        *ngIf="item.user.proFileImg != null||''||undefined"
+                                        src="../../../assets/Img/{{item.user.proFileImg}}" alt=""> 
+                                        <span class="avatar-text" *ngIf="item.user.proFileImg == null||''||undefined">{{ item.user.userName |uppercase | slice:0:1 }}</span>
                                     </a>
                                 </div>
 
@@ -79,9 +82,9 @@
                                         </a>
 
                                         <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="#">New message</a></li>
+                                            <!-- <li><a class="dropdown-item" href="#">New message</a></li>
                                             <li><a class="dropdown-item" href="#">Edit contact</a>
-                                            </li>
+                                            </li> -->
                                             <li>
                                                 <a class="dropdown-item" (click)="OpenReportUserDialog(item.user.userId)">Report User</a>
                                             </li>
@@ -296,9 +299,10 @@
                         <div class="profile-body">
                             <div class="avatar avatar-xl">
                                 <img class="avatar-img"
+                                    *ngIf="this.chat.userProfile[0].proFileImg!= null||''||undefined"
                                     src="../../../assets/Img/{{this.chat.userProfile[0].proFileImg}}"
                                     width="100%" height="100%" alt="#">
-
+                                    <span class="avatar-text" *ngIf="this.chat.userProfile[0].proFileImg == null||''||undefined">{{ this.chat.userProfile[0].userName |uppercase | slice:0:1 }}</span>
                             </div>
 
                             <h4 class="mb-1">{{this.chat.userProfile[0].fname}}

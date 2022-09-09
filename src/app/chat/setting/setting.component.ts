@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ChatService } from 'src/app/Services/chat.service';
 import { LoginService } from 'src/app/Services/login.service';
 import jwt_decode from "jwt-decode";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-setting',
@@ -11,11 +12,11 @@ import jwt_decode from "jwt-decode";
 })
 export class SettingComponent implements OnInit {
 
-  constructor(public chatService:ChatService, private login:LoginService) { }
-  old_Data:any ={}
+  constructor(public chatService:ChatService, private login:LoginService, private router:Router) { }
+  // old_Data:any;
   ngOnInit(): void {
-    this.old_Data = this.chatService.myProfile;
-    console.log("old",this.old_Data);
+    // this.old_Data = this.chatService.myProfile;
+    console.log("old",this.chatService.old_Data);
     console.log("SettingComponent");
   }
   Profile:FormGroup= new FormGroup({
@@ -48,11 +49,11 @@ export class SettingComponent implements OnInit {
   }
 
   upDateProfile(){
-    this.Profile.controls['userId'].setValue(this.old_Data.userId);
-    this.Profile.controls['proFileImg'].setValue(this.old_Data.proFileImg);
-    this.Profile.controls['gender'].setValue(this.old_Data.gender);
-    this.Profile.controls['isActive'].setValue(this.old_Data.isActive);
-    this.Profile.controls['isBlocked'].setValue(this.old_Data.isBlocked);
+    this.Profile.controls['userId'].setValue(this.chatService.old_Data.userId);
+    this.Profile.controls['proFileImg'].setValue(this.chatService.old_Data.proFileImg);
+    this.Profile.controls['gender'].setValue(this.chatService.old_Data.gender);
+    this.Profile.controls['isActive'].setValue(this.chatService.old_Data.isActive);
+    this.Profile.controls['isBlocked'].setValue(this.chatService.old_Data.isBlocked);
     console.log(this.Profile.value,"formGroup");
     this.chatService.UpDataProfileUser(this.Profile.value);
     
@@ -67,5 +68,11 @@ data:any
       this.ChangeCurrentPassword.controls["NewPassowrd"].value)
     }
     
+  }
+
+  logout(){
+    this.chatService.logout(this.chatService.data.nameid);
+    localStorage.clear();
+    this.router.navigate(['']);
   }
 }

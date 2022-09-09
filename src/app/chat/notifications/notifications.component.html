@@ -42,6 +42,8 @@
                                     <!-- Title -->
         
                                     <!-- Card -->
+                                    <hr/>
+                                    <p>Friendship requests</p>
                                     <div *ngIf="this.chat.lopy.length>0">
                                         <div class="card border-0 mb-5" *ngFor="let item of this.chat.lopy">
                                         <div class="card-body" (click)="UserProfile(item.user.userId)">
@@ -97,6 +99,8 @@
                                     <!-- Card -->
 
                                     <!-- userBlocked -->
+                                    <hr/>
+                                    <p>friends Bolcked</p>
                                     <!-- Card -->
                                     <div *ngIf="this.chat.blockFriend.length>0">
                                         <div class="card border-0 mb-5" *ngFor="let item of this.chat.blockFriend">
@@ -137,10 +141,6 @@
                                     <!-- Card -->
                                 </div>
                                 <!-- Today -->
-
-                                <a  class="avatar avatar-sm" data-toggle="modal" data-target="#myModal">
-                                    Show
-                                </a>
                             </div>
                         </div>
                     </div>

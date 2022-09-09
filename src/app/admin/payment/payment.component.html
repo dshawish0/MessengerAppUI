@@ -1,0 +1,65 @@
+<div class="wrapper ">
+    <app-sidebar-admin></app-sidebar-admin>
+    <div class="main-panel">
+        <app-navbar-admin></app-navbar-admin>
+        <div class="content">
+            <div class="container-fluid">
+                <h1 class="text-center">Payment</h1>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header card-header-rose card-header-icon">
+                                <div class="card-icon">
+                                    <i class="material-icons">assignment</i>
+                                </div>
+                                <h4 class="card-title">All Payment</h4>
+                            </div>
+                            <div class="card-body">
+                                <!-- <div class="form-inline" style="float: right;">
+                                    <label>publish Date: </label>
+                                    <input type="date" class="form-control" placeholder="publish Date" [value]="publishdate" 
+                                    (change)="inputValue($event)">
+                                    <button type="submit" class="btn btn-white btn-round btn-just-icon" (click)="search()">
+                                        <i class="material-icons">search</i>
+                                        <div class="ripple-container"></div>
+                                    </button>
+                                </div> -->
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">#</th>
+                                                <th>Paymentdate</th>
+                                                <th>Fname</th>
+                                                <th>Lname</th>
+                                                <th>userName</th>
+                                                <th>Servicename</th>
+                                                <th>Preprice</th>
+                                                <th>Saleprice</th>
+                                                <th>Revenue</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let item of admin.Payment;index as i">
+                                                <td class="text-center">{{i+1}}</td>
+                                                <td>{{item.paymentdate}}</td>
+                                                <td>{{item.fname}}</td>
+                                                <td>{{item.lname}}</td>
+                                                <td>{{item.userName}}</td>
+                                                <td>{{item.servicename}}</td>
+                                                <td>{{item.preprice}}</td>
+                                                <td>{{item.saleprice}}</td>
+                                                <td>{{item.revenue}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <app-footer-admin></app-footer-admin>
+    </div>
+</div>

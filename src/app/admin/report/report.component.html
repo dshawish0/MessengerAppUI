@@ -19,7 +19,7 @@
                                 <div class="toolbar">
                                     <div class="form-inline" style="margin-top: 3%; float: right;">
                                         <div class="form-group mx-sm-3 mb-2">
-                                            <input type="text" class="form-control" placeholder="Report Id" [value]="reportid" 
+                                            <input type="text" class="form-control" placeholder="User Name Report" [value]="userName" 
                                             (change)="inputValue($event)">
                                         </div>
                                         <button type="submit" class="btn btn-success" (click)="search()">Search</button>
@@ -30,19 +30,21 @@
                                         cellspacing="0" width="100%" style="width:100%">
                                         <thead>
                                             <tr>
-                                                <th>User Reoprt Id</th>
+                                                <th class="text-center">#</th>
+                                                <th>User Reoprt Name</th>
                                                 <th>Report Text</th>
                                                 <th>Report Date</th>
-                                                <th>User Id</th>
+                                                <th>User Name</th>
                                                 <th class="disabled-sorting text-right">Actions</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr *ngFor="let obj of admin.reports">
-                                                <td>{{obj.userReportedId}}</td>
+                                            <tr *ngFor="let obj of admin.reports;index as i">
+                                                <td class="text-center">{{i+1}}</td>
+                                                <td>{{obj.userNameReport}}</td>
                                                 <td>{{obj.reportText}}</td>
                                                 <td>{{obj.reportDate}}</td>
-                                                <td>{{obj.user_Id}}</td>
+                                                <td>{{obj.userName}}</td>
                                                 <td class="td-actions text-right">
                                                     <button type="button" rel="tooltip" class="btn btn-success" *ngIf="obj.status == 0" (click)="Accept(obj)">Accept</button>
                                                     <button type="button" rel="tooltip" class="btn btn-danger" *ngIf="obj.status == 1" (click)="Regect(obj)">Regect</button>

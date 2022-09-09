@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ChatService } from 'src/app/Services/chat.service';
 import { LoginService } from 'src/app/Services/login.service';
@@ -9,18 +10,22 @@ import { LoginService } from 'src/app/Services/login.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-
-  constructor(public chatService :ChatService, private router :Router) { }
+  @ViewChild('myProfileDialog') myProfileDialog! :TemplateRef<any>;
+  constructor(public chatService :ChatService, private router :Router, public dialog:MatDialog) { 
+  }
   userImage:any;
   emailUser:any;
   ngOnInit(): void {
-
     // const userId = this.LoginService.data.nameid;
     this.chatService.getUser();
     this.chatService.MyProfile(); 
     this.chatService.GetAllChat()
+    console.log(this.chatService.myProfile,"ngOnInit NavbarComponent");
   }
 
+  OpenMyProfileDialog(){
+    this.dialog.open(this.myProfileDialog, {width:'500px',height:'600px'})
+  }
   LockSreen(){
     localStorage.clear();
     localStorage.setItem('UserImg',this.chatService.myProfile.proFileImg);

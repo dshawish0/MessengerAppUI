@@ -14,7 +14,8 @@ import { PaymentDialogComponent } from '../chat/payment-dialog/payment-dialog.co
 interface Message{
   userName:string,
   text:string,
-  messageGroupId :string
+  messageGroupId:string,
+  messageType:string
 }
 
 @Injectable({
@@ -129,13 +130,13 @@ data:any;
   last_Message: any = []
   GetAllChat() {
 
-    this.http.get("https://localhost:44318/api/MessageGroup/GetFullMessageGroup/"+this.data.nameid).subscribe((res) => {
+    this.http.get(`https://localhost:44318/api/MessageGroup/GetFullMessageGroup/${this.data.nameid}`).subscribe((res) => {
       this.all_chat = res;
       if (this.all_chat.messages != null)
         this.last_Message = this.all_chat.map((obj: any) => obj.messages);
     },
       error => {
-
+        this.toastr.error(error.message);
       })
   }
 
@@ -146,6 +147,7 @@ data:any;
 
     },
       error => {
+        this.toastr.error(error.message);
       })
   }
 
@@ -227,11 +229,12 @@ data:any;
 
 
   startConnection(){
-    this.connection.on("newMessage",(userName: string, text: string)=>{
+    this.connection.on("newMessage",(userName: string, text: string, messageType:string)=>{
       this.messages.push({
         text: text,
         userName: userName,
-        messageGroupId: environment.messageGroupIdGlobal.toString()
+        messageGroupId: environment.messageGroupIdGlobal.toString(),
+        messageType: messageType
       });
       this.messages.forEach(projet=>console.log(projet.messageGroupId));
     });
@@ -373,19 +376,25 @@ data:any;
 
 
  imageMessage:any;
- uplodeImageForMessage(file: FormData){
+ 
+ uplodeImageForMessage(file: FormData, message:any={}){
   this.http.post('https://localhost:44318/api/Message/uploadImageMessage',file).subscribe(
     (resp)=>{
       this.imageMessage=resp;
-      // this.SendImageAsMessage()
+      message.text = this.imageMessage.text;
+      console.log(message, "yazan tayem");
+      this.SendImageAsMessage(message)
     },err =>{
       this.toastr.error(err.message);
     })
  }
 
- SendImageAsMessage(messageimg:any){
-  // this.imageMessage.messageGroupId = this.id;
-  // this.imageMessage.senderId = this.data.nameid //from login
+ SendImageAsMessage(messageimg:any={}){
+  messageimg.text = this.imageMessage.text
+  this.connection.send("newMessage", this.data.nameid, messageimg.text, messageimg.messageType)
+  .then(()=>{
+    // this.messageform.controls['text'].setValue(''); 
+  });
   this.http.post('https://localhost:44318/api/Message/CreateMessage', messageimg).subscribe((res) => {
 
 
@@ -393,6 +402,9 @@ data:any;
       err => {
         this.toastr.error("Error")
       })
+  
+  console.log(messageimg,"messageimg from service");
+  
  }
 
  numberOfPayment:any=0;

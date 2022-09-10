@@ -110,7 +110,8 @@ messageText:any;
     text:new FormControl('',[Validators.required]),
     senderId:new FormControl(''),
     messageDate:new FormControl(''),
-    messageGroupId:new FormControl('')
+    messageGroupId:new FormControl(''),
+    messageType:new FormControl('')
   });
 
   CreateMessage(){
@@ -118,6 +119,8 @@ messageText:any;
     this.messageform.controls['messageGroupId'].setValue(this.chatService.updateedId);
     this.messageform.controls['senderId'].setValue(this.userLoged);
     this.messageform.controls['messageDate'].setValue(new Date());
+    this.messageform.controls['messageType'].setValue('text');
+
     //this.messageform.controls['messageDate'].setValue();
 
     // if(this.messageText.includes('jpg')){
@@ -149,7 +152,7 @@ messageText:any;
 
     this.chatService.CreateMessage(this.messageform.value)
 
-    this.chatService.connection.send("newMessage", this.userLoged, this.messageform.controls['text'].value)
+    this.chatService.connection.send("newMessage", this.userLoged, this.messageform.controls['text'].value, this.messageform.controls['messageType'].value)
         .then(()=>{
           this.messageform.controls['text'].setValue('');
         });
@@ -198,25 +201,19 @@ files:any;
     if (this.files) {
       for (let file of this.files) {
         
-        
         let fileToUpload = <File>file;
-        const formDate = new FormData();
-        formDate.append('file',fileToUpload,fileToUpload.name)
-        this.chatService.uplodeImageForMessage(formDate);
-
-        this.messageform.controls['messageGroupId'].setValue(this.chatService.updateedId);
-    this.messageform.controls['senderId'].setValue(this.userLoged);
-    this.messageform.controls['messageDate'].setValue(new Date());
-    this.messageform.controls['text'].setValue(this.chatService.imageMessage.text)
-
-        this.chatService.SendImageAsMessage(this.messageform.value);
+        const formData = new FormData();
+        formData.append('file',fileToUpload,fileToUpload.name)
         
-        this.chatService.connection.send("newMessage", this.userLoged, this.messageform.controls['text'].value)
-        .then(()=>{
-          this.messageform.controls['text'].setValue('');
-        });
+        this.messageform.controls['messageGroupId'].setValue(this.chatService.updateedId);
+        this.messageform.controls['text'].setValue('');
+        this.messageform.controls['senderId'].setValue(this.userLoged);
+        this.messageform.controls['messageDate'].setValue(new Date());
+        this.messageform.controls['messageType'].setValue('image');
+        this.chatService.uplodeImageForMessage(formData, this.messageform.value)
+        // this.chatService.SendImageAsMessage(this.messageform.value)
 
-        console.log(formDate,'formDate');
+        console.log(formData,'formDate');
         this.urls = [];
         this.files=[];
       }     

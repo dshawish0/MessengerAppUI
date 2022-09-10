@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SpinnerComponent } from './spinner.component';
+import { PaymentDialogComponent } from './payment-dialog.component';
 
-describe('SpinnerComponent', () => {
-  let component: SpinnerComponent;
-  let fixture: ComponentFixture<SpinnerComponent>;
+describe('PaymentDialogComponent', () => {
+  let component: PaymentDialogComponent;
+  let fixture: ComponentFixture<PaymentDialogComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SpinnerComponent ]
+      declarations: [ PaymentDialogComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(SpinnerComponent);
+    fixture = TestBed.createComponent(PaymentDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

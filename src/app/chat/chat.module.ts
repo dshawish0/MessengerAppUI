@@ -18,6 +18,7 @@ import { SettingComponent } from './setting/setting.component';
 import { ChatWithMessageComponent } from './chat-with-message/chat-with-message.component';
 import { MyprofileComponent } from './myprofile/myprofile.component';
 import { ChatInfoComponent } from './chat-info/chat-info.component';
+import { PaymentDialogComponent } from './payment-dialog/payment-dialog.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ChatInfoComponent } from './chat-info/chat-info.component';
     SettingComponent,
     ChatWithMessageComponent,
     MyprofileComponent,
-    ChatInfoComponent
+    ChatInfoComponent,
+    PaymentDialogComponent
     
   ],
   imports: [

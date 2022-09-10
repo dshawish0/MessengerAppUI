@@ -4,7 +4,10 @@
 
 export const environment = {
   production: false,
-  messageGroupIdGlobal:0
+  messageGroupIdGlobal:0,
+  serviceId:0,
+  saleprice:0,
+  servicename:''
 };
 
 /*

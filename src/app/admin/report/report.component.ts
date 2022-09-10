@@ -39,11 +39,11 @@ export class ReportComponent implements OnInit {
     
 }
 Accept(accept:any){
-  console.log(accept);
+  console.log(accept,"accepts report");
   this.admin.Accepts(accept);
 }
 Regect(Regect:any){
-  console.log(Regect);
+  console.log(Regect,"rrrrr repost");
   this.admin.Regects(Regect);
 }
 

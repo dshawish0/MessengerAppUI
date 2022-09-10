@@ -52,7 +52,7 @@ export class ChatInfoComponent implements OnInit {
   }
 
   ReportUser(){
-    this.reportUserForm.controls['User_Id'].setValue(this.chatService.data.nameId), //from Login
+    this.reportUserForm.controls['User_Id'].setValue(this.chatService.data.nameid), //from Login
     console.log(this.reportUserForm.value,'reportUserForm');
     this.chatService.ReportUser(this.reportUserForm.value);
   }

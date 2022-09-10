@@ -113,11 +113,11 @@
                     </a>
 
                     <ul class="dropdown-menu">
-                        <li>
+                        <!-- <li>
                             <a class="dropdown-item" href="#" data-bs-toggle="offcanvas"
                                 data-bs-target="#offcanvas-add-members" aria-controls="offcanvas-add-members">Add
                                 members</a>
-                        </li>
+                        </li> -->
                         <li>
                             <a class="dropdown-item" href="#" data-bs-toggle="offcanvas"
                                 data-bs-target="#offcanvas-more-group" aria-controls="offcanvas-more-group">More</a>
@@ -165,8 +165,8 @@
 
                         <!-- Message -->
                         <div class="message padingMessage-custom" *ngIf="item.senderId!=userLoged">
-                            <a href="#" data-bs-toggle="modal" data-bs-target="#modal-user-profile"
-                                class="avatar avatar-responsive">
+                            <a data-bs-toggle="modal" data-bs-target="#modal-user-profile"
+                                class="avatar avatar-responsive" (click)="UserProfile(item.user.userId)">
                                 <img class="avatar-img" *ngIf="item.user.proFileImg != null||''||undefined" src="../../../assets/Img/{{item.user.proFileImg}}" alt="">
                                 <span class="avatar-text" *ngIf="item.user.proFileImg == null||''||undefined">{{ item.user.userName |uppercase | slice:0:1 }}</span>
                             </a>
@@ -175,7 +175,7 @@
                                 <div class="message-body">
                                     <div class="message-content">
                                         <!-- Image Message -->
-                                <div class="message-gallery" *ngIf="item.text.match('jpg')">
+                                <div class="" *ngIf="item.text.match('jpg')">
                                     <div class="row gx-3">
                                         <div class="col">
                                             <img class="img-fluid rounded" src="../../../assets/Img/{{item.text}}" data-action="zoom" alt="">
@@ -242,7 +242,7 @@
                         <div class="message message-out padingMessage-custom" *ngIf="item.senderId==userLoged">
                             <a href="#" data-bs-toggle="modal" data-bs-target="#modal-profile"
                                 class="avatar avatar-responsive">
-                                <img class="avatar-img" *ngIf="item.user.proFileImg != null||''||undefined" src="../../../assets/Img/{{item.user.proFileImg}}" alt="">
+                                <img class="avatar-img" *ngIf="item.user.proFileImg != null||''||undefined" src="../../../assets/Img/{{item.user.proFileImg}}" alt="" (click)="OpenMyProfileDialog()">
                                 <span class="avatar-text" *ngIf="item.user.proFileImg == null||''||undefined">{{ item.user.userName |uppercase | slice:0:1 }}</span>
                             </a>
 
@@ -250,7 +250,7 @@
                                 <div class="message-body">
                                     <div class="message-content">
                                         <!-- Image Message -->
-                                <div class="message-gallery" *ngIf="item.text.match('jpg')">
+                                <div class="" *ngIf="item.text.match('jpg')">
                                     <div class="row gx-3">
                                         <div class="col">
                                             <img class="img-fluid rounded" src="../../../assets/Img/{{item.text}}" data-action="zoom" alt="">
@@ -385,7 +385,7 @@
                     *ngIf="userLoged != item.userName && item.messageGroupId == this.chatService.updateedId">
                     <a href="#" data-bs-toggle="modal" data-bs-target="#modal-user-profile"
                         class="avatar avatar-responsive">
-                        <!-- <img class="avatar-img" src="../../../assets/{{item.user.proFileImg}}" alt=""> -->
+                        <!-- <img class="avatar-img" src="../../../assets.Img/{{item.user.proFileImg}}" alt=""> -->
                     </a>
 
                     <div class="message-inner">
@@ -600,7 +600,7 @@
                     <!-- Chat: Files -->
                     <div class=" bg-dark" id="dz-preview-row" data-horizontal-scroll=""  *ngIf="urls.length != 0">
                         <div class="Upcard" style="display: inline-block;" *ngFor="let u of urls ; let index = index">
-                            <img [src]="u.url" width="50px" height="50px" style="margin-left: 10px;"><span class="delete-entry btnDelete" (click)="deleteImage(u.name,index)">x</span>
+                            <img [src]="u.url" width="50px" height="50px" style="margin-left: 10px;"><span class="delete-entry btnDelete" (click)="deleteImage(u.name)">x</span>
                             <!--  -->
                         </div>
                         <button class="btn btn-icon btn-primary rounded-circle ms-5" (click)="UploadMessageImg()" >
@@ -769,3 +769,7 @@
                     <!-- List -->
     </div>
 </ng-template>
+
+<ng-template #myProfileDialog>
+    <app-myprofile></app-myprofile>
+    </ng-template>

@@ -20,8 +20,6 @@ export class AllChatComponent implements OnInit {
     // this.chatService.MyProfile(); 
     // this.chatService.GetAllChat()
     // const userId = this.LoginService.data.nameid;
-    
-    console.log("AllChatComponent");
   }
 
   updateChatForm:FormGroup = new FormGroup({

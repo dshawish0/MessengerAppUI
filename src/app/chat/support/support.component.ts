@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ChatService } from 'src/app/Services/chat.service';
+import { MatDialog } from '@angular/material/dialog';
+import { PaymentDialogComponent } from '../payment-dialog/payment-dialog.component';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-support',
@@ -7,8 +10,9 @@ import { ChatService } from 'src/app/Services/chat.service';
   styleUrls: ['./support.component.css']
 })
 export class SupportComponent implements OnInit {
-
-  constructor(public chat:ChatService) { }
+  @ViewChild('Payment') Payment! :TemplateRef<any>;
+  constructor(public chat:ChatService,public dialog:MatDialog) { 
+  }
 
   ngOnInit(): void {
     this.chat.GetAllPaymentsByUserId();
@@ -29,8 +33,11 @@ export class SupportComponent implements OnInit {
     }
   }
 
-  PayService(serviceId:any){
-    this.chat.PayService(serviceId);
+  PayService(serviceId:any,saleprice:any,servicename:any){
+    this.dialog.open(PaymentDialogComponent)
+     environment.serviceId=serviceId;
+     environment.saleprice=saleprice;
+     environment.servicename=servicename;
   }
 
 }

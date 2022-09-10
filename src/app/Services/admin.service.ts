@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import jwt_decode from "jwt-decode";
+import { Router } from '@angular/router';
 import {Chart,registerables } from 'chart.js'
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,9 @@ export class AdminService {
   numofusersActive = 0;
   testimonail: any = [];
 
-  constructor(public http: HttpClient, private spinner: NgxSpinnerService, private toastr: ToastrService) { }
+  constructor(public http: HttpClient, private spinner: NgxSpinnerService, private toastr: ToastrService,private router :Router) { 
+    this.getInfoProfile()
+  }
 
   GetAllUser() {
     //show spinner
@@ -39,46 +42,32 @@ export class AdminService {
       })
   }
   BlockUser(body: any) {
-    //show spinner
     this.spinner.show();
-    //hits Api
-    debugger
     this.http.post('https://localhost:44318/api/User/IsBlocked', body).subscribe(
       (result) => {
-        debugger
         console.log(result);
-        // hide spinner
         this.spinner.hide();
-        //show toster
-        //this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
+        this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
+        window.location.reload();
       }, err => {
-        //hide spinner
         this.spinner.hide();
-        //show toster
         this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
       })
-    window.location.reload();
+    
   }
   UnBlockUser(body: any) {
-    //show spinner
     this.spinner.show();
-    //hits Api
-    debugger
     this.http.post('https://localhost:44318/api/User/UnBlocked', body).subscribe(
       (result) => {
-        debugger
         console.log(result);
-        // hide spinner
         this.spinner.hide();
-        //show toster
-        //this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
+        this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
+        window.location.reload();
       }, err => {
-        //hide spinner
         this.spinner.hide();
-        //show toster
         this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
       })
-    window.location.reload();
+    
   }
   SearchUserName(name: any) {
     this.spinner.show();
@@ -135,7 +124,9 @@ export class AdminService {
         //show toster
         this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
       })
-    window.location.reload();
+    //window.location.reload();
+    // this.router.navigate(['admin'])
+    // this.router.navigate(['admin/testimonial']);
   }
   RejectTest(body: any) {
     //show spinner
@@ -156,7 +147,7 @@ export class AdminService {
         //show toster
         this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
       })
-    window.location.reload();
+    // window.location.reload();
   }
   SearchUserById(body: any) {
     this.spinner.show();
@@ -218,38 +209,36 @@ export class AdminService {
   }
   Accepts(body: any) {
     this.spinner.show();
-    debugger
     this.http.put('https://localhost:44318/api/ReportUser/acceptingReportUser', body).subscribe(
       (result) => {
-        debugger
         console.log(result);
         // hide spinner
         this.spinner.hide();
         //show toster
-        //this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
+        this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
+        window.location.reload();
       },
       err => {
 
         this.spinner.hide();
         this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
       })
-    window.location.reload();
+    
   }
   Regects(body: any) {
     this.spinner.show();
-    debugger
     this.http.put('https://localhost:44318/api/ReportUser/rejectreport', body).subscribe(
       (result) => {
-        debugger
         console.log(result);
         this.spinner.hide();
-        //this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
+        this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
+        window.location.reload();
       },
       err => {
         this.spinner.hide();
         this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
       })
-    window.location.reload();
+    
   }
   searchReport(name: any) {
     this.spinner.show();

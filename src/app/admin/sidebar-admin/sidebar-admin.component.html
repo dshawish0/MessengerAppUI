@@ -5,7 +5,7 @@
         </a>
     </div>
     <div class="sidebar-wrapper">
-        <div class="user">
+        <div class="user" *ngIf="admin.UserInfo!=undefined">
             <div class="photo">
                 <img src="../../../assets/Img/{{admin.UserInfo.proFileImg}}" alt="image profile" />
             </div>

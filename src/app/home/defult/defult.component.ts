@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HomeService } from 'src/app/Services/home.service';
 
 @Component({
   selector: 'app-defult',
@@ -7,12 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DefultComponent implements OnInit {
 
-  constructor() { 
+  constructor(public home:HomeService) { 
     
   }
 
   ngOnInit(): void {
-   
+   this.home.GetHome();
   }
 
  

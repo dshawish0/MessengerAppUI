@@ -213,7 +213,39 @@ export class HomeService {
       })
     window.location.reload();
   }
-
-
+  AboutUs: any = [];
+  GetAboutUs() {
+    //show spinner
+    this.spinner.show();
+    //hits Api
+    this.http.get('https://localhost:44318/api/AboutUs/GetAbout').subscribe(
+      (result) => {
+        this.AboutUs = result;
+        console.log(result);
+        // hide spinner
+        this.spinner.hide();
+        //show toster
+        //this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
+      }, err => {
+        //hide spinner
+        this.spinner.hide();
+        //show toster
+        this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
+      })
+  }
+  CreateContact(body:any){
+    this.spinner.show();
+    this.http.post('https://localhost:44318/api/ContactUs/InsertContact', body).subscribe(
+      (res) => {
+        debugger
+        this.spinner.hide();
+        //show toster
+        //this.toastr.success('sucssess', '', { positionClass: 'toast-bottom-center' });
+      }, err => {
+        this.spinner.hide();
+        this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
+      })
+    window.location.reload();
+  }
 
 }

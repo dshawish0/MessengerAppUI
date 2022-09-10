@@ -637,6 +637,24 @@ export class AdminService {
             },],
           },
         })
+        // this.chart = new Chart('myChart2', {
+        //   type: 'bar',
+        //   data: {
+        //     labels: ['Number of User', 'Number of Activ',"Number of Block"],
+        //     datasets: [{
+        //       label: 'Users',
+        //       data: [this.numberofuser,this.numofusersActive,this.numofuserblock],
+        //       borderWidth: 1, 
+        //       //fill:false,
+        //       backgroundColor: [
+        //         'rgba(255, 99, 132, 0.2)',
+        //         'rgba(93,175,89,01)',
+        //         'rgb(54, 162, 235)',
+        //       ],
+        //       borderColor: '#3e95cd',
+        //     },],
+        //   },
+        // })
         // hide spinner
         this.spinner.hide();
         //show toster
@@ -669,5 +687,55 @@ export class AdminService {
         this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
       })
   }
+  key:any={}
+  GetChart2(){
+    debugger
+    this.http.get('https://localhost:44318/api/Payment/GetRevenueByMonth').subscribe(
+        (result:any) => {
+          console.log(result);
+          let key: string[] = [];
+          let value1: string[] = [];
+          result.forEach(function (value:any) {
+            console.log(value);
+            console.log(value.monthName);
+            key.push(value.monthName)
+            console.log(value.revenue);
+            value1.push(value.revenue)
+          }); 
+          
+          this.chart = new Chart('myChart2', {
+            type: 'bar',
+            data: {
+              labels:key,
+              datasets: [
+                {  
+                  label: "Revenue",
+                  data:value1,
+                  borderWidth: 1, 
+                backgroundColor: [
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(255, 159, 64, 0.2)',
+                  'rgba(255, 205, 86, 0.2)',
+                  'rgba(75, 192, 192, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(153, 102, 255, 0.2)',
+                  'rgba(201, 203, 207, 0.2)'
+                ],
+                borderColor: '#3e95cd',
+              },
+              ],
+            },
+          })
+          // hide spinner
+          this.spinner.hide();
+          //show toster
+          //this.toastr.success('sucssess','',{ positionClass:'toast-bottom-center' });
+        }, err => {
+          //hide spinner
+          this.spinner.hide();
+          //show toster
+          this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
+      })
+    }
 }
 

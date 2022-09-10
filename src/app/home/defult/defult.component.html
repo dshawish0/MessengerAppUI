@@ -59,7 +59,7 @@
             </div>
         </div>
     </section>
-    <section class="mobile-version-sec section-py-space light-bg">
+    <section class="mobile-version-sec section-py-space light-bg" *ngFor="let item of home.HomeInfo">
         <div class="custom-container">
             <div class="row">
                 <div class="col-12">
@@ -73,13 +73,16 @@
             <div class="row">
                 <div class="col-sm-6 col-xs-12 mobile-display">
                     <div class="mobile-img">
-                        <a href="messenger.html" target="_blank"><img class="img-fluid" src="../../../assets/home/Images/landing-page/mobile-version/shop.png" alt="Chitchat mobile version"></a>
+                        <a target="_blank"><img class="img-fluid" src="../../../assets/Img/{{item.mobileImg}}" alt="Chitchat mobile version"></a>
+
                     </div>
                 </div>
                 <div class="col-sm-6 col-xs-12">
                     <div class="mobile-qr"><a class="btn btn-qr button-effect fonts font_label" href="#">Scan Now</a>
                         <p>Scan the Qr Code bellow to view a live demo on your mobile device</p>
-                        <div class="qr-img"><img class="img-fluid" src="../../../assets/home/Images/landing-page/mobile-version/qrcode.png" alt="Chitchat mobile version"></div>
+
+                        <div class="qr-img"><img class="img-fluid" src="../../../assets/Img/{{item.qRcodeImg}}" alt="Chitchat mobile version"></div>
+
                     </div>
                 </div>
                 <div class="chitchat-back-block"><img class="img-fluid chit-chat1" src="../../../assets/home/Images/landing/chitchat/2.png" alt="chit-chat-back-img"><img class="img-fluid chit-chat2" src="../../../assets/home/Images/landing/chitchat/1.png" alt="chit-chat-back-img"><img class="img-fluid chit-chat3"
@@ -87,7 +90,7 @@
             </div>
         </div>
     </section>
-    <section class="real-time-customizer section-py-space">
+    <section class="real-time-customizer section-py-space" *ngFor="let item of home.HomeInfo">
         <div class="custom-container">
             <div class="row">
                 <div class="col-12">
@@ -101,13 +104,14 @@
             <div class="row">
                 <div class="col-12">
                     <div class="customizer text-center">
-                        <a href="messenger.html" target="_blank"><img class="img-fluid" src="../../../assets/home/Images/landing-page/customizer/customizer.gif" alt=""></a>
+
+                        <a target="_blank"><img class="img-fluid" src="../../../assets/Img/{{item.userCustamizerImg}}" alt=""></a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <section class="tour-integrated section-py-space light-bg">
+    <section class="tour-integrated section-py-space light-bg" *ngFor="let item of home.HomeInfo">
         <div class="custom-container">
             <div class="row">
                 <div class="col-12">
@@ -127,7 +131,7 @@
         <div class="chitchat-back-block"><img class="img-fluid chit-chat1" src="../../../assets/home/Images/landing/chitchat/2.png" alt="chit-chat-back-img"><img class="img-fluid chit-chat2" src="../../../assets/home/Images/landing/chitchat/1.png" alt="chit-chat-back-img"><img class="img-fluid chit-chat3"
                 src="../../../assets/home/Images/landing/chitchat/3.png" alt="chit-chat-back-img"></div>
     </section>
-    <section class="rtl section-py-space light-bg">
+    <section class="rtl section-py-space light-bg" *ngFor="let item of home.HomeInfo">
         <div class="custom-container">
             <div class="row">
                 <div class="col-12">
@@ -141,13 +145,13 @@
             <div class="row">
                 <div class="col-12">
                     <div class="rtl text-center">
-                        <a href="messenger.html" target="_blank"><img class="img-fluid" src="../../../assets/home/Images/landing-page/rtl/rtl.gif" alt=""></a>
+                        <a  target="_blank"><img class="img-fluid" src="../../../assets/Img/{{item.rtlImg}}" alt=""></a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <section class="collaboration-main section-py-space">
+    <section class="collaboration-main section-py-space" *ngFor="let item of home.HomeInfo">
         <div class="custom-container">
             <div class="row">
                 <div class="col-12">
@@ -208,7 +212,9 @@
                                             <div>
                                                 <h1>Files</h1>
                                             </div>
-                                        </div><img class="img-fluid img-1" src="../../../assets/home/Images/landing-page/workable-app/02.jpg" alt=""><img class="img-fluid img-2" src="../../../assets/home/Images/landing-page/workable-app/05.png" alt="">
+                                        </div>
+                                        <img class="img-fluid img-1" src="../../../assets/Img/{{item.filesImg}}" alt="">
+                                        <img class="img-fluid img-2" src="./assets/home/Images/landing-page/workable-app/05.png" alt="">
                                     </div>
                                     <div class="workable-app-title">
                                         <h2>Files</h2>
@@ -223,7 +229,7 @@
                                             <div>
                                                 <h1>Note</h1>
                                             </div>
-                                        </div><img class="img-fluid img-1" src="../../../assets/home/Images/landing-page/workable-app/03.jpg" alt=""><img class="img-fluid img-2" src="../../../assets/home/Images/landing-page/workable-app/05.png" alt="">
+                                        </div><img class="img-fluid img-1" src="../../../assets/Img/{{item.noteImg}}" alt=""><img class="img-fluid img-2" src="./assets/home/Images/landing-page/workable-app/05.png" alt="">
                                     </div>
                                     <div class="workable-app-title">
                                         <h2>Notes</h2>
@@ -238,7 +244,8 @@
                                             <div>
                                                 <h1>Reminder</h1>
                                             </div>
-                                        </div><img class="img-fluid img-1" src="../../../assets/home/Images/landing-page/workable-app/04.jpg" alt=""><img class="img-fluid img-2" src="../../../assets/home/Images/landing-page/workable-app/05.png" alt="">
+                                        </div><img class="img-fluid img-1" src="../../../assets/Img/{{item.remiderImg}}" alt=""><img class="img-fluid img-2" src="./assets/home/Images/landing-page/workable-app/05.png" alt="">
+
                                     </div>
                                     <div class="workable-app-title">
                                         <h2>Reminder</h2>
@@ -251,7 +258,7 @@
             </div>
         </div>
     </section>
-    <section class="all_features section-py-space light-bg">
+    <section class="all_features section-py-space light-bg" *ngFor="let item of home.HomeInfo">
         <div class="custom-container">
             <div class="row">
                 <div class="col-12">
@@ -262,14 +269,17 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" >
                 <div class="col-lg-12 text-center">
-                    <a href="messenger.html" target="_blank"><img class="img-fluid" src="../../../assets/home/Images/landing-page/features/features.jpg" alt="tab-detail-img"></a>
+                    <a href="messenger.html" target="_blank">
+                        <img class="img-fluid" src="../../../assets/Img/{{item.futcherImg}}" alt="tab-detail-img">
+                    </a>
+
                 </div>
             </div>
         </div>
     </section>
-    <section class="dark-light section-py-space">
+    <section class="dark-light section-py-space" *ngFor="let item of home.HomeInfo">
         <div class="custom-container">
             <div class="row">
                 <div class="col-12">
@@ -280,10 +290,10 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" >
                 <div class="col-12">
                     <div class="dark-light text-center">
-                        <a href="chat_blank.html" target="_blank"><img class="img-fluid" src="../../../assets/home/Images/landing-page/dark/dark-light-gif.gif" alt=""></a>
+                        <a href="chat_blank.html" target="_blank"><img class="img-fluid" src="../../../assets/Img/{{item.darkLightImg}}" alt=""></a>
                     </div>
                 </div>
             </div>
@@ -622,7 +632,7 @@
             </div>
         </div>
     </section>
-    <section class="easy-navigation section-py-space">
+    <section class="easy-navigation section-py-space" *ngFor="let item of home.HomeInfo">
         <div class="custom-container">
             <div class="row">
                 <div class="col-12">
@@ -645,12 +655,12 @@
                     </div>
                 </div>
                 <div class="col-lg-7 col-md-6 navigation-2">
-                    <div class="exclusive-image text-right"><img class="img-fluid" src="../../../assets/home/Images/landing-page/easy-navigation/sticker.gif" alt="tab-detail-img"></div>
+                    <div class="exclusive-image text-right"><img class="img-fluid" src="../../../assets/Img/{{item.sendStickerImg}}" alt="tab-detail-img"></div>
                 </div>
             </div>
             <div class="row mb-5">
                 <div class="col-lg-7 col-md-6 navigation-3">
-                    <div class="exclusive-image text-right"><img class="img-fluid" src="../../../assets/home/Images/landing-page/easy-navigation/chat-history.gif" alt=""></div>
+                    <div class="exclusive-image text-right"><img class="img-fluid" src="../../../assets/Img/{{item.chatHistoryContactImg}}" alt=""></div>
                 </div>
                 <div class="col-lg-5 col-md-6 navigation-4">
                     <div class="inner-block">
@@ -671,7 +681,7 @@
                     </div>
                 </div>
                 <div class="col-lg-7 col-md-6 navigation-6">
-                    <div class="exclusive-image text-right"><img class="img-fluid" src="../../../assets/home/Images/landing-page/easy-navigation/status.gif" alt="tab-detail-img"></div>
+                    <div class="exclusive-image text-right"><img class="img-fluid" src="../../../assets/Img/{{item.viewStatusImg}}" alt="tab-detail-img"></div>
                 </div>
             </div>
         </div>

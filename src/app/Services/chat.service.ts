@@ -26,8 +26,8 @@ export class ChatService {
   constructor(private http: HttpClient, private spinner: NgxSpinnerService, private toastr: ToastrService, private loginService:LoginService, public dialog:MatDialog) { 
     this.getUser();
     this.MyProfile() 
-    console.log(this.data,"ChatService constructor");
-    console.log(this.myProfile,"ChatService constructor myProfile");
+    //console.log(this.data,"ChatService constructor");
+    //console.log(this.myProfile,"ChatService constructor myProfile");
     this.startConnection();
   }
 
@@ -208,6 +208,7 @@ data:any;
  groupData:any[]=[];
   connection = new signalR.HubConnectionBuilder()
   .withUrl("https://localhost:44318/chat")
+  .withAutomaticReconnect()
   .build();
   
   MessageChat(messageGroupId: any) {
@@ -215,13 +216,25 @@ data:any;
     this.updateedId=environment.messageGroupIdGlobal.toString();
     environment.messageGroupIdGlobal=messageGroupId;
     this.id = messageGroupId
+
+    debugger
+    // if(signalR.HubConnectionState.Connected==this.connection.state)
+    //       this.connection.stop();
+    //  else{
+    // //   // this.connection = new signalR.HubConnectionBuilder()
+    // //   //                 .withUrl('https://localhost:44318/chat')
+    // //   //                 .withAutomaticReconnect()
+    // //   //                 .build();
+
+    //   this.startConnection();
+    // }
+console.log(this.messages,'Deiaa was hereeeeeeeee')
     this.http.get(`https://localhost:44318/api/Message/GetMessageForMessageGroup/${messageGroupId}`).subscribe((res) => {
       this.AllMessage = res;
       this.groupData = this.all_chat.filter((group:any)=>group.messageGroupId == this.id)
 
       this.getGroupMemberByMessageGroupId(messageGroupId)
       this.messages=[];
-
     },
       err => {
       })
@@ -229,6 +242,7 @@ data:any;
 
 
   startConnection(){
+    this.messages=[];
     this.connection.on("newMessage",(userName: string, text: string, messageType:string)=>{
       this.messages.push({
         text: text,
@@ -236,9 +250,11 @@ data:any;
         messageGroupId: environment.messageGroupIdGlobal.toString(),
         messageType: messageType
       });
-      this.messages.forEach(projet=>console.log(projet.messageGroupId));
+      //this.messages.forEach(projet=>console.log(projet.messageGroupId));
     });
   
+
+
     this.connection.start();
   }
 

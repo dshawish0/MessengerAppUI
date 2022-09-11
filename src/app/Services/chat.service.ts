@@ -54,14 +54,16 @@ data:any;
 
   numOfFriend: number = 0;
   GetAllFrinds() {
+    
     this.spinner.show()
     this.http.get('https://localhost:44318/api/Frind/GetFrinds/'+this.data.nameid).subscribe((res) => {
       this.users = res;
-
       this.myFriend = this.users.filter((item: any) => item.status === 1);
-      this.lopy = this.users.filter((item: any) => item.status === 0 && item.userReciveId=== this.data.nameid); //1FromLogin
+      this.lopy = this.users.filter((item: any) => item.userreceiveid == this.data.nameid && item.status === 0 ); //1FromLogin
       this.blockFriend = this.users.filter((item: any) => item.status === 2);
       this.numOfFriend = this.myFriend.length;
+      console.log(this.lopy,"lopy");
+      
       this.spinner.hide()
     },
       err => {
@@ -84,6 +86,7 @@ data:any;
       };
 
       this.http.post('https://localhost:44318/api/Frind/AddFrind', this.friend).subscribe((result) => {
+        this.toastr.success('success')
       },
         err => {
         })
@@ -96,9 +99,9 @@ data:any;
   AcceptFriend(frindid:number) {
     this.http.put(`https://localhost:44318/api/Frind/confirmFriend/${frindid}`, "").subscribe((result) => {
       
-      window.location.reload();
     },
       error => {
+        this.toastr.error(error.message)
       })
   }
 
@@ -224,10 +227,11 @@ data:any;
 
     },
       err => {
+        this.toastr.error(err.message)
       })
   }
 
-
+  
   startConnection(){
     this.connection.on("newMessage",(userName: string, text: string, messageType:string)=>{
       this.messages.push({
@@ -235,7 +239,7 @@ data:any;
         userName: userName,
         messageGroupId: environment.messageGroupIdGlobal.toString(),
         messageType: messageType
-      });
+      }); 
       this.messages.forEach(projet=>console.log(projet.messageGroupId));
     });
   

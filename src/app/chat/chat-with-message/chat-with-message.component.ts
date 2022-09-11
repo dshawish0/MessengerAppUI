@@ -49,7 +49,7 @@ export class ChatWithMessageComponent implements OnInit, AfterViewChecked {
     this.scrollToBottom();
   }
 
-
+  chatEmpty:boolean=true
   messageGroupId:any
   ngOnInit(): void {
     this.scrollToBottom();
@@ -60,8 +60,12 @@ export class ChatWithMessageComponent implements OnInit, AfterViewChecked {
      console.log(this.messageGroupId,"ddddddd");
      this.chatService.getGroupMemberByMessageGroupId(this.messageGroupId)
 
-     console.log("ChatWithMessageComponent");
-
+     if(this.chatService.AllMessage.length == 0){
+      this.chatEmpty = false
+     }
+    //  else {
+    //   this.chatEmpty = false
+    //  }
 
      if(this.currentGroupId != this.chatService.id)
           console.log("ezzzzzzzzzzzzzzzzzzzzz");
@@ -115,7 +119,7 @@ messageText:any;
   });
 
   CreateMessage(){
-
+    this.chatEmpty = true
     this.messageform.controls['messageGroupId'].setValue(this.chatService.updateedId);
     this.messageform.controls['senderId'].setValue(this.userLoged);
     this.messageform.controls['messageDate'].setValue(new Date());

@@ -130,8 +130,8 @@
     </div>
     <!-- Chat: Header -->
 
-    <!-- Chat Empty: Content  -->
-    <div class="chat-body hide-scrollbar flex-1 h-100" *ngIf="this.chatService.AllMessage.length==0">
+     <!-- Chat Empty: Content  -->
+    <div class="chat-body hide-scrollbar flex-1 h-100" [hidden]="chatEmpty || this.chatService.AllMessage.length!=0">
         <div class="chat-body-inner h-100">
 
             <div class="d-flex flex-column h-100 justify-content-center">
@@ -149,12 +149,12 @@
                 <p class="text-center text-muted">No messages yet, <br> start the conversation!</p>
             </div>
 
-        </div>
+        </div> 
     </div>
     <!-- Chat: Content -->
-
-    <!-- Chat: Content -->
-    <div class="chat-body hide-scrollbar flex-1 h-100" #scrollMe style="overflow: scroll; height: xyz;" *ngIf="this.chatService.AllMessage.length!=0">
+    
+     <!-- Chat: Content -->
+     <div class="chat-body hide-scrollbar flex-1 h-100" #scrollMe style="overflow: scroll; height: xyz;" *ngIf="this.chatService.AllMessage.length!=0 || chatEmpty">
         <div class="chat-body-inner">
 
             <!-- dataBase -->
@@ -163,7 +163,7 @@
                     <div class="py-6" *ngFor="let item of this.chatService.AllMessage">
 
                         <!-- Message -->
-                        <div class="message padingMessage-custom" *ngIf="item.senderId!=userLoged">
+                        <div class="message padingMessage-custom" *ngIf="item.senderId!=userLoged && item.messageGroupId == this.chatService.id">
                             <a data-bs-toggle="modal" data-bs-target="#modal-user-profile"
                                 class="avatar avatar-responsive" (click)="UserProfile(item.user.userId)">
                                 <img class="avatar-img" *ngIf="item.user.proFileImg != null" src="../../../assets/Img/{{item.user.proFileImg}}" alt="">
@@ -199,7 +199,7 @@
                         </div>
 
                         <!-- Message -->
-                        <div class="message message-out padingMessage-custom" *ngIf="item.senderId==userLoged">
+                        <div class="message message-out padingMessage-custom" *ngIf="item.senderId==userLoged && item.messageGroupId == this.chatService.id">
                             <a href="#" data-bs-toggle="modal" data-bs-target="#modal-profile"
                                 class="avatar avatar-responsive">
                                 <img class="avatar-img" *ngIf="item.user.proFileImg != null" src="../../../assets/Img/{{item.user.proFileImg}}" alt="" (click)="OpenMyProfileDialog()">

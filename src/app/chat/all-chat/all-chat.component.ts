@@ -68,7 +68,6 @@ export class AllChatComponent implements OnInit {
     this.currentItem = messageGroupId;
     this.chatService.MessageChat(messageGroupId)
     this.chatService.collapse = true
-    // this.route.navigate([''])
   }
   
 

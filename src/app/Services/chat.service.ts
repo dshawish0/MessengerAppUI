@@ -541,6 +541,22 @@ DeleteMessage(messageId:any){
     this.toastr.error('connt delete this message')
   })
 }
+
+SendTest(Text:any){
+  var body ={
+    Message:Text.value,
+    status:0,
+    userId:this.data.nameid
+
+  }
+  console.log(Text.value,"Deiaa was hereeee")
+  this.http.post('https://localhost:44318/api/Testimonial',body).subscribe((result)=>{
+    this.toastr.success('Thank You')
+  },(error)=>{
+
+  })
+}
+
 }
 
 

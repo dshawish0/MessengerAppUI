@@ -11,6 +11,7 @@ import { ChatService } from 'src/app/Services/chat.service';
 export class ChatInfoComponent implements OnInit {
   @ViewChild('ReportUserDialog') ReportUserDialog! :TemplateRef<any>;
   @ViewChild('AddMemberToChatDialog') AddMemberToChatDialog! :TemplateRef<any>;
+  @ViewChild('userProfileDialog') userProfileDialog! :TemplateRef<any>;
   searchFriend:any;
   constructor(public chatService:ChatService, public dialog:MatDialog) { }
 
@@ -98,6 +99,14 @@ export class ChatInfoComponent implements OnInit {
   }
   CreateGroupMember(){
     this.chatService.CreateGroupMember(this.groupMembers)
+  }
+
+  UserProfile(userId:any){
+    console.log("UserProfile", this.chatService.allMemberinMessageGroup);
+    
+    console.log('UserProfile',userId);
+    this.chatService.UserProfile(userId)
+    this.dialog.open(this.userProfileDialog,{width:'450px',height:'550px'});
   }
 
   CloseDialog(){

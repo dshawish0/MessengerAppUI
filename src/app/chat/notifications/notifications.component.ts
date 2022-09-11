@@ -18,7 +18,7 @@ export class NotificationsComponent implements OnInit {
     console.log("NotificationsComponentomponent");
   }
 
-  groupMembers:any = []//{User_Id: this.chat.data.nameid}
+  groupMembers:any = [{User_Id: this.chat.data.nameid}]
   chatAndMember:any;
 
   createChatForm:FormGroup = new FormGroup({
@@ -31,14 +31,15 @@ export class NotificationsComponent implements OnInit {
       User_Id: friend.user.userId,
     };
     this.groupMembers.push(checkedObj);
-
+    this.chat.AcceptFriend(friend.frindid)
     this.createChatForm.controls['GroupName'].setValue(friend.user.fname);
     this.createChatForm.controls['GroupImg'].setValue(friend.user.proFileImg);
     this.chatAndMember={messageGroup:this.createChatForm.value, groupMembers:this.groupMembers} 
+    
     this.chat.createChat(this.chatAndMember)
     console.log(this.chatAndMember,"accept");
     console.log(friend);
-    this.chat.AcceptFriend(friend.frindid)
+    // this.chat.AcceptFriend(friend.frindid)
   }
 
   RejectFriend(frindid:any){

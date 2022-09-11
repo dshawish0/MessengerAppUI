@@ -38,7 +38,7 @@
                                 <div class="card-body">
                                     <div class="row align-items-center gx-5" *ngIf="this.chatService.myProfile != undefined">
                                         <div class="col-auto">
-                                            <div class="avatar" >
+                                            <div class="avatar">
                                                 <img src="../../../assets/Img/{{this.chatService.old_Data.proFileImg}}" alt="#" class="avatar-img">
 
                                                 <div class="badge badge-circle bg-secondary border-outline position-absolute bottom-0 end-0">
@@ -117,30 +117,23 @@
                                                 <div class="accordion-header" id="accordion-profile-2">
                                                     <a href="#" class="accordion-button text-reset collapsed" data-bs-toggle="collapse" data-bs-target="#accordion-profile-body-2" aria-expanded="false" aria-controls="accordion-profile-body-2">
                                                         <div>
-                                                            <h5>Connected accounts</h5>
-                                                            <p>Connect with your accounts</p>
+                                                            <h5>Rate Us</h5>
+                                                            <p>Keep us on touch</p>
                                                         </div>
                                                     </a>
                                                 </div>
 
                                                 <div id="accordion-profile-body-2" class="accordion-collapse collapse" aria-labelledby="accordion-profile-2" data-parent="#accordion-profile">
                                                     <div class="accordion-body">
-                                                        <div class="form-floating mb-6">
-                                                            <input type="text" class="form-control" id="profile-twitter" placeholder="Twitter">
-                                                            <label for="profile-twitter">Twitter</label>
-                                                        </div>
+
 
                                                         <div class="form-floating mb-6">
-                                                            <input type="text" class="form-control" id="profile-facebook" placeholder="Facebook">
-                                                            <label for="profile-facebook">Facebook</label>
+                                                            <textarea class="form-control" placeholder="Bio" id="profile-bio" data-autosize="true" [formControl]="Text" style="min-height: 120px;"></textarea>
+                                                            <label for="profile-bio">What do you think of us?</label>
                                                         </div>
 
-                                                        <div class="form-floating mb-6">
-                                                            <input type="text" class="form-control" id="profile-instagram" placeholder="Instagram">
-                                                            <label for="profile-instagram">Instagram</label>
-                                                        </div>
 
-                                                        <button type="button" class="btn btn-block btn-lg btn-primary w-100">Save</button>
+                                                        <button type="button" [disabled]="!Text.valid" class="btn btn-block btn-lg btn-primary w-100" (click)="sendTest()">Send</button>
                                                     </div>
                                                 </div>
                                             </div>

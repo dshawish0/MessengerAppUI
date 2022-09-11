@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import jwt_decode from "jwt-decode";
 import { NgxSpinnerComponent, NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
+import { RegistrationService } from './registration.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 export class LoginService {
   obj:any;
 
-  constructor(private http:HttpClient, private router :Router,private spinner: NgxSpinnerService, private toastr: ToastrService) { }
+  constructor(private http:HttpClient, private router :Router,private spinner: NgxSpinnerService, private toastr: ToastrService,private Registration:RegistrationService) { }
 
   data :any;
   submit(email:any,password:any){
@@ -37,7 +38,7 @@ const headerDir={
       }
       localStorage.setItem('token',responce.token);
        this.data= jwt_decode(responce.token);
-      console.log(this.data);
+       console.log(this.data);
       //localStorage.setItem('user',JSON.stringify({...data}) );
       this.spinner.hide();
       if(this.data.role=='admin')
@@ -46,7 +47,22 @@ const headerDir={
       }
       else if (this.data.role=='user')
       {
-        this.router.navigate(['Chat']);
+        if(this.data.given_name != '1'){
+          this.toastr.warning('Verify your email to login', '', {
+            positionClass: 'toast-bottom-center' });
+
+            //console.log(this.data.given_name, 'Deiaa was hereeeeeeeeeee');
+            this.Registration.UpdateVerificationCode();
+            this.router.navigate(['log/ConfirmEmail']);
+        }
+
+        else if(this.data.family_name == '1')
+          this.toastr.warning('Your Account is blocked', 'contact with support', {
+            positionClass: 'toast-bottom-center' });
+        
+
+        else
+          this.router.navigate(['Chat']);
       }
     },err=>{
       this.spinner.hide();
@@ -128,15 +144,22 @@ var body={
   NewPassword:NewPassword
 }
 this.spinner.show();
-this.http.post('https://localhost:44318/api/Login/ChangeCurrentPassword',body).subscribe(
+this.http.post('https://localhost:44318/api/Login/ChangeCurrentPassword',body,{responseType: 'text'}).subscribe(
   (resp)=>{
     console.log(resp,"asdsadsadsad");
+    if(resp.toString()=='true'){
     this.spinner.hide();
     this.toastr.success('Updated Password', '', { positionClass: 'toast-bottom-center' });
-},err =>{
-  this.spinner.hide();
-  this.toastr.error("Somthing Wrong Try Again", '', { positionClass: 'toast-bottom-center' });
-})
+    }
+    else{
+    this.spinner.hide();
+    this.toastr.warning('Your current password is wrong', '', { positionClass: 'toast-bottom-center' });
+    }
+ }//,err =>{
+//   this.spinner.hide();
+//   this.toastr.error("Somthing Wrong Try Again", '', { positionClass: 'toast-bottom-center' });
+// }
+)
 
 }
 

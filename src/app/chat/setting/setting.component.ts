@@ -69,10 +69,13 @@ data:any
     }
     
   }
-
   logout(){
     this.chatService.logout(this.chatService.data.nameid);
     localStorage.clear();
     this.router.navigate(['']);
+  }
+  Text : FormControl=new FormControl('',Validators.required);
+  sendTest(){
+    this.chatService.SendTest(this.Text);
   }
 }

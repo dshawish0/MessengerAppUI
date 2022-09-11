@@ -44,15 +44,30 @@ export class RegistrationService {
 
   confirmEmail(code:any){
     debugger
-    this.http.get('https://localhost:44318/api/user/ConfirmEmail/'+code).subscribe(
+    this.http.get('https://localhost:44318/api/user/ConfirmEmail/'+code, {responseType: 'text'}).subscribe(
       (resp)=>{
-        this.spinner.hide();
-        this.toastr.success('Confirm Complete');
-        this.router.navigate(['log']);
+        //console.log(resp.toString(),'Deiaa was herrrrrrrrrrrrre result')
+        if(resp.toString()=='email confirmed'){
+          this.spinner.hide();
+
+          this.toastr.success('Confirm Complete', '', {
+            positionClass: 'toast-bottom-center' });
+
+          this.router.navigate(['log']);
+        }
+        else{
+          this.spinner.hide();
+
+          this.toastr.warning('Your Verify code is wrong', '', {
+            positionClass: 'toast-bottom-center' });
+
+          this.router.navigate(['log/ConfirmEmail']);
+        }
     },err =>{
-      this.spinner.hide();
-      this.toastr.error("can't Confirm Email");
-      this.router.navigate(['log']);
+      // console.log(err.toString(),'Deiaa was herrrrrrrrrrrrre')
+      // this.spinner.hide();
+      // this.toastr.error("can't Confirm Email");
+      // this.router.navigate(['log']);
     })
   }
 

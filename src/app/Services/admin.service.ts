@@ -124,7 +124,7 @@ export class AdminService {
         //show toster
         this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
       })
-    //window.location.reload();
+    window.location.reload();
     // this.router.navigate(['admin'])
     // this.router.navigate(['admin/testimonial']);
   }
@@ -147,7 +147,7 @@ export class AdminService {
         //show toster
         this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
       })
-    // window.location.reload();
+    window.location.reload();
   }
   SearchUserById(body: any) {
     this.spinner.show();

@@ -93,6 +93,12 @@
                 </a>
             </li>
             <li class="nav-item ">
+                <a class="nav-link" routerLink='/admin/testimonial'>
+                    <i class="material-icons">reviews</i>
+                    <p> Testimonial </p>
+                </a>
+            </li>
+            <li class="nav-item ">
                 <a class="nav-link" data-toggle="collapse" href="#pagesExamples">
                     <i class="material-icons">image</i>
                     <p> Manage pages <b class="caret"></b>
@@ -124,15 +130,10 @@
                                 <span class="sidebar-normal"> Footer </span>
                             </a>
                         </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" routerLink='/admin/testimonial' routerLinkActive="router-link-active">
-                                <span class="sidebar-mini"> T </span>
-                                <span class="sidebar-normal"> Testimonial </span>
-                            </a>
-                        </li>
                     </ul>
                 </div>
             </li>
+            
             <li class="nav-item " (click)="logout()">
                 <a class="nav-link">
                     <i class="material-icons">lock</i>

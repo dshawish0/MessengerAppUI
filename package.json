@@ -27,6 +27,8 @@
     "chart.js": "^3.9.1",
     "chat.js": "^1.0.2",
     "creditcardpayments": "^1.0.3",
+    "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.5.25",
     "jwt-decode": "^3.1.2",
     "ngx-spinner": "^14.0.0",
     "ngx-toastr": "^15.0.0",

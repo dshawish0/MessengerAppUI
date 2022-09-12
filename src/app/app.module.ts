@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChatModule } from './chat/chat.module';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { ToastrModule, ToastNoAnimation, ToastNoAnimationModule } from 'ngx-toastr';
-
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterCeptor } from 'src/InterCeptor/token.InterCeptor';
 import { AdminModule } from './admin/admin.module';
@@ -28,6 +28,7 @@ import { AdminModule } from './admin/admin.module';
     BrowserAnimationsModule,
     ChatModule,
     AdminModule,
+    FormsModule,
     NgxSpinnerModule,
     ToastNoAnimationModule.forRoot(),
     ToastrModule.forRoot(),

@@ -196,15 +196,9 @@
                                             <div class="accordion-item">
                                                 <div class="accordion-header">
                                                     <div class="row align-items-center">
-                                                        <div class="col">
-                                                            <h5>Two-step verifications</h5>
-                                                            <p>Enable two-step verifications</p>
-                                                        </div>
-                                                        <div class="col-auto">
-                                                            <div class="form-check form-switch">
-                                                                <input class="form-check-input" type="checkbox" id="accordion-security-check-1">
-                                                                <label class="form-check-label" for="accordion-security-check-1"></label>
-                                                            </div>
+                                                        <div class="col" (click)="GenerateQR()" style="cursor: pointer;">
+                                                            <h5>Generate QR</h5>
+                                                            <p>EAZY TO ADD YOU</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -234,5 +228,13 @@
 </div>
 <!-- Layout -->
 
-
 <!-- Modal: Profile -->
+<ng-template #QRCode>
+
+    <ngx-qrcode [elementType]="elementType" [value]="value" class="aclass">
+    </ngx-qrcode>
+
+    <img src="../../../assets/home/Images/logo/landing-logo.png" width="100%" style="padding: 12px; margin-top: 30px;" alt="logo">
+
+
+</ng-template>

@@ -4,6 +4,7 @@ import { HomeService } from './Services/home.service';
 import jwt_decode from "jwt-decode";
 import { HttpClient } from '@angular/common/http';
 import { AdminService } from './Services/admin.service';
+import { NgxQrcodeElementTypes, NgxQrcodeErrorCorrectionLevels } from '@techiediaries/ngx-qrcode';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +14,14 @@ import { AdminService } from './Services/admin.service';
 export class AppComponent{
   @ViewChild('btn') btn!: ElementRef;
   title = 'MessengerApp';
+  // elementType=NgxQrcodeElementTypes.URL;
+  // corectionLevel=NgxQrcodeErrorCorrectionLevels.HIGH;
+  // vale = 'www.google.com'
+
+
+
+
+
   data:any;
   constructor( public home:HomeService,  private http: HttpClient){
     this.home.GetAlltestimonialShow();

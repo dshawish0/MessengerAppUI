@@ -19,6 +19,7 @@ import { ChatWithMessageComponent } from './chat-with-message/chat-with-message.
 import { MyprofileComponent } from './myprofile/myprofile.component';
 import { ChatInfoComponent } from './chat-info/chat-info.component';
 import { PaymentDialogComponent } from './payment-dialog/payment-dialog.component';
+import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,9 @@ import { PaymentDialogComponent } from './payment-dialog/payment-dialog.componen
     MatDialogModule,
     ReactiveFormsModule,
     MatSelectModule,
+    NgxQRCodeModule,
     FormsModule,
+    
   ],
 })
 export class ChatModule { 

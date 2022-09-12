@@ -1,3 +1,11 @@
 .avatar-online::before {
     background: #32a42a;
 }
+
+.aclass {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    filter: drop-shadow(10px 10px 10px #141414);
+    opacity: .9;
+}

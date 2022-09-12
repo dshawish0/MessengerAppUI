@@ -15,7 +15,9 @@ interface Message{
   userName:string,
   text:string,
   messageGroupId:string,
-  messageType:string
+  messageType:string,
+  imgUserSender:string
+  messageDate:Date,
 }
 
 @Injectable({
@@ -219,8 +221,6 @@ data:any;
     this.updateedId=environment.messageGroupIdGlobal.toString();
     environment.messageGroupIdGlobal=messageGroupId;
     this.id = messageGroupId
-
-    debugger
     // if(signalR.HubConnectionState.Connected==this.connection.state)
     //       this.connection.stop();
     //  else{
@@ -247,12 +247,14 @@ console.log(this.messages,'Deiaa was hereeeeeeeee')
   
   startConnection(){
     this.messages=[];
-    this.connection.on("newMessage",(userName: string, text: string, messageType:string)=>{
+    this.connection.on("newMessage",(userName: string, text: string, messageType:string, imgUserSender:string, messageDate:Date)=>{
       this.messages.push({
         text: text,
         userName: userName,
         messageGroupId: environment.messageGroupIdGlobal.toString(),
-        messageType: messageType
+        messageType: messageType,
+        imgUserSender:imgUserSender,
+        messageDate:messageDate
       });
       //this.messages.forEach(projet=>console.log(projet.messageGroupId));
     });
@@ -411,7 +413,7 @@ console.log(this.messages,'Deiaa was hereeeeeeeee')
 
  SendImageAsMessage(messageimg:any={}){
   messageimg.text = this.imageMessage.text
-  this.connection.send("newMessage", this.data.nameid, messageimg.text, messageimg.messageType)
+  this.connection.send("newMessage", this.data.nameid, messageimg.text, messageimg.messageType, this.myProfile.proFileImg, messageimg.messageDate)
   .then(()=>{
     // this.messageform.controls['text'].setValue(''); 
   });
@@ -478,7 +480,6 @@ console.log(this.messages,'Deiaa was hereeeeeeeee')
 
  PayService(service:any){
 
-  debugger
   var body ={
     UserId: this.data.nameid,
     ServiceId: environment.serviceId

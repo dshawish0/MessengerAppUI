@@ -315,10 +315,10 @@
                 <!-- Message -->
                 <div class="message padingMessage-custom"
                     *ngIf="userLoged != item.userName && item.messageGroupId == this.chatService.updateedId">
-                    <!-- <a href="#" data-bs-toggle="modal" data-bs-target="#modal-user-profile"
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#modal-user-profile"
                         class="avatar avatar-responsive">
-                        <img class="avatar-img" src="../../../assets.Img/{{item.user.proFileImg}}" alt="">
-                    </a> -->
+                        <img class="avatar-img" *ngIf="item.imgUserSender != null||''||undefined" src="../../../assets/Img/{{item.imgUserSender}}" alt="">
+                    </a>
 
                     <div class="message-inner">
                         <div class="message-body">
@@ -343,7 +343,7 @@
                         </div>
 
                         <div class="message-footer">
-                            <!-- <span class="extra-small text-muted" style="font-size: 0.9em;">{{item.messageDate|date:'shortTime'}}</span> -->
+                            <span class="extra-small text-muted" style="font-size: 0.9em;">{{item.messageDate |date:'shortTime'}}</span>
                         </div>
                     </div>
                 </div>
@@ -352,7 +352,7 @@
                 <div class="message message-out padingMessage-custom"
                     *ngIf="userLoged == item.userName  && item.messageGroupId == this.chatService.updateedId">
                     <a href="#" data-bs-toggle="modal" data-bs-target="#modal-profile" class="avatar avatar-responsive">
-                        <!-- <img class="avatar-img" *ngIf="item.groupMembers.user.proFileImg != null||''||undefined" src="../../../assets/Img/{{item.groupMembers.user.proFileImg}}" alt=""> -->
+                        <img class="avatar-img" *ngIf="item.imgUserSender != null||''||undefined" src="../../../assets/Img/{{item.imgUserSender}}" alt="">
                     </a>
 
                     <div class="message-inner">
@@ -449,7 +449,7 @@
                         </div>
 
                         <div class="message-footer">
-                            <!-- <span class="extra-small text-muted" style="font-size: 0.9em;">{{item.messageDate|date:'shortTime'}}</span> -->
+                                    <span class="extra-small text-muted" style="font-size: 0.9em;">{{item.messageDate |date:'shortTime'}}</span>
                         </div>
                     </div>
                 </div>

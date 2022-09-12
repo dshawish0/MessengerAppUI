@@ -38,14 +38,19 @@ export class SettingComponent implements OnInit {
     ReNewPassowrd: new FormControl('',[Validators.required,Validators.minLength(8)])
   });
 
-  uplodeImgProfile(file:any){
-    console.log(file,'Img');
-    if(file.length==0)
-    return ;
-    let fileToUpload = <File>file[0];
-    const formDate = new FormData();
-    formDate.append('file',fileToUpload,fileToUpload.name)
-    this.chatService.uplodeImageForProfileUser(formDate);
+  detectFiles(event:any){
+    this.chatService.detectFiles(event)
+  }
+
+  uplodeImgProfile(){
+    if (this.chatService.files) {
+        
+      let fileToUpload = <File>this.chatService.files[0];
+      const formData = new FormData();
+      formData.append('file',fileToUpload,fileToUpload.name)
+      this.chatService.uplodeImageForProfileUser(formData);
+      console.log(formData,'formDate');  
+    }
   }
 
   upDateProfile(){
@@ -55,7 +60,11 @@ export class SettingComponent implements OnInit {
     this.Profile.controls['isActive'].setValue(this.chatService.old_Data.isActive);
     this.Profile.controls['isBlocked'].setValue(this.chatService.old_Data.isBlocked);
     console.log(this.Profile.value,"formGroup");
-    this.chatService.UpDataProfileUser(this.Profile.value);
+    this.uplodeImgProfile();
+    setTimeout(()=>{
+      this.chatService.UpDataProfileUser(this.Profile.value);
+  }, 3000);
+    
     
   }
 data:any

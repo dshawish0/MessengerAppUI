@@ -156,7 +156,8 @@ messageText:any;
 
     this.chatService.CreateMessage(this.messageform.value)
 
-    this.chatService.connection.send("newMessage", this.userLoged, this.messageform.controls['text'].value, this.messageform.controls['messageType'].value)
+    this.chatService.connection.send("newMessage", this.userLoged, this.messageform.controls['text'].value, this.messageform.controls['messageType'].value,
+                                      this.chatService.myProfile.proFileImg, new Date())
         .then(()=>{
           this.messageform.controls['text'].setValue('');
         });
@@ -226,21 +227,8 @@ files:any;
 
 
  deleteImage(name: any): void {
-  debugger
   this.urls = this.urls.filter((a:any) => a.name !== name);
-    
-    // this.files = event.target.files
-
-    // this.files =this.files.File.filter((item:any)=> item.name!==name)
-    // console.log(this.files,'Delete Files');
-  // let test:any
-  // for (let file of this.files) {
-  //   console.log(file.name,"InFor");
-  //   if(file.name != name){
-  //     test.push(file)
-  //   }
-  // } 
-  // this.files = test
+  this.files= Array.from(this.files).filter((item:any)=> item.name!==name)
   console.log(this.urls,'Delete urls');
   console.log(this.files,'Delete Files');
   

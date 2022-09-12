@@ -10,7 +10,9 @@ import { UserService } from 'src/app/Services/user.service';
 })
 export class RegisterComponent implements OnInit {
   
-
+  detectFiles(event:any){
+    this.user.detectFiles(event)
+  }
 
   register :FormGroup= new FormGroup({
     fname: new FormControl('',[Validators.required]),
@@ -31,22 +33,26 @@ export class RegisterComponent implements OnInit {
   }
 
   submit(){
-
-    this.user.CreateUser(this.register.value);
+    this.uploadImg()
+    setTimeout(()=>{
+      this.user.CreateUser(this.register.value);
+    }, 3000);
+    
     // this.checkValidators();
     // console.log(this.register.value);
 
   }
 
-  uploadImg(file:any){
-    if(file.length==0)
-      return ;
-
-    let fileToUpload =<File> file[0];
-    const formData = new FormData();
-    formData.append('file',fileToUpload,fileToUpload.name)
-
-    this.user.uploadAttachment(formData);
+  uploadImg(){
+    if (this.user.files) {
+        
+      let fileToUpload = <File>this.user.files[0];
+      const formData = new FormData();
+      formData.append('file',fileToUpload,fileToUpload.name)
+      this.user.uploadAttachment(formData);
+      console.log(formData,'formDate');  
+  }
+    
 
   }
 

@@ -15,7 +15,9 @@ interface Message{
   userName:string,
   text:string,
   messageGroupId:string,
-  messageType:string
+  messageType:string,
+  imgUserSender:string
+  messageDate:Date,
 }
 
 @Injectable({
@@ -47,11 +49,29 @@ data:any;
   collapse:boolean = false;
   ShowChatInfo:boolean= true;
 
+  //show image 
+  urls:any[]=[];
+  files:any;
+    detectFiles(event:any) {
+      this.urls = [];
+      this.files = event.target.files;
+      console.log(this.files,'files');
+      if (this.files) {
+        for (let file of this.files) {
+          let reader = new FileReader();
+          reader.onload = (e: any) => {
+            this.urls.push({url:e.target.result, name:file.name});        
+          }
+          reader.readAsDataURL(file);
+        }     
+      }
+      console.log(this.urls,'urls');
+    }
+
   users: any = []
   myFriend: any = [];
   lopy: any = [];
   blockFriend: any = [];
-
   numOfFriend: number = 0;
   GetAllFrinds() {
     
@@ -159,8 +179,7 @@ data:any;
     if (this.display_Img != undefined) {
       chatAndMember.messageGroup.GroupImg = this.display_Img.groupImg;
     }
-
-
+    console.log(chatAndMember,"chatAndMember");
     this.spinner.show();
     this.http.post('https://localhost:44318/api/Dto/CreateGroupAndMember', chatAndMember).subscribe((res) => {
       this.spinner.hide();
@@ -187,10 +206,11 @@ data:any;
   }
 
   UpdateChat(messageGroup: any) {
-
     if (this.display_Img != undefined) {
       messageGroup.groupImg = this.display_Img.groupImg;
     }
+    console.log(messageGroup,"udate chat image");
+    
     this.spinner.show();
     this.http.put('https://localhost:44318/api/MessageGroup/UpDateMessageGroup', messageGroup).subscribe((res) => {
      
@@ -219,8 +239,6 @@ data:any;
     this.updateedId=environment.messageGroupIdGlobal.toString();
     environment.messageGroupIdGlobal=messageGroupId;
     this.id = messageGroupId
-
-    debugger
     // if(signalR.HubConnectionState.Connected==this.connection.state)
     //       this.connection.stop();
     //  else{
@@ -247,12 +265,14 @@ console.log(this.messages,'Deiaa was hereeeeeeeee')
   
   startConnection(){
     this.messages=[];
-    this.connection.on("newMessage",(userName: string, text: string, messageType:string)=>{
+    this.connection.on("newMessage",(userName: string, text: string, messageType:string, imgUserSender:string, messageDate:Date)=>{
       this.messages.push({
         text: text,
         userName: userName,
         messageGroupId: environment.messageGroupIdGlobal.toString(),
-        messageType: messageType
+        messageType: messageType,
+        imgUserSender:imgUserSender,
+        messageDate:messageDate
       });
       //this.messages.forEach(projet=>console.log(projet.messageGroupId));
     });
@@ -411,7 +431,7 @@ console.log(this.messages,'Deiaa was hereeeeeeeee')
 
  SendImageAsMessage(messageimg:any={}){
   messageimg.text = this.imageMessage.text
-  this.connection.send("newMessage", this.data.nameid, messageimg.text, messageimg.messageType)
+  this.connection.send("newMessage", this.data.nameid, messageimg.text, messageimg.messageType, this.myProfile.proFileImg, messageimg.messageDate)
   .then(()=>{
     // this.messageform.controls['text'].setValue(''); 
   });
@@ -478,7 +498,6 @@ console.log(this.messages,'Deiaa was hereeeeeeeee')
 
  PayService(service:any){
 
-  debugger
   var body ={
     UserId: this.data.nameid,
     ServiceId: environment.serviceId

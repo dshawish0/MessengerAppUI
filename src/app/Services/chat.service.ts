@@ -49,11 +49,29 @@ data:any;
   collapse:boolean = false;
   ShowChatInfo:boolean= true;
 
+  //show image 
+  urls:any[]=[];
+  files:any;
+    detectFiles(event:any) {
+      this.urls = [];
+      this.files = event.target.files;
+      console.log(this.files,'files');
+      if (this.files) {
+        for (let file of this.files) {
+          let reader = new FileReader();
+          reader.onload = (e: any) => {
+            this.urls.push({url:e.target.result, name:file.name});        
+          }
+          reader.readAsDataURL(file);
+        }     
+      }
+      console.log(this.urls,'urls');
+    }
+
   users: any = []
   myFriend: any = [];
   lopy: any = [];
   blockFriend: any = [];
-
   numOfFriend: number = 0;
   GetAllFrinds() {
     
@@ -161,8 +179,7 @@ data:any;
     if (this.display_Img != undefined) {
       chatAndMember.messageGroup.GroupImg = this.display_Img.groupImg;
     }
-
-
+    console.log(chatAndMember,"chatAndMember");
     this.spinner.show();
     this.http.post('https://localhost:44318/api/Dto/CreateGroupAndMember', chatAndMember).subscribe((res) => {
       this.spinner.hide();
@@ -189,10 +206,11 @@ data:any;
   }
 
   UpdateChat(messageGroup: any) {
-
     if (this.display_Img != undefined) {
       messageGroup.groupImg = this.display_Img.groupImg;
     }
+    console.log(messageGroup,"udate chat image");
+    
     this.spinner.show();
     this.http.put('https://localhost:44318/api/MessageGroup/UpDateMessageGroup', messageGroup).subscribe((res) => {
      

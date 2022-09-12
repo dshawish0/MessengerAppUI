@@ -13,6 +13,25 @@ export class RegistrationService {
 
   displayImg:any;
 
+  //show image 
+  urls:any[]=[];
+  files:any;
+    detectFiles(event:any) {
+      this.urls = [];
+      this.files = event.target.files;
+      console.log(this.files,'files');
+      if (this.files) {
+        for (let file of this.files) {
+          let reader = new FileReader();
+          reader.onload = (e: any) => {
+            this.urls.push({url:e.target.result, name:file.name});        
+          }
+          reader.readAsDataURL(file);
+        }     
+      }
+      console.log(this.urls,'urls');
+    }
+    
   CreateUser(body:any){
     body.proFileImg=this.displayImg.proFileImg;
     console.log(body.proFileImg);

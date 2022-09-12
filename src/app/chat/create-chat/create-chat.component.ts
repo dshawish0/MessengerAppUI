@@ -26,18 +26,32 @@ export class CreateChatComponent implements OnInit {
     GroupImg :new FormControl('')
   });
   
-  UploadChatImg(file:any){
-    // this.chat.uploadImage(file);
-    console.log(file);
-    if(file.length==0)
-    return ;
-    let fileToUpload = <File>file[0];
-    const formDate = new FormData();
-    formDate.append('file',fileToUpload,fileToUpload.name)
-    this.chatService.uploadImage(formDate);
+  detectFiles(event:any){
+    this.chatService.detectFiles(event)
   }
 
-  groupMembers:any = []//{User_Id:this.chatService.data.nameid}
+  UploadChatImg(){
+    if (this.chatService.files) {
+        
+        let fileToUpload = <File>this.chatService.files[0];
+        const formData = new FormData();
+        formData.append('file',fileToUpload,fileToUpload.name)
+        this.chatService.uploadImage(formData);
+        console.log(formData,'formDate');  
+    }
+    
+    
+    
+    // console.log(file);
+    // if(file.length==0)
+    // return ;
+    // let fileToUpload = <File>file[0];
+    // const formDate = new FormData();
+    // formDate.append('file',fileToUpload,fileToUpload.name)
+    // this.chatService.uploadImage(formDate);
+  }
+
+  groupMembers:any = [{User_Id:this.chatService.data.nameid}]
   disable:boolean = true;
 
   select(e:any,userid:any){
@@ -67,8 +81,12 @@ export class CreateChatComponent implements OnInit {
 
   chatAndMember:any;
   CreateChat(){
+    this.UploadChatImg()
     this.chatAndMember={messageGroup:this.createChatForm.value, groupMembers:this.groupMembers} 
-    this.chatService.createChat(this.chatAndMember)
+    setTimeout(()=>{
+      this.chatService.createChat(this.chatAndMember)
+  }, 3000);
+    
   }
 
 }

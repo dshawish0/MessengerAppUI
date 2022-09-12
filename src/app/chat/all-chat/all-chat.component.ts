@@ -46,19 +46,26 @@ export class AllChatComponent implements OnInit {
   }
 
   upDateChat(){
-    this.chatService.UpdateChat(this.updateChatForm.value)
+    this.UploadChatImg()
+    setTimeout(()=>{
+      this.chatService.UpdateChat(this.updateChatForm.value)
+  }, 3000);
+    
   }
  
+  detectFiles(event:any){
+    this.chatService.detectFiles(event)
+  }
 
-  UploadChatImg(file:any){
-    // this.chat.uploadImage(file);
-    console.log(file);
-    if(file.length==0)
-    return ;
-    let fileToUpload = <File>file[0];
-    const formDate = new FormData();
-    formDate.append('file',fileToUpload,fileToUpload.name)
-    this.chatService.uploadImage(formDate);
+  UploadChatImg(){
+    if (this.chatService.files) {
+        
+      let fileToUpload = <File>this.chatService.files[0];
+      const formData = new FormData();
+      formData.append('file',fileToUpload,fileToUpload.name)
+      this.chatService.uploadImage(formData);
+      console.log(formData,'formDate');  
+  }
   }
 
   

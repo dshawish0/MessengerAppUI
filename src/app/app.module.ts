@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterCeptor } from 'src/InterCeptor/token.InterCeptor';
 import { AdminModule } from './admin/admin.module';
+import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 
 
 
@@ -33,6 +34,7 @@ import { AdminModule } from './admin/admin.module';
     ToastNoAnimationModule.forRoot(),
     ToastrModule.forRoot(),
     HttpClientModule,
+    NgxQRCodeModule,
 
   ],
   providers: [

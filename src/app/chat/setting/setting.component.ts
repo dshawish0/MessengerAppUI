@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ChatService } from 'src/app/Services/chat.service';
 import { LoginService } from 'src/app/Services/login.service';
 import jwt_decode from "jwt-decode";
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { NgxQrcodeElementTypes, NgxQrcodeErrorCorrectionLevels } from '@techiediaries/ngx-qrcode';
 
 @Component({
   selector: 'app-setting',
@@ -11,14 +13,21 @@ import { Router } from '@angular/router';
   styleUrls: ['./setting.component.css']
 })
 export class SettingComponent implements OnInit {
-
-  constructor(public chatService:ChatService, private login:LoginService, private router:Router) { }
+  constructor(public chatService:ChatService, private login:LoginService, private router:Router, public dialog:MatDialog) { }
   // old_Data:any;
   ngOnInit(): void {
     // this.old_Data = this.chatService.myProfile;
     console.log("old",this.chatService.old_Data);
     console.log("SettingComponent");
   }
+
+
+
+  elementType=NgxQrcodeElementTypes.URL;
+  corectionLevel=NgxQrcodeErrorCorrectionLevels.HIGH;
+  value = 'www.google.com'
+
+
   Profile:FormGroup= new FormGroup({
     userId:new FormControl(''),
     fname : new FormControl('',[Validators.required]),
@@ -86,5 +95,10 @@ data:any
   Text : FormControl=new FormControl('',Validators.required);
   sendTest(){
     this.chatService.SendTest(this.Text);
+  }
+  @ViewChild('QRCode') QRCode! :TemplateRef<any>;
+  GenerateQR(){
+    // alert("Deiaa is hereeeeee");
+    this.dialog.open(this.QRCode,  {width:'250px',height:'300px'});
   }
 }

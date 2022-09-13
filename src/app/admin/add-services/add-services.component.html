@@ -23,9 +23,9 @@
                                         <div class="center">
                                             <label for="text" class="sr-only">servicename</label>
                                             <input type="text" class="form-control" placeholder="servicename"
-                                                [value]="servicename" (change)="inputValue($event)">
+                                            [(ngModel)]="this.admin.searchText">
                                         </div>
-                                        <button type="submit" class="btn btn-success" (click)="search()">Search</button>
+                                        
                                     </div>
                                     <!-- <div class="card-icon">
                                         <i class="material-icons">assignment</i>
@@ -49,7 +49,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr *ngFor="let obj of admin.addservices;index as i">
+                                                <tr *ngFor="let obj of this.admin.transform(admin.addservices,{'servicename':this.admin.searchText},false);index as i">
                                                     <th class="text-center">{{i+1}}</th>
                                                     <td>{{obj.servicename}}</td>
                                                     <td>{{obj.preprice}}</td>

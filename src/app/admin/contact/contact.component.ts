@@ -40,5 +40,9 @@ export class ContactComponent implements OnInit {
     console.log(this.updateForm.value);
     this.admin.UpdateContact(this.updateForm.value);
   }
+  DeleteDailog(obj:any){
+    debugger
+    this.admin.DeleteContact(obj.contactUsId);
+  }
 
 }

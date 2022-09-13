@@ -385,7 +385,9 @@ export class AdminService {
   }
   display_Img: any;
   UpdateUser(body: any) {
-    body.proFileImg = this.display_Img;
+    if(this.display_Img != null){
+      body.proFileImg = this.display_Img;
+    }
     //show spinner
     this.spinner.show();
     //hits Api
@@ -402,7 +404,7 @@ export class AdminService {
         //show toster
         this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
       })
-    window.location.reload();
+    // window.location.reload();
   }
   footerInfo: any = [];
   GetAllFooter() {
@@ -737,5 +739,66 @@ export class AdminService {
           this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
       })
     }
+  DeleteContact(id:any){
+      this.spinner.show();
+    debugger    
+    console.log(id);
+    
+    this.http.delete('https://localhost:44318/api/ContactUs/DeleteContact/'+id).subscribe(
+      (resp) => {
+        this.spinner.hide();
+        //this.toastr.success('sucssess Updated', '', { positionClass: 'toast-bottom-center' });
+      }, err => {
+        this.spinner.hide();
+        this.toastr.error(err.message, '', { positionClass: 'toast-bottom-center' });
+      })
+    window.location.reload();
+    }
+  
+ searchText:any;
+ searchText2:any;
+ transform(items: any, filter: any, isAnd: boolean): any {
+   if (filter && Array.isArray(items)) {
+     let filterKeys = Object.keys(filter);
+     if (isAnd) {
+       return items.filter(item => {
+         filterKeys.reduce((memo, keyName) => {
+           return (memo && new RegExp(filter[keyName], 'gi').test(item[keyName])) || filter[keyName] === "";
+         }, true)
+       });
+     } else {
+
+       return items.filter(item => {
+         return filterKeys.some((keyName) => {
+
+
+           let parts = keyName.split(".");
+           if (parts.length > 1) {
+             let dataList = item[parts[0]];
+             if (dataList) {
+               const all = dataList.filter((obj: any) => {
+                 return obj[parts[1]]?.includes( filter[keyName]);
+               });
+
+
+               return new RegExp(filter[keyName], 'gi').test(JSON.stringify(dataList)) || filter[keyName] === "";
+             }
+             else {
+               return filter[keyName] === "";
+             }
+
+           }
+           else {
+             let res =new RegExp(filter[keyName], 'gi').test(item[keyName]) || filter[keyName] === "";             
+             return res
+           }
+
+         });
+       });
+     }
+   } else {
+     return items;          
+   }
+ }
 }
 

@@ -33,8 +33,9 @@
                           <td>{{obj.fullName}}</td>
                           <td>{{obj.email}}</td>
                           <td>{{obj.message}}</td>
-                          <td class="text-center"><button type="submit" class="btn btn-info"
-                              (click)="updateDailog(obj)">Edit</button></td>
+                          <td class="text-center">
+                              <button type="submit" class="btn btn-danger"
+                              (click)="DeleteDailog(obj)">Delete</button></td>
                         </tr>
                       </tbody>
                     </table>

@@ -105,12 +105,61 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header card-header-icon card-header-rose">
+                                <div class="card-icon">
+                                    <i class="material-icons">assignment</i>
+                                </div>
+                                <h4 class="card-title "> Payment Table</h4>
+                            </div>
+                            <div class="card-body table-full-width table-hover">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead class="">
+                                            <th>#</th>
+                                            <th> First Name</th>
+                                            <th>Last Name</th>
+                                            <th>UserName </th>
+                                            <th>Service Name</th>
+                                        </thead>
+                                        <tbody *ngFor="let item of admin.Payment;index as i">
+                                            <tr class="table-info" *ngIf="i%2==0">
+                                                <td>{{i}}</td>
+                                                <td>{{item.fname}}</td>
+                                                <td>{{item.lname}}</td>
+                                                <td>{{item.userName}}</td>
+                                                <td>{{item.servicename}}</td>
+                                            </tr>
+                                            <tr class="table-light" *ngIf="i%2 !=0">
+                                                <td>{{i}}</td>
+                                                <td>{{item.fname}}</td>
+                                                <td>{{item.lname}}</td>
+                                                <td>{{item.userName}}</td>
+                                                <td>{{item.servicename}}</td>
+                                            </tr>
+                                            <tr class="table-danger" *ngIf="i%3 ==0">
+                                                <td>{{i}}</td>
+                                                <td>{{item.fname}}</td>
+                                                <td>{{item.lname}}</td>
+                                                <td>{{item.userName}}</td>
+                                                <td>{{item.servicename}}</td>
+                                            </tr>
+                                        </tbody>
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     <app-footer-admin></app-footer-admin>
 </div>
-<div class="fixed-plugin">
+<!--<div class="fixed-plugin">
     <div class="dropdown show-dropdown">
         <a data-toggle="dropdown">
             <i class="fa fa-cog fa-2x"> </i>
@@ -190,6 +239,6 @@
                     <img src="../../../assets/Admin/img/sidebar-4.jpg" alt="">
                 </a>
             </li>
-      </ul>
+        </ul>
     </div>
-</div>
+</div>-->

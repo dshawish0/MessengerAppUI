@@ -327,7 +327,7 @@ export class AdminService {
   }
   searchservices(data: number) {
     this.spinner.show();
-    this.http.get('https://localhost:44318/api/Services/GetServiseById/' + data)
+    this.http.get('https://localhost:44318/api/Services/getByServicesName/' + data)
       .subscribe((res) => {
 
         this.addservices = [res];

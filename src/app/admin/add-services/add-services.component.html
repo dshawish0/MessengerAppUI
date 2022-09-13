@@ -12,16 +12,19 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header card-header-primary card-header-icon">
-                                    <h3 style="text-align: center; color: black; cursor: pointer;"
+                                    <!-- <h3 style="text-align: center; color: black; cursor: pointer;"
                                         (click)="CreateSer()">
-                                        Create Services</h3>
+                                        Create Services</h3> -->
+                                        <div class="text-center">
+                                            <button type="submit" class="btn btn-info" (click)="CreateSer()">Create Services</button>
+                                        </div>
+                                        
                                     <div class="col-md-4" style="margin-top: 3%;text-align: center;float: right;">
                                         <div class="center">
-                                            <label for="number" class="sr-only">services Id</label>
-                                            <input type="number" class="form-control" placeholder="servicesId"
-                                                [value]="Servicesids" (change)="inputValue($event)">
+                                            <label for="text" class="sr-only">servicename</label>
+                                            <input type="text" class="form-control" placeholder="servicename"
+                                                [value]="servicename" (change)="inputValue($event)">
                                         </div>
-
                                         <button type="submit" class="btn btn-success" (click)="search()">Search</button>
                                     </div>
                                     <!-- <div class="card-icon">
@@ -39,7 +42,6 @@
                                             <thead>
                                                 <tr>
                                                     <th class="text-center">#</th>
-                                                    <th>Service id</th>
                                                     <th>Servic ename</th>
                                                     <th>Pre price</th>
                                                     <th>Sale price</th>
@@ -49,7 +51,6 @@
                                             <tbody>
                                                 <tr *ngFor="let obj of admin.addservices;index as i">
                                                     <th class="text-center">{{i+1}}</th>
-                                                    <td>{{obj.serviceid}}</td>
                                                     <td>{{obj.servicename}}</td>
                                                     <td>{{obj.preprice}}</td>
                                                     <td>{{obj.saleprice}}</td>

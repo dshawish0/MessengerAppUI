@@ -26,9 +26,8 @@ export class ChatWithMessageComponent implements OnInit, AfterViewChecked {
   @ViewChild('scrollMe') private myScrollContainer!: ElementRef;
   @ViewChild('myProfileDialog') myProfileDialog! :TemplateRef<any>;
   changelog: string[] = [];
-
   userLoged=this.chatService.data.nameid;
-
+  searchMessageText:any
   messages: Message[]=[]
   messDataBase: any[]=[]
 

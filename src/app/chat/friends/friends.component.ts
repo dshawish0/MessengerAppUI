@@ -14,26 +14,23 @@ export class FriendsComponent implements OnInit {
   @ViewChild('userProfileDialog') userProfileDialog! :TemplateRef<any>;
 
   userName = new FormControl('',[Validators.required, Validators.email]);
-
+  searchUser:any
   constructor(public chat:ChatService, public dialog:MatDialog) { }
 
 
   ngOnInit(): void {
     this.chat.GetAllFrinds();
     console.log("FriendsComponent");
+    this.chat.GetAllUser()
   }
 
 
   opendDialogAddFriend(){
-    this.dialog.open(this.AddFriendDialog, {width:'400px'});
+    this.dialog.open(this.AddFriendDialog, {width:'600px',height:'800px'});
   }
-  addFriend(){
-    console.log(this.userName.value);
+  addFriend(userreceiveId:any){
     
-    const userObj={
-      userName:this.userName.value
-    }
-    this.chat.AddFriend(userObj);
+    this.chat.AddFriend(userreceiveId);
   }
 
   Blockuser(frindid:any){

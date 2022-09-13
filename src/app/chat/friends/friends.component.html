@@ -125,7 +125,7 @@
 <!-- Layout -->
 
 
-<ng-template #AddFriendDialog style="height: 560px!Important;margin:30px">
+<ng-template #AddFriendDialog>
     <!-- Modal: Invite -->
     <div>
         <div class="">
@@ -152,46 +152,76 @@
 
                             <h4 class="fw-bold mb-1">Invite your friends</h4>
                             <p style="font-size: 16px;">Send invitation links to your friends</p>
+                            
                         </div>
+                        <a class="icon icon-lg text-muted" data-bs-toggle="collapse" href="#search-members" role="button" aria-expanded="false" aria-controls="search-members" onclick="event.preventDefault();">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-filter"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
+                        </a>
                     </div>
                     <!-- Header -->
 
                     <hr class="hr-bold modal-gx-n my-0">
+                    <!-- Card -->
+                     <!-- Search -->
+                <div class="collapse" id="search-members">
+                    <div class="border-bottom py-6">
 
-                    <!-- Form -->
-                    <div class="modal-py">
-                        <form class="row gy-6">
-                            <div class="col-12">
-                                <label for="invite-email" class="form-label text-muted">E-mail</label>
-                                <input type="text" class="form-control form-control-lg" [formControl]="userName" placeholder="name@example.com">
+                        <form action="#">
+                            <div class="input-group">
+                                <div class="input-group-text" id="search-user">
+                                    <div class="icon icon-lg">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                                    </div>
+                                </div>
+
+                                <input type="text" class="form-control form-control-lg ps-0" name="searchUser" [(ngModel)]="this.searchUser" placeholder="User name" aria-label="User name" aria-describedby="search-user">
                             </div>
-
-                            <!-- <div class="col-12">
-                                <label for="invite-message" class="form-label text-muted">Message</label>
-                                <textarea class="form-control form-control-lg" id="invite-message" rows="3" placeholder="Custom message"></textarea>
-                            </div> -->
                         </form>
+
                     </div>
-                    <!-- Form -->
-
-                    <hr class="hr-bold modal-gx-n my-0">
-
-                    <!-- Button -->
-                    <div class="modal-py">
-                        <a  class="btn btn-lg btn-primary w-100 d-flex align-items-center" (click)="addFriend()">
-                            Send
-
-                            <span class="icon ms-auto">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                            </span>
-                        </a>
-                    </div>
-                    <!-- Button -->
                 </div>
-                <!-- Modal: Body -->
+                <!-- Search -->
+                    <div>
+                        <div class="card border-0 mb-5" *ngFor="let item of this.chat.transform(this.chat.Alluser,{'userName':this.searchUser },false)">
+                        <div class="card-body" (click)="UserProfile(item.userId)">
+
+                            <div class="row gx-5">
+                                <div class="col-auto">
+                                    <!-- Avatar -->
+                                    <a class="avatar">
+                                        <img class="avatar-img" src="../../../assets/Img/{{item.proFileImg}}" alt="">
+                                    </a>
+                                </div>
+
+                                <div class="col" >
+                                    <div class="d-flex align-items-center mb-2">
+                                        <h5 class="me-auto mb-0">
+                                            <a>{{item.userName}}</a>
+                                        </h5>
+                                        
+                                    </div>
+
+                                    <div class="d-flex">
+                                        <div class="me-auto">{{item.fname}} {{item.lname}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-footer">
+                            <div class="row gx-4">
+                                <div class="col">
+                                    <a class="btn btn-sm btn-primary w-100" (click)="addFriend(item.userId)"> Add Friend</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <!-- Card -->
 
             </div>
         </div>
+    </div>
     </div>
 </ng-template>
 

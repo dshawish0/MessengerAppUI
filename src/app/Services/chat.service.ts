@@ -90,30 +90,32 @@ data:any;
         this.spinner.hide()
       })
   }
-
-  user: any = []
+  Alluser: any = []
+  GetAllUser(){
+    this.http.get('https://localhost:44318/api/User').subscribe((res) => {
+      this.Alluser = res
+      console.log(this.Alluser);
+      
+    },err=>{
+      this.toastr.error(err.message)
+    })
+  }
+  
   friend: any = {}
-  ids: any = []
-  AddFriend(userName: any) {
-    this.http.get('https://localhost:44318/api/User/GetUserByUserName/'+userName.userName).subscribe((res) => {
-      this.user = [res]
-      this.ids = this.user.map((obj: any) => obj.userId);
-
+  AddFriend(userreceiveId: any) {
       this.friend = {
-        Userreceiveid: this.ids[0],
+        Userreceiveid: userreceiveId,
         Status: 0,
         User_Id: this.data.nameid //from login
       };
-
+      console.log(this.friend, "friend");
+      
       this.http.post('https://localhost:44318/api/Frind/AddFrind', this.friend).subscribe((result) => {
         this.toastr.success('success')
       },
         err => {
+          this.toastr.error(err.message)
         })
-
-    },
-      err => {
-      })
   }
 
   AcceptFriend(frindid:number) {
@@ -475,7 +477,7 @@ console.log(this.messages,'Deiaa was hereeeeeeeee')
  UserActive(user:any){
   this.spinner.show();
   this.http.put('https://localhost:44318/api/User/ActivationChange',user).subscribe((result)=>{
-    this.myProfile = result;
+    // this.myProfile = result;
     this.spinner.hide();
     this.toastr.success("success");
   },
@@ -489,7 +491,14 @@ console.log(this.messages,'Deiaa was hereeeeeeeee')
  allServices:any;
  GetAllServices(){
   this.http.get('https://localhost:44318/api/Services/GetAllServices').subscribe((result)=>{
-    this.allServices = result;
+    setTimeout(()=>{
+      this.allServices = result;
+      this.allServices = this.allServices.filter((ar:any) => !this.payment.find((rm:any) => (rm.service.serviceid === ar.serviceid) ))
+  }, 2000);
+    
+
+    //  this.allServices = this.allServices.filter((s:any)=>s != this.payment.map((p:any)=>p.service))
+    console.log(this.allServices,"allServices");
     
   },error=>{
     this.toastr.error(error.message)
@@ -564,7 +573,7 @@ console.log(this.messages,'Deiaa was hereeeeeeeee')
 
  logout(userid: any) {
   this.spinner.show();
-  this.http.post(`https://localhost:44318/api/Login/logOut/${userid}`,this.user).subscribe(
+  this.http.post(`https://localhost:44318/api/Login/logOut/${userid}`,'this.user').subscribe(
     (result) => {
       this.spinner.hide();
     }, err => {

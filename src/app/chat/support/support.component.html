@@ -123,8 +123,8 @@
                                                 <h4 class="mb-1">{{item.servicename}}</h4>
                                                 <p>Price: ${{item.saleprice}}</p>
                                             </div>
-                                            <div class="col-auto" *ngFor="let payments of this.chat.payment">
-                                                <button class="btn btn-sm btn-icon btn-primary rounded-circle" [disabled]="item.serviceid == payments.service.serviceid" (click)="PayService(item.serviceid, item.saleprice, item.servicename)">
+                                            <div class="col-auto">
+                                                <button class="btn btn-sm btn-icon btn-primary rounded-circle" (click)="PayService(item.serviceid, item.saleprice, item.servicename)">
                                                         <!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg> -->
                                                         <p style="color:white;margin: auto;">Pay</p>
                                                     </button>

@@ -29,7 +29,11 @@
 
                             <div class="col overflow-hidden">
                                 <h5 class="text-truncate" style="font-weight: bolder;">{{this.chatService.groupData[0].groupName}}</h5>
+                                <a class="icon icon-lg text-muted" data-bs-toggle="collapse" href="#search-members" role="button" aria-expanded="false" aria-controls="search-members" onclick="event.preventDefault();">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-filter"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
+                                </a>
                             </div>
+                            
                         </div>
 
                         <div class="row align-items-center gx-5" *ngIf="this.chatService.groupData[0].groupMembers.length==1">
@@ -42,6 +46,9 @@
 
                             <div class="col overflow-hidden">
                                 <h5 class="text-truncate" style="font-weight: bolder;">{{this.chatService.groupData[0].groupMembers[0].user.fname}}</h5>
+                                <a class="icon icon-lg text-muted" data-bs-toggle="collapse" href="#search-members" role="button" aria-expanded="false" aria-controls="search-members" onclick="event.preventDefault();">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-filter"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -50,6 +57,8 @@
                     <!-- Toolbar -->
                     <div class="col-xl-6 d-none d-xl-block">
                         <div class="row align-items-center justify-content-end gx-6">
+                            
+
                             <div class="col-auto">
                                 <a (click)="ShowChatInformation()" class="icon icon-lg text-muted"
                                     data-bs-toggle="offcanvas" data-bs-target="#offcanvas-more-group"
@@ -73,25 +82,36 @@
 
                                         <span class="avatar-text" *ngIf="item.user.proFileImg == null||''||undefined">{{ item.user.userName |uppercase | slice:0:1 }}</span>
                                     </a>
-
-                                    <!-- <a href="#" class="avatar avatar-sm" data-bs-toggle="modal" data-bs-target="#modal-user-profile">
-                                        <img class="avatar-img" src="assets/img/avatars/11.jpg" alt="#">
-                                    </a>
-
-                                    <a href="#" class="avatar avatar-sm" data-bs-toggle="modal" data-bs-target="#modal-user-profile">
-                                        <img class="avatar-img" src="assets/img/avatars/7.jpg" alt="#">
-                                    </a>
-
-                                    <a href="#" class="avatar avatar-sm" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-add-members" aria-controls="offcanvas-add-members">
-                                        <span class="avatar-text" data-bs-toggle="tooltip" data-bs-placement="bottom" title="<strong>Add People</strong><p>Invite friends to group</p>">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                                        </span>
-                                    </a> -->
+                                    
+                                     
                                 </div>
+
+                               
                             </div>
+                            
                         </div>
                     </div>
                     <!-- Toolbar -->
+                    
+                    <!-- Search -->
+                    <div class="collapse" id="search-members">
+                        <div class="border-bottom py-6">
+                        
+                            <form action="#">
+                                <div class="input-group">
+                                    <div class="input-group-text" id="search-user">
+                                        <div class="icon icon-lg">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                                        </div>
+                                    </div>
+                                
+                                    <input type="text" class="form-control form-control-lg ps-0" name="searchText" [(ngModel)]="this.searchMessageText" placeholder="mesaage" aria-label="mesaage" aria-describedby="search-user">
+                                </div>
+                            </form>
+                         
+                        </div>
+                    </div>
+                    <!-- Search -->
                 </div>
             </div>
             <!-- Content -->
@@ -130,37 +150,16 @@
     </div>
     <!-- Chat: Header -->
 
-     <!-- Chat Empty: Content  -->
-    <div class="chat-body hide-scrollbar flex-1 h-100" [hidden]="chatEmpty || this.chatService.AllMessage.length!=0">
-        <div class="chat-body-inner h-100">
 
-            <div class="d-flex flex-column h-100 justify-content-center">
-                <div class="text-center mb-6">
-                    <span class="icon icon-xl text-muted">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="feather feather-send">
-                            <line x1="22" y1="2" x2="11" y2="13"></line>
-                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                        </svg>
-                    </span>
-                </div>
-
-                <p class="text-center text-muted">No messages yet, <br> start the conversation!</p>
-            </div>
-
-        </div> 
-    </div>
-    <!-- Chat: Content -->
     
      <!-- Chat: Content -->
-     <div class="chat-body hide-scrollbar flex-1 h-100" #scrollMe style="overflow: scroll; height: xyz;" *ngIf="this.chatService.AllMessage.length!=0 || chatEmpty">
+     <div class="chat-body hide-scrollbar flex-1 h-100" #scrollMe style="overflow: scroll; height: xyz;" *ngIf="this.chatService.AllMessage.length!=0">
         <div class="chat-body-inner">
 
             <!-- dataBase -->
             <div class="chat-body hide-scrollbar flex-1 h-100">
                 <div class="chat-body-inner">
-                    <div class="py-6" *ngFor="let item of this.chatService.AllMessage">
+                    <div class="py-6" *ngFor="let item of this.chatService.transform(this.chatService.AllMessage,{'text':searchMessageText },false)">
 
                         <!-- Message -->
                         <div class="message padingMessage-custom" *ngIf="item.senderId!=userLoged && item.messageGroupId == this.chatService.id">

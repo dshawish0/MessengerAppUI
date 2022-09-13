@@ -116,7 +116,8 @@
                             </div>
                             <div class="card-body table-full-width table-hover">
                                 <div class="table-responsive">
-                                    <table class="table">
+                                    <button type="button" class="btn btn-info" (click)="downloadPDF()">PDF</button>
+                                    <table class="table" #content>
                                         <thead class="">
                                             <th>#</th>
                                             <th> First Name</th>

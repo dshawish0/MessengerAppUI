@@ -28,7 +28,7 @@ export class PaymentComponent implements OnInit {
     pdf.html(this.el.nativeElement,{
       callback: (pdf)=>{
         //var pageCount = pdf.internal.getNumberOfPages();
-        pdf.save("demo.pdf");
+        pdf.save("PaymetTable.pdf");
       }
     })
 

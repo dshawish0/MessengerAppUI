@@ -76,19 +76,19 @@ export class AddServicesComponent implements OnInit {
   }
 
 
-  Servicesids:any='';
+  servicename:any='';
   
   inputValue(ev:any){
-    this.Servicesids=ev.target.value;
+    this.servicename=ev.target.value;
     console.log(ev.target.value);
   }
 
   search(){
     const serviceobj=
     {
-    Servicesid:this.Servicesids};
+      servicename:this.servicename};
      debugger; 
-    this.admin.searchservices(serviceobj.Servicesid);
+    this.admin.searchservices(serviceobj.servicename);
     }
 
 }

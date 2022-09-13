@@ -19,10 +19,8 @@
                                 <div class="toolbar">
                                     <div class="form-inline" style="margin-top: 3%; float: right;">
                                         <div class="form-group mx-sm-3 mb-2">
-                                            <input type="text" class="form-control" placeholder="User Name Report" [value]="userName" 
-                                            (change)="inputValue($event)">
+                                            <input type="text" class="form-control" placeholder="User Name Report" [(ngModel)]="this.admin.searchText">
                                         </div>
-                                        <button type="submit" class="btn btn-success" (click)="search()">Search</button>
                                     </div>
                                 </div>
                                 <div class="material-datatables">
@@ -39,7 +37,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr *ngFor="let obj of admin.reports;index as i">
+                                            <tr *ngFor="let obj of this.admin.transform(admin.reports,{'userName':this.admin.searchText},false);index as i">
                                                 <td class="text-center">{{i+1}}</td>
                                                 <td>{{obj.userNameReport}}</td>
                                                 <td>{{obj.reportText}}</td>

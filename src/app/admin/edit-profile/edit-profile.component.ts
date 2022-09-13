@@ -32,6 +32,7 @@ export class EditProfileComponent implements OnInit {
     }
     console.log(this.p_data);
     this.updateForm.controls['userId'].setValue(this.p_data.userId);
+    this.updateForm.controls['proFileImg'].setValue(this.p_data.proFileImg);
   }
   uploadImg(file:any){
     debugger

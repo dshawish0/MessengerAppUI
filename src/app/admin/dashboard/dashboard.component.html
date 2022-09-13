@@ -125,7 +125,7 @@
                                             <th>Service Name</th>
                                         </thead>
                                         <tbody *ngFor="let item of admin.Payment;index as i">
-                                            <tr class="table-info" *ngIf="i%2==0">
+                                            <tr class="table-info" *ngIf="i%2 == 0">
                                                 <td>{{i}}</td>
                                                 <td>{{item.fname}}</td>
                                                 <td>{{item.lname}}</td>
@@ -139,15 +139,7 @@
                                                 <td>{{item.userName}}</td>
                                                 <td>{{item.servicename}}</td>
                                             </tr>
-                                            <tr class="table-danger" *ngIf="i%3 ==0">
-                                                <td>{{i}}</td>
-                                                <td>{{item.fname}}</td>
-                                                <td>{{item.lname}}</td>
-                                                <td>{{item.userName}}</td>
-                                                <td>{{item.servicename}}</td>
-                                            </tr>
                                         </tbody>
-
                                     </table>
                                 </div>
                             </div>

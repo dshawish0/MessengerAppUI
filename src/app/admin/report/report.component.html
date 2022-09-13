@@ -41,7 +41,7 @@
                                                 <td class="text-center">{{i+1}}</td>
                                                 <td>{{obj.userNameReport}}</td>
                                                 <td>{{obj.reportText}}</td>
-                                                <td>{{obj.reportDate}}</td>
+                                                <td>{{obj.reportDate |date:'shortDate'}}</td>
                                                 <td>{{obj.userName}}</td>
                                                 <td class="td-actions text-right">
                                                     <button type="button" rel="tooltip" class="btn btn-success" *ngIf="obj.status == 0" (click)="Accept(obj)">Accept</button>

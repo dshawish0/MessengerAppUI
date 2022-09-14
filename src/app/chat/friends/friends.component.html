@@ -69,7 +69,7 @@
                                 </div>
 
                                 <div class="col" (click)="UserProfile(item.user.userId)">
-                                    <h5><a href="#">{{item.user.fname}} {{item.user.lname}}</a></h5>
+                                    <h5><a>{{item.user.fname}} {{item.user.lname}}</a></h5>
                                     <p *ngIf="item.user.isActive ==1">Active</p>
                                     <p *ngIf="item.user.isActive ==0">UnActive</p>
                                 </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { LoginService } from 'src/app/Services/login.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-password-reset',
@@ -16,6 +17,7 @@ export class PasswordResetComponent implements OnInit {
 
   RestPassword(){
     console.log(this.email.valid);
+    localStorage.setItem('email',this.email.value);
     this.login.RestPassowrd(this.email.value)
   }
 

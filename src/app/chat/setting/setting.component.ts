@@ -25,7 +25,7 @@ export class SettingComponent implements OnInit {
 
   elementType=NgxQrcodeElementTypes.URL;
   corectionLevel=NgxQrcodeErrorCorrectionLevels.HIGH;
-  value = 'www.google.com'
+  value = `https://localhost:44318/api/User/GetUserById/${this.chatService.data.nameid}`
 
 
   Profile:FormGroup= new FormGroup({

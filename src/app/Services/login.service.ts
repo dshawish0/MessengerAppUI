@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import jwt_decode from "jwt-decode";
 import { NgxSpinnerComponent, NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
+import { environment } from 'src/environments/environment';
 import { RegistrationService } from './registration.service';
 
 @Injectable({
@@ -77,7 +78,7 @@ const headerDir={
   
 
   RestPassowrd(email:any){
-
+  debugger
     var body ={
       Email :email.toString(),
     }
@@ -90,15 +91,15 @@ const headerDir={
       headers:new HttpHeaders(headerDir)
     }
     this.spinner.show();
-    this.http.post('https://localhost:44318/api/Login/getLogByEmail',body,requestOptions).subscribe(
+    this.http.post('https://localhost:44318/api/Login/getLogByEmaill',body,requestOptions).subscribe(
       (resp)=>{
         this.spinner.hide();
         this.obj =resp;
-        this.toastr.success('Done Reset Password');
-        //console.log(this.obj)
+        this.toastr.success('Check Your Email');
+        console.log(this.obj);
 
         //console.log(JSON.parse(resp.toString()));
-        this.router.navigate(['log/PasswordReset']);
+        this.router.navigate(['log']);
         
 
     },err =>{
@@ -111,6 +112,23 @@ const headerDir={
 
 updatePassowrd(password:any){
 
+  var body ={
+    Email :localStorage.getItem('email'),
+  }
+
+const headerDir={
+'Contant-Type':'application/json',
+'Accept':'application/json'
+}
+const requestOptions={
+  headers:new HttpHeaders(headerDir)
+}
+
+  this.http.post('https://localhost:44318/api/Login/getLogByEmail',body,requestOptions).subscribe(
+      (resp)=>{
+  console.log(localStorage.getItem('email'),'deiaa here');
+  debugger
+  this.obj =resp;
   var body ={
     loginId:this.obj.loginId,
     Email:this.obj.email,
@@ -133,6 +151,9 @@ updatePassowrd(password:any){
       this.spinner.hide();
       this.toastr.error(err.message);
      })
+    },
+  )
+    
 }
 
 

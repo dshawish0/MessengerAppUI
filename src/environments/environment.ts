@@ -7,7 +7,8 @@ export const environment = {
   messageGroupIdGlobal:0,
   serviceId:0,
   saleprice:0,
-  servicename:''
+  servicename:'',
+  email:''
 };
 
 /*

@@ -51,7 +51,7 @@ export class FriendsComponent implements OnInit {
   }
 
   ReportUser(){
-    this.reportUserForm.controls['User_Id'].setValue(1), //from Login
+    this.reportUserForm.controls['User_Id'].setValue(this.chat.data.nameid), //from Login
     console.log(this.reportUserForm.value,'reportUserForm');
     this.chat.ReportUser(this.reportUserForm.value);
   }
